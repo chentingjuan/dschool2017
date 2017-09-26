@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Facade\Redirect;
 use App\Activity;
-use App\Registrecord;
+use App\RegistRecord;
 use Auth;
 class ActivityController extends Controller
 {
@@ -28,7 +28,7 @@ class ActivityController extends Controller
             // return $user;
             // Activity::find($activityId)
 
-            $existed_record = Registrecord::where('user_id',$user->id)->where("cancel",false)->first();
+            $existed_record = RegistRecord::where('user_id',$user->id)->where("cancel",false)->first();
             if ($existed_record){
                 return [
                     "status" => "registed"
@@ -53,9 +53,9 @@ class ActivityController extends Controller
             // return $user;
             // Activity::find($activityId)
 
-            $existed_record = Registrecord::where('user_id',$user->id)->where("cancel",false)->first();
+            $existed_record = RegistRecord::where('user_id',$user->id)->where("cancel",false)->first();
             if (!$existed_record){
-                $record = Registrecord::create([
+                $record = RegistRecord::create([
                     "user_id" => $user->id,
                     "activity_id" => $activityId,
                     "created_at" => date("Y-m-d H:i:s"),
@@ -95,7 +95,7 @@ class ActivityController extends Controller
             // return $user;
             // Activity::find($activityId)
 
-            $existed_record = Registrecord::where('user_id',$user->id)->where("cancel",false)->first();
+            $existed_record = RegistRecord::where('user_id',$user->id)->where("cancel",false)->first();
             
             if ($existed_record){
                 $existed_record->cancel = true;

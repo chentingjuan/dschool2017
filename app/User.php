@@ -58,7 +58,7 @@ class User extends Authenticatable
 
 
     public function registRecords(){
-        return $this->hasMany('App\Registrecord', 'user_id', 'id');
+        return $this->hasMany('App\RegistRecord', 'user_id', 'id');
     }
 
     // public function edit(Model $model)

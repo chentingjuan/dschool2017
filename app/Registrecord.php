@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
-class Registrecord extends Model
+class RegistRecord extends Model
 {
      /**
      * The attributes that are mass assignable.
