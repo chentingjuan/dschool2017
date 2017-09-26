@@ -33,7 +33,6 @@
   <body class="lang_all">
   
     <App id="app"></App>
-    <!-- <script src="{{ mix('js/bundle.js') }}"></script> -->
     @yield('blade_pass_variables')
     {{-- Script BEFORE app.js --}}
     @yield('require_js')
