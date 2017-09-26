@@ -23,15 +23,12 @@ export default {
         event: {},
         tableRows: [
           "id -> #",
-          "tag -> 類別",
-          "title -> 標題",
-          "cover -> __hide",
-          "content -> __hide",
-          "created_at -> __hide",
-          "updated_at -> __hide",
-          "carousel -> __hide",
-          "author_link -> __hide",
-          "author -> 轉載"
+          "name -> 名字",
+          "student_id -> 學號",
+          "department -> 學校/單位",
+          "phone -> 聯絡電話",
+          "email -> email",
+          "time -> 報名時間",
         ]
 
       }
@@ -58,7 +55,7 @@ export default {
         return this.lists.map((d,i)=>({
           id: i,
           name: d.user.name,
-          school: d.user.school || d.user.company,
+          department: (d.user.school?(d.user.school+"-"+d.user.department):null) || d.user.agency,
           student_id: d.user.student_id,
           phone: d.user.phone,
           email: d.user.email,
