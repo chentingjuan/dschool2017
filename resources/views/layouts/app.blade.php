@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="app">
-        <Navbar></Navbar>
+        <Navbar :reallink="true"></Navbar>
         <br>
         <br>
         <br>

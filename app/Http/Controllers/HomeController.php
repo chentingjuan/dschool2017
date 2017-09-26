@@ -28,10 +28,6 @@ class HomeController extends Controller
         return view('layouts.app_spa');
     }
 
-    public function activity()
-    {
-        return view('layouts.app_spa');
-    }
 
     public function userlist(){
         if (Auth::check()){

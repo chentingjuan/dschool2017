@@ -36,7 +36,7 @@ Route::get('/userlist', "homeController@userlist");
 Route::get('/activity', "PublicController@Activity");
 Route::get('/user/activity', "HomeController@RegistedEvent");
 
-Route::get('/activity/{activityId}', "HomeController@Activity");
+Route::get('/activity/{activityId}', "PublicController@Activity");
 
 Route::group(["prefix"=>"api"],function(){
     Route::get('/user/activity', "ApiController@getAllRegistedEvent");

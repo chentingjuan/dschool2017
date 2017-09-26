@@ -8,14 +8,17 @@
           span.icon-bar
           span.icon-bar
           span.icon-bar
+
         // Branding Image
-        router-link.navbar-brand(to="/") D-school 台大創新設計學院
+        a.navbar-brand(href="/" v-if="reallink") D-school 台大創新設計學院
+        router-link.navbar-brand(to="/" v-else) D-school 台大創新設計學院
+
       #app-navbar-collapse.collapse.navbar-collapse
         // Left Side Of Navbar
         ul.nav.navbar-nav
           li
-            //router-link(to="/activity") 學院活動
-            a(href="/activity") 學院活動
+            a(href="/activity" v-if="reallink") 學院活動
+            router-link(to="/activity" v-if="!reallink") 學院活動
 
         // Right Side Of Navbar
         ul.nav.navbar-nav.navbar-right
@@ -40,9 +43,9 @@
 <script>
 import {mapState,mapMutations} from 'vuex'
 export default {
+  props: ['reallink'],
   data(){
-    return {
-    }
+    return {}
   },
   computed:{
     ...mapState(['user','csrf_token'])
