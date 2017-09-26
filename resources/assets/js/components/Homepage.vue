@@ -12,7 +12,7 @@
             ul
               li(v-for="activity in registedActivityList")
                 ActivityInfoRow(:event_id="activity.activity_id")
-          .panel-body(v-if="user")
+          .panel-body(v-if="!user")
             h2 登入後可以管理自己的活動
 
 
