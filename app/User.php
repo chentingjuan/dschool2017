@@ -56,6 +56,11 @@ class User extends Authenticatable
         return 'uuid';
     }
 
+
+    public function registRecords(){
+        return $this->hasMany('App\Registrecord', 'user_id', 'id');
+    }
+
     // public function edit(Model $model)
     // {
     //    return view('someview.edit')->with([

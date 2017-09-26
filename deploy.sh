@@ -1,2 +1,2 @@
 git push
-ssh dschool "git pull"
+ssh dschool "cd /var/www/html/dschool2017;git pull"

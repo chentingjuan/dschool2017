@@ -13,11 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
-Route::group(['middleware'=>'auth:api','middleware'=>'cors'],function(){
+Route::group(['middleware' => ['auth:api']],function(){
     Route::get('/activity/{activityId}/register', "ActivityController@registActivity");
     Route::get('/activity/{activityId}/status', "ActivityController@getActivityStatus");
+});
+
+Route::group([],function(){
+    Route::get("activity/{id}","ApiController@getActivityById");
 });

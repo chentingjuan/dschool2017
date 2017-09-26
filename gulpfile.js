@@ -17,18 +17,18 @@ require('laravel-elixir-jade');
 elixir((mix) => {
     mix.sass('app.sass')
        .webpack([
-          './node_modules/babel-polyfill/dist/polyfill.js',
+        //   './node_modules/babel-polyfill/dist/polyfill.js',
           'app.js'
         ],'public/js/app.js')
-       .webpack([
-          'manage/app.js'
-        ],'public/js/backstage/app.js')
-       .jade({
-        baseDir: './resources',
-        blade: true,
-        dest: '/views/',
-        pretty: true,
-        search: '**/*.jade',
-        src: '/blade/'
-    });
+    //    .webpack([
+    //       'manage/app.js'
+    //     ],'public/js/backstage/app.js')
+    //    .jade({
+    //     baseDir: './resources',
+    //     blade: true,
+    //     dest: '/views/',
+    //     pretty: true,
+    //     search: '**/*.jade',
+    //     src: '/blade/'
+    // });
 });

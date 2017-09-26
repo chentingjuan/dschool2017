@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.page_event_register
+  div.page_event_register(v-if="event")
     .container.section_hero
       .cover(:style="{'background-image':'url('+event.cover[0]+')'}")
       .row(v-if="event")
@@ -9,7 +9,16 @@
           h4.mt-10 {{event.time_detail}} @ {{event.place}}
           h1.mb-4.mt-4.mt-10(v-html="event.title")
           p(v-html="event.description")
-          .btn.btn-outline-primary.btn-lg(role="button", @click="registerEvent") 我要報名
+          br
+          br
+          button.btn.btn-primary(
+            role="button", 
+            @click="registerEvent") {{event_status=="registed"?"你已經報名囉！":"我要報名"}}
+          button.btn.btn-secondary.btn-link(
+            role="button", 
+            @click="cancelEvent",
+            v-if="event_status=='registed'") 取消報名
+    .row.section_album
     .row.section_album
       ul.album
         li.image(v-for="img in event.album" ,:style="{'background-image':`url(${img.image})`}", alt="")
@@ -17,29 +26,34 @@
     .container.pb-4.pt-4
       .row.section_teacher
         .col-sm-12
-          h2.mb-4 講師簡介{{event_status}}
+          h2.mb-4 講師簡介
           .row(v-for="teacher in event.teacher")
             .col-sm-3.text-left
-              img.head
+              .head(:style="{backgroundImage: `url(${teacher.cover})`}")
               h4.mb-2.mt-2 {{teacher.name}}
               p {{teacher.description}}
               
             .col-sm-9
               p(v-html="teacher.other")
     .container-fluid.section_register
-      .container.pb-4.pt-4
+      .container.p-b-4.p-t-4
         .row
           .col-sm-12
             h2 活動報名
             p(v-html="event.register_info")    
-            .btn.btn-primary.btn-lg(role="button", @click="registerEvent") 報名活動
+            .btn.btn-primary(
+              role="button", 
+              @click="registOrCancelEvent") {{event_status=="registed"?"取消報名":"我要報名"}}
   
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import Vue from 'Vue'
 export default {
+  props: [
+    "event_id"
+  ],
   data() {
     return {
       event: {},
@@ -48,10 +62,13 @@ export default {
   },
   mounted(){
     let _this = this
-    axios.get('http://localhost:3000/events/1').then(res=>{
+    axios.get(`/api/activity/${this.event_id}`).then(res=>{
       Vue.set(_this,"event",res.data)
+      _this.event.cover=JSON.parse(_this.event.cover)
+      _this.event.teacher=JSON.parse(_this.event.teacher)
+      _this.event.album=JSON.parse(_this.event.album)
     })
-    axios.get(`http://dschool_backend.dev/api/activity/${this.event.id}/status`,{
+    axios.get(`/activity/${this.event.id}/status`,{
       activityId: this.event.id
     }).then(res=>{
       this.event_status=res.data.status
@@ -71,31 +88,57 @@ export default {
   },
   methods:{
     registerEvent(){
-      // window.open(`http://dschool_backend.dev/activity/${this.event.id}/register`)
-      axios.get(`http://dschool_backend.dev/api/activity/${this.event.id}/register`,{
+      axios.get(`/activity/${this.event.id}/register`,{
         activityId: this.event.id
       }).then(res=>{
         console.log(res.data.status)
         if (res.data.status=="need login"){
-          window.open("http://dschool_backend.dev/login")
+          window.location=`/login`
+        }else if (res.data.status=="success"){
+          this.event_status="registed"
+          alert("報名成功！")
+        }else if (res.data.status=="repeated"){
+          this.event_status="registed"
+          alert("你已報名囉！")
         }
       })
       
+    },
+    cancelEvent(){
+      if (confirm("確認要取消報名嗎？")){
+        axios.get(`/activity/${this.event.id}/cancel`,{
+          activityId: this.event.id
+        }).then(res=>{
+          console.log(res.data.result)
+          if (res.data.result=="need login"){
+            window.location=`/login`
+          }else if (res.data.result=="success"){
+            this.event_status=res.data.cancel?"not registed":"need login"
+            alert("取消成功！")
+            
+          }
+        })
+      }
+    },
+    registOrCancelEvent(){
+      (this.event_status!='registed'?this.registerEvent:this.cancelEvent)()
     }
   }
 }
 </script>
 
-<style lang="sass" scoped>
-$span: 8px
+<style lang="sass?indentedSyntax"  scoped>
+$span: 8px 
 .page_event_register
   color: #110041
-  
+
+
+
   .btn.primary
     
 
   h1
-    font-size: 48px
+    font-size: 46px
     line-height: 70px
     font-weight: bold
   h2
@@ -110,13 +153,25 @@ $span: 8px
   h5
     font-size: 22px
   p
+    font-size: 16px
     letter-spacing: 1px
-    line-height: 1.8em
+    line-height: 1.9em
 
   .section_hero
-
+    .tag
+      display: inline-block
+      background-color: #ff5559
+      color: white
+      padding: 10px 40px
+      position: absolute
+      left: 0
+      top: 10px
     .row
       min-height: 100vh
+
+      &>*
+        vertical-align: middle
+
     .cover
       position: absolute
       width: 60%
@@ -127,8 +182,10 @@ $span: 8px
     .tag
     
     .hero_panel
+      margin-top: 20vh
       background-color: #fff
       padding: $span*3
+      padding-top: $span*8
       box-shadow: 0px 0px 20px rgba(black,0.2)
 
   .section_album
@@ -155,8 +212,8 @@ $span: 8px
           background: linear-gradient(180deg,#{rgba(black,0)} 70%,#{rgba(black,0.5)} 100%)
         .caption
           color: white
-          position: absolute
           left: 10px
+          position: absolute
           bottom: 10px
           font-size: 16px
           letter-spacing: 1px
@@ -165,14 +222,17 @@ $span: 8px
             content: "#"
 
   .section_teacher
+    padding-top: 50px
+    padding-bottom: 50px
     .head
       width: 200px
       height: 200px
       border-radius: 50%
+      background-size: cover
       
   .section_register
     padding-top: 50px
     padding-bottom: 50px
     background-color: #110041
     color: white
-  </style>
+</style>

@@ -6,8 +6,11 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 // Vue.component('example', require('./components/Example.vue'));
 // Vue.component('Navbar', require('../components/Navbar.vue'));
+import comActivitySmall from "../components/Activity/ActivitySmall.vue"
+var ActivitySmall = Vue.component('ActivitySmall',comActivitySmall)
 
-var ActivitySmall = Vue.component('ActivitySmall', require('../components/Activity/ActivitySmall.vue'));
+import comHomepage from "../components/Homepage.vue"
+var Homepage = Vue.component('Homepage',comHomepage)
 // var page_index = Vue.component('page_index', require('../components/page_index.vue'));
 // var page_about = Vue.component('page_about', require('../components/page_about.vue'));
 // var page_member = Vue.component('page_member', require('../components/page_member.vue'));
@@ -25,13 +28,14 @@ var ActivitySmall = Vue.component('ActivitySmall', require('../components/Activi
 //routes
 
 const routes = [
-  { path: '/', component: ActivitySmall },
-  { path: '*', component: ActivitySmall, meta: { title: "首頁" } }
+  { path: '/', component: Homepage },
+  { path: '/activity/:event_id', component: ActivitySmall ,props: true},
+  { path: '*', component: Homepage, meta: { title: "首頁" } }
 ];
 
 const router = new VueRouter({
   routes,
-  base: "/"+window.locale+"/",
+  base: "/",
   mode: "history"
 })
 

@@ -25,6 +25,7 @@ class EventsSeeder extends Seeder
             "teacher"=> json_encode([
                 [
                     "name"=> "李品緯",
+                    "cover"=> "https://scontent.ftpe8-2.fna.fbcdn.net/v/t1.0-9/1891206_676346799082300_448754821_n.jpg?oh=7216491b86139a96f08daa5d9b16352b&oe=5A829A71",
                     "description"=> "萬能小精靈，可單手扛木板也可雙手做精工的神人！",
                     "other"=> "經歷：<br>O2O水資源藍色遊戲專案設計師。<br>學院面對空間計畫實作教練。<br>創新設計學院金牌助教。<br>D-Plan「開門工作室-keyman」團隊，「構宅青年」實作競賽全國冠軍隊伍。<br>建中木棧板傢俱工作坊實作教練。<br>木戒指工作坊講師。"
                 ]

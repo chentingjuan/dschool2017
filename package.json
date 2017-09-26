@@ -11,8 +11,10 @@
   },
   "devDependencies": {
     "axios": "^0.16.2",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^4.0.0-beta",
     "bootstrap-sass": "^3.3.7",
-    "cross-env": "^5.0.1",
+    "cross-env": "^5.0.5",
     "jquery": "^3.1.1",
     "laravel-blade-jade": "^2.0.3",
     "laravel-elixir": "^6.0.0-15",
@@ -21,7 +23,11 @@
     "laravel-elixir-webpack-official": "^1.0.10",
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
+    "node-sass": "^4.5.3",
+    "pug": "^2.0.0-rc.4",
+    "sass-loader": "^6.0.6",
     "vue": "^2.1.10",
+    "vue-loader": "^13.0.5",
     "vue-router": "^2.7.0",
     "vuex": "^2.4.0"
   },

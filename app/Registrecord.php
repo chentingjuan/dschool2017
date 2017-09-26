@@ -39,4 +39,8 @@ class Registrecord extends Model
     {
         return 'uuid';
     }
+
+    public function Activity(){
+        return $this->hasOne('App\Activity', 'activity_id', 'id');
+    }
 }

@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('layouts.app_spa');
     }
 
     public function userlist(){
@@ -34,5 +34,8 @@ class HomeController extends Controller
         }       
 
         return User::all();
+    }
+    public function RegistedEvent(){
+        return view("layouts.app_spa");
     }
 }

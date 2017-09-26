@@ -1,0 +1,32 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600")
+
+// Variables
+@import "variables"
+
+// Bootstrap
+// @import "../../../node_modules/bootstrap/scss/bootstrap"
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap"
+
+
+
+//-------------------------
+.fade-enter-active,.fade-leave-active
+  transition: opacity .5s
+
+.fade-enter,.fade-leave-to
+  opacity: 0
+.fade-enter-to,.fade-leave
+  opacity: 1
+
+.fade-delay-enter-active
+  transition: opacity .5s .5s
+.fade-delay-leave-active
+  transition: opacity .5s
+
+.fade-delay-enter,.fade-delay-leave-to
+  opacity: 0
+.fade-delay-enter-to,.fade-delay-leave
+  opacity: 1
+

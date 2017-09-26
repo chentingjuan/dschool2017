@@ -14,7 +14,7 @@
     <meta property="og:description" content="D-School 臺大創新設計學院">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/overwrite/master.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/overwrite/master.css') }}" rel="stylesheet"> -->
 
     <link href="https://fonts.googleapis.com/earlyaccess/notosanstc.css" rel="stylesheet">
 
@@ -23,17 +23,17 @@
       window.Laravel = {!! json_encode([
       'csrfToken' => csrf_token(),
       ]) !!};
+      window.csrf_token = "{{ csrf_token() }}";
+      window.user = {!! json_encode(
+       Auth::user()
+      ) !!};
     </script>
 
   </head>
   <body class="lang_all">
-    <div id="app">
-      <navbar></navbar>
-      <transition name="fade" mode="out-in">
-        <router-view :key="$route.path"></router-view>
-      </transition>
-      <section_footer></section_footer>
-    </div>
+  
+    <App id="app"></App>
+    <!-- <script src="{{ mix('js/bundle.js') }}"></script> -->
     @yield('blade_pass_variables')
     {{-- Script BEFORE app.js --}}
     @yield('require_js')
@@ -42,7 +42,7 @@
       
     </script>
     <script async src="/js/app.js"></script>
-    {{-- Script AFTER app.js --}}
+     {{-- Script AFTER app.js --}}
     @yield('require_js_after')
   </body>
 </html>
