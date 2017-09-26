@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 class RegistRecord extends Model
 {
+
+     protected $table = 'registrecords';
      /**
      * The attributes that are mass assignable.
      *
