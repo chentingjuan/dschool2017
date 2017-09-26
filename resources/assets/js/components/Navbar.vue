@@ -13,10 +13,13 @@
       #app-navbar-collapse.collapse.navbar-collapse
         // Left Side Of Navbar
         ul.nav.navbar-nav
+          li
+            //router-link(to="/activity") 學院活動
+            a(href="/activity") 學院活動
+
         // Right Side Of Navbar
         ul.nav.navbar-nav.navbar-right
           // Authentication Links
-
           li
             a(href="/login", v-if = "!user") 登入 {{user}}
           li
@@ -28,27 +31,31 @@
               span.caret
             ul.dropdown-menu(role='menu')
               li
-                a(@click="logout")
-                  | 登出
-                
-
-
+                a(onclick="event.preventDefault();document.getElementById('logout-form').submit();") 登出
+                form#logout-form(action="/logout" method="POST" style="display: none;")
+                  input(type="hidden" name="_token" :value="csrf_token")
 </template>
 
 
 <script>
-import {mapState} from 'vuex'
+import {mapState,mapMutations} from 'vuex'
 export default {
   data(){
     return {
     }
   },
   computed:{
-    ...mapState(['user'])
+    ...mapState(['user','csrf_token'])
   },
   methods: {
+    ...mapMutations(['set_user']),
     logout(){
-      axios.post("/logout")
+      axios.post("/logout",{
+        "_token": this.csrf_token
+      }).then((res)=>{
+        console.log(res.data);
+        this.set_user(null);
+      })
     }
   }
 }

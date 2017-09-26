@@ -20,6 +20,8 @@ window.Vue = require('vue');
 
 import App from './components/App.vue'
 Vue.component('App', App);
+import Navbar from './components/Navbar.vue'
+Vue.component('Navbar', Navbar);
 import Clients from  './components/passport/Clients.vue'
 import AuthorizedClients from './components/passport/AuthorizedClients.vue'
 import PersonalAccessTokens from './components/passport/PersonalAccessTokens.vue'

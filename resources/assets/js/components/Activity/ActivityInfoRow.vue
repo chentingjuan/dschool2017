@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.row(v-if="event")
+  router-link.row.nolinkstyle(v-if="event",:to="'/activity/'+event_id")
     .col-sm-4
       .event_img(:style="{'background-image':'url('+event.cover[0]+')'}", alt="")
       .tag.mt-10 {{tagname}}
@@ -9,7 +9,7 @@
       p.visible-xs(v-html="event.description.slice(0,70)+'...'")
       p.hidden-xs(v-html="event.description")
       hr
-
+      
       router-link.btn.btn-primary(
         role="button", 
         :to="'/activity/'+event_id") 詳情資訊
@@ -18,11 +18,16 @@
         role="button", 
         @click="cancelEvent",
         v-if="event_status=='registed'") 取消報名
+
+      router-link.btn.btn-info(
+        :to="'/manage/activity/'+event_id"
+        v-if="user && user.admingroup=='root'") [管理] 報名清單
         
     </template>
 
 <script>
 // import axios from 'axios'
+import {mapState} from 'vuex'
 import Vue from 'Vue'
 export default {
   props: [
@@ -58,7 +63,8 @@ export default {
           return "工作坊"
       }
       return "學院活動"
-    }
+    },
+    ...mapState(['user'])
   },
   methods:{
     registerEvent(){
@@ -106,10 +112,19 @@ export default {
 
 
 <style lang="sass?indentedSyntax" scoped>
+.nolinkstyle
+  color: #333
+  &:hover
+    color: #333
 
 .row
   border-bottom: solid 1px rgba(black,0.2)
+  display: block
   padding: 10px 0px
+  transition: 0.5s
+  &:hover
+    background-color: #f3f3f3
+
 .event_img
   width: 100%
   height: 280px

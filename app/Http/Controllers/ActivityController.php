@@ -11,6 +11,9 @@ class ActivityController extends Controller
 {
 
     
+    public function index(){
+        return Activity::all();
+    }
 
     public function show($id){
         $activitydaa = Activity::find($id);

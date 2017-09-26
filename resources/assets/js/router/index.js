@@ -6,8 +6,16 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 // Vue.component('example', require('./components/Example.vue'));
 // Vue.component('Navbar', require('../components/Navbar.vue'));
+
+import comManageActivity from "../components/Manage/Activity.vue"
+var ManageActivity = Vue.component('ManageActivity',comManageActivity)
+
 import comActivitySmall from "../components/Activity/ActivitySmall.vue"
 var ActivitySmall = Vue.component('ActivitySmall',comActivitySmall)
+
+
+import comActivityList from "../components/Activity/ActivityList.vue"
+var ActivityList = Vue.component('ActivityList',comActivityList)
 
 import comHomepage from "../components/Homepage.vue"
 var Homepage = Vue.component('Homepage',comHomepage)
@@ -29,7 +37,9 @@ var Homepage = Vue.component('Homepage',comHomepage)
 
 const routes = [
   { path: '/', component: Homepage },
+  { path: '/manage/activity/:event_id', component: ManageActivity ,props: true},
   { path: '/activity/:event_id', component: ActivitySmall ,props: true},
+  { path: '/activity', component: comActivityList ,props: true},
   { path: '*', component: Homepage, meta: { title: "首頁" } }
 ];
 

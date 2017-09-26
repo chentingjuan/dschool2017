@@ -5,29 +5,27 @@
         .panel.panel-default
           .panel-heading Example Component
           .panel-body
-            h2 管理我的活動
+            h2 學院活動
             hr
-            h4
-              | 你已經報名：
             ul
-              li(v-for="activity in registedActivityList")
-                ActivityInfoRow(:event_id="activity.activity_id")
+              li(v-for="activity in ActivityList")
+                ActivityInfoRow(:event_id="activity.id")
 
 </template>
 
 <script>
 import {mapState} from 'vuex'
-import ActivityInfoRow from './Activity/ActivityInfoRow'
+import ActivityInfoRow from './ActivityInfoRow'
 export default {
     data(){
       return {
-        registedActivityList: []
+        ActivityList: []
       }
     },
     mounted() {
         console.log('Component mounted.')
-        axios.get("/api/user/activity").then(res=>{
-          this.registedActivityList=res.data
+        axios.get("/api/activity").then(res=>{
+          this.ActivityList=res.data
         })
     },
     computed:{

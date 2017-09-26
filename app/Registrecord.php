@@ -43,4 +43,9 @@ class Registrecord extends Model
     public function Activity(){
         return $this->hasOne('App\Activity', 'activity_id', 'id');
     }
+
+
+    public function User(){
+        return $this->hasOne('App\User', 'id', 'user_id');
+    }
 }

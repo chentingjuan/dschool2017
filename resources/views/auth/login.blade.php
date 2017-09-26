@@ -50,12 +50,13 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                            <br>
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary form-control">
                                     登入
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a class="btn btn-link form-control" href="{{ route('password.request') }}">
                                     忘記密碼了嗎？
                                 </a>
                             </div>

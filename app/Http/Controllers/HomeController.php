@@ -28,14 +28,16 @@ class HomeController extends Controller
         return view('layouts.app_spa');
     }
 
+    public function activity()
+    {
+        return view('layouts.app_spa');
+    }
+
     public function userlist(){
         if (Auth::check()){
             return 'user is logged in'.Auth::user();
         }       
 
         return User::all();
-    }
-    public function RegistedEvent(){
-        return view("layouts.app_spa");
     }
 }

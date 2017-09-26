@@ -33,4 +33,8 @@ class Activity extends Model
         return 'uuid';
     }
 
+    public function RegistRecords(){
+        return $this->hasMany('App\RegistRecord', 'activity_id', 'id');
+    }
+
 }

@@ -3,7 +3,8 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
-    user: window.user
+    user: window.user,
+    csrf_token: window.csrf_token
   },
   mutations: {
     set_user(state, value){

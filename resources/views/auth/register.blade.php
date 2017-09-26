@@ -10,12 +10,11 @@
                 <h4>D-school@NTU 註冊(@{{registerMode=='student'?'學生':'一般'}})</h4>
                     
                 <div class="row">
-                    <div class="col-sm-6">
-
-                        <div class="btn btn-primary" @click="registerMode='normal'" v-if="registerMode=='student'">我是社會人士</div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="btn btn-primary" @click="registerMode='student'" v-if="registerMode=='normal'">我是學生</div>  
+                    <div class="col-sm-12">
+                        <div class="btn-group">
+                            <div class="btn" :class="{'btn-primary':registerMode=='student'}"@click="registerMode='student'">我是學生</div>  
+                            <div class="btn" :class="{'btn-primary':registerMode=='normal'}" @click="registerMode='normal'">我是社會人士</div>
+                        </div>
                     </div>
                 </div>
                     
@@ -57,10 +56,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail(edu)</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email"  placeholder="example@ntu.edu.tw" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email"  :placeholder="registerMode=='student'?'example@ntu.edu.tw':'example@gmail.com'" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -169,7 +168,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary form-control">
                                     註冊
                                 </button>
                             </div>
