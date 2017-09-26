@@ -4,7 +4,7 @@
       .mcol-sm-12
         .panel.panel-default
           .panel-heading Example Component
-          .panel-body
+          .panel-body(v-if="user")
             h2 管理我的活動
             hr
             h4
@@ -12,6 +12,9 @@
             ul
               li(v-for="activity in registedActivityList")
                 ActivityInfoRow(:event_id="activity.activity_id")
+          .panel-body(v-if="user")
+            h2 登入後可以管理自己的活動
+
 
 </template>
 
