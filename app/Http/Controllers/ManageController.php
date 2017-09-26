@@ -11,4 +11,10 @@ class ManageController extends Controller
     public function Activity($id){
         return view('layouts.app_spa');
     }
+    //
+    public function ActivityEdit($id){
+        return view('layouts.app_spa');
+    }
+
+    
 }

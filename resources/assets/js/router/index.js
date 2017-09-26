@@ -10,6 +10,10 @@ Vue.use(VueRouter);
 import comManageActivity from "../components/Manage/Activity.vue"
 var ManageActivity = Vue.component('ManageActivity',comManageActivity)
 
+
+import comManageActivitEdit from "../components/Manage/ActivityEdit.vue"
+var ManageActivitEdit = Vue.component('ManageActivitEdit',comManageActivitEdit)
+
 import comActivitySmall from "../components/Activity/ActivitySmall.vue"
 var ActivitySmall = Vue.component('ActivitySmall',comActivitySmall)
 
@@ -37,7 +41,8 @@ var Homepage = Vue.component('Homepage',comHomepage)
 
 const routes = [
   { path: '/', component: Homepage },
-  { path: '/manage/activity/:event_id', component: ManageActivity ,props: true},
+  { path: '/manage/activity/:event_id/list', component: ManageActivity ,props: true},
+  { path: '/manage/activity/:event_id', component: comManageActivitEdit ,props: true},
   { path: '/activity/:event_id', component: ActivitySmall ,props: true},
   { path: '/activity', component: comActivityList ,props: true},
   { path: '*', component: Homepage, meta: { title: "首頁" } }

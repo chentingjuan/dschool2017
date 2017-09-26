@@ -41,6 +41,7 @@
           .col-sm-12
             h2 活動報名
             p(v-html="event.register_info")    
+            br
             .btn.btn-primary(
               role="button", 
               @click="registOrCancelEvent") {{event_status=="registed"?"取消報名":"我要報名"}}
@@ -128,6 +129,8 @@ export default {
 </script>
 
 <style lang="sass?indentedSyntax"  scoped>
+
+
 $span: 8px 
 .page_event_register
   color: #110041
@@ -144,7 +147,7 @@ $span: 8px
   h2
     font-size: 42px
     font-weight: bold
-    margin-bottom: 2rem
+    margin-bottom: 5rem
   h3
     font-size: 32px
     margin-bottom: 2rem
@@ -164,8 +167,9 @@ $span: 8px
       color: white
       padding: 10px 40px
       position: absolute
-      left: 0
+      left: -10px
       top: 10px
+      box-shadow: 0px 0px 20px rgba(black,0.1)
     .row
       min-height: 100vh
 
@@ -189,6 +193,7 @@ $span: 8px
       box-shadow: 0px 0px 20px rgba(black,0.2)
 
   .section_album
+    margin-top: 50px
     .album
       display: flex
       padding-left: 0

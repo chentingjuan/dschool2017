@@ -20,8 +20,12 @@
         v-if="event_status=='registed'") 取消報名
 
       router-link.btn.btn-info(
-        :to="'/manage/activity/'+event_id"
+        :to="'/manage/activity/'+event_id+'/list'"
         v-if="user && user.admingroup=='root'") [管理] 報名清單
+
+      router-link.btn.btn-success(
+        :to="'/manage/activity/'+event_id"
+        v-if="user && user.admingroup=='root'") 編輯活動
         
     </template>
 

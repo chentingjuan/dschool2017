@@ -18,6 +18,7 @@ Auth::routes();
 
 Route::group(["prefix"=>"manage"],function(){
     Route::get('/activity/{activityId}', "ManageController@Activity");
+    Route::get('/activity/{activityId}/edit', "ManageController@ActivityEdit");
 });
 
 
