@@ -56,7 +56,7 @@ export default {
           id: i,
           name: d.user.name,
           department: (d.user.school?(d.user.school+"-"+d.user.department):null) || d.user.agency,
-          student_id: d.user.student_id,
+          // student_id: d.user.student_id,
           phone: d.user.phone,
           email: d.user.email,
           time: d.created_at
