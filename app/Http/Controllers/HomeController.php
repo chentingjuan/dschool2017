@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use UserVerification;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
@@ -39,10 +40,13 @@ class HomeController extends Controller
     }
 
     public function testmail(){
-        $user = ["email"=>"frank890417@gmail.com","name"=>"吳哲宇"];
-        Mail::send('emails.reminder', ['user' => $user], function ($m) use ($user) {
-            $m->from('hello@app.com', 'Your Application');
-            $m->to($user["email"], $user["name"])->subject('Your Reminder!');
-        });
+    $user = User::find(1);
+    UserVerification::generate($user);
+    UserVerification::send($user, 'My Custom E-mail Subject');
+    //$user = ["email"=>"frank890417@gmail.com","name"=>"吳哲宇"];
+    //    Mail::send('emails.reminder', ['user' => $user], function ($m) use ($user) {
+    //        $m->from('hello@app.com', 'Your Application');
+    //        $m->to($user["email"], $user["name"])->subject('Your Reminder!');
+    //    });
     }
 }
