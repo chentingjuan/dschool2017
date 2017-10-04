@@ -1,7 +1,10 @@
 <template lang="pug">
   div.page_event_register(v-if="event")
     .container.section_hero
-      .cover(:style="{'background-image':'url('+event.cover[0]+')'}")
+      transition(name="fade-delay")
+        .cover(
+             v-if="event",
+             :style="{'background-image':'url('+event.cover[0]+')'}")
       .row(v-if="event")
         .col-sm-6
         .col-sm-6.hero_panel.align-self-center

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -35,5 +36,13 @@ class HomeController extends Controller
         }       
 
         return User::all();
+    }
+
+    public function testmail(){
+        $user = ["email"=>"frank890417@gmail.com","name"=>"吳哲宇"];
+        Mail::send('emails.reminder', ['user' => $user], function ($m) use ($user) {
+            $m->from('hello@app.com', 'Your Application');
+            $m->to($user["email"], $user["name"])->subject('Your Reminder!');
+        });
     }
 }

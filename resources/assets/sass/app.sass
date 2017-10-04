@@ -30,3 +30,11 @@
 .fade-delay-enter-to,.fade-delay-leave
   opacity: 1
 
+
+sudo yum remove php-common       # Need to remove this, otherwise it conflicts
+sudo yum install php56w
+sudo yum install php56w-mysql
+sudo yum install php56w-common
+sudo yum install php56w-pdo
+sudo yum install php56w-opcache
+php --version       

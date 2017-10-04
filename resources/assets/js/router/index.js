@@ -3,6 +3,7 @@
 // Vue.component('slick', Slick);
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 Vue.use(VueRouter);
 // Vue.component('example', require('./components/Example.vue'));
 // Vue.component('Navbar', require('../components/Navbar.vue'));

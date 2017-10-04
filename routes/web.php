@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/testmail', 'HomeController@testmail');
 
 Auth::routes();
 
