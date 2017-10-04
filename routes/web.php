@@ -11,6 +11,8 @@
 |
 */
 
+// Route::get('verification/{token}', 'Auth\AuthController@getVerification');
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/testmail', 'HomeController@testmail');
 
