@@ -124,5 +124,15 @@ class ActivityController extends Controller
     public function store($data){
 
     }
+    
+    public function update($activityId){
+        dd("test");
+        $input=Input::all();
+        $activity=Activity::find($activityId);
+        $input['updated_at']=date("Y-m-d H:i:s");
+        $activity->update($input);
+        return $activity;
+        
+    }
     // public function 
 }

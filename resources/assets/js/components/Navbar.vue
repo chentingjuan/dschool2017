@@ -17,6 +17,11 @@
         // Left Side Of Navbar
         ul.nav.navbar-nav
           li
+            a(href="/" v-if="reallink") 我的活動
+            router-link(to="/" v-if="!reallink") 我的活動
+
+        ul.nav.navbar-nav
+          li
             a(href="/activity" v-if="reallink") 學院活動
             router-link(to="/activity" v-if="!reallink") 學院活動
 

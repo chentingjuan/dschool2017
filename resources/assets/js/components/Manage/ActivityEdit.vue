@@ -16,6 +16,7 @@
             .col-sm-9
               input.form-control(v-model="event[key]")
             br
+          button.btn.btn-primary(@click="updateActivity") 儲存更新
 </template>
 
 <script>
@@ -48,10 +49,24 @@ export default {
           return "工作坊"
       }
       return "學院活動"
+    },
+    dataForSend(){
+      let result  = JSON.parse(JSON.stringify(this.event))
+      Object.keys(result).forEach(function(key,index) {
+          result[key]=(typeof result[key] == "object"?JSON.stringify(result[key]):result[key])
+      });
+      return result
     }
   },
   methods:{
-    
+    updateActivity(){
+      axios.post(`/api/activity/${this.event.id}`,{
+        _method: 'put',
+        ...this.dataForSend
+      }).then(()=>{
+        alert("儲存完成！")
+      })
+    }
   }
 }
 </script>
