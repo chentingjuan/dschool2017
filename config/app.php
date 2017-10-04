@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         Barryvdh\Cors\ServiceProvider::class,
+        Jrean\UserVerification\UserVerificationServiceProvider::class,
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Uuid' => Webpatser\Uuid\Uuid::class,
+        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
 
     ],
 
