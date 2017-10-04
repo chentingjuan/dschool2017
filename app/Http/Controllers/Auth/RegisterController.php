@@ -10,8 +10,13 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
+
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use Jrean\UserVerification\Traits\VerifiesUsers;
 use Jrean\UserVerification\Facades\UserVerification;
+
 
 class RegisterController extends Controller
 {
@@ -70,8 +75,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $data['password']=bcrypt($data['password']);
-        return User::create($data);
 
+        $newUser = User::create($data);
+
+        UserVerification::generate($newUser);
+        UserVerification::send($newUser, 'Dschool台大創新設計學院 帳號驗證');
+
+        return $newUser;
         // return User::create([
         //     'name' => $data['name'],
         //     'email' => $data['email'],
