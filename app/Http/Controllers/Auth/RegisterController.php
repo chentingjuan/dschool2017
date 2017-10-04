@@ -6,8 +6,12 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Jrean\UserVerification\Traits\VerifiesUsers;
+// use Jrean\UserVerification\Traits\VerifiesUsers;
 
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Jrean\UserVerification\Facades\UserVerification;
 
 class RegisterController extends Controller
 {
