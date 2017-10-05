@@ -43,7 +43,7 @@
               span.caret
             ul.dropdown-menu(role='menu')
               li
-                a(href="http://dschool2017.dev/login") 登出
+                a(href="/login") 登出
                 //- div(onclick="event.preventDefault();document.getElementById('logout-form').submit();") 登出
                 //- form#logout-form(action="/logout" method="POST" style="display: none;")
                   input(type="hidden" name="_token" :value="csrf_token")
