@@ -48,7 +48,7 @@
             br
             .btn.btn-primary(
               role="button", 
-              @click="registOrCancelEvent") {{event_status=="registed"?"取消報名":"我要報名"}}
+              @click="registOrCancelEvent") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"取消報名":"我要報名"}}
   
 </template>
 
