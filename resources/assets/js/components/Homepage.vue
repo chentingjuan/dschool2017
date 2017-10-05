@@ -9,7 +9,7 @@
             hr
             h4
               | 你已經報名：
-            ul
+            ul(v-if="registedActivityList")
               li(v-for="activity in registedActivityList")
                 ActivityInfoRow(:event_id="activity.activity_id")
           .panel-body(v-if="!user")

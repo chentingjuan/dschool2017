@@ -60,7 +60,7 @@ export default {
   ],
   data() {
     return {
-      event: {},
+      event: null,
       event_status: "need login"
     }
   },
@@ -72,8 +72,8 @@ export default {
       _this.event.teacher=JSON.parse(_this.event.teacher)
       _this.event.album=JSON.parse(_this.event.album)
     })
-    axios.get(`/activity/${this.event.id}/status`,{
-      activityId: this.event.id
+    axios.get(`/activity/${this.event_id}/status`,{
+      activityId: this.event_id
     }).then(res=>{
       this.event_status=res.data.status
      
