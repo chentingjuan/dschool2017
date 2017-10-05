@@ -20,7 +20,7 @@
           button.btn.btn-secondary.btn-link(
             role="button", 
             @click="cancelEvent",
-            v-if="event_status=='UNCONFIRMED'") 取消報名
+            v-if="(event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
     .row.section_album
     .row.section_album
       ul.album
@@ -99,10 +99,10 @@ export default {
         if (res.data.status=="need login"){
           window.location=`/login`
         }else if (res.data.status=="success"){
-          this.event_status="registed"
+          this.event_status=res.data.record.status
           alert("已完成報名登記，將以E-mail寄發活動錄取通知。並請詳閱活動注意事項。")
         }else if (res.data.status=="repeated"){
-          this.event_status="registed"
+          // this.event_status=res.data.record.status
           alert("你已報名囉！")
         }
       })
@@ -125,7 +125,7 @@ export default {
       }
     },
     registOrCancelEvent(){
-      (this.event_status!='registed'?this.registerEvent:this.cancelEvent)()
+      (!(this.event_status=='registed' || this.event_status!='UNCONFIRMED')?this.registerEvent:this.cancelEvent)()
     }
   }
 }

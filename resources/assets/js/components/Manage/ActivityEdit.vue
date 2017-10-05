@@ -8,15 +8,25 @@
           br
           br
           h2 編輯活動{{ event.title }}
+          button.btn.btn-primary.pull-right(@click="updateActivity") 儲存更新
           hr
         .col-sm-6
-          .form-group(v-for="(attr,key) in event")
+          .form-group(v-for="key in ['type','title','description']")
           
-            labal.col-sm-3 {{key}}
+            labal.col-sm-3 {{transform_key(key)}}
             .col-sm-9
-              input.form-control(v-model="event[key]")
+              textarea.form-control(rows=10,v-model="event[key]", v-if="key=='register_info' || key=='title'|| key=='description'")
+              input.form-control(v-model="event[key]" v-else)
             br
-          button.btn.btn-primary(@click="updateActivity") 儲存更新
+        .col-sm-6
+          .form-group(v-for="key in ['place','time_detail','register_info','cover']")
+          
+            labal.col-sm-3 {{transform_key(key)}}
+            .col-sm-9
+              textarea.form-control(rows=10, v-model="event[key]", v-if="key=='register_info' || key=='title'|| key=='description'")
+              input.form-control(v-model="event[key]" v-else)
+            br
+          
 </template>
 
 <script>
@@ -66,6 +76,19 @@ export default {
       }).then(()=>{
         alert("儲存完成！")
       })
+    },
+    transform_key(key){
+      let list = [
+        "type | 類型",
+        "title | 標題",
+        "description | 描述",
+        "place | 地點",
+        "time_detail | 時間資訊",
+        "register_info | 報名資訊",
+        "cover | 封面"
+      ]
+      let result = list.map(s=>s.split(" | ") ).find(o=>o[0]==key)
+      return result?result[1]:key
     }
   }
 }

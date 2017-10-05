@@ -58,23 +58,27 @@ class ActivityController extends Controller
             $user = Auth::user();
             // return $user;
             // Activity::find($activityId)
-
+            $activity=Activity::find($activityId);
             $existed_record = RegistRecord::where('user_id',$user->id)->where("cancel",false)->first();
+            $record_count = $activity->registRecords()->count();
             if (!$existed_record){
                 $record = RegistRecord::create([
                     "user_id" => $user->id,
                     "activity_id" => $activityId,
+                    "status" => "UNCONFIRMED",
                     "created_at" => date("Y-m-d H:i:s"),
-                    "updated_at" => date("Y-m-d H:i:s")
+                    "updated_at" => date("Y-m-d H:i:s"),
+                    "serial" => $record_count+1
                 ]);
+                $record->save();
                 return  [
-                    "result" => $record,
-                    "status" => "success"
+                    "status" => "success",
+                    "record" => $record
                 ];
             }else{
                 return  [
-                    "result" => $existed_record,
-                    "status" => "repeated"
+                    "status" => "repeated",
+                    "record" => $existed_record
                 ];
             }
             

@@ -53,7 +53,7 @@ export default {
       ...mapState(['user']),
       registUserList(){
         return this.lists.map((d,i)=>({
-          id: i,
+          id: d.serial,
           name: d.user.name,
           department: (d.user.school?(d.user.school+"-"+d.user.department):null) || d.user.agency,
           // student_id: d.user.student_id,
