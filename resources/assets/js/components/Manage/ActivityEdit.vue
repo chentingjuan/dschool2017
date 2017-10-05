@@ -5,10 +5,10 @@
         .col-sm-12
           ol.breadcrumb
             li.breadcrumb-item 
-              router-link(to="/manage/activity") 管理活動
+              router-link(to="/activity") 管理活動
             li.breadcrumb-item.active 活動編輯
           h2 編輯活動- {{ strip_tags(event.title) }}
-          button.btn.btn-primary.pull-right(@click="updateActivity") 儲存更新
+            button.btn.btn-primary.pull-right(@click="updateActivity") 儲存更新
           hr
         .col-sm-6
           .form-group(v-for="key in ['type','title','description']")
@@ -16,7 +16,9 @@
             labal.col-sm-3 {{transform_key(key)}}
             .col-sm-9
               VueEditor.ve(:id ="key", v-model="event[key]", v-if="key=='register_info' || key=='description'")
-              input.form-control(v-model="event[key]" v-else)
+              input.form-control(v-model="event[key]" v-else-if="key!='type'")
+              select(v-else,v-model="event['type']")
+                option(v-for="op in activityTypeOptions" :value="op.value") {{op.tag}}
             br
             br
         .col-sm-6
@@ -34,6 +36,7 @@
 <script>
 // import axios from 'axios'
 import { VueEditor } from 'vue2-editor'
+import {mapState} from 'vuex'
 import Vue from 'Vue'
 export default {
   props: [
@@ -41,7 +44,11 @@ export default {
   ],
   data() {
     return {
-      event: {}
+      event: {},
+      activityTypeOptions: [
+        {tag:'工作坊',value:'workshop'},
+        {tag:'學院活動',value:'activity'},
+      ]
     }
   },
   mounted(){
@@ -64,20 +71,30 @@ export default {
       return "學院活動"
     },
     dataForSend(){
-      let result  = JSON.parse(JSON.stringify(this.event))
-      Object.keys(result).forEach(function(key,index) {
-          result[key]=(typeof result[key] == "object"?JSON.stringify(result[key]):result[key])
+      let ori_data  = JSON.parse(JSON.stringify(this.event))
+      let send_rows = ['title','type','description','place','register_info','time_detail','cover'];
+      let send_data = {}
+      send_rows
+        .forEach(function(key) {
+          send_data[key]=(typeof ori_data[key] == "object"?JSON.stringify(ori_data[key]):ori_data[key])
       });
-      return result
-    }
+      return send_data
+    },
+    ...mapState(['csrf_token'])
   },
   methods:{
     updateActivity(){
       axios.post(`/api/activity/${this.event.id}`,{
-        _method: 'put',
+        _method: 'PATCH',
+        _token: this.csrf_token,
+        dataType: 'JSON',
         ...this.dataForSend
-      }).then(()=>{
+      }).then((res)=>{
         alert("儲存完成！")
+        this.event = res.data
+        this.event.cover=JSON.parse(this.event.cover)
+        this.event.teacher=JSON.parse(this.event.teacher)
+        this.event.album=JSON.parse(this.event.album)
       })
     },
     transform_key(key){

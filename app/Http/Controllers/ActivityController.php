@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Facade\Redirect;
+use Illuminate\Support\Facades\Input;
 use App\Activity;
 use App\RegistRecord;
 use Auth;
@@ -135,10 +136,10 @@ class ActivityController extends Controller
 
     }
     
-    public function update($activityId){
-        dd("test");
+    public function update($activity){
+        // dd("test");
         $input=Input::all();
-        $activity=Activity::find($activityId);
+        $activity=Activity::find($activity);
         $input['updated_at']=date("Y-m-d H:i:s");
         $activity->update($input);
         return $activity;

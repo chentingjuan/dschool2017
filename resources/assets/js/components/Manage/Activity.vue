@@ -4,7 +4,7 @@
       .col-sm-12
         ol.breadcrumb
           li.breadcrumb-item 
-            router-link(to="/manage/activity") 管理活動
+            router-link(to="/activity") 管理活動
           li.breadcrumb-item.active 報名清單
         .panel.panel-default
           .panel-heading

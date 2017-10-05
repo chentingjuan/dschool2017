@@ -10,8 +10,12 @@
           span.icon-bar
 
         // Branding Image
-        a.navbar-brand(href="/" v-if="reallink") D-school 台大創新設計學院
-        router-link.navbar-brand(to="/" v-else) D-school 台大創新設計學院
+        a.navbar-brand(href="/" v-if="reallink")
+          img(src='http://dschool.ntu.edu.tw/2017/assets/index__pageLogo.svg')
+          span D-school台大創新設計學院
+        router-link.navbar-brand(to="/" v-else)
+          img(src='http://dschool.ntu.edu.tw/2017/assets/index__pageLogo.svg')
+          span D-school台大創新設計學院
 
       #app-navbar-collapse.collapse.navbar-collapse
         // Left Side Of Navbar
@@ -39,8 +43,9 @@
               span.caret
             ul.dropdown-menu(role='menu')
               li
-                a(onclick="event.preventDefault();document.getElementById('logout-form').submit();") 登出
-                form#logout-form(action="/logout" method="POST" style="display: none;")
+                a(href="http://dschool2017.dev/login") 登出
+                //- div(onclick="event.preventDefault();document.getElementById('logout-form').submit();") 登出
+                //- form#logout-form(action="/logout" method="POST" style="display: none;")
                   input(type="hidden" name="_token" :value="csrf_token")
 </template>
 
@@ -76,5 +81,9 @@ export default {
   &.router-link-exact-active
     border-bottom: solid 3px #f95356
     background-color: #eee
-
+.navbar-brand
+  img
+    margin-right: 10px
+    display: inline-block
+    height: 25px
 </style>

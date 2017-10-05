@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ['auth:api']],function(){
+    Route::get('/test',function(){return 'yeah';});
     Route::get('/activity/{activityId}/register', "ActivityController@registActivity");
     Route::get('/activity/{activityId}/status', "ActivityController@getActivityStatus");
 });
