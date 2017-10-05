@@ -1,12 +1,20 @@
 <template lang="pug">
   .container
     .row
-      .mcol-sm-12
+      .col-sm-12
+        br
+        br
+        br
+        br
+
+        ol.breadcrumb
+          li.breadcrumb-item 
+            router-link(to="/manage/activity") 管理活動
+          li.breadcrumb-item.active 報名清單
         .panel.panel-default
           .panel-heading 
           .panel-body
             h2 {{ event.title }} 報名清單
-            hr
             h4
             vue_lazy_table(:table_data="registUserList",
                      :rows="tableRows")

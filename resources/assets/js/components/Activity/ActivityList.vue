@@ -3,10 +3,9 @@
     .row
       .mcol-sm-12
         .panel.panel-default
-          .panel-heading Example Component
+          .panel-heading 
+            h2 學院活動清單
           .panel-body
-            h2 學院活動
-            hr
             ul
               li(v-for="activity in ActivityList")
                 ActivityInfoRow(:event_id="activity.id")

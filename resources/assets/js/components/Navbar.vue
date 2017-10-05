@@ -17,8 +17,8 @@
         // Left Side Of Navbar
         ul.nav.navbar-nav
           li
-            a(href="/" v-if="reallink") 我的活動
-            router-link(to="/" v-if="!reallink") 我的活動
+            a(href="/my/activity" v-if="reallink") 我的活動
+            router-link(to="/my/activity" v-if="!reallink") 我的活動
 
         ul.nav.navbar-nav
           li
@@ -68,3 +68,13 @@ export default {
   }
 }
 </script>
+<style lang="sass?indentedSyntax">
+.nav.navbar-nav a
+  transition: 0.5s
+  border-bottom: solid 3px transparent
+  
+  &.router-link-exact-active
+    border-bottom: solid 3px #f95356
+    background-color: #eee
+
+</style>

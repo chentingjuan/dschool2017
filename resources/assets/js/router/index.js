@@ -46,6 +46,7 @@ const routes = [
   { path: '/manage/activity/:event_id', component: comManageActivitEdit ,props: true},
   { path: '/activity/:event_id', component: ActivitySmall ,props: true},
   { path: '/activity', component: comActivityList ,props: true},
+  { path: '/my/activity', component: Homepage},
   { path: '*', component: Homepage, meta: { title: "首頁" } }
 ];
 

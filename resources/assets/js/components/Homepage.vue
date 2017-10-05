@@ -3,10 +3,9 @@
     .row
       .mcol-sm-12
         .panel.panel-default
-          .panel-heading Example Component
-          .panel-body(v-if="user")
+          .panel-heading 
             h2 管理我的活動
-            hr
+          .panel-body(v-if="user")
             h4
               | 你已經報名：
             ul(v-if="registedActivityList")
