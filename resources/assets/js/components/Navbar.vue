@@ -35,11 +35,11 @@
 
           li.dropdown(v-if="user")
             a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-              | {{user? user.name: ""}}
+              | {{user? user.name: ""}} {{user && user.admingroup=='root' ? ' [管理員]':'' }}
               span.caret
             ul.dropdown-menu(role='menu')
               li
-                div(onclick="event.preventDefault();document.getElementById('logout-form').submit();") 登出
+                a(onclick="event.preventDefault();document.getElementById('logout-form').submit();") 登出
                 form#logout-form(action="/logout" method="POST" style="display: none;")
                   input(type="hidden" name="_token" :value="csrf_token")
 </template>
