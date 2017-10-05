@@ -13,6 +13,7 @@ class ActivityController extends Controller
 
     
     public function index(){
+        // dd("test");
         return Activity::all();
     }
 

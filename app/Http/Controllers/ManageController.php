@@ -7,6 +7,9 @@ use App\Activity;
 
 class ManageController extends Controller
 {
+    public function Spa(){
+        return view('layouts.app_spa');
+    }
     //
     public function Activity($id){
         return view('layouts.app_spa');

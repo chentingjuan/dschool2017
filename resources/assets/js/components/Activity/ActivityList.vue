@@ -24,7 +24,9 @@ export default {
     mounted() {
         console.log('Component mounted.')
         axios.get("/api/activity").then(res=>{
-          this.ActivityList=res.data
+          // if (typeof res.data == "array"){
+          Vue.set(this,"ActivityList",res.data)
+          // }
         })
     },
     computed:{

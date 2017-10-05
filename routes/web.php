@@ -20,6 +20,7 @@ Auth::routes();
 
 
 Route::group(["prefix"=>"manage"],function(){
+    Route::get('/user', "ManageController@Spa");
     Route::get('/activity/{activityId}', "ManageController@Activity");
     Route::get('/activity/{activityId}/list', "ManageController@Activity");
     Route::get('/activity/{activityId}/edit', "ManageController@ActivityEdit");
@@ -43,11 +44,13 @@ Route::get('/my/activity', "PublicController@Activity");
 Route::get('/user/activity', "HomeController@RegistedEvent");
 
 Route::get('/activity/{activityId}', "PublicController@Activity");
+Route::get('/api/{activityId}', "PublicController@Activity");
 
 Route::group(["prefix"=>"api"],function(){
     Route::get('/user/activity', "ApiController@getAllRegistedEvent");
     Route::get('/activity/list/{activityId}', "ApiController@getEventRegisterList");
     Route::resource('activity',"ActivityController");
+    Route::get('/user/list', "ApiController@getUserList");
 });
 
 // Route::get('/event', "homeController@event");

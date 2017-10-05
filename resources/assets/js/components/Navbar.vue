@@ -23,11 +23,13 @@
           li
             a(href="/my/activity" v-if="reallink") 我的活動
             router-link(to="/my/activity" v-if="!reallink") 我的活動
-
-        ul.nav.navbar-nav
           li
             a(href="/activity" v-if="reallink") 學院活動
             router-link(to="/activity" v-if="!reallink") 學院活動
+
+          li(v-if="is_admin")
+            a(href="/manage/user" v-if="reallink") 會員清單
+            router-link(to="/manage/user" v-if="!reallink") 會員清單
 
         // Right Side Of Navbar
         ul.nav.navbar-nav.navbar-right
@@ -58,7 +60,10 @@ export default {
     return {}
   },
   computed:{
-    ...mapState(['user','csrf_token'])
+    ...mapState(['user','csrf_token']),
+    is_admin(){
+      return this.user && this.user.admingroup=='root' 
+    }
   },
   methods: {
     ...mapMutations(['set_user']),

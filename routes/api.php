@@ -25,4 +25,5 @@ Route::group(['middleware' => ['auth:api']],function(){
 
 Route::group([],function(){
     Route::get("activity/{id}","ApiController@getActivityById");
+    Route::get("activity/","ApiController@getAllActivities");
 });
