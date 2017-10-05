@@ -5,9 +5,9 @@
         .col-sm-12
           br
           br
+
           br
-          br
-          h2 編輯活動{{ event.title }}
+          h2 編輯活動- {{ event.title }}
           button.btn.btn-primary.pull-right(@click="updateActivity") 儲存更新
           hr
         .col-sm-6
@@ -15,22 +15,25 @@
           
             labal.col-sm-3 {{transform_key(key)}}
             .col-sm-9
-              textarea.form-control(rows=10,v-model="event[key]", v-if="key=='register_info' || key=='title'|| key=='description'")
+              VueEditor.ve(:id ="key", v-model="event[key]", v-if="key=='register_info' || key=='description'")
               input.form-control(v-model="event[key]" v-else)
+            br
             br
         .col-sm-6
           .form-group(v-for="key in ['place','time_detail','register_info','cover']")
           
             labal.col-sm-3 {{transform_key(key)}}
             .col-sm-9
-              textarea.form-control(rows=10, v-model="event[key]", v-if="key=='register_info' || key=='title'|| key=='description'")
+              VueEditor.ve(:id ="key", v-model="event[key]", v-if="key=='register_info' || key=='description'")
               input.form-control(v-model="event[key]" v-else)
+            br
             br
           
 </template>
 
 <script>
 // import axios from 'axios'
+import { VueEditor } from 'vue2-editor'
 import Vue from 'Vue'
 export default {
   props: [
@@ -90,9 +93,13 @@ export default {
       let result = list.map(s=>s.split(" | ") ).find(o=>o[0]==key)
       return result?result[1]:key
     }
+  },
+  components:{
+    VueEditor
   }
 }
 </script>
 
 <style lang="sass?indentedSyntax"  scoped>
+
 </style>
