@@ -3,11 +3,6 @@
     .container
       .row
         .col-sm-12
-          br
-          br
-
-          br
-          br
           ol.breadcrumb
             li.breadcrumb-item 
               router-link(to="/manage/activity") 管理活動

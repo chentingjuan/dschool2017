@@ -30,7 +30,8 @@ export default {
           "student_id -> 學號",
           "department -> 學校/單位",
           "phone -> 聯絡電話",
-          "email -> email",
+          "email -> 信箱",
+          "status -> 狀態",
           "time -> 報名時間",
         ]
 
