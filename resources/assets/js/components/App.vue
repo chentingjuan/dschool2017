@@ -20,7 +20,7 @@ export default {
 
 <style lang="sass?indentedSyntax">
 .page_area
-  margin-top: 80px
+  margin-top: 54px
 
 
 </style>

@@ -14,6 +14,7 @@
           p(v-html="event.description")
           br
           br
+          p 狀態：{{get_event_status_translate(event_status)}}
           button.btn.btn-primary(
             role="button", 
             @click="registerEvent") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}

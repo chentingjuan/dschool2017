@@ -49,7 +49,16 @@ Vue.mixin({
         strip_tags(txt){
             let result = txt.replace(/(<([^>]+)>)/ig,"")
             return result
-        }
+        },
+        get_event_status_translate(txt){
+          switch(txt){
+            case "UNCONFIRMED":
+              return "已報名待確認"
+            case "CONFIRMED",'registed':
+              return "已報名與確認"
+          }
+          return "未報名"
+        },
     }
 })
 

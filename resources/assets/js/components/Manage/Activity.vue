@@ -62,7 +62,7 @@ export default {
           // student_id: d.user.student_id,
           phone: d.user.phone,
           email: d.user.email,
-          status: d.status.replace('UNCONFIRMED',"已報名待確認"),
+          status: this.get_event_status_translate(d.status),
           time: d.created_at
         }))
       }
