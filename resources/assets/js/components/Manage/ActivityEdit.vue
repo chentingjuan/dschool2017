@@ -12,7 +12,7 @@
             li.breadcrumb-item 
               router-link(to="/manage/activity") 管理活動
             li.breadcrumb-item.active 活動編輯
-          h2 編輯活動- {{ event.title }}
+          h2 編輯活動- {{ strip_tags(event.title) }}
           button.btn.btn-primary.pull-right(@click="updateActivity") 儲存更新
           hr
         .col-sm-6

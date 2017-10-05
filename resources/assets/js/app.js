@@ -12,6 +12,8 @@ import router from "./router"
 import {mapState} from "vuex"
 window.Vue = require('vue');
 
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -41,6 +43,15 @@ Vue.component(
     'passport-personal-access-tokens',
     PersonalAccessTokens
 );
+
+Vue.mixin({
+    methods: {
+        strip_tags(txt){
+            let result = txt.replace(/(<([^>]+)>)/ig,"")
+            return result
+        }
+    }
+})
 
 const app = new Vue({
     el: '#app',

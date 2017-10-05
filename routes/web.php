@@ -39,6 +39,7 @@ Route::get('/userlist', "homeController@userlist");
 
 
 Route::get('/activity', "PublicController@Activity");
+Route::get('/my/activity', "PublicController@Activity");
 Route::get('/user/activity', "HomeController@RegistedEvent");
 
 Route::get('/activity/{activityId}', "PublicController@Activity");

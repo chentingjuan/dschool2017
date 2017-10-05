@@ -9,7 +9,7 @@
       p.visible-xs(v-html="event.description.slice(0,70)+'...'")
       p.hidden-xs(v-html="event.description")
       hr
-      
+      span 狀態: {{translate_status(event_status)}} &nbsp;
       router-link.btn.btn-primary(
         role="button", 
         :to="'/activity/'+event_id") 詳情資訊
@@ -19,14 +19,15 @@
         @click="cancelEvent",
         v-if="event_status=='registed'") 取消報名
 
-      router-link.btn.btn-info(
-        :to="'/manage/activity/'+event_id+'/list'"
-        v-if="user && user.admingroup=='root'") [管理] 報名清單
+      span(v-if="user && user.admingroup=='root'") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理功能：
+        router-link.btn.btn-info(
+          :to="'/manage/activity/'+event_id+'/list'"
+          v-if="user && user.admingroup=='root'") [管理] 報名清單
 
-      router-link.btn.btn-success(
-        :to="'/manage/activity/'+event_id"
-        v-if="user && user.admingroup=='root'") 編輯活動
-        
+        router-link.btn.btn-success(
+          :to="'/manage/activity/'+event_id"
+          v-if="user && user.admingroup=='root'") 編輯活動
+          
     </template>
 
 <script>
@@ -71,6 +72,12 @@ export default {
     ...mapState(['user'])
   },
   methods:{
+    translate_status(txt){
+      switch( (txt+"").toLocaleLowerCase() ){
+        case "unconfirmed":
+          return "已報名待確認"
+      }
+    },
     registerEvent(){
       axios.get(`/activity/${this.event.id}/register`,{
         activityId: this.event.id
