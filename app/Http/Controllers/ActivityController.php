@@ -30,9 +30,15 @@ class ActivityController extends Controller
 
             $existed_record = RegistRecord::where('user_id',$user->id)->where("cancel",false)->first();
             if ($existed_record){
-                return [
-                    "status" => "registed"
-                ];
+                if ($existed_record->status=="UNCONFIRMED"){
+                    return [
+                        "status" => "UNCONFIRMED"
+                    ];
+                }else if ($existed_record->status=="UNCONFIRMED"){
+                    return [
+                        "status" => "REGISTED"
+                    ];
+                }
             }else{
                 return [
                     "status" => "not registed"

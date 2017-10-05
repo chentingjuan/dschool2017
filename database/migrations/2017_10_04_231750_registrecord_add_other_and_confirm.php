@@ -15,8 +15,8 @@ class RegistrecordAddOtherAndConfirm extends Migration
     {
         //
         Schema::table('registrecords', function (Blueprint $table) {
-            $table->string('status');
-            $table->string('other',400);
+            $table->string('status')->default('UNCONFIRMED');
+            // $table->string('other',1000)->nullable();
         });
 
     }
@@ -31,7 +31,7 @@ class RegistrecordAddOtherAndConfirm extends Migration
         //
         Schema::table('registrecords', function (Blueprint $table) {
             $table->dropColumn('status');
-            $table->dropColumn('other');
+            // $table->dropColumn('other');
            
         });
     }

@@ -16,11 +16,11 @@
           br
           button.btn.btn-primary(
             role="button", 
-            @click="registerEvent") {{event_status=="registed"?"你已經報名囉！":"我要報名"}}
+            @click="registerEvent") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}
           button.btn.btn-secondary.btn-link(
             role="button", 
             @click="cancelEvent",
-            v-if="event_status=='registed'") 取消報名
+            v-if="event_status=='UNCONFIRMED'") 取消報名
     .row.section_album
     .row.section_album
       ul.album
@@ -100,7 +100,7 @@ export default {
           window.location=`/login`
         }else if (res.data.status=="success"){
           this.event_status="registed"
-          alert("報名成功！")
+          alert("已完成報名登記，將以E-mail寄發活動錄取通知。並請詳閱活動注意事項。")
         }else if (res.data.status=="repeated"){
           this.event_status="registed"
           alert("你已報名囉！")
