@@ -6,9 +6,9 @@
           li.breadcrumb-item 
             router-link(to="/activity") 管理活動
           li.breadcrumb-item.active 報名清單
-        .panel.panel-default
+        .panel.panel-default(v-if="registUserList")
           .panel-heading
-            h2 {{ strip_tags(event.title) }} 報名清單
+            h2 {{ strip_tags(event.title) }} 報名清單 (共{{registUserList.length}}筆報名)
           .panel-body
             h4
             vue_lazy_table(:table_data="registUserList",
@@ -25,7 +25,7 @@ export default {
         lists: [],
         event: {},
         tableRows: [
-          "id -> #",
+          "serial -> 報名序號#",
           "name -> 名字",
           "student_id -> 學號",
           "department -> 學校/單位",
@@ -57,7 +57,7 @@ export default {
       ...mapState(['user']),
       registUserList(){
         return this.lists.map((d,i)=>({
-          id: d.serial,
+          serial: d.serial ,
           name: d.user.name,
           department: (d.user.school?(d.user.school+"-"+d.user.department):null) || d.user.agency,
           // student_id: d.user.student_id,

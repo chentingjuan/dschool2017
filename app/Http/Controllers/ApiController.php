@@ -34,4 +34,13 @@ class ApiController extends Controller
         }
     }
 
+    public function getUserList(){
+        if ( Auth::check() ){
+            $user = Auth::user();
+            if ($user->admingroup=="root"){
+                return User::all();
+            }
+        }
+    }
+
 }
