@@ -67,7 +67,7 @@ const app = new Vue({
     router,
     store,
     data: {
-        registerMode: "normal"
+        registerMode: "student"
     }
 });
 
