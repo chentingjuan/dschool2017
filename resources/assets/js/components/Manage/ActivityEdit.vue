@@ -68,6 +68,30 @@
                   br
         .col-sm-6
           .form-group
+            labal.col-sm-3 相簿
+            .row
+              .col-sm-12(v-for="(pic,picid) in event.album")
+                .row
+                  .col-sm-9
+                    .row
+                      .col-sm-3
+                        img(:src="pic.image", style="width: 100%")
+                      .col-sm-9
+                        input.form-control(v-model="event.album[picid].image" ,placeholder="照片網址")
+                        textarea.form-control(v-model="event.album[picid].caption", placeholder="描述")
+                  
+                  .col-sm-3
+                    default_pic_selector(@select_pic="(obj)=>{event.album[picid].image=obj.url}")
+                    .btn.btn-danger(@click="event.album.splice(picid,1)") 刪除
+                  br
+                  hr
+                  br
+              .col-sm-12
+                .btn.btn-primary(@click="event.album.push({image:'',caption:''})") 新增照片
+
+            br
+            br
+          .form-group
             labal.col-sm-3 描述
             .col-sm-9
               VueEditor.ve(:id ="'description'", v-model="event.description" )
@@ -129,7 +153,7 @@ export default {
         Vue.set(_this,"event",res.data)
         // console.log(_this.event.cover)
         _this.event.teacher = JSON.parse(_this.event.teacher.replace(/\\\"/g,"\""))
-        _this.event.cover = JSON.parse(_this.event.cover.replace(/\\\"/g,"\""))
+        // _this.event.cover = JSON.parse(_this.event.cover.replace(/\\\"/g,"\""))
         _this.event.album = JSON.parse(_this.event.album.replace(/\\\"/g,"\""))
       })
 
@@ -152,7 +176,7 @@ export default {
       ori_data.teacher=JSON.stringify(ori_data.teacher)
       ori_data.album=JSON.stringify(ori_data.album)
 
-      let send_rows = ['title','type','description','place','register_info','time','time_detail','cover','teacher'];
+      let send_rows = ['title','type','description','place','register_info','album','time','time_detail','cover','teacher'];
       let send_data = {}
       send_rows
         .forEach(function(key) {
