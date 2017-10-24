@@ -103,6 +103,7 @@ export default {
         title: "",
         description: "",
         place: "",
+        teacher: [],
         time_detail: "",
         register_info: "",
         cover: "",
