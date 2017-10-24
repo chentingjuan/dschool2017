@@ -137,6 +137,17 @@ class ActivityController extends Controller
 
     }
     
+
+    public function destroy($id){
+        // delete
+        $nerd = Activity::find($id);
+        $nerd->delete();
+        return [
+            'status'=>true
+        ];
+    }
+            
+
     public function update($activity){
         // dd("test");
         $inputs=Input::all();

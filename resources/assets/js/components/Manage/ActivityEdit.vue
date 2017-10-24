@@ -8,9 +8,10 @@
               router-link(to="/activity") 管理活動
             li.breadcrumb-item.active 活動編輯
           h2(v-if="event_id") 編輯活動- {{ strip_tags(event.title) }}
+            button.btn.btn-danger.pull-right(@click="deleteActivity") 刪除活動
             button.btn.btn-primary.pull-right(@click="updateActivity") 儲存更新
           h2(v-else) 新增活動- {{ strip_tags(event.title) }}
-            button.btn.btn-primary.pull-right(@click="updateActivity") 儲存更新
+            button.btn.btn-primary.pull-right(@click="updateActivity") 儲存活動
           hr
         .col-sm-6
           .form-group
@@ -51,8 +52,11 @@
                 .row
                   .col-sm-3
                     label {{teacherId+1}}. {{teacher.name}}
+                    br
+                    .btn.btn-danger(@click="event.teacher.splice(teacherId,1)") 刪除
                   .col-sm-9
                     input.form-control(v-model="teacher.name", placeholder="姓名")
+                    input.form-control(v-model="teacher.cover", placeholder="照片網址")
                     textarea.form-control(v-model="teacher.description", placeholder="描述")
                     textarea.form-control(v-model="teacher.other", rows="6", placeholder="其他")
               .form-group
@@ -79,6 +83,7 @@
             labal.col-sm-3 封面
             .col-sm-9
               input.form-control(v-model="event.cover")
+              img(:src="event.cover", style="width: 100%")
             .col-sm-3
               default_pic_selector(@select_pic="select_pic")
             br
@@ -188,6 +193,18 @@ export default {
     select_pic(obj){
       console.log(obj)
       this.event.cover=obj.url
+    },
+    deleteActivity(){
+      if (confirm('確認要刪除這個活動嗎？')){
+        axios.post(`/api/activity/${this.event.id}`,{
+          _method: 'DELETE',
+          _token: this.csrf_token,
+          dataType: 'JSON',
+        }).then((res)=>{
+          alert("刪除完成！")
+          this.$router.push('/activity')
+        })
+      }
     }
   },
   components:{
