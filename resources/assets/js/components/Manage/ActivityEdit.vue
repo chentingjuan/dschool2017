@@ -57,6 +57,8 @@
                   .col-sm-9
                     input.form-control(v-model="teacher.name", placeholder="姓名")
                     input.form-control(v-model="teacher.cover", placeholder="照片網址")
+                    img(:src="teacher.cover" , style="width: 80px")
+                    default_pic_selector(@select_pic="(obj)=>{event.teacher[teacherId].cover=obj.url}")
                     textarea.form-control(v-model="teacher.description", placeholder="描述")
                     textarea.form-control(v-model="teacher.other", rows="6", placeholder="其他")
               .form-group
