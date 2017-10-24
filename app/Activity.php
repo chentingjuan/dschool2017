@@ -7,14 +7,14 @@ use Webpatser\Uuid\Uuid;
 class Activity extends Model
 {
     //
-     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-     protected $fillable = [
-        'title','place','description','register_info','time_detail','cover'
-   ];
+    /**
+    * The attributes that are mass assignable.
+    *
+    * @var array
+    */
+    protected $fillable = [
+       'title','place','description','register_info','time_detail','cover','teacher'
+    ];
 
 
     //uuid for key operation 

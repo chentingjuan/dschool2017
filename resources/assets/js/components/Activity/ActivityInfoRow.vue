@@ -1,7 +1,7 @@
 <template lang="pug">
   router-link.row.nolinkstyle(v-if="event",:to="'/activity/'+event_id")
     .col-sm-4
-      .event_img(:style="{'background-image':'url('+event.cover[0]+')'}", alt="")
+      .event_img(:style="{'background-image':'url('+event.cover+')'}", alt="")
       .tag.mt-10 {{tagname}}
     .col-sm-8
       h4.mt-10 {{event.time_detail}} @ {{event.place}}
@@ -48,7 +48,7 @@ export default {
     let _this = this
     axios.get(`/api/activity/${this.event_id}`).then(res=>{
       Vue.set(_this,"event",res.data)
-      _this.event.cover=JSON.parse(_this.event.cover)
+      // _this.event.cover=JSON.parse(_this.event.cover)
       _this.event.teacher=JSON.parse(_this.event.teacher)
       _this.event.album=JSON.parse(_this.event.album)
     })

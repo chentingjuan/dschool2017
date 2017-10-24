@@ -139,11 +139,19 @@ class ActivityController extends Controller
     
     public function update($activity){
         // dd("test");
-        $input=Input::all();
+        $inputs=Input::all();
         $activity=Activity::find($activity);
-        $input['updated_at']=date("Y-m-d H:i:s");
-        $activity->update($input);
-        return $activity;
+        if ($activity){
+            $inputs['updated_at']=date("Y-m-d H:i:s");
+            $activity->update($inputs);
+            return $activity;
+        }else{
+            $activity=Activity::create($inputs);
+            return $activity;
+            
+        }
+        // $activity=Activity::firstOrCreate($activity);
+
         
     }
     // public function 

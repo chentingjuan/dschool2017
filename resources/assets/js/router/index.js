@@ -45,6 +45,7 @@ var Homepage = Vue.component('Homepage',comHomepage)
 
 const routes = [
   { path: '/', component: Homepage },
+  { path: '/manage/activity/new', component: comManageActivitEdit},
   { path: '/manage/activity/:event_id/list', component: ManageActivity ,props: true},
   { path: '/manage/activity/:event_id', component: comManageActivitEdit ,props: true},
   { path: '/manage/user', component: comManageUser ,props: true},

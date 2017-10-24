@@ -81,7 +81,7 @@ class RegisterController extends Controller
         $newUser = User::create($data);
 
         UserVerification::generate($newUser);
-        UserVerification::send($newUser, 'Dschool台大創新設計學院 帳號驗證');
+        UserVerification::send($newUser, 'Dschool台大創新設計學院 帳號驗證信');
 
         return $newUser;
         // return User::create([

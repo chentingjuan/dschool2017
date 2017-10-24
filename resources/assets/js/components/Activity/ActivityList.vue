@@ -5,10 +5,13 @@
         .panel.panel-default
           .panel-heading 
             h2 學院活動清單
+              router-link.btn.btn-primary.pull-right(v-if="user && user.admingroup=='root'",
+                                          to="/manage/activity/new") + 新增活動
           .panel-body
             ul
               li(v-for="activity in ActivityList")
                 ActivityInfoRow(:event_id="activity.id")
+              
 
 </template>
 

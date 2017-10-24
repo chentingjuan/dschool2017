@@ -3,8 +3,8 @@
     .container.section_hero
       transition(name="fade-delay")
         .cover(
-             v-if="event",
-             :style="{'background-image':'url('+event.cover[0]+')'}")
+          v-if="event",
+          :style="{'background-image':'url('+event.cover+')'}")
       .row(v-if="event")
         .col-sm-6
         .col-sm-6.hero_panel.align-self-center
@@ -69,7 +69,7 @@ export default {
     let _this = this
     axios.get(`/api/activity/${this.event_id}`).then(res=>{
       Vue.set(_this,"event",res.data)
-      _this.event.cover=JSON.parse(_this.event.cover)
+      // _this.event.cover=JSON.parse(_this.event.cover)
       _this.event.teacher=JSON.parse(_this.event.teacher)
       _this.event.album=JSON.parse(_this.event.album)
     })
