@@ -146,7 +146,7 @@ export default {
       ori_data.teacher=JSON.stringify(ori_data.teacher)
       ori_data.album=JSON.stringify(ori_data.album)
 
-      let send_rows = ['title','type','description','place','register_info','time_detail','cover','teacher'];
+      let send_rows = ['title','type','description','place','register_info','time','time_detail','cover','teacher'];
       let send_data = {}
       send_rows
         .forEach(function(key) {
