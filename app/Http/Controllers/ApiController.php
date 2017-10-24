@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\File;
 use Storage;
 use Auth;
 use App\User;
@@ -70,8 +71,10 @@ class ApiController extends Controller
            });
   
            $path = 'img/uploaded/';
-           $img->save('storage/'.$path.$filename);
+           
+           $img->save(storage_path('app/'.$path.$filename));
            // dd($img->__toString());
+          
            Storage::put($path.$filename,$img->__toString());
   
   
