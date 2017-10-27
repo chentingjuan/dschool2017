@@ -7,111 +7,138 @@
             li.breadcrumb-item 
               router-link(to="/activity") 管理活動
             li.breadcrumb-item.active 活動編輯
+        
           h2(v-if="event_id") 編輯活動- {{ strip_tags(event.title) }}
             button.btn.btn-danger.pull-right(@click="deleteActivity") 刪除活動
             button.btn.btn-primary.pull-right(@click="updateActivity") 儲存更新
           h2(v-else) 新增活動- {{ strip_tags(event.title) }}
             button.btn.btn-primary.pull-right(@click="updateActivity") 儲存活動
           hr
-        .col-sm-6
-          .form-group
-            labal.col-sm-3 類型
-            .col-sm-9
-              select.form-control(v-model="event.type")
-                option(v-for="op in activityTypeOptions", :value="op.value") {{op.tag}}
-            br
-            br
-          .form-group
-            labal.col-sm-3 標題
-            .col-sm-9
-              input.form-control(v-model="event.title")
-            br
-            br
-          .form-group
-            labal.col-sm-3 地點
-            .col-sm-9
-              input.form-control(v-model="event.place")
-            br
-            br
-          .form-group
-            labal.col-sm-3 時間
-            .col-sm-9
-              input.form-control(v-model="event.time")
-            br
-            br
-          .form-group
-            labal.col-sm-3 顯示時間
-            .col-sm-9
-              input.form-control(v-model="event.time_detail")
-            br
-            br
-          .form-group
-            labal.col-sm-3 師資
-            .col-sm-9
-              .form-group(v-for="(teacher,teacherId) in event.teacher", style="margin-top: 10px")
-                .row
-                  .col-sm-3
-                    label {{teacherId+1}}. {{teacher.name}}
-                    br
-                    .btn.btn-danger(@click="event.teacher.splice(teacherId,1)") 刪除
-                  .col-sm-9
-                    input.form-control(v-model="teacher.name", placeholder="姓名")
-                    input.form-control(v-model="teacher.cover", placeholder="照片網址")
-                    img(:src="teacher.cover" , style="width: 80px")
-                    default_pic_selector(@select_pic="(obj)=>{event.teacher[teacherId].cover=obj.url}")
-                    textarea.form-control(v-model="teacher.description", placeholder="描述")
-                    textarea.form-control(v-model="teacher.other", rows="6", placeholder="其他")
-              .form-group
-                .col-sm-12
-                  .btn.btn-default.form-control(@click="event.teacher.push({name: '',description:''})") + 新增
-                  br
-                  br
-                  br
-                  br
-        .col-sm-6
-          .form-group
-            labal.col-sm-3 相簿
-            .row
-              .col-sm-12(v-for="(pic,picid) in event.album")
-                .row
-                  .col-sm-9
-                    .row
-                      .col-sm-3
-                        img(:src="pic.image", style="width: 100%")
-                      .col-sm-9
-                        input.form-control(v-model="event.album[picid].image" ,placeholder="照片網址")
-                        textarea.form-control(v-model="event.album[picid].caption", placeholder="描述")
-                  
-                  .col-sm-3
-                    default_pic_selector(@select_pic="(obj)=>{event.album[picid].image=obj.url}")
-                    .btn.btn-danger(@click="event.album.splice(picid,1)") 刪除
-                  br
-                  hr
-                  br
-              .col-sm-12
-                .btn.btn-primary(@click="event.album.push({image:'',caption:''})") 新增照片
 
-            br
-            br
-          .form-group
-            labal.col-sm-3 描述
-            .col-sm-9
-              VueEditor.ve(:id ="'description'", v-model="event.description" )
-              br
-              br
-          .form-group
-            labal.col-sm-3 註冊資訊
-            .col-sm-9
-              VueEditor.ve(:id ="'register_info'", v-model="event.register_info")
-              br
-              br
-          .form-group
-            labal.col-sm-3 封面
-            .col-sm-9
-              input.form-control(v-model="event.cover")
-              img(:src="event.cover", style="width: 100%")
-            .col-sm-3
-              default_pic_selector(@select_pic="select_pic")
+        .col-sm-4
+          .panel.panel-primary
+            .panel-heading 基本資訊
+            .panel-body
+              .form-group
+                labal.col-sm-3 類型
+                .col-sm-9
+                  select.form-control(v-model="event.type")
+                    option(v-for="op in activityTypeOptions", :value="op.value") {{op.tag}}
+                br
+                br
+              .form-group
+                labal.col-sm-3 標題
+                .col-sm-9
+                  input.form-control(v-model="event.title")
+                br
+                br
+              .form-group
+                labal.col-sm-3 地點
+                .col-sm-9
+                  input.form-control(v-model="event.place")
+                br
+                br
+              .form-group
+                labal.col-sm-3 時間
+                .col-sm-9
+                  input.form-control(v-model="event.time")
+                br
+                br
+              .form-group
+                labal.col-sm-3 顯示<br>時間
+                .col-sm-9
+                  input.form-control(v-model="event.time_detail")
+                br
+                br
+              .form-group
+                labal.col-sm-3 封面
+                .col-sm-9
+                  input.form-control(v-model="event.cover")
+                  img(:src="event.cover", style="width: 100%")
+                  default_pic_selector(@select_pic="select_pic")
+                br
+                br
+        .col-sm-8
+          .panel.panel-default
+            .panel-heading 詳細內容
+            .panel-body
+              .form-group
+                labal.col-sm-3 描述
+                .col-sm-9
+                  VueEditor.ve(:id ="'description'", v-model="event.description" )
+                  br
+                  br
+              .form-group
+                labal.col-sm-3 註冊資訊
+                .col-sm-9
+                  VueEditor.ve(:id ="'register_info'", v-model="event.register_info")
+                  br
+                  br
+              .form-group
+                labal.col-sm-3 師資
+                .col-sm-9
+                  .form-group(v-for="(teacher,teacherId) in event.teacher", style="margin-top: 10px")
+                    .row
+                      .col-sm-12
+                        .container-fluid
+                          h4(style="width: 100%") {{teacherId+1}}. {{teacher.name}}
+                            .btn.btn-danger.pull-right(@click="event.teacher.splice(teacherId,1)") 刪除
+                          .row.form-group
+                            .col-sm-2
+                              h5 姓名
+                            .col-sm-10
+                              input.form-control(v-model="teacher.name", placeholder="姓名")
+                          .row.form-group
+                            .col-sm-2
+                              h5 照片
+                            .col-sm-10(style="display: flex")
+                              .imgs
+                                img(:src="teacher.cover" , style="width: 80px")
+                              .control(style="width: 100%")
+                                input.form-control(v-model="teacher.cover", placeholder="照片網址")
+                                default_pic_selector(@select_pic="(obj)=>{event.teacher[teacherId].cover=obj.url}")
+                          
+                          .row.form-group
+                            .col-sm-2
+                              h5 描述
+                            .col-sm-10
+                              VueEditor.ve(:id ="'teacher_description_'+teacherId", v-model="teacher.description")                          
+                          .row.form-group
+                            .col-sm-2
+                              h5 其他
+                            .col-sm-10
+                              VueEditor.ve(:id ="'teacher_other_'+teacherId", v-model="teacher.other")                  
+                          hr
+                          br
+                  .form-group
+                    .col-sm-12
+                      .btn.btn-default.form-control(@click="event.teacher.push({name: '',description:''})") + 新增
+                      br
+                      br
+                      br
+                      br
+              .form-group
+                .row
+                  .col-sm-12
+                    label 相簿
+                  .col-sm-12(v-for="(pic,picid) in event.album")
+                    .row
+                      .col-sm-9
+                        .row
+                          .col-sm-3
+                            img(:src="pic.image", style="width: 100%")
+                          .col-sm-9
+                            input.form-control(v-model="event.album[picid].image" ,placeholder="照片網址")
+                            textarea.form-control(v-model="event.album[picid].caption", placeholder="描述")
+                      
+                      .col-sm-3
+                        default_pic_selector(@select_pic="(obj)=>{event.album[picid].image=obj.url}")
+                        .btn.btn-danger(@click="event.album.splice(picid,1)") 刪除
+                      .col-sm-12
+                        hr
+                  .col-sm-12
+                    .btn.btn-primary(@click="event.album.push({image:'',caption:''})") 新增照片
+
             br
             br
           
