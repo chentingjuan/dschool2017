@@ -30,7 +30,7 @@ class ActivityController extends Controller
             // return $user;
             // Activity::find($activityId)
 
-            $existed_record = RegistRecord::where('user_id',$user->id)->where("cancel",false)->first();
+            $existed_record = RegistRecord::where('user_id',$user->id)->where('activity_id',$activityId)->where("cancel",false)->first();
             if ($existed_record){
                 if ($existed_record->status=="UNCONFIRMED"){
                     return [

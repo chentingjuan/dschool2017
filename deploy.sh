@@ -1,2 +1,2 @@
 git push
-ssh mono "cd /var/www/dschool2017;git pull"
+ssh dschool "cd /var/www/dschool2017;git pull"
