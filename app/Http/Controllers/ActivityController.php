@@ -61,7 +61,7 @@ class ActivityController extends Controller
             // return $user;
             // Activity::find($activityId)
             $activity=Activity::find($activityId);
-            $existed_record = RegistRecord::where('user_id',$user->id)->where("cancel",false)->first();
+            $existed_record = RegistRecord::where('user_id',$user->id)->where('activity_id',$activityId)->where("cancel",false)->first();
             $record_count = $activity->registRecords()->count();
             if (!$existed_record){
                 $record = RegistRecord::create([
@@ -107,7 +107,7 @@ class ActivityController extends Controller
             // return $user;
             // Activity::find($activityId)
 
-            $existed_record = RegistRecord::where('user_id',$user->id)->where("cancel",false)->first();
+            $existed_record = RegistRecord::where('user_id',$user->id)->where('activity_id',$activityId)->where("cancel",false)->first();
             
             if ($existed_record){
                 $existed_record->cancel = true;
