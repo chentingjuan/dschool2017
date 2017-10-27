@@ -35,7 +35,7 @@
             .col-sm-3.text-left
               .head(:style="{backgroundImage: `url(${teacher.cover})`}")
               h4.mb-2.mt-2 {{teacher.name}}
-              p {{teacher.description}}
+              p(v-html="teacher.description")
               
             .col-sm-9
               p(v-html="teacher.other")

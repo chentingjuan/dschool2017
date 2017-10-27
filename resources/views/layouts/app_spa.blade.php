@@ -37,8 +37,9 @@
     {{-- Script BEFORE app.js --}}
     @yield('require_js')
     <script>
-      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +':35729/livereload.js?snipver=1"></' + 'script>');
-      
+    if (document.domain.indexOf("dschool2017.dev")!=-1){
+        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +':35729/livereload.js?snipver=1"></' + 'script>');
+      }
     </script>
     <script async src="/js/app.js"></script>
      {{-- Script AFTER app.js --}}
