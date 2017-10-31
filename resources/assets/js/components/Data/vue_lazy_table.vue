@@ -1,27 +1,29 @@
-<template lang="jade">
+<template lang="pug">
   .power_table
     div(v-if="conf.show_search")
       .form-group-inline
-        label Search: &nbsp;
+        label Search: 
         input(v-model="search_keyword")
+        .btn.btn-primary.pull-right(@click="export_csv") 匯出csv
+        
     table.table.table-hover
       thead
         th(v-for = "row_key in (row_keys || default_row_keys)",
            @click = "set_sort_key(row_key)",
            v-if = "row_name_alias(row_key)!='__hide'")
           | {{ row_name_alias(row_key) }}
-          span(v-if="row_key==sort_key && conf.sort_direction") ▼
-          span(v-if="row_key==sort_key && !conf.sort_direction") ▲
+          span(v-if="row_key==sort_key && sort_direction") ▼
+          span(v-if="row_key==sort_key && !sort_direction") ▲
           span(v-if="row_key!=sort_key ") 　
       tbody
-        tr(v-for="(row,rid) in (conf.sort_direction?sliced_data:sliced_data.slice().reverse())", :key="rid")
+        tr(v-for="(row,rid) in sliced_data", :key="rid")
           td(v-for = "row_key in (row_keys || default_row_keys)",
              v-if = "row_name_alias(row_key)!='__hide'")
             | {{ row[row_key] }}
           td
-            .btn.btn-default(v-if="editMethod",@click="editMethod(row.id-1)") 編輯
-          td
-            .btn.btn-danger(v-if="deleteMethod",@click="deleteMethod(row.id-1)") 刪除
+            .btn.btn-default(@click="edit(row)",
+                             v-if="edit") 編輯
+            //.btn.btn-danger 刪除
     .page_nav
       .btn.btn-default(v-if="pages.length>1",
                        v-for="p in pages",
@@ -34,14 +36,14 @@ import Vue from 'vue'
 // sorted -> sliced
 export default {
   name: 'vue_lazy_table',
-  props: ["table_data","row_keys","rows","configs","editMethod","deleteMethod"],
+  props: ["table_data","row_keys","rows","configs","edit","dataTitle"],
   data () {
     return {
       sort_key: null,
+      sort_direction: true,
       conf: {
         show_id: true,
-        show_search: true,
-        sort_direction: true,
+        show_search: true
       },
       search_keyword: "",
       page_split_num: 10,
@@ -85,9 +87,9 @@ export default {
       })
 
       if (data_clone){
-        //add id col
+        // add id col
         if (this.conf.show_id){data_clone.forEach( (o,id)=> {
-            if (!o.id) { o.id = id+1}
+            if (!o.id) { o.id = id}
           }
         )}
 
@@ -113,8 +115,8 @@ export default {
       
     },
     sliced_data(){
-      let raw_sort = this.sorted_data
-      let slice_pre = raw_sort;
+      let raw_sort = this.sorted_data.slice()
+      let slice_pre = (this.sort_direction?raw_sort:raw_sort.reverse());
       let slice_post = slice_pre.slice( (this.page-1)*this.page_split_num,(this.page)*this.page_split_num )
       return slice_post
     },
@@ -157,7 +159,7 @@ export default {
     set_sort_key(key){
       if (this.sort_key!=key){
       }else{
-        this.conf.sort_direction=!this.conf.sort_direction
+        this.sort_direction=!this.sort_direction
         
       }
       this.sort_key=key
@@ -165,6 +167,65 @@ export default {
     get_key_handler(key){
       let key_obj = this.parse_items_list.find(o=>o.name==key)
       return key_obj?key_obj.handler:null
+    },
+    export_csv(){
+      
+      let convertToCSV = function convertToCSV(objArray) {
+          var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+          var str = '';
+
+          for (var i = 0; i < array.length; i++) {
+              var line = '';
+              for (var index in array[i]) {
+                  if (line != '') line += ','
+
+                  line += array[i][index];
+              }
+
+              str += line + '\r\n';
+          }
+
+          return str;
+      }
+
+      let exportCSVFile = function exportCSVFile(headers, items, fileTitle) {
+          if (headers) {
+              items.unshift(headers);
+          }
+
+          // Convert Object to JSON
+          var jsonObject = JSON.stringify(items);
+
+          var csv = convertToCSV(jsonObject);
+
+          var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
+
+          var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+          if (navigator.msSaveBlob) { // IE 10+
+              navigator.msSaveBlob(blob, exportedFilenmae);
+          } else {
+              var link = document.createElement("a");
+              if (link.download !== undefined) { // feature detection
+                  // Browsers that support HTML5 download attribute
+                  var url = URL.createObjectURL(blob);
+                  link.setAttribute("href", url);
+                  link.setAttribute("download", exportedFilenmae);
+                  link.style.visibility = 'hidden';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+              }
+          }
+      }
+
+      let rkey = this.row_keys || this.default_row_keys;
+      let headers = {};
+      rkey.forEach(o=>headers[o]=o)
+
+      var fileTitle = this.dataTitle || "資料匯出"; // or 'my-unique-title'
+      let dateString = ( new Date().toLocaleDateString()).replace(/[\/\s\:]/g,"");
+      exportCSVFile(headers, this.sorted_data, fileTitle + dateString); 
+
     }
   }
 }
