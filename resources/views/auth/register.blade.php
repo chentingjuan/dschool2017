@@ -104,7 +104,10 @@
                             <label for="school" class="col-md-4 control-label">學校與學院</label>
 
                             <div class="col-md-6">
-                                <input  placeholder="國立台灣大學" id="school" type="school" class="form-control" name="school" value="{{ old('school') }}"  :required="registerMode=='student'?'required':''">
+                                <input  placeholder="國立臺灣大學" id="school" type="school" class="form-control" name="school" value="{{ old('school') }}"  :required="registerMode=='student'?'required':''" list="schoolData">
+                                <datalist id="schoolData">
+                                    <option :value="sc" v-for="sc in schoolData">
+                                </datalist>
 
                                 @if ($errors->has('school'))
                                     <span class="help-block">

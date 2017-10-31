@@ -10,6 +10,7 @@ require('./bootstrap');
 import store from "./store"
 import router from "./router"
 import {mapState} from "vuex"
+import schoolData from './dataSchools'
 window.Vue = require('vue');
 
 
@@ -67,7 +68,8 @@ const app = new Vue({
     router,
     store,
     data: {
-        registerMode: "student"
+        registerMode: "student",
+        schoolData
     }
 });
 
