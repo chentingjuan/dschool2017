@@ -23,7 +23,8 @@ export default {
     data() {
       return {
         lists: [],
-        event: {},
+        event: {
+        },
         tableRows: [
           "serial -> 報名序號#",
           "name -> 名字",

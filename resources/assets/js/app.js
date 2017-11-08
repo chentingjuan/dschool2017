@@ -54,11 +54,13 @@ Vue.mixin({
         get_event_status_translate(txt){
           switch(txt){
             case "UNCONFIRMED":
-              return "已報名待確認"
+              return {label: "已報名待確認",open: true}
             case "CONFIRMED",'registed':
-              return "已報名與確認"
+              return { label: "已報名與確認", open: false }
+            case 'not_open':
+              return { label: "非可報名期間", open: false }
           }
-          return "未報名"
+          return { label: "未報名", open: true }
         },
     }
 })

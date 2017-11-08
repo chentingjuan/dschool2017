@@ -14,14 +14,15 @@
           p(v-html="event.description")
           br
           br
-          p 狀態：{{get_event_status_translate(event_status)}}
-          button.btn.btn-primary(
-            role="button", 
-            @click="registerEvent") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}
-          button.btn.btn-secondary.btn-link(
-            role="button", 
-            @click="cancelEvent",
-            v-if="(event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
+          p 狀態：{{get_event_status_translate(event_status).label}}
+          div(v-if="get_event_status_translate(event_status).open")
+            button.btn.btn-primary(
+              role="button", 
+              @click="registerEvent") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}
+            button.btn.btn-secondary.btn-link(
+              role="button", 
+              @click="cancelEvent",
+              v-if="(event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
     .row.section_album
     .row.section_album
       ul.album
@@ -46,10 +47,16 @@
             h2 活動報名
             p(v-html="event.register_info")    
             br
-            .btn.btn-primary(
-              role="button", 
-              @click="registOrCancelEvent") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"取消報名":"我要報名"}}
-  
+            p 狀態：{{get_event_status_translate(event_status).label}}
+            p 開放報名時間: {{event.open_time}}~{{event.close_time}}
+            div(v-if="get_event_status_translate(event_status).open")
+              button.btn.btn-primary(
+                role="button", 
+                @click="registerEvent") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}
+              button.btn.btn-secondary.btn-link(
+                role="button", 
+                @click="cancelEvent",
+                v-if="(event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
 </template>
 
 <script>

@@ -42,6 +42,43 @@ class ActivityController extends Controller
                     ];
                 }
             }else{
+                $activity=Activity::find($activityId);
+                //有開頭時間沒結尾
+                if ($activity->open_time && !$activity->close_time){
+                    if (strtotime($activity->open_time) < strtotime("now")){
+                        
+                    }else{
+                        return [
+                            "status" => "not_open"
+                        ];
+
+                    }
+
+                }
+                //有結尾時間沒開頭
+                if (!$activity->open_time && $activity->close_time){
+                    if (strtotime($activity->close_time) > strtotime("now")){
+                        
+                    }else{
+                        return [
+                            "status" => "not_open"
+                        ];
+
+                    }
+
+                }
+                if ($activity->open_time && $activity->close_time){
+                    if (strtotime($activity->open_time) < strtotime("now")
+                        && strtotime($activity->close_time) > strtotime("now")){
+                        
+                    }else{
+                        return [
+                            "status" => "not_open"
+                        ];
+
+                    }
+
+                }
                 return [
                     "status" => "not registed"
                 ];
@@ -55,7 +92,7 @@ class ActivityController extends Controller
 
     //
     public function registActivity($activityId){
-
+        
         if ( Auth::check() ){
             $user = Auth::user();
             // return $user;

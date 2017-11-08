@@ -20,44 +20,67 @@
             .panel-heading 基本資訊
             .panel-body
               .form-group
-                labal.col-sm-3 類型
-                .col-sm-9
-                  select.form-control(v-model="event.type")
-                    option(v-for="op in activityTypeOptions", :value="op.value") {{op.tag}}
-                br
-                br
+                .row
+                  labal.col-sm-3 類型
+                  .col-sm-9
+                    select.form-control(v-model="event.type")
+                      option(v-for="op in activityTypeOptions", :value="op.value") {{op.tag}}
+                  br
+                  br
               .form-group
-                labal.col-sm-3 標題
-                .col-sm-9
-                  input.form-control(v-model="event.title")
-                br
-                br
+                .row
+                  labal.col-sm-3 標題
+                  .col-sm-9
+                    input.form-control(v-model="event.title")
+                  br
+                  br
               .form-group
-                labal.col-sm-3 地點
-                .col-sm-9
-                  input.form-control(v-model="event.place")
-                br
-                br
+                .row
+                  labal.col-sm-3 地點
+                  .col-sm-9
+                    input.form-control(v-model="event.place")
+                  br
+                  br
               .form-group
-                labal.col-sm-3 時間
-                .col-sm-9
-                  input.form-control(v-model="event.time")
-                br
-                br
+                .row
+                  labal.col-sm-3 時間
+                  .col-sm-9
+                    //- input.form-control(v-model="event.time")
+                    datePicker(v-model="event.time", name="event_time", :config="{format: 'YYYY-MM-DD HH:mm:ss',useCurrent: true}")
+                  br
+                  br
               .form-group
-                labal.col-sm-3 顯示<br>時間
-                .col-sm-9
-                  input.form-control(v-model="event.time_detail")
-                br
-                br
+                .row
+                  labal.col-sm-3 顯示<br>時間
+                  .col-sm-9
+                    input.form-control(v-model="event.time_detail")
+                  br
+                  br
               .form-group
-                labal.col-sm-3 封面
-                .col-sm-9
-                  input.form-control(v-model="event.cover")
-                  img(:src="event.cover", style="width: 100%")
-                  default_pic_selector(@select_pic="select_pic")
-                br
-                br
+                .row
+                  labal.col-sm-3 封面
+                  .col-sm-9
+                    input.form-control(v-model="event.cover")
+                    img(:src="event.cover", style="width: 100%")
+                    default_pic_selector(@select_pic="select_pic")
+                  br
+                  br
+              .form-group
+                .row
+                  labal.col-sm-3 報名開始
+                  .col-sm-9
+                    datePicker(v-model="event.open_time", name="event_open_time", :config="{format: 'YYYY-MM-DD HH:mm:ss',useCurrent: true}")
+                    //- input.form-control(v-model="event.open_time", placeholder="2017-10-18 00:00:00")
+                  br
+                  br
+              .form-group
+                .row
+                  labal.col-sm-3 報名結束
+                  .col-sm-9
+                    datePicker(v-model="event.close_time", name="event_close_time", :config="{format: 'YYYY-MM-DD HH:mm:ss',useCurrent: true}")
+                    //- input.form-control(v-model="event.close_time", placeholder="2017-10-18 00:00:00")
+                  br
+                  br
         .col-sm-8
           .panel.panel-default
             .panel-heading 詳細內容
@@ -150,6 +173,8 @@ import default_pic_selector from '../default_pic_selector.vue'
 import { VueEditor } from 'vue2-editor'
 import {mapState} from 'vuex'
 import Vue from 'Vue'
+import datePicker from 'vue-bootstrap-datetimepicker'
+
 export default {
   props: [
     "event_id"
@@ -165,7 +190,9 @@ export default {
         time_detail: "",
         register_info: "",
         cover: "",
-        album: []
+        album: [],
+        open_time: (new Date()).toISOString().substring(0, 10)+" 00:00:00",
+        close_time: (new Date()).toISOString().substring(0, 10)+" 00:00:00"
       },
       activityTypeOptions: [
         {tag:'工作坊',value:'workshop'},
@@ -205,13 +232,13 @@ export default {
       ori_data.teacher=JSON.stringify(ori_data.teacher)
       ori_data.album=JSON.stringify(ori_data.album)
 
-      let send_rows = ['title','type','description','place','register_info','album','time','time_detail','cover','teacher'];
-      let send_data = {}
-      send_rows
-        .forEach(function(key) {
-          send_data[key]=(typeof ori_data[key] == "object"?JSON.stringify(ori_data[key]):ori_data[key])
-      });
-      return send_data
+      // let send_rows = ['title','type','description','place','register_info','album','time','time_detail','cover','teacher'];
+      // let send_data = {}
+      // send_rows
+      //   .forEach(function(key) {
+      //     send_data[key]=(typeof ori_data[key] == "object"?JSON.stringify(ori_data[key]):ori_data[key])
+      // });
+      return ori_data
     },
     ...mapState(['csrf_token'])
   },
@@ -261,7 +288,9 @@ export default {
     }
   },
   components:{
-    VueEditor , default_pic_selector
+    VueEditor , 
+    default_pic_selector, 
+    datePicker
   }
 }
 </script>
