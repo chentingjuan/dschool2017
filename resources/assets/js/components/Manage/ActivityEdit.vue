@@ -362,7 +362,13 @@ export default {
         _method: 'POST',
         _token: this.csrf_token
       }).then((res)=>{
-        Vue.set(this.event.question,this.event.question.length,res.data)
+        let nq = res.data
+        nq.type="short"
+        nq.answer=""
+        nq.question=""
+        nq.options=null
+        nq.require=1
+        Vue.set(this.event.question,this.event.question.length,nq)
       })
     },
     removeQuestion(qid){
@@ -371,6 +377,7 @@ export default {
         _token: this.csrf_token
       }).then((res)=>{
         this.event.question=this.event.question.filter(o=>o.id!=qid)
+        this.$forceUpdate();
       })
       
     }
