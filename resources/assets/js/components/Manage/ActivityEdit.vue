@@ -372,13 +372,16 @@ export default {
       })
     },
     removeQuestion(qid){
-      axios.post(`/api/question/${qid}`,{
-        _method: 'DELETE',
-        _token: this.csrf_token
-      }).then((res)=>{
-        this.event.question=this.event.question.filter(o=>o.id!=qid)
-        this.$forceUpdate();
-      })
+      if (confirm("你確定要移除這個問題嗎？(已上線活動的回覆資料將被刪除)")){
+        axios.post(`/api/question/${qid}`,{
+          _method: 'DELETE',
+          _token: this.csrf_token
+        }).then((res)=>{
+          this.event.question=this.event.question.filter(o=>o.id!=qid)
+          this.$forceUpdate();
+        })
+
+      }
       
     }
   },
