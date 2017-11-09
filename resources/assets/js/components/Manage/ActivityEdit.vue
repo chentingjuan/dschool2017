@@ -176,17 +176,38 @@
                   .col-sm-12
                     label 問題
                   .col-sm-12
-                    .form-group(v-for="(qa,qaid) in event.question", v-if="typeof qa=='object'")
+                    .form-group(v-for="(qa,qaid) in event.question", v-if="typeof qa=='object'", :name="'qa'+qaid")
                       .form-group(v-if="qa")
-                        label {{qaid+1}}. {{qa.question}}
-                        input.form-control(v-model="qa.question")
-                        select.form-control(v-model="qa.type")
-                          option(value="short") 簡答
-                          option(value="long") 詳答
-                          option(value="select") 選擇
+                        .row
+                          .col-sm-3
+                            label {{qaid+1}}. {{qa.question}}
+                          .col-sm-9
+                            input.form-control(v-model="qa.question")
+                        .row
+                          .col-sm-3
+                            label 類型
+                          .col-sm-9
+                            select.form-control(v-model="qa.type")
+                              option(value="short") 簡答
+                              option(value="long") 詳答
+                              option(value="select") 選擇
+                        .row(v-if="qa.type=='select'")
+                          .col-sm-3
+                            label 選項(以/隔開)
+                          .col-sm-9
+                            input.form-control(v-model="qa.options", placeholder="素/葷")
+                        .row
+                          .col-sm-3
+                            label 必填
+                          .col-sm-9
+                            .button-group
+                              .btn.btn-default(@click="qa.require=0", :class="{'btn-primary': !qa.require}") 非必填
+                              .btn.btn-default(@click="qa.require=1", :class="{'btn-primary': qa.require}") 必填
                         .btn.btn-danger(@click="removeQuestion(qa.id)") 移除問題
                     .form-group
-                      .btn.btn-primary(@click="addQuestion") 新增問題
+                      hr
+                      br
+                      .btn.btn-primary.form-control(@click="addQuestion") 新增問題
             br
             br
           
@@ -338,7 +359,7 @@ export default {
         _method: 'POST',
         _token: this.csrf_token
       }).then((res)=>{
-        this.event.question.push(res.data)
+        Vue.set(this.event.question,this.event.question.length,res.data)
       })
     },
     removeQuestion(qid){

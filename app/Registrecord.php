@@ -14,7 +14,7 @@ class RegistRecord extends Model
      * @var array
      */
      protected $fillable = [
-        'activity_id','user_id','status','serial'
+        'activity_id','user_id','status','serial', 'formdata'
    ];
 
 

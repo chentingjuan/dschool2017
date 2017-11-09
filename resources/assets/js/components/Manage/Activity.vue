@@ -34,6 +34,7 @@ export default {
           "email -> 信箱",
           "status -> 狀態",
           "time -> 報名時間",
+          "formdata -> 資料",
         ]
 
       }
@@ -57,16 +58,24 @@ export default {
     computed:{
       ...mapState(['user']),
       registUserList(){
-        return this.lists.map((d,i)=>({
-          serial: d.serial ,
-          name: d.user.name,
-          department: (d.user.school?(d.user.school+"-"+d.user.department):null) || d.user.agency,
-          // student_id: d.user.student_id,
-          phone: d.user.phone,
-          email: d.user.email,
-          status: this.get_event_status_translate(d.status),
-          time: d.created_at
-        }))
+        return this.lists.map((d,i)=>{
+          let temp={}
+          let formdata=(JSON.parse(d.formdata) || []).forEach((o,oid)=>{
+            temp['q'+oid]=o.answer            
+          })
+          console.log(formdata)
+          return {
+            serial: d.serial ,
+            name: d.user.name,
+            department: (d.user.school?(d.user.school+"-"+d.user.department):null) || d.user.agency,
+            // student_id: d.user.student_id,
+            phone: d.user.phone,
+            email: d.user.email,
+            status: this.get_event_status_translate(d.status),
+            time: d.created_at,
+            ...temp
+          }
+        })
       }
     },
     components:{

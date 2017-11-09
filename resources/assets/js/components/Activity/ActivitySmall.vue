@@ -18,7 +18,7 @@
           div(v-if="get_event_status_translate(event_status).open")
             button.btn.btn-primary(
               role="button", 
-              @click="registerEvent") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}
+              @click="scrollTo('.section_register')") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}
             button.btn.btn-secondary.btn-link(
               role="button", 
               @click="cancelEvent",
@@ -45,10 +45,22 @@
         .row
           .col-sm-12
             h2 活動報名
-            p(v-html="event.register_info")    
-            br
             p 狀態：{{get_event_status_translate(event_status).label}}
             p 開放報名時間: {{event.open_time}}~{{event.close_time}}
+            p(v-html="event.register_info")    
+            div(v-if="get_event_status_translate(event_status).open && !(event_status=='UNCONFIRMED' || event_status=='REGISTED')")
+              br
+              hr
+              h4 報名資訊
+              br
+              .form-group(v-for="(qa,qaid) in event.question")
+                label {{qaid+1}}. {{qa.question}}:
+                input.form-control(v-model="qa.answer", v-if="qa.type=='short'")
+                textarea.form-control(v-model="qa.answer", v-if="qa.type=='long'", rows="5")
+                select.form-control(v-model="qa.answer", v-if="qa.type=='select'")
+                  option(v-for="op in qa.options.split('/')" ,:value="op") {{op}}
+
+            br
             div(v-if="get_event_status_translate(event_status).open")
               button.btn.btn-primary(
                 role="button", 
@@ -79,6 +91,13 @@ export default {
       // _this.event.cover=JSON.parse(_this.event.cover)
       _this.event.teacher=JSON.parse(_this.event.teacher)
       _this.event.album=JSON.parse(_this.event.album)
+      _this.event.question=JSON.parse(_this.event.question)
+
+      _this.event.question.forEach((qid,index)=>{
+        axios.get(`/api/question/${qid}`).then(res=>{
+          Vue.set(_this.event.question,index,res.data)
+        });
+      })
     })
     axios.get(`/activity/${this.event_id}/status`,{
       activityId: this.event_id
@@ -99,21 +118,33 @@ export default {
     }
   },
   methods:{
+    scrollTo(cname){
+      $("html,body").animate({scrollTop: $($(cname)[0]).offset().top})
+    },
     registerEvent(){
-      axios.get(`/activity/${this.event.id}/register`,{
-        activityId: this.event.id
-      }).then(res=>{
-        console.log(res.data.status)
-        if (res.data.status=="need login"){
-          window.location=`/login`
-        }else if (res.data.status=="success"){
-          this.event_status=res.data.record.status
-          alert("已完成報名登記，將以E-mail寄發活動錄取通知。並請詳閱活動注意事項。")
-        }else if (res.data.status=="repeated"){
-          // this.event_status=res.data.record.status
-          alert("你已報名囉！")
-        }
-      })
+      if (this.event.question.some(qa=>qa.require&& !qa.answer)){
+        alert("請填寫報名相關必要資訊！")
+      }else{
+        axios.get(`/activity/${this.event.id}/register`,{
+          params: {
+            activityId: this.event.id,
+            formdata: JSON.stringify(this.event.question.map(qa=>({id: qa.id,answer: qa.answer})))
+          }
+
+        }).then(res=>{
+          console.log(res.data.status)
+          if (res.data.status=="need login"){
+            window.location=`/login`
+          }else if (res.data.status=="success"){
+            this.event_status=res.data.record.status
+            alert("已完成報名登記，將以E-mail寄發活動錄取通知。並請詳閱活動注意事項。")
+          }else if (res.data.status=="repeated"){
+            // this.event_status=res.data.record.status
+            alert("你已報名囉！")
+          }
+        })
+
+      }
       
     },
     cancelEvent(){

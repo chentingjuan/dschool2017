@@ -17,7 +17,7 @@ class Questions extends Migration
              $table->increments('id');
              $table->string('uuid');
              $table->string("question")->nullable();
-             $table->json("options")->nullable();
+             $table->string("options")->nullable();
              $table->boolean("require")->default(false);
              $table->string("type")->nullable();
              $table->string("answer",500)->nullable();

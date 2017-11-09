@@ -9,7 +9,7 @@ class Question extends Model
 {
     //
     protected $fillable = [
-        'question','options','type','answer'
+        'question','options','type','answer','require'
     ];
     /**
     *  Setup model event hooks

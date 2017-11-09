@@ -93,7 +93,8 @@ class ActivityController extends Controller
 
     //
     public function registActivity($activityId){
-        
+         $inputs = Input::all();
+
         if ( Auth::check() ){
             $user = Auth::user();
             // return $user;
@@ -105,6 +106,7 @@ class ActivityController extends Controller
                 $record = RegistRecord::create([
                     "user_id" => $user->id,
                     "activity_id" => $activityId,
+                    "formdata" => $inputs["formdata"],
                     "status" => "UNCONFIRMED",
                     "created_at" => date("Y-m-d H:i:s"),
                     "updated_at" => date("Y-m-d H:i:s"),
