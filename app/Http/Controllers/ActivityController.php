@@ -195,20 +195,22 @@ class ActivityController extends Controller
         if ($activity){
             $inputs['updated_at']=date("Y-m-d H:i:s");
             $qlists = [];
-            foreach ( $inputs['question'] as $qa){
-                // dd(gettype($qa));
-                if (gettype($qa)=="array"){
-                    
-                    $qa_obj = Question::where('id',$qa['id'])->first();
-                    if ( $qa_obj){
-                        $qa_obj->update($qa);
-                        $qa_obj->save($qa);
-                        // dd($qa);
-                        array_push($qlists,$qa['id']);
-                    }                
-                }else{
-                    array_push($qlists,$qa);
+            if ( $inputs['question']){
+                foreach ( $inputs['question'] as $qa){
+                    // dd(gettype($qa));
+                    if (gettype($qa)=="array"){
+                        
+                        $qa_obj = Question::where('id',$qa['id'])->first();
+                        if ( $qa_obj){
+                            $qa_obj->update($qa);
+                            $qa_obj->save($qa);
+                            // dd($qa);
+                            array_push($qlists,$qa['id']);
+                        }                
+                    }else{
+                        array_push($qlists,$qa);
 
+                    }
                 }
             }
             $inputs['question']=json_encode($qlists);

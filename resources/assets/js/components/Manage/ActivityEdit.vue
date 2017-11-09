@@ -268,6 +268,9 @@ export default {
         _this.event.album = JSON.parse(_this.event.album.replace(/\\\"/g,"\""))
         _this.event.question = JSON.parse(_this.event.question.replace(/\\\"/g,"\""))
         _this.event.question =_this.event.question.filter(o=>o)
+        if (_this.event.question==null){
+          _this.event.question=[]
+        }
 
         _this.event.question.forEach((qid,index)=>{
           axios.get(`/api/question/${qid}`).then(res=>{
