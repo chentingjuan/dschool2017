@@ -82,7 +82,9 @@
                   br
                   br
         .col-sm-8
-          .panel.panel-default
+          .button-group
+            .btn.btn-default(v-for="p in panellist" @click="panel=p.value", :class="{'btn-primary':panel==p.value}") {{p.label}}
+          .panel.panel-default(v-if="panel=='detail'")
             .panel-heading 詳細內容
             .panel-body
               .form-group
@@ -97,49 +99,53 @@
                   VueEditor.ve(:id ="'register_info'", v-model="event.register_info")
                   br
                   br
+          .panel.panel-default(v-if="panel=='teacher'")
+            .panel-heading 師資
+            .panel-body
+              .form-group(v-for="(teacher,teacherId) in event.teacher", style="margin-top: 10px")
+                .row
+                  .col-sm-12
+                    .container-fluid
+                      h4(style="width: 100%") {{teacherId+1}}. {{teacher.name}}
+                        .btn.btn-danger.pull-right(@click="event.teacher.splice(teacherId,1)") 刪除
+                      .row.form-group
+                        .col-sm-2
+                          h5 姓名
+                        .col-sm-10
+                          input.form-control(v-model="teacher.name", placeholder="姓名")
+                      .row.form-group
+                        .col-sm-2
+                          h5 照片
+                        .col-sm-10(style="display: flex")
+                          .imgs
+                            img(:src="teacher.cover" , style="width: 80px")
+                          .control(style="width: 100%")
+                            input.form-control(v-model="teacher.cover", placeholder="照片網址")
+                            default_pic_selector(@select_pic="(obj)=>{event.teacher[teacherId].cover=obj.url}")
+                      
+                      .row.form-group
+                        .col-sm-2
+                          h5 描述
+                        .col-sm-10
+                          VueEditor.ve(:id ="'teacher_description_'+teacherId", v-model="teacher.description")                          
+                      .row.form-group
+                        .col-sm-2
+                          h5 其他
+                        .col-sm-10
+                          VueEditor.ve(:id ="'teacher_other_'+teacherId", v-model="teacher.other")                  
+                      hr
+                      br
               .form-group
-                labal.col-sm-3 師資
-                .col-sm-9
-                  .form-group(v-for="(teacher,teacherId) in event.teacher", style="margin-top: 10px")
-                    .row
-                      .col-sm-12
-                        .container-fluid
-                          h4(style="width: 100%") {{teacherId+1}}. {{teacher.name}}
-                            .btn.btn-danger.pull-right(@click="event.teacher.splice(teacherId,1)") 刪除
-                          .row.form-group
-                            .col-sm-2
-                              h5 姓名
-                            .col-sm-10
-                              input.form-control(v-model="teacher.name", placeholder="姓名")
-                          .row.form-group
-                            .col-sm-2
-                              h5 照片
-                            .col-sm-10(style="display: flex")
-                              .imgs
-                                img(:src="teacher.cover" , style="width: 80px")
-                              .control(style="width: 100%")
-                                input.form-control(v-model="teacher.cover", placeholder="照片網址")
-                                default_pic_selector(@select_pic="(obj)=>{event.teacher[teacherId].cover=obj.url}")
-                          
-                          .row.form-group
-                            .col-sm-2
-                              h5 描述
-                            .col-sm-10
-                              VueEditor.ve(:id ="'teacher_description_'+teacherId", v-model="teacher.description")                          
-                          .row.form-group
-                            .col-sm-2
-                              h5 其他
-                            .col-sm-10
-                              VueEditor.ve(:id ="'teacher_other_'+teacherId", v-model="teacher.other")                  
-                          hr
-                          br
-                  .form-group
-                    .col-sm-12
-                      .btn.btn-default.form-control(@click="event.teacher.push({name: '',description:''})") + 新增
-                      br
-                      br
-                      br
-                      br
+                .col-sm-12
+                  .btn.btn-default.form-control(@click="event.teacher.push({name: '',description:''})") + 新增
+                  br
+                  br
+                  br
+                  br
+              
+          .panel.panel-default(v-if="panel=='album'")
+            .panel-heading 相簿
+            .panel-body
               .form-group
                 .row
                   .col-sm-12
@@ -162,6 +168,25 @@
                   .col-sm-12
                     .btn.btn-primary(@click="event.album.push({image:'',caption:''})") 新增照片
 
+          .panel.panel-default(v-if="panel=='qa'")
+            .panel-heading 問答
+            .panel-body
+              .form-group
+                .row
+                  .col-sm-12
+                    label 問題
+                  .col-sm-12
+                    .form-group(v-for="(qa,qaid) in event.question", v-if="typeof qa=='object'")
+                      .form-group(v-if="qa")
+                        label {{qaid+1}}. {{qa.question}}
+                        input.form-control(v-model="qa.question")
+                        select.form-control(v-model="qa.type")
+                          option(value="short") 簡答
+                          option(value="long") 詳答
+                          option(value="select") 選擇
+                        .btn.btn-danger(@click="removeQuestion(qa.id)") 移除問題
+                    .form-group
+                      .btn.btn-primary(@click="addQuestion") 新增問題
             br
             br
           
@@ -174,6 +199,7 @@ import { VueEditor } from 'vue2-editor'
 import {mapState} from 'vuex'
 import Vue from 'Vue'
 import datePicker from 'vue-bootstrap-datetimepicker'
+import QuestionRow from '../Question/QuestionRow'
 
 export default {
   props: [
@@ -181,6 +207,13 @@ export default {
   ],
   data() {
     return {
+      panel: "detail",
+      panellist: [
+        {label: "詳細資訊",value:"detail"},
+        {label: "相簿",value:"album"},
+        {label: "師資",value:"teacher"},
+        {label: "表單問答",value:"qa"}
+      ],
       event: {
         type: "activity",
         title: "",
@@ -191,6 +224,7 @@ export default {
         register_info: "",
         cover: "",
         album: [],
+        question: [],
         open_time: (new Date()).toISOString().substring(0, 10)+" 00:00:00",
         close_time: (new Date()).toISOString().substring(0, 10)+" 00:00:00"
       },
@@ -211,6 +245,15 @@ export default {
         _this.event.teacher = JSON.parse(_this.event.teacher.replace(/\\\"/g,"\""))
         // _this.event.cover = JSON.parse(_this.event.cover.replace(/\\\"/g,"\""))
         _this.event.album = JSON.parse(_this.event.album.replace(/\\\"/g,"\""))
+        _this.event.question = JSON.parse(_this.event.question.replace(/\\\"/g,"\""))
+        _this.event.question =_this.event.question.filter(o=>o)
+
+        _this.event.question.forEach((qid,index)=>{
+          axios.get(`/api/question/${qid}`).then(res=>{
+            Vue.set(_this.event.question,index,res.data)
+          });
+        })
+
       })
 
     }
@@ -251,10 +294,11 @@ export default {
         ...this.dataForSend
       }).then((res)=>{
         alert("儲存完成！")
-        this.event = res.data
-        // this.event.cover=JSON.parse(this.event.cover)
-        this.event.teacher=JSON.parse(this.event.teacher)
-        this.event.album=JSON.parse(this.event.album)
+        // this.event = res.data
+        // // this.event.cover=JSON.parse(this.event.cover)
+        // this.event.teacher=JSON.parse(this.event.teacher)
+        // this.event.album=JSON.parse(this.event.album)
+        // this.event.question=JSON.parse(this.event.question)
       })
     },
     transform_key(key){
@@ -285,12 +329,33 @@ export default {
           this.$router.push('/activity')
         })
       }
+    },
+    addQuestion(){
+      if (!Array.isArray(this.event.question)){
+        this.event.question=[];
+      }
+      axios.post(`/api/question`,{
+        _method: 'POST',
+        _token: this.csrf_token
+      }).then((res)=>{
+        this.event.question.push(res.data)
+      })
+    },
+    removeQuestion(qid){
+      axios.post(`/api/question/${qid}`,{
+        _method: 'DELETE',
+        _token: this.csrf_token
+      }).then((res)=>{
+        this.event.question=this.event.question.filter(o=>o.id!=qid)
+      })
+      
     }
   },
   components:{
     VueEditor , 
     default_pic_selector, 
-    datePicker
+    datePicker,
+    QuestionRow
   }
 }
 </script>

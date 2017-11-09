@@ -50,6 +50,7 @@ Route::group(["prefix"=>"api"],function(){
     Route::get('/user/activity', "ApiController@getAllRegistedEvent");
     Route::get('/activity/list/{activityId}', "ApiController@getEventRegisterList");
     Route::resource('activity',"ActivityController");
+    Route::resource('question',"QuestionController");
     Route::get('/user/list', "ApiController@getUserList");
 });
 

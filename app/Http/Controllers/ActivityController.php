@@ -7,6 +7,7 @@ use Illuminate\Facade\Redirect;
 use Illuminate\Support\Facades\Input;
 use App\Activity;
 use App\RegistRecord;
+use App\Question;
 use Auth;
 class ActivityController extends Controller
 {
@@ -191,6 +192,25 @@ class ActivityController extends Controller
         $activity=Activity::find($activity);
         if ($activity){
             $inputs['updated_at']=date("Y-m-d H:i:s");
+            $qlists = [];
+            foreach ( $inputs['question'] as $qa){
+                // dd(gettype($qa));
+                if (gettype($qa)=="array"){
+                    
+                    $qa_obj = Question::where('id',$qa['id'])->first();
+                    if ( $qa_obj){
+                        $qa_obj->update($qa);
+                        $qa_obj->save($qa);
+                        // dd($qa);
+                        array_push($qlists,$qa['id']);
+                    }                
+                }else{
+                    array_push($qlists,$qa);
+
+                }
+            }
+            $inputs['question']=json_encode($qlists);
+            // dd($inputs['question']);
             $activity->update($inputs);
             return $activity;
         }else{
