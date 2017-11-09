@@ -71,7 +71,7 @@ export default {
             // student_id: d.user.student_id,
             phone: d.user.phone,
             email: d.user.email,
-            status: this.get_event_status_translate(d.status),
+            status: this.get_event_status_translate(d.status).label,
             time: d.created_at,
             ...temp
           }
