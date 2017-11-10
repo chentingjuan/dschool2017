@@ -24,6 +24,7 @@ Route::group(["prefix"=>"manage"],function(){
     Route::get('/activity/{activityId}', "ManageController@Activity");
     Route::get('/activity/{activityId}/list', "ManageController@Activity");
     Route::get('/activity/{activityId}/edit', "ManageController@ActivityEdit");
+  
 });
 
 
@@ -52,6 +53,10 @@ Route::group(["prefix"=>"api"],function(){
     Route::resource('activity',"ActivityController");
     Route::resource('question',"QuestionController");
     Route::get('/user/list', "ApiController@getUserList");
+
+    //管理員確認報名
+      Route::post('/activity/record/{recordId}/confirm', "ActivityController@ConfirmRecord");
+
 });
 
 // Route::get('/event', "homeController@event");

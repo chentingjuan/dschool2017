@@ -22,7 +22,7 @@
             | {{ row[row_key] }}
           td
             .btn.btn-default(@click="edit(row)",
-                             v-if="edit") 編輯
+                             v-if="edit") {{edit_btn_text?edit_btn_text:'編輯'}}
             //.btn.btn-danger 刪除
     .page_nav
       .btn.btn-default(v-if="pages.length>1",
@@ -36,7 +36,7 @@ import Vue from 'vue'
 // sorted -> sliced
 export default {
   name: 'vue_lazy_table',
-  props: ["table_data","row_keys","rows","configs","edit","dataTitle"],
+  props: ["table_data","row_keys","rows","configs","edit","dataTitle","edit_btn_text"],
   data () {
     return {
       sort_key: null,

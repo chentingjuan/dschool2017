@@ -12,7 +12,9 @@
           .panel-body
             h4
             vue_lazy_table(:table_data="registUserList",
-                     :rows="tableRows")
+                     :rows="tableRows",
+                     :edit="confirmRecord",
+                     edit_btn_text="核可/取消核可")
 
 </template>
 
@@ -35,6 +37,7 @@ export default {
           "status -> 狀態",
           "time -> 報名時間",
           "formdata -> 資料",
+          "record_id -> __hide"
         ]
 
       }
@@ -65,6 +68,7 @@ export default {
           })
           console.log(formdata)
           return {
+            record_id: d.id,
             serial: d.serial ,
             name: d.user.name,
             department: (d.user.school?(d.user.school+"-"+d.user.department):null) || d.user.agency,
@@ -80,6 +84,32 @@ export default {
     },
     components:{
       vue_lazy_table
+    },
+    methods: {
+      confirmRecord(record){
+        let recordObj = this.lists.find(o=>o.id==record.record_id)
+        // console.log(recordObj)
+
+        if (recordObj.status=="CONFIRMED"){
+          if (confirm("確認取消報名核可嗎?")){
+            axios.post(`/api/activity/record/${record.record_id}/confirm`).then((res)=>{
+              //使用傳回的資料更新該筆報名
+              Object.assign(recordObj,res.data.record)
+              alert("已取消該筆報名確認")
+            })
+          }
+        }else{
+          if (confirm("確認報名並寄信通知嗎?(測試中，將不會寄信)")){
+            axios.post(`/api/activity/record/${record.record_id}/confirm`).then((res)=>{
+              //使用傳回的資料更新該筆報名
+              Object.assign(recordObj,res.data.record)
+              alert("已確認該筆報名")
+            })
+
+          }
+
+        }
+      }
     }
 }
 </script>

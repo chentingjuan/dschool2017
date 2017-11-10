@@ -173,6 +173,44 @@ class ActivityController extends Controller
         // turn cancel to true
     }
 
+
+    //管理員確認此筆紀錄為報名成功
+    public function ConfirmRecord($recordId){
+        // get record from activityregister user_uuid = current user uuid
+        
+        if ( Auth::check() ){
+            $user = Auth::user();
+            if ($user->admingroup=="root"){
+                $existed_record = RegistRecord::where('id',$recordId)->where("cancel",false)->first();
+                
+                if ($existed_record){
+                    if ($existed_record->status != "CONFIRMED"){
+                        $existed_record->status = "CONFIRMED";
+                    }else{
+                        $existed_record->status = "UNCONFIRMED";
+                    }
+                    $existed_record->save();
+                    return [
+                        "result" => "success",
+                        "log" => "success",
+                        "record" => $existed_record
+                    ];
+                }
+            }
+            
+            // confirm activity 
+        }else{
+            // login or regist -> confirm activity
+            return [
+                "result" => "fail",
+                "log" => "need login",
+                "redirect" => "/login"
+            ];
+        }
+        
+        // turn cancel to true
+    }
+
     public function store($data){
 
     }
