@@ -53,6 +53,7 @@ export default {
           _this.event.album=JSON.parse(_this.event.album)
         })
         console.log('Component mounted.')
+        
         //取得報名清單
         axios.get(`/api/activity/list/${this.event_id}`).then((res)=>{
           Vue.set(this,"lists",res.data);

@@ -52,17 +52,21 @@ export default {
           this.OrderedList,event=>
             (new Date(event.time )).getFullYear()*100+(new Date(event.time )).getMonth()
         )
+        console.log(result)
 
         //轉換成陣列進行排序
         let resultArray = []
-        Object.keys(result)
-          .forEach(key => {
-            console.log(key)
-            resultArray.push( {
-            'time':key, 
-            'events':result[key]
-            })
-        })
+        let keys = Object.keys(result)
+        if (keys){
+          keys.forEach(key => {
+                  console.log(key)
+                  resultArray.push( {
+                  'time':key, 
+                  'events':result[key]
+                  })
+          })
+          
+        }
         if (this.order){
           resultArray=resultArray.reverse()
         }
