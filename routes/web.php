@@ -37,6 +37,9 @@ Route::group([],function(){
 
 // Route::get('/register_public', 'App\Http\Controllers\Auth\RegisterController@showRegistrationFormPublic');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/implement', 'HomeController@index');
+
+
 Route::get('/userlist', "homeController@userlist");
 
 

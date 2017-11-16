@@ -1,20 +1,19 @@
 <template lang="pug">
-  .container
-    .row
-      .mcol-sm-12
-        .panel.panel-default
-          .panel-heading 
-            h2 管理我的活動
-          .panel-body(v-if="user")
-            h4
-              | 你已經報名：
-            ul(v-if="registedActivityList")
-              li(v-for="activity in registedActivityList")
-                ActivityInfoRow(:event_id="activity.activity_id")
-          .panel-body(v-if="!user")
-            h2 登入後可以管理自己的活動
-
-
+.page.pageActivityList
+  section.sectionHero.blue
+    .container
+      .row
+        .col-sm-12
+          h2 管理我的活動
+          br
+      .row
+        .col-sm-12(v-if="user")
+          h4 你已經報名：
+          ul(v-if="registedActivityList")
+            li(v-for="activity in registedActivityList")
+              ActivityInfoRow(:event_id="activity.activity_id", :key="activity.id")
+        .col-sm-12(v-if="!user")
+          h4 登入後可以管理自己的活動
 </template>
 
 <script>
@@ -41,10 +40,3 @@ export default {
 }
 </script>
 
-
-<style lang="sass?indentedSyntax">
-  ul,li
-    list-style: none
-    padding: 0
-    margin: 0
-</style>

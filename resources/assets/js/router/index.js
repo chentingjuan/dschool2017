@@ -43,8 +43,13 @@ var Homepage = Vue.component('Homepage',comHomepage)
 // var section_search = Vue.component('section_search', require('../components/section_search.vue'));
 //routes
 
+
+import page_implement from "../components/Pages/implement.vue"
+
 const routes = [
   { path: '/', component: Homepage },
+  { path: '/implement', component: page_implement },
+
   { path: '/manage/activity/new', component: comManageActivitEdit},
   { path: '/manage/activity/:event_id/list', component: ManageActivity ,props: true},
   { path: '/manage/activity/:event_id', component: comManageActivitEdit ,props: true},

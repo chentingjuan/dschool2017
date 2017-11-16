@@ -1,5 +1,5 @@
 <template lang="pug">
-  router-link.row.nolinkstyle(v-if="event",:to="'/activity/'+event_id")
+  router-link.rowActivity.row.nolinkstyle(v-if="event",:to="'/activity/'+event_id")
     .col-sm-4
       .event_img(:style="{'background-image':'url('+event.cover+')'}", alt="")
       .tag.mt-10 {{tagname}}
@@ -13,13 +13,17 @@
       router-link.btn.btn-primary(
         role="button", 
         :to="'/activity/'+event_id") 詳情資訊
+      
 
-      button.btn.btn-secondary.btn-link(
+      //button.btn.btn-secondary.btn-link(
         role="button", 
         @click="cancelEvent",
         v-if="event_status=='registed'") 取消報名
+      br.visible-xs
 
-      span(v-if="user && user.admingroup=='root'") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理功能：
+      span(v-if="user && user.admingroup=='root'") 
+        span.hidden-xs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        span 管理功能：
         router-link.btn.btn-info(
           :to="'/manage/activity/'+event_id+'/list'"
           v-if="user && user.admingroup=='root'") [管理] 報名清單
@@ -139,30 +143,5 @@ export default {
 
 
 <style lang="sass?indentedSyntax" scoped>
-.nolinkstyle
-  color: #333
-  &:hover
-    color: #333
-
-.row
-  border-bottom: solid 1px rgba(black,0.2)
-  display: block
-  padding: 10px 0px
-  transition: 0.5s
-  &:hover
-    background-color: #f3f3f3
-
-.event_img
-  width: 100%
-  height: 280px
-  background-size: cover
-
-.tag
-  position: absolute
-  top: 0px
-  right: 0
-  background-color: #f95356
-  color: white
-  padding: 5px 10px
 
 </style>

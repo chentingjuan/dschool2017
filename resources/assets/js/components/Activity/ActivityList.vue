@@ -1,19 +1,21 @@
 <template lang="pug">
-  .container
-    .row
-      .mcol-sm-12
-        .panel.panel-default
-          .panel-heading 
+  .page.pageActivityList
+    section.sectionHero.blue
+      .container
+        .row
+          .col-sm-12
             h2 學院活動清單
-              router-link.btn.btn-primary.pull-right(v-if="user && user.admingroup=='root'",
-                                          to="/manage/activity/new") + 新增活動
-              .btn.btn-default.pull-right(v-if="order", @click="order=!order") 新 → 舊
-              .btn.btn-default.pull-right(v-else, @click="order=!order") 舊 → 新
+            br
+        .row
+          .col-sm-12
+            router-link.btn.btn-primary.pull-right(v-if="user && user.admingroup=='root'",
+                                        to="/manage/activity/new") + 新增活動
+            .btn.btn-default(v-if="order", @click="order=!order") 新 → 舊
+            .btn.btn-default(v-else, @click="order=!order") 舊 → 新
 
-            
-          .panel-body
+          .col-sm-12
             .monthGroup(v-for="monthSet in chunkedList")
-              h3 {{monthSet.time}}月
+              h3 {{monthSet.time.slice(0,4)+' '+monthSet.time.slice(4)}}月
               ul
                 li(v-for="activity in monthSet.events")
                   ActivityInfoRow(:event_id="activity.id", :key="activity.id")
@@ -81,8 +83,4 @@ export default {
 
 
 <style lang="sass?indentedSyntax">
-  ul,li
-    list-style: none
-    padding: 0
-    margin: 0
 </style>
