@@ -40,18 +40,18 @@ export default {
   ],
   data() {
     return {
-      event: null,
       event_status: "need login"
     }
   },
-  mounted(){
+  beforeMount(){
     let _this = this
-    axios.get(`/api/activity/${this.event_id}`).then(res=>{
-      Vue.set(_this,"event",res.data)
+    // this.event=
+    // axios.get(`/api/activity/${this.event_id}`).then(res=>{
+    //   Vue.set(_this,"event",res.data)
       // _this.event.cover=JSON.parse(_this.event.cover)
-      _this.event.teacher=JSON.parse(_this.event.teacher)
-      _this.event.album=JSON.parse(_this.event.album)
-    })
+    // this.event.teacher=JSON.parse(this.event.teacher)
+    // this.event.album=JSON.parse(this.event.album)
+    // })
     axios.get(`/activity/${this.event_id}/status`,{
       activityId: this.event_id
     }).then(res=>{
@@ -60,6 +60,10 @@ export default {
     })
   },
   computed: {
+    ...mapState(['user','activities']),
+    event(){
+      return this.activities.find(act=>act.id==this.event_id)
+    },
     tagname(){
       switch(this.event.type){
         case "event":
@@ -69,7 +73,19 @@ export default {
       }
       return "學院活動"
     },
-    ...mapState(['user'])
+    teacher(){
+      if (this.event){
+        return JSON.parse(this.event.teacher)
+      }
+      return []
+    },
+    album(){
+      if (this.event){
+        return JSON.parse(this.event.album)
+      }
+      return []
+
+    }
   },
   methods:{
     translate_status(txt){

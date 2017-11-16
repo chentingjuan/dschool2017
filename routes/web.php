@@ -50,6 +50,8 @@ Route::get('/api/{activityId}', "PublicController@Activity");
 Route::group(["prefix"=>"api"],function(){
     Route::get('/user/activity', "ApiController@getAllRegistedEvent");
     Route::get('/activity/list/{activityId}', "ApiController@getEventRegisterList");
+    
+    Route::post('/activity/list',"ActivityController@getList");
     Route::resource('activity',"ActivityController");
     Route::resource('question',"QuestionController");
     Route::get('/user/list', "ApiController@getUserList");
