@@ -73,6 +73,9 @@ const app = new Vue({
     data: {
         registerMode: "student",
         schoolData
+    },
+    mounted(){
+        store.dispatch('loadWebsite')
     }
 });
 

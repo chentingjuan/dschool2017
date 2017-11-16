@@ -233,7 +233,7 @@ class ActivityController extends Controller
         if ($activity){
             $inputs['updated_at']=date("Y-m-d H:i:s");
             $qlists = [];
-            if ( $inputs['question']){
+            if ( array_key_exists('question',$inputs)){
                 foreach ( $inputs['question'] as $qa){
                     // dd(gettype($qa));
                     if (gettype($qa)=="array"){
@@ -250,8 +250,8 @@ class ActivityController extends Controller
 
                     }
                 }
+                $inputs['question']=json_encode($qlists);
             }
-            $inputs['question']=json_encode($qlists);
             // dd($inputs['question']);
             $activity->update($inputs);
             return $activity;

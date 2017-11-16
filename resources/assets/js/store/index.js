@@ -4,7 +4,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     user: window.user,
-    csrf_token: window.csrf_token
+    csrf_token: window.csrf_token,
+    activities: []
   },
   mutations: {
     set_user(state, value){
@@ -12,10 +13,20 @@ const store = new Vuex.Store({
     },
     setScrollTop(state,value){
       state.scrollTop=value
+    },
+    setActivities(state, value) {
+      state.activities = value
     }
   },
   actions: {
-
+    loadEvents(context){
+      axios.get("/api/activity").then(res => {
+        context.commit("setActivities", res.data )
+      })
+    },
+    loadWebsite(context){
+      context.dispatch("loadEvents")
+    }
   }
 })
 export default store
