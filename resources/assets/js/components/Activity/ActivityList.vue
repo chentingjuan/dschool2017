@@ -1,6 +1,6 @@
 <template lang="pug">
   .page.pageActivityList
-    section.sectionHero.blue
+    section.sectionHero
       .container
         .row
           .col-sm-12
