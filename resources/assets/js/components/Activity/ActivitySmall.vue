@@ -121,7 +121,7 @@ export default {
       $("html,body").animate({scrollTop: $($(cname)[0]).offset().top})
     },
     registerEvent(){
-      if (this.event.question.some(qa=>qa.require&& !qa.answer)){
+      if (this.event.question && this.event.question.some(qa=>qa.require && !qa.answer)){
         alert("請填寫報名相關必要資訊！")
       }else{
         axios.get(`/activity/${this.event.id}/register`,{

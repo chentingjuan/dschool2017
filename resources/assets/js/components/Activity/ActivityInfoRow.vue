@@ -1,6 +1,6 @@
 <template lang="pug">
   router-link.rowActivity.row.nolinkstyle(v-if="event",:to="'/activity/'+event_id")
-    .col-sm-4
+    .col-sm-4.col-img
       .event_img(:style="{'background-image':'url('+event.cover+')'}", alt="")
       .tag.mt-10 {{tagname}}
     .col-sm-8

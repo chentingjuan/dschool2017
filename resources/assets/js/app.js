@@ -58,6 +58,8 @@ Vue.mixin({
             case "CONFIRMED":
             case 'registed':
               return { label: "已確認報名", open: false }
+            case 'need login':
+              return { label: "請登入後報名", open: false }
             case 'not_open':
               return { label: "非可報名期間", open: false }
           }
