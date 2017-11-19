@@ -15,11 +15,17 @@ class ActivityController extends Controller
     
     public function index(){
         // dd("test");
-        return Activity::all();
+        $result = Activity::all();
+        // $test = "";
+        foreach( $result as $act){
+            $act['regist_count']  = $act->regist_list->count();
+        }
+        return $result;
     }
 
     public function show($id){
         $activitydaa = Activity::find($id);
+        
         return view('layouts/app_spa');
     }
 

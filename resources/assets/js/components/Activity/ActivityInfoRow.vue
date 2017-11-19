@@ -26,9 +26,9 @@
         span 管理功能：
         router-link.btn.btn-info(
           :to="'/manage/activity/'+event_id+'/list'"
-          v-if="user && user.admingroup=='root'") [管理] 報名清單
+          v-if="user && user.admingroup=='root'") 管理報名 ({{event.regist_count}}筆)
 
-        router-link.btn.btn-success(
+        router-link.btn.btn-default(
           :to="'/manage/activity/'+event_id"
           v-if="user && user.admingroup=='root'") 編輯活動
           

@@ -37,7 +37,7 @@ class ApiController extends Controller
             $user = Auth::user();
             if ($user->admingroup=="root"){
                 $activity = Activity::find($activityId);
-                return $activity->registRecords()->with("user")->where("cancel",false)->get();
+                return $activity->registList;
             }
         }
     }

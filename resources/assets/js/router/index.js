@@ -44,7 +44,7 @@ var Homepage = Vue.component('Homepage',comHomepage)
 //routes
 
 
-import page_implement from "../components/Pages/implement.vue"
+import page_implement from "../components/Pages/page_implement.vue"
 
 const routes = [
   { path: '/', component: Homepage },
