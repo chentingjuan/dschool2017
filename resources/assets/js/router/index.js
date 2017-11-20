@@ -66,6 +66,8 @@ const router = new VueRouter({
   mode: "history"
 })
 
+import store from "../store"
+
 //跳轉前設定切換標題與跳頁
 router.beforeEach((to, from, next) => {
   console.log(to);
@@ -80,6 +82,9 @@ router.beforeEach((to, from, next) => {
     },waittime);
   }else{
     $("html, body").animate({ scrollTop: 0 }, "slow");
+  }
+  if (to.path=="/activity"){
+    store.dispatch("loadEvents")
   }
   next();
 });

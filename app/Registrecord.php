@@ -43,7 +43,7 @@ class RegistRecord extends Model
     }
 
     public function Activity(){
-        return $this->hasOne('App\Activity', 'activity_id', 'id');
+        return $this->hasOne('App\Activity', 'id','activity_id');
     }
 
 

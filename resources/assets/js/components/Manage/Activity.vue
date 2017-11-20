@@ -100,7 +100,7 @@ export default {
             })
           }
         }else{
-          if (confirm("確認報名並寄信通知嗎?(測試中，將不會寄信)")){
+          if (confirm("確認報名並寄信通知嗎?")){
             axios.post(`/api/activity/record/${record.record_id}/confirm`).then((res)=>{
               //使用傳回的資料更新該筆報名
               Object.assign(recordObj,res.data.record)

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use App\Activity;
 use App\RegistRecord;
 use App\Question;
+use Mail;
 use Auth;
 class ActivityController extends Controller
 {
@@ -188,10 +189,17 @@ class ActivityController extends Controller
             $user = Auth::user();
             if ($user->admingroup=="root"){
                 $existed_record = RegistRecord::where('id',$recordId)->where("cancel",false)->first();
-                
+                $activity = $existed_record->activity;
+                $user = $existed_record->user;
                 if ($existed_record){
                     if ($existed_record->status != "CONFIRMED"){
                         $existed_record->status = "CONFIRMED";
+                        Mail::send('emails.activity.confirm.yes', ['time' => $activity->time_detail,'title'=> $activity->title], function($message) use ($activity,$user){
+                            $message
+                                ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
+                                ->bcc('frank890417@gmail.com', '吳哲宇')
+                                ->to($user->email,$user->name)->subject('台大創新設計學院【'.$activity->title.'】錄取通知');
+                        });
                     }else{
                         $existed_record->status = "UNCONFIRMED";
                     }
