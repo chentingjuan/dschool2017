@@ -1,5 +1,5 @@
 <template lang="pug">
-  nav.navbar.navbar-default.navbar-fixed-top
+  nav.navbar.navbar-default.navbar-fixed-top(:class="{ 'at_top':!scrollTop, 'navbar-fixed-top': fixed }")
     .container
       .navbar-header
         // Collapsed Hamburger
@@ -12,10 +12,10 @@
         // Branding Image
         a.navbar-brand(href="/" v-if="reallink")
           img(src='http://dschool.ntu.edu.tw/2017/assets/index__pageLogo.svg')
-          span D-school台大創新設計學院
+          span 台大創新設計學院
         router-link.navbar-brand(to="/" v-else)
           img(src='http://dschool.ntu.edu.tw/2017/assets/index__pageLogo.svg')
-          span D-school台大創新設計學院
+          span 台大創新設計學院
 
       #app-navbar-collapse.collapse.navbar-collapse
         // Left Side Of Navbar
@@ -64,9 +64,13 @@ export default {
     return {}
   },
   computed:{
-    ...mapState(['user','csrf_token']),
+    ...mapState(['user','csrf_token','scrollTop']),
     is_admin(){
       return this.user && this.user.admingroup=='root' 
+    },
+    fixed(){
+      //只要不是管理介面都使用fixed的導覽列
+      return ['/login','/manage'].every(route=>this.$route.path.indexOf(route)!=0) 
     }
   },
   methods: {

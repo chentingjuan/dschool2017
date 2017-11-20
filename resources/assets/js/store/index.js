@@ -5,7 +5,8 @@ const store = new Vuex.Store({
   state: {
     user: window.user,
     csrf_token: window.csrf_token,
-    activities: []
+    activities: [],
+    scrollTop: 0
   },
   mutations: {
     set_user(state, value){

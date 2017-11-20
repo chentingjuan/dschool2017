@@ -1,0 +1,83 @@
+nav.navbar.navbar-default
+  transition: 0.5s
+  box-shadow: 0px 0px 10px rgba(black,0.3)
+  border-bottom: rgba(white,0)
+  // padding-top: 5px
+  // padding-bottom: 5px
+  .logowraper
+    position: relative
+
+  img
+    height: 30px
+    margin-top: -10px
+    transition: 0.5s
+    +trans
+    &.black
+      position: absolute
+      transition: 0.5s
+      opacity: 1
+      top: 0
+      left: 0
+  .navbar-header,.navbar-nav
+    a
+      color: $colorBlue
+      transition: 0.5s
+      font-size: 16px
+      &:hover
+        color: $colorRed
+  .navbar-nav
+    li a
+      // &:before
+      //   content: ""
+      //   display: block
+      //   +size(4px ,18px)
+      //   transform: translateY(-50%) rotate(0deg)
+      //   background-color: transparent
+      //   position: absolute
+      //   left: 0
+      //   top: 50%
+      //   +trans
+    li a.router-link-active
+      color: $colorRed
+      position: relative
+      // margin-left: 15px
+      // margin-right: 5px
+      &:before
+        transform: translateY(-50%) rotate(20deg)
+        background-color: $colorRed
+        
+  .dropdown-menu li a
+    color: $colorBlue
+
+//.route_
+.route_about,.route_implement
+  nav.navbar.navbar-default
+    &.at_top
+      background-color: transparent
+      padding-top: 15px
+      padding-bottom: 15px
+      box-shadow: 0px 0px 20px transparent
+      img
+        height: 50px
+        margin-top: -10px
+        &.black
+          opacity: 0
+
+      .navbar-header,.navbar-nav
+        a
+          color: white
+          &.router-link-active
+            color: $colorRed
+
+          &:hover
+            color: $colorRed
+        .router-link-active
+          background-color: transparent
+
+        .dropdown-menu li a
+          color: $colorBlue
+
+[class^="route_event"]
+  nav.navbar.navbar-default
+    &.at_top
+      box-shadow: 0px 0px rgba(black,0)

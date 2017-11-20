@@ -68,6 +68,10 @@ Vue.mixin({
     }
 })
 
+$(window).scroll(()=>{
+    store.commit("setScrollTop",window.scrollY)
+})
+
 const app = new Vue({
     el: '#app',
     router,

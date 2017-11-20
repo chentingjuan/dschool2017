@@ -1,9 +1,9 @@
 <template lang="pug">
-  div
-    Navbar
-    .page_area
-    transition(name="fade" mode="out-in")
-      router-view(:key="$route.path")
+div(:class="app_class")
+  Navbar
+  .page_area
+  transition(name="fade" mode="out-in")
+    router-view(:key="$route.path")
    
     //- section_footer
 </template>
@@ -14,14 +14,15 @@ import Navbar from './Navbar'
 export default {
   components: {
     Navbar
+  },
+  computed: {
+    app_class(){
+      let result =  ['route'+this.$route.path.replace(/\//g,'_')]
+      if (this.loading){
+        result.push("loading")
+      }
+      return result
+    },
   }
 }
 </script>
-
-<style lang="sass?indentedSyntax">
-.page_area
-  margin-top: 54px
-
-
-</style>
-

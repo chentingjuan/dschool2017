@@ -1,0 +1,22 @@
+@mixin flexCenter
+  display: flex
+  justify-content: center
+  align-items: center
+
+@mixin size($w:100%,$h:$w)
+  width: $w
+  height: $h
+@mixin trans($s:0.5s)
+  transition: $s
+
+@mixin size($w,$h:$w)
+  width: $w
+  height: $h
+
+@mixin ab_full
+  position: absolute
+  +size(100%)
+  
+@mixin bxshadow
+  box-shadow: 0px 0px 20px rgba(black,0.3)
+
