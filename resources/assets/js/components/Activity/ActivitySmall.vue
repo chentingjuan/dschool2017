@@ -7,49 +7,58 @@
           :style="{'background-image':'url('+event.cover+')'}")
       .row(v-if="event")
         .col-sm-6
-        .col-sm-6.hero_panel.align-self-center
+        .col-sm-6.panel.hero_panel.align-self-center
           .tag.mt-10 {{tagname}}
           h4.mt-10 {{event.time_detail}} @ {{event.place}}
           h1.mb-4.mt-4.mt-10(v-html="event.title")
           p(v-html="event.description")
-          br
-          br
-          p 狀態：{{get_event_status_translate(event_status).label}}
-          div(v-if="get_event_status_translate(event_status).open")
+          .buttons(v-if="get_event_status_translate(event_status).open")
             button.btn.btn-primary(
               role="button", 
               @click="scrollTo('.section_register')") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}
-            button.btn.btn-secondary.btn-link(
+              span ({{get_event_status_translate(event_status).label}})
+            button.btn.btn-default.btn-link(
               role="button", 
               @click="cancelEvent",
               v-if="(event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
+    .row.section_about
+      .col-sm-12
+        .panel.theme.white
+          .row
+            .col-sm-6
+              h2 活動介紹
+              hr
+              div(v-html="event.description")
+
     .row.section_album
       ul.album
         li.image(v-for="img in event.album" ,:style="{'background-image':`url(${img.image})`}", alt="")
           .caption {{img.caption}}
-    .container.pb-4.pt-4
-      .row.section_teacher
+    .container
+      .row.section_teacher.theme.blue
         .col-sm-12
-          h2.mb-4 講師簡介
+          h4 Speakers
+          h2 講師簡介
           .row(v-for="teacher in event.teacher")
             .col-sm-3.text-left
-              .head(:style="{backgroundImage: `url(${teacher.cover})`}")
-              h4.mb-2.mt-2 {{teacher.name}}
-              p(v-html="teacher.description")
+              .head
+                .img(:style="{backgroundImage: `url(${teacher.cover})`}")
               
             .col-sm-9
+              h4.teacher_name {{teacher.name}}
+              p.teacher_description(v-html="teacher.description")
               p(v-html="teacher.other")
-    .container-fluid.section_register
-      .container.p-b-4.p-t-4
+
+    .container-fluid.section_register.theme.white
+      .container
         .row
-          .col-sm-12
+          .col-sm-4
             h2 活動報名
             p 狀態：{{get_event_status_translate(event_status).label}}
             p 開放報名時間: {{event.open_time}}~{{event.close_time}}
             p(v-html="event.register_info")    
+          .col-sm-8
             div(v-if="get_event_status_translate(event_status).open && !(event_status=='UNCONFIRMED' || event_status=='REGISTED')")
-              br
-              hr
               h4 報名資訊
               br
               .form-group(v-for="(qa,qaid) in event.question")
@@ -64,7 +73,7 @@
               button.btn.btn-primary(
                 role="button", 
                 @click="registerEvent") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}
-              button.btn.btn-secondary.btn-link(
+              button.btn.btn-default.btn-link(
                 role="button", 
                 @click="cancelEvent",
                 v-if="(event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名

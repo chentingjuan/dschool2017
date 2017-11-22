@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.page_event_register(v-if="event")
+  .manage_event_edit(v-if="event")
     .container
       .row
         .col-sm-12
