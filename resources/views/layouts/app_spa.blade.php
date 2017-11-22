@@ -6,13 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>D-School 臺大創新設計學院</title>
-    <meta name="google-site-verification" content="rjddDPy5PhR_RofqCyriMeBqtEdESBMhbuQxFBvKi2g">
-    <meta property="og:title" content="D-School 臺大創新設計學院">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="">
-    <meta property="og:description" content="D-School 臺大創新設計學院">
-    <!-- Styles -->
+
+    @if (isset($meta_og))
+        <title>{{$meta_og['title']}}</title>
+        <meta property="og:title" content="{{$meta_og['title']}}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{url()->current()}}">
+        <meta property="og:image" content="{{$meta_og['cover']}}">
+        <meta property="og:description" content="{{$meta_og['description']}}">
+    @else
+       <title>D-School 臺大創新設計學院</title>
+      <meta property="og:title" content="D-School 臺大創新設計學院">
+      <meta property="og:type" content="website">
+      <meta property="og:image" content="">
+      <meta property="og:description" content="D-School 臺大創新設計學院">
+  
+    @endif
+
+
+      <meta name="google-site-verification" content="rjddDPy5PhR_RofqCyriMeBqtEdESBMhbuQxFBvKi2g">
+
+      <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- <link href="{{ asset('css/overwrite/master.css') }}" rel="stylesheet"> -->
 

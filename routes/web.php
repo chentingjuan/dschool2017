@@ -43,12 +43,12 @@ Route::get('/implement', 'HomeController@index');
 Route::get('/userlist', "homeController@userlist");
 
 
-Route::get('/activity', "PublicController@Activity");
-Route::get('/my/activity', "PublicController@Activity");
+Route::get('/activity', "PublicController@Spa");
+Route::get('/my/activity', "PublicController@Spa");
 Route::get('/user/activity', "HomeController@RegistedEvent");
 
 Route::get('/activity/{activityId}', "PublicController@Activity");
-Route::get('/api/{activityId}', "PublicController@Activity");
+Route::get('/api/{activityId}', "PublicController@Spa");
 
 Route::group(["prefix"=>"api"],function(){
     Route::get('/user/activity', "ApiController@getAllRegistedEvent");

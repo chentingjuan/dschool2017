@@ -40,10 +40,10 @@ class Activity extends Model
     *
     * @return string
     */
-    public function getRouteKeyName()
-    {
-        return 'uuid';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'uuid';
+    // }
 
     public function RegistRecords(){
         return $this->hasMany('App\RegistRecord', 'activity_id', 'id');
