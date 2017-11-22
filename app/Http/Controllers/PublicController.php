@@ -19,7 +19,7 @@ class PublicController extends Controller
                 "type"=>"website",
                 "url"=>trim(url()->current()),
                 "cover"=> $activity->cover,
-                "description"=> $activity->description
+                "description"=> strip_tags( $activity->description)
             ]
         ]);
     }
