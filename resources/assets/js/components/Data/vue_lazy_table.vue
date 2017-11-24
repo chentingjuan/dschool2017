@@ -178,8 +178,10 @@ export default {
               var line = '';
               for (var index in array[i]) {
                   if (line != '') line += ','
-
+                  let hasNL = (""+array[i][index]).indexOf("\n")>-1
+                  if (hasNL) line+='"'
                   line += array[i][index];
+                  if (hasNL) line+='"'
               }
 
               str += line + '\r\n';
