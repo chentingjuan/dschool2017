@@ -45,10 +45,12 @@ var Homepage = Vue.component('Homepage',comHomepage)
 
 
 import page_implement from "../components/Pages/page_implement.vue"
+import page_news from "../components/Pages/page_news.vue"
 
 const routes = [
   { path: '/', component: Homepage },
   { path: '/implement', component: page_implement },
+  { path: '/news', component: page_news },
 
   { path: '/manage/activity/new', component: comManageActivitEdit},
   { path: '/manage/activity/:event_id/list', component: ManageActivity ,props: true},

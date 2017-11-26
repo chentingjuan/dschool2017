@@ -38,26 +38,29 @@ Route::group([],function(){
 // Route::get('/register_public', 'App\Http\Controllers\Auth\RegisterController@showRegistrationFormPublic');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/implement', 'HomeController@index');
+Route::get('/news', 'HomeController@index');
 
 
 Route::get('/userlist', "homeController@userlist");
-
 
 Route::get('/activity', "PublicController@Spa");
 Route::get('/my/activity', "PublicController@Spa");
 Route::get('/user/activity', "HomeController@RegistedEvent");
 
 Route::get('/activity/{activityId}', "PublicController@Activity");
-Route::get('/api/{activityId}', "PublicController@Spa");
+
 
 Route::group(["prefix"=>"api"],function(){
+    // Route::get('/api/{activityId}', "PublicController@Spa");
     Route::get('/user/activity', "ApiController@getAllRegistedEvent");
-    Route::get('/activity/list/{activityId}', "ApiController@getEventRegisterList");
+    Route::get('/user/list', "ApiController@getUserList");
     
+    Route::get('/activity/list/{activityId}', "ApiController@getEventRegisterList");
     Route::post('/activity/list',"ActivityController@getList");
+    
     Route::resource('activity',"ActivityController");
     Route::resource('question',"QuestionController");
-    Route::get('/user/list', "ApiController@getUserList");
+    Route::resource('post',"PostController");
 
     //管理員確認報名
       Route::post('/activity/record/{recordId}/confirm', "ActivityController@ConfirmRecord");

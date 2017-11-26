@@ -28,6 +28,10 @@
             router-link(to="/activity" v-if="!reallink") 學院活動
 
           li(v-if="is_admin")
+            a(href="/news" v-if="reallink") 最新消息
+            router-link(to="/news" v-if="!reallink") 最新消息
+
+          li(v-if="is_admin")
             a(href="/implement" v-if="reallink") 實作中心
             router-link(to="/implement" v-if="!reallink") 實作中心
 
