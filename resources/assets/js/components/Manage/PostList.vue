@@ -1,5 +1,5 @@
 <template lang="pug">
-  .page.pageActivityList
+  .page.pageActivityList.manage_post
     section.sectionHero
       .container
         .row
@@ -9,17 +9,18 @@
         .row
           .col-sm-12
             router-link.btn.btn-primary.pull-right(v-if="user && user.admingroup=='root'",
-                                        to="/manage/activity/new") + 新增活動
+                                        to="/manage/post/new") + 新增新聞
             .btn.btn-default(v-if="order", @click="order=!order") 新 → 舊
             .btn.btn-default(v-else, @click="order=!order") 舊 → 新
 
           .col-sm-12
             //.monthGroup(v-for="monthSet in chunkedList")
             //h3 {{monthSet.time.slice(0,4)+' '+monthSet.time.slice(4)}}月
-            ul
-              li(v-for="post in posts")
+            ul.list-group
+              li.list-group-item(v-for="post in OrderedList", style="background-color: transparent")
                 router-link(:to="'/manage/post/'+post.id")
-                  h3 {{post.title}}
+                  h4 {{post.title}} 
+                    span.pull-right {{post.date}}
                 //ActivityInfoRow(:event_id="activity.id", :key="activity.id")
               
 
@@ -43,12 +44,12 @@ export default {
     computed:{
       ...mapState(['user','activities','posts']),
       OrderedList(){
-        let result = this.activities.slice().sort((a,b)=>new Date(a.time)>new Date(b.time) )
+        let result = this.posts.slice().sort((a,b)=>new Date(a.time)>new Date(b.time) )
         
         if (this.order){
           result=result.reverse()
         }
-        console.log(result.map(o=>o.time))
+        //console.log(result.map(o=>o.time))
         return result
       },
       chunkedList(){

@@ -1,3 +1,32 @@
-//.page_news
+.page.page_news
   .sectionHero
-    @extend .theme.blue
+    //@extend .theme.blue
+    ul
+      list-style: none
+    li
+      padding: 5px
+      min-height: 560px
+      a
+        text-decoration: none
+        color: $colorBlue
+      .news_box
+        display: block
+        //padding: 20px
+        background-color: #fff
+        border-radius: 5px
+        overflow: hidden
+        position: relative
+        transition: 0.5s
+        left: 0
+        top: 0
+        +bx_shadow
+        //img
+          //margin: -20px
+        .title
+          line-height: 1.6
+          margin-top: 0
+        .infos
+          padding: 20px
+        &:hover
+          left: -10px
+          top: -10px

@@ -63,6 +63,7 @@ const routes = [
   { path: '/news/:title', component: page_post, props: true },
 
   { path: '/manage/post', component: ManagePostList },
+  { path: '/manage/post/new', component: ManagePostEdit, props: true },
   { path: '/manage/post/:post_id', component: ManagePostEdit, props: true },
   { path: '/manage/activity/new', component: comManageActivitEdit},
   { path: '/manage/activity/:event_id/list', component: ManageActivity ,props: true},

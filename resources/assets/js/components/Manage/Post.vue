@@ -8,13 +8,13 @@
           br
           ol.breadcrumb
             li.breadcrumb-item 
-              router-link(to="/manage/post") Manage Event List
-            li.breadcrumb-item.active Post Edit
-          h2(v-if="post" ) Edit- {{ strip_tags(post.title) }}
+              router-link(to="/manage/post") 新聞管理
+            li.breadcrumb-item.active 新聞編輯
+          h2(v-if="post" ) 編輯- {{ strip_tags(post.title) }}
             
             button.btn.btn-danger.pull-right(@click="deletePost") Delete
             button.btn.btn-primary.pull-right(@click="updatePost") Save
-          h2(v-else) New post - {{ strip_tags(post.title) }}
+          h2(v-else) 新文章 - {{ strip_tags(post.title) }}
             button.btn.btn-primary.pull-right(@click="updatePost") Save
           hr
 
@@ -33,6 +33,12 @@
                 labal.col-sm-3 Title
                 .col-sm-9
                   input.form-control(v-if="post" v-model="post.title")
+                br
+                br
+              .form-group
+                labal.col-sm-3 Date
+                .col-sm-9
+                  input.form-control(v-if="post" v-model="post.date")
                 br
                 br
               .form-group
@@ -103,17 +109,24 @@ export default {
   props: ["post_id"],
   data(){
     return {
-      order: true
+      order: true,
+      post: {
+
+      }
     }
   },
   mounted() {
       console.log('Component mounted.')
-      
+      var a = this.nowpost
   },
   computed:{
     ...mapState(['user','activities','posts']),
-    post(){
-      return this.posts.find(o=>o.id==this.post_id)
+    nowpost(){
+      let result = this.posts.find(o=>o.id==this.post_id)
+      if (result ){
+        this.post = result
+      }
+      return result
     }
   },
   components:{

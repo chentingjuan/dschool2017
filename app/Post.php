@@ -8,7 +8,7 @@ class Post extends Model
 {
     //
     protected $fillable = [
-        "event_id","title","author","cover","cata","tags","link","content","agency"
+        "event_id","title","author","cover","date","cata","tags","link","content","agency"
     ];
 }
 
