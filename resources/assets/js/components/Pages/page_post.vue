@@ -17,7 +17,7 @@
 
     section.sectionContent.white
       .container
-        .col-sm-7.col-cover
+        //.col-sm-7.col-cover
         p(v-html="trans(post.content)")
     section.sectionMore.blue
       .container-fluid
