@@ -6,6 +6,7 @@ const store = new Vuex.Store({
     user: window.user,
     csrf_token: window.csrf_token,
     activities: [],
+    posts: [],
     scrollTop: 0
   },
   mutations: {
@@ -17,6 +18,9 @@ const store = new Vuex.Store({
     },
     setActivities(state, value) {
       state.activities = value
+    },
+    setPosts(state, value) {
+      state.posts = value
     }
   },
   actions: {
@@ -27,6 +31,12 @@ const store = new Vuex.Store({
     },
     loadWebsite(context){
       context.dispatch("loadEvents")
+      context.dispatch("loadPosts")
+    },
+    loadPosts(context){
+      axios.get("/api/post").then((res) => {
+        context.commit("setPosts", res.data)
+      })
     }
   }
 })

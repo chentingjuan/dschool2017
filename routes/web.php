@@ -39,6 +39,7 @@ Route::group([],function(){
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/implement', 'HomeController@index');
 Route::get('/news', 'HomeController@index');
+Route::get('/news/{news}', 'HomeController@index');
 
 
 Route::get('/userlist', "homeController@userlist");

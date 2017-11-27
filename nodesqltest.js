@@ -25,7 +25,7 @@ var data = fs.readFile(file, "utf8",function(err,data){
     .map(obj=>({
       title: obj.title,
       content: obj.content,
-      cover: obj.img,
+      cover: "http://dschool.ntu.edu.tw"+obj.img,
       cata: obj.index_in,
       date: obj.date,
       link: obj.link,
