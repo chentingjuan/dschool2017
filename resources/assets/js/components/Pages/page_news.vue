@@ -20,6 +20,10 @@
                       h4.date {{ post.date }}
                       h3.title {{ post.title }}
                       p.content {{ post.description }}
+                      router-link.btn.btn-primary.form-control(
+                        v-if="is_admin", 
+                        :to="'/manage/post/'+post.id",
+                        style="color: white") 編輯
 </template>
 
 <script>
@@ -33,7 +37,10 @@ export default {
     }
   },
   computed:{
-    ...mapState(['posts']),
+    ...mapState(['user','posts']),
+    is_admin(){
+      return this.user && this.user.admingroup=='root' 
+    },
     catas (){
       return this.posts.map(o=>o.cata).filter((d,i,arr)=>arr.indexOf(d)==i)
     },

@@ -27,7 +27,7 @@
             a(href="/activity" v-if="reallink") 學院活動
             router-link(to="/activity" v-if="!reallink") 學院活動
 
-          li(v-if="is_admin")
+          li
             a(href="/news" v-if="reallink") 最新消息
             router-link(to="/news" v-if="!reallink") 最新消息
 
