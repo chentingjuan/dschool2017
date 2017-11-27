@@ -65,6 +65,28 @@ Vue.mixin({
           }
           return { label: "未報名", open: true }
         },
+        handleImageAdded(file, Editor, cursorLocation) {
+            // An example of using FormData
+            // NOTE: Your key could be different such as:
+            // formData.append('file', file)
+            console.log("get picture!")
+            var formData = new FormData();
+            formData.append('file', file)
+            console.log(file)
+
+            axios({
+                url: '/api/upload',
+                method: 'POST',
+                data: formData
+            })
+                .then((result) => {
+                    let url = result.data // Get url from response
+                    Editor.insertEmbed(cursorLocation, 'image', url);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        },
     }
 })
 

@@ -25,6 +25,14 @@ var ActivitySmall = Vue.component('ActivitySmall',comActivitySmall)
 import comActivityList from "../components/Activity/ActivityList.vue"
 var ActivityList = Vue.component('ActivityList',comActivityList)
 
+
+import comPostList from "../components/Manage/PostList.vue"
+var ManagePostList = Vue.component('PostList', comPostList)
+
+import comPostEdit from "../components/Manage/Post.vue"
+var ManagePostEdit = Vue.component('PostEdit', comPostEdit)
+
+
 import comHomepage from "../components/Homepage.vue"
 var Homepage = Vue.component('Homepage',comHomepage)
 // var page_index = Vue.component('page_index', require('../components/page_index.vue'));
@@ -54,6 +62,8 @@ const routes = [
   { path: '/news', component: page_news },
   { path: '/news/:title', component: page_post, props: true },
 
+  { path: '/manage/post', component: ManagePostList },
+  { path: '/manage/post/:post_id', component: ManagePostEdit, props: true },
   { path: '/manage/activity/new', component: comManageActivitEdit},
   { path: '/manage/activity/:event_id/list', component: ManageActivity ,props: true},
   { path: '/manage/activity/:event_id', component: comManageActivitEdit ,props: true},

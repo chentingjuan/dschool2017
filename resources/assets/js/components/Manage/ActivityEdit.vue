@@ -90,13 +90,17 @@
               .form-group
                 labal.col-sm-3 描述
                 .col-sm-9
-                  VueEditor.ve(:id ="'description'", v-model="event.description" )
+                  VueEditor.ve(:id ="'description'", v-model="event.description",
+                    :useCustomImageHandler="true",
+                    @imageAdded="handleImageAdded"  )
                   br
                   br
               .form-group
                 labal.col-sm-3 註冊資訊
                 .col-sm-9
-                  VueEditor.ve(:id ="'register_info'", v-model="event.register_info")
+                  VueEditor.ve(:id ="'register_info'", v-model="event.register_info",
+                    :useCustomImageHandler="true",
+                    @imageAdded="handleImageAdded" )
                   br
                   br
           .panel.panel-default(v-if="panel=='teacher'")
@@ -127,12 +131,16 @@
                         .col-sm-2
                           h5 描述
                         .col-sm-10
-                          VueEditor.ve(:id ="'teacher_description_'+teacherId", v-model="teacher.description")                          
+                          VueEditor.ve(:id ="'teacher_description_'+teacherId", v-model="teacher.description",
+                    :useCustomImageHandler="true",
+                    @imageAdded="handleImageAdded" )                          
                       .row.form-group
                         .col-sm-2
                           h5 其他
                         .col-sm-10
-                          VueEditor.ve(:id ="'teacher_other_'+teacherId", v-model="teacher.other")                  
+                          VueEditor.ve(:id ="'teacher_other_'+teacherId", v-model="teacher.other",
+                    :useCustomImageHandler="true",
+                    @imageAdded="handleImageAdded" )                  
                       hr
                       br
               .form-group
