@@ -87,6 +87,14 @@ Vue.mixin({
                     console.log(err);
                 })
         },
+        cssbg(url) {
+            let result = {
+                'background-image': `url("${url}")`
+            }
+            // console.log(result)
+            return result
+        }
+
     }
 })
 

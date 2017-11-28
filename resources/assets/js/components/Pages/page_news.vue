@@ -10,20 +10,24 @@
             li(v-for="cata in catas") {{cata}}
         .row
           .col-sm-12
-            .row
-              ul.col-sm-4( v-for="chunk in chunkedList")
-                li(v-for="post in chunk",
-                  v-if="post.show" )
-                  router-link.news_box(:to="`/news/${post.title}`")
-                    img(:src="post.cover", style="width: 100%")
-                    .infos
-                      h4.date {{ post.date }}
-                      h3.title {{ post.title }}
-                      p.content {{ post.description }}
-                      router-link.btn.btn-primary.form-control(
+            router-link.btn.btn-primary(
                         v-if="is_admin", 
-                        :to="'/manage/post/'+post.id",
-                        style="color: white") 編輯
+                        :to="'/manage/post/new'",
+                        style="color: white") 新增新聞
+        .row
+          ul.col-sm-4( v-for="chunk in chunkedList")
+            li(v-for="post in chunk",
+              v-if="post.show" )
+              router-link.news_box(:to="`/news/${post.title}`")
+                img(:src="post.cover", style="width: 100%")
+                .infos
+                  h4.date {{ post.date }}
+                  h3.title {{ post.title }}
+                  p.content {{ post.description }}
+                  router-link.btn.btn-primary.form-control(
+                    v-if="is_admin", 
+                    :to="'/manage/post/'+post.id",
+                    style="color: white") 編輯
 </template>
 
 <script>

@@ -8,7 +8,7 @@
           br
           ol.breadcrumb
             li.breadcrumb-item 
-              router-link(to="/manage/post") 新聞管理
+              router-link(to="/news") 新聞管理
             li.breadcrumb-item.active 新聞編輯
           h2(v-if="post" ) 編輯- {{ strip_tags(post.title) }}
             

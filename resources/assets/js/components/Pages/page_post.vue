@@ -6,7 +6,7 @@
     section.sectionHero.white
       .container
         .row.row-card
-          .col-sm-7.col-cover(:style="`background-image:url(${post.cover})`")
+          .col-sm-7.col-cover(:style="cssbg(post.cover)")
             //- img(style="width: 100%")
           .col-sm-5.col-info
             h3 {{ post.cata }}
@@ -25,7 +25,7 @@
           .col-sm-6.col-rpost
             router-link.rpost(
                 v-if="navPost.pre", 
-                :style="`background-image:url(${navPost.pre.cover})`", 
+                :style="cssbg(navPost.pre.cover)", 
                 :to="'/news/'+navPost.pre.title")
               h4.cata {{navPost.pre.cata}}
               br
@@ -33,7 +33,7 @@
           .col-sm-6.col-rpost
             router-link.rpost(
                 v-if="navPost.post", 
-                :style="`background-image:url(${navPost.post.cover})`", 
+                :style="cssbg(navPost.post.cover)", 
                 :to="'/news/'+navPost.post.title")
               h4.cata {{navPost.post.cata}}
               br
