@@ -103,6 +103,7 @@
 import { VueEditor } from 'vue2-editor'
 import {mapState} from 'vuex'
 import Axios from 'axios'
+import default_pic_selector from '../default_pic_selector.vue'
 //import ActivityInfoRow from './ActivityInfoRow'
 import _ from 'lodash'
 export default {
@@ -130,7 +131,7 @@ export default {
     }
   },
   components:{
-    VueEditor
+    VueEditor,default_pic_selector
   },
   methods: {
     setPost(post){

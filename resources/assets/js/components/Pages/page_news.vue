@@ -50,7 +50,7 @@ export default {
     },
     chunkedList(){
       let result = [[],[],[]]
-      this.posts.forEach((d,i)=>{
+      this.posts.slice().reverse().forEach((d,i)=>{
         result[i%3].push(d)
       })
       return result
