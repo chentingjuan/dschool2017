@@ -14,15 +14,20 @@
                         v-if="is_admin", 
                         :to="'/manage/post/new'",
                         style="color: white") 新增新聞
+            router-link.btn.btn-primary(
+                        v-if="is_admin", 
+                        :to="'/manage/post'",
+                        style="color: white") 管理條列清單
         .row
           ul.col-sm-4( v-for="chunk in chunkedList")
             li(v-for="post in chunk",
-              v-if="post.show" )
+              v-if="post.show || is_admin",
+              :style="{opacity: (!post.show && is_admin)?0.6:1}" )
               router-link.news_box(:to="`/news/${post.title}`")
                 img(:src="post.cover", style="width: 100%")
                 .infos
                   h4.date {{ post.date }}
-                  h3.title {{ post.title }}
+                  h3.title {{ post.title }} {{ ((!post.show && is_admin)?"(草稿)":"" ) }}
                   p.content {{ post.description }}
                   router-link.btn.btn-primary.form-control(
                     v-if="is_admin", 

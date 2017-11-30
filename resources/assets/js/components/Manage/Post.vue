@@ -20,7 +20,7 @@
 
         .col-sm-4
           .panel.panel-primary
-            .panel-heading Basic Infos
+            .panel-heading 基本資訊
             .panel-body
               //.form-group
                 labal.col-sm-3 Type
@@ -30,19 +30,19 @@
                 br
                 br
               .form-group
-                labal.col-sm-3 Title
+                labal.col-sm-3 標題
                 .col-sm-9
                   input.form-control(v-if="post" v-model="post.title")
                 br
                 br
               .form-group
-                labal.col-sm-3 Date
+                labal.col-sm-3 日期
                 .col-sm-9
-                  input.form-control(v-if="post" v-model="post.date")
+                  input.form-control(v-if="post" v-model="post.date", placeholder="2017-xx-xx")
                 br
                 br
               .form-group
-                labal.col-sm-3 Cata
+                labal.col-sm-3 內別
                 .col-sm-9
                   input.form-control(v-model="post.cata")
                 br
@@ -62,16 +62,24 @@
                 br
               
               .form-group
-                labal.col-sm-3 Cover
+                labal.col-sm-3 封面
                 .col-sm-9
                   input.form-control(v-model="post.cover")
                   img(:src="post.cover", style="width: 100%")
                   default_pic_selector(@select_pic="select_pic_cover")
                 br
                 br
+                br
 
               .form-group
-                labal.col-sm-3 Sticktop
+                labal.col-sm-3 顯示
+                .col-sm-9
+                  input.form-control(type="checkbox" v-model="post.show")
+                br
+                br
+
+              .form-group
+                labal.col-sm-3 置頂
                 .col-sm-9
                   input.form-control(type="checkbox" v-model="post.stick")
                 br
@@ -112,6 +120,9 @@ export default {
     return {
       order: true,
       post: {
+        show: 1,
+        title: "新文章",
+        date: (new Date()).toLocaleString().split(" ")[0].replace(/\//g,"-")
 
       }
     }
