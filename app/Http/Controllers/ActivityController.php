@@ -270,6 +270,26 @@ class ActivityController extends Controller
             $activity->update($inputs);
             return $activity;
         }else{
+            if ( array_key_exists('question',$inputs)){
+                $qlists = [];
+                foreach ( $inputs['question'] as $qa){
+                    // dd(gettype($qa));
+                    if (gettype($qa)=="array"){
+                        
+                        $qa_obj = Question::where('id',$qa['id'])->first();
+                        if ( $qa_obj){
+                            $qa_obj->update($qa);
+                            $qa_obj->save($qa);
+                            // dd($qa);
+                            array_push($qlists,$qa['id']);
+                        }                
+                    }else{
+                        array_push($qlists,$qa);
+
+                    }
+                }
+                $inputs['question']=json_encode($qlists);
+            }
             $activity=Activity::create($inputs);
             return $activity;
             
