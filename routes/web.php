@@ -67,7 +67,8 @@ Route::group(["prefix"=>"api"],function(){
     Route::resource('post',"PostController");
 
     //管理員確認報名
-      Route::post('/activity/record/{recordId}/confirm', "ActivityController@ConfirmRecord");
+    Route::post('/activity/record/{recordId}/confirm/{action}', "ActivityController@ConfirmRecord");
+    Route::post('/activity/record/{recordId}/confirm', "ActivityController@ConfirmRecord");
 
 });
 

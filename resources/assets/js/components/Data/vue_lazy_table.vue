@@ -23,6 +23,10 @@
           td
             .btn.btn-default(@click="edit(row)",
                              v-if="edit") {{edit_btn_text?edit_btn_text:'編輯'}}
+            .btn.btn-default(
+              v-for="btn in btns", 
+              @click="btn.action(row)",
+              :class="{active: func_exec(btn.class,row)}") {{btn.label}}
             //.btn.btn-danger 刪除
     .page_nav
       .btn.btn-default(v-if="pages.length>1",
@@ -36,7 +40,7 @@ import Vue from 'vue'
 // sorted -> sliced
 export default {
   name: 'vue_lazy_table',
-  props: ["table_data","row_keys","rows","configs","edit","dataTitle","edit_btn_text"],
+  props: ["table_data","row_keys","rows","configs","edit","dataTitle","edit_btn_text","btns"],
   data () {
     return {
       sort_key: null,
@@ -145,6 +149,10 @@ export default {
     }
   },
   methods: { 
+
+    func_exec(func,para){
+      return func(para)
+    },
     //取得表格欄位的暱稱
     row_name_alias(row_name){
       let parse_items_list = this.parse_items_list

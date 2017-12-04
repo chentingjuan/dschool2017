@@ -13,8 +13,11 @@
             h4
             vue_lazy_table(:table_data="registUserList",
                      :rows="tableRows",
-                     :edit="confirmRecord",
-                     edit_btn_text="核可/取消核可")
+                     :btns="event_btns")
+
+
+                    //-  :edit="confirmRecord",
+                    //-  edit_btn_text="核可/取消核可",
 
 </template>
 
@@ -27,6 +30,35 @@ export default {
         lists: [],
         event: {
         },
+        event_btns: [
+          {
+            label: "錄取",
+            action: this.confirmRecordYes,
+            class: function(row){
+              console.log("row:",row)
+              return row.confirm_o=="yes"
+            }
+          },{
+            label: "備取",
+            action: this.confirmRecordPending,
+            class: function(row){
+              return row.confirm_o=="pending"
+            }
+            // class: "btn-warning"
+          },{
+            label: "不錄取",
+            action: this.confirmRecordNo,
+            class: function(row){
+              return row.confirm_o=="no"
+            }
+            // class: "btn-default"
+          },{
+            label: "取消確認",
+            action: this.confirmRecordCancel,
+            class: function(){}
+            // class: "btn-default"
+          }
+        ],
         tableRows: [
           "serial -> 報名序號#",
           "name -> 名字",
@@ -35,9 +67,11 @@ export default {
           "phone -> 聯絡電話",
           "email -> 信箱",
           "status -> 狀態",
+          "confirm -> 錄取",
+          "confirm_o -> __hide",
           "time -> 報名時間",
           "formdata -> 資料",
-          "record_id -> __hide"
+          "record_id -> __hide",
         ]
 
       }
@@ -77,6 +111,8 @@ export default {
             phone: d.user.phone,
             email: d.user.email,
             status: this.get_event_status_translate(d.status).label,
+            confirm: this.get_event_confirm_type_translate(d.confirm_type).label,
+            confirm_o: d.confirm_type,
             time: d.created_at,
             ...temp
           }
@@ -87,24 +123,47 @@ export default {
       vue_lazy_table
     },
     methods: {
-      confirmRecord(record){
+      confirmRecordYes(record){
+        this.confirmRecord(record,"yes")
+      },
+      confirmRecordNo(record){
+        this.confirmRecord(record,"no")
+      },
+      confirmRecordPending(record){
+        this.confirmRecord(record,"pending")
+      },
+      confirmRecordCancel(record){
+        this.confirmRecord(record,"cancel")
+      },
+      confirmRecord(record, action){
         let recordObj = this.lists.find(o=>o.id==record.record_id)
         // console.log(recordObj)
 
         if (recordObj.status=="CONFIRMED"){
           if (confirm("確認取消報名核可嗎?")){
-            axios.post(`/api/activity/record/${record.record_id}/confirm`).then((res)=>{
+            axios.post(`/api/activity/record/${record.record_id}/confirm/cancel`).then((res)=>{
               //使用傳回的資料更新該筆報名
               Object.assign(recordObj,res.data.record)
               alert("已取消該筆報名確認")
             })
           }
         }else{
-          if (confirm("確認報名並寄信通知嗎?")){
-            axios.post(`/api/activity/record/${record.record_id}/confirm`).then((res)=>{
+          let action_label = "錄取"
+          if (action=="yes"){
+            action_label = "錄取"
+          }else if (action=="pending"){
+            action_label = "備取"
+          }else if (action=="no"){
+            action_label = "不錄取"
+          }else if (action=="cancel"){
+            action_label = "取消"
+          }
+          
+          if (confirm("確認「"+action_label+"」該筆報名並寄信通知嗎?")){
+            axios.post(`/api/activity/record/${record.record_id}/confirm/${action}`).then((res)=>{
               //使用傳回的資料更新該筆報名
               Object.assign(recordObj,res.data.record)
-              alert("已確認該筆報名")
+              alert("已"+action_label+"該筆報名")
             })
 
           }

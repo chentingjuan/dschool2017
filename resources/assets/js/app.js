@@ -65,6 +65,17 @@ Vue.mixin({
           }
           return { label: "未報名", open: true }
         },
+        get_event_confirm_type_translate(txt){
+            switch (txt) {
+                case "yes":
+                    return { label: "錄取" }
+                case "no":
+                    return { label: "不錄取" }
+                case 'pending':
+                    return { label: "備取" }
+            }
+            return { label: "-" }
+        },
         handleImageAdded(file, Editor, cursorLocation) {
             // An example of using FormData
             // NOTE: Your key could be different such as:

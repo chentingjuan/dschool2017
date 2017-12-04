@@ -182,7 +182,7 @@ class ActivityController extends Controller
 
 
     //管理員確認此筆紀錄為報名成功
-    public function ConfirmRecord($recordId){
+    public function ConfirmRecord($recordId,$action){
         // get record from activityregister user_uuid = current user uuid
         
         if ( Auth::check() ){
@@ -199,16 +199,27 @@ class ActivityController extends Controller
                 ];
 
                 if ($existed_record){
-                    if ($existed_record->status != "CONFIRMED"){
+                    if ($existed_record->status != "CONFIRMED" &&  $action!="cancel"){
+
                         $existed_record->status = "CONFIRMED";
-                        Mail::send('emails.activity.confirm.yes', $data , function($message) use ($activity,$user){
+                        $existed_record->confirm_type = $action;
+                        $mail_title = '台大創新設計學院【'.strip_tags($activity->title).'】';
+                        if ($action=="yes"){
+                            $mail_title .= "錄取通知";
+                        }else if ($action=="pending"){
+                            $mail_title .= "備取通知";
+                        }else if ($action=="no"){
+                            $mail_title .= "不錄取通知";
+                        }
+                        Mail::send('emails.activity.confirm.'.$action , $data , function($message) use ($activity,$user,$mail_title ){
                             $message
                                 ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
                                 ->bcc('frank890417@gmail.com', '吳哲宇')
-                                ->to($user->email,$user->name)->subject('台大創新設計學院【'.$activity->title.'】錄取通知');
+                                ->to($user->email,$user->name)->subject($mail_title);
                         });
                     }else{
                         $existed_record->status = "UNCONFIRMED";
+                        $existed_record->confirm_type = null;
                     }
                     $existed_record->save();
                     return [
