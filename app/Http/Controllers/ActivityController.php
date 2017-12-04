@@ -191,10 +191,17 @@ class ActivityController extends Controller
                 $existed_record = RegistRecord::where('id',$recordId)->where("cancel",false)->first();
                 $activity = $existed_record->activity;
                 $user = $existed_record->user;
+                $data = [
+                    'time' => $activity->time_detail,
+                    'title'=> $activity->title, 
+                    'mailcontent'=> $activity->mailcontent?$activity->mailcontent:"" , 
+                    'end_response_date'=> $activity->end_response_date?$activity->end_response_date:"規定日期前"
+                ];
+
                 if ($existed_record){
                     if ($existed_record->status != "CONFIRMED"){
                         $existed_record->status = "CONFIRMED";
-                        Mail::send('emails.activity.confirm.yes', ['time' => $activity->time_detail,'title'=> $activity->title], function($message) use ($activity,$user){
+                        Mail::send('emails.activity.confirm.yes', $data , function($message) use ($activity,$user){
                             $message
                                 ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
                                 ->bcc('frank890417@gmail.com', '吳哲宇')

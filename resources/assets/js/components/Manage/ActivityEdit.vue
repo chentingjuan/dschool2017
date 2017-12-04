@@ -218,7 +218,24 @@
                       .btn.btn-primary.form-control(@click="addQuestion") 新增問題
             br
             br
-          
+          .panel.panel-default(v-if="panel=='email'")
+            .panel-heading 寄信資料
+            .panel-body
+              .form-group
+                labal.col-sm-3 提醒事項
+                .col-sm-9
+                  VueEditor.ve(:id ="'mailcontent'", v-model="event.mailcontent",
+                    :useCustomImageHandler="true",
+                    @imageAdded="handleImageAdded"  )
+                  br
+                  br
+              .form-group
+                labal.col-sm-3 結束回覆日期
+                .col-sm-9
+                  input.form-control(v-model="event.end_response_date",
+                                     placeholder="結束回覆日期 (11/2 星期x)")
+                  br
+                  br
 </template>
 
 <script>
@@ -241,7 +258,8 @@ export default {
         {label: "詳細資訊",value:"detail"},
         {label: "相簿",value:"album"},
         {label: "師資",value:"teacher"},
-        {label: "表單問答",value:"qa"}
+        {label: "表單問答",value:"qa"},
+        {label: "信件資料",value:"email"}
       ],
       event: {
         type: "activity",
