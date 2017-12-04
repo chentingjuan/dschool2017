@@ -20,7 +20,7 @@
             button.btn.btn-default.btn-link(
               role="button", 
               @click="cancelEvent",
-              v-if="(event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
+              v-if="(event_status=='CONFIRMED' || event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
     .row.section_about
       .col-sm-12
         .panel.theme.white
@@ -76,7 +76,7 @@
               button.btn.btn-default.btn-link(
                 role="button", 
                 @click="cancelEvent",
-                v-if="(event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
+                v-if="(event_status=='CONFIRMED' || event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
 </template>
 
 <script>
