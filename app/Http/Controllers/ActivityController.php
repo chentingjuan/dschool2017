@@ -48,6 +48,12 @@ class ActivityController extends Controller
                     return [
                         "status" => "REGISTED"
                     ];
+                }else if ($existed_record->status=="CONFIRMED"){
+                    return [
+                        "status" => "CONFIRMED",
+                        "type" => $existed_record->confirm_type
+                    ];
+                    
                 }
             }else{
                 $activity=Activity::find($activityId);

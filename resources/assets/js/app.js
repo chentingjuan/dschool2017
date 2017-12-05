@@ -52,18 +52,20 @@ Vue.mixin({
             return result
         },
         get_event_status_translate(txt){
+        
           switch(txt){
             case "UNCONFIRMED":
-              return {label: "待確認",open: true}
+                  return { status: txt, label: "待確認", open: true, registed: true }
             case "CONFIRMED":
+                  return { status: txt, label: "已確認報名", open: true, registed: true }
             case 'registed':
-              return { label: "已確認報名", open: false }
+                  return { status: txt, label: "已報名", open: false ,registed: true}
             case 'need login':
-              return { label: "請登入後報名", open: false }
+                  return { status: txt, label: "登入後報名", open: false, registed: false}
             case 'not_open':
-              return { label: "非可報名期間", open: false }
+                  return { status: txt, label: "非可報名期間", open: false, registed: false}
           }
-          return { label: "未報名", open: true }
+            return { status: txt, label: "未報名", open: true, registed: false}
         },
         get_event_confirm_type_translate(txt){
             switch (txt) {
@@ -74,7 +76,7 @@ Vue.mixin({
                 case 'pending':
                     return { label: "備取" }
             }
-            return { label: "-" }
+            return { label: "" }
         },
         handleImageAdded(file, Editor, cursorLocation) {
             // An example of using FormData

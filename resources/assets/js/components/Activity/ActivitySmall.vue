@@ -15,12 +15,12 @@
           .buttons(v-if="get_event_status_translate(event_status).open")
             button.btn.btn-primary(
               role="button", 
-              @click="scrollTo('.section_register')") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}
-              span ({{get_event_status_translate(event_status).label}})
+              @click="scrollTo('.section_register')") {{(get_event_status_translate(event_status).registed)?"你已經報名囉！":"我要報名"}}
+              span ({{get_event_status_translate(event_status).label + get_event_confirm_type_translate(event_status_obj.type).label }})
             button.btn.btn-default.btn-link(
               role="button", 
               @click="cancelEvent",
-              v-if="(event_status=='CONFIRMED' || event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
+              v-if="get_event_status_translate(event_status).registed") 取消報名 
     .row.section_about
       .col-sm-12
         .panel.theme.white
@@ -54,11 +54,12 @@
         .row
           .col-sm-4
             h2 活動報名
-            p 狀態：{{get_event_status_translate(event_status).label}}
+            p 
+              span 狀態：{{get_event_status_translate(event_status).label + get_event_confirm_type_translate(event_status_obj.type).label}}
             p 開放報名時間: {{event.open_time}}~{{event.close_time}}
             p(v-html="event.register_info")    
           .col-sm-8
-            div(v-if="get_event_status_translate(event_status).open && !(event_status=='UNCONFIRMED' || event_status=='REGISTED')")
+            div(v-if="get_event_status_translate(event_status).open && !get_event_status_translate(event_status).registed")
               h4 報名資訊
               br
               .form-group(v-for="(qa,qaid) in event.question")
@@ -72,11 +73,11 @@
             div(v-if="get_event_status_translate(event_status).open")
               button.btn.btn-primary(
                 role="button", 
-                @click="registerEvent") {{(event_status=="UNCONFIRMED" || event_status=="REGISTED")?"你已經報名囉！":"我要報名"}}
+                @click="registerEvent") {{(get_event_status_translate(event_status).registed)?"你已經報名囉！":"我要報名"}}
               button.btn.btn-default.btn-link(
                 role="button", 
                 @click="cancelEvent",
-                v-if="(event_status=='CONFIRMED' || event_status=='UNCONFIRMED' || event_status=='REGISTED')") 取消報名
+                v-if="get_event_status_translate(event_status).registed") 取消報名
 </template>
 
 <script>
@@ -89,7 +90,8 @@ export default {
   data() {
     return {
       event: null,
-      event_status: "need login"
+      event_status: "need login",
+      event_status_obj: null
     }
   },
   mounted(){
@@ -111,7 +113,7 @@ export default {
       activityId: this.event_id
     }).then(res=>{
       this.event_status=res.data.status
-     
+      this.event_status_obj = res.data
     })
   },
   computed: {
