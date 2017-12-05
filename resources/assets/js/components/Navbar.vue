@@ -20,9 +20,10 @@
       #app-navbar-collapse.collapse.navbar-collapse
         // Left Side Of Navbar
         ul.nav.navbar-nav
-          li
-            a(href="/my/activity" v-if="reallink") 我的活動
-            router-link(to="/my/activity" v-if="!reallink") 我的活動
+          li(v-if="is_admin")
+            a(href="/about" v-if="reallink") 關於學院
+            router-link(to="/about" v-if="!reallink") 關於學院
+
           li
             a(href="/activity" v-if="reallink") 學院活動
             router-link(to="/activity" v-if="!reallink") 學院活動
@@ -36,8 +37,13 @@
             router-link(to="/implement" v-if="!reallink") 實作中心
 
           li(v-if="is_admin")
-            a(href="/manage/user" v-if="reallink") 會員清單
-            router-link(to="/manage/user" v-if="!reallink") 會員清單
+            a(href="/service" v-if="reallink") 服務
+            router-link(to="/service" v-if="!reallink") 服務
+
+          li(v-if="is_admin")
+            a(href="/question" v-if="reallink") 常見問題
+            router-link(to="/question" v-if="!reallink") 常見問題
+
 
         // Right Side Of Navbar
         ul.nav.navbar-nav.navbar-right
@@ -52,6 +58,13 @@
               | {{user? user.name: ""}} {{user && user.admingroup=='root' ? ' [管理員]':'' }}
               span.caret
             ul.dropdown-menu(role='menu')
+                  
+              li
+                a(href="/my/activity" v-if="reallink") 我的活動
+                router-link(to="/my/activity" v-if="!reallink") 我的活動
+              li(v-if="is_admin")
+                a(href="/manage/user" v-if="reallink") 會員清單
+                router-link(to="/manage/user" v-if="!reallink") 會員清單
               li
                 a(href="/login") 登出
                 //- div(onclick="event.preventDefault();document.getElementById('logout-form').submit();") 登出
@@ -91,16 +104,5 @@ export default {
 }
 </script>
 <style lang="sass?indentedSyntax">
-.nav.navbar-nav a
-  transition: 0.5s
-  border-bottom: solid 3px transparent
-  
-  &.router-link-exact-active
-    border-bottom: solid 3px #f95356
-    background-color: #eee
-.navbar-brand
-  img
-    margin-right: 10px
-    display: inline-block
-    height: 25px
+
 </style>

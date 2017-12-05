@@ -13,7 +13,7 @@
             router-link.btn.btn-primary(
                         v-if="is_admin", 
                         :to="'/manage/post/new'",
-                        style="color: white") 新增新聞
+                        style="color: white") 新增新聞 {{scrollTop}}
             router-link.btn.btn-primary(
                         v-if="is_admin", 
                         :to="'/manage/post'",
@@ -24,15 +24,15 @@
               v-if="post.show || is_admin",
               :style="{opacity: (!post.show && is_admin)?0.6:1}" )
               router-link.news_box(:to="`/news/${post.title}`")
-                img(:src="post.cover", style="width: 100%")
+                .img(:style="cssbg(post.cover)")
                 .infos
                   h4.date {{ post.date }}
                   h3.title {{ post.title }} {{ ((!post.show && is_admin)?"(草稿)":"" ) }}
                   p.content {{ post.description }}
-                  router-link.btn.btn-primary.form-control(
-                    v-if="is_admin", 
-                    :to="'/manage/post/'+post.id",
-                    style="color: white") 編輯
+                router-link.btn.btn-primary.btn-edit(
+                  v-if="is_admin", 
+                  :to="'/manage/post/'+post.id") 編輯
+        
 </template>
 
 <script>
@@ -46,7 +46,7 @@ export default {
     }
   },
   computed:{
-    ...mapState(['user','posts']),
+    ...mapState(['user','posts','scrollTop']),
     is_admin(){
       return this.user && this.user.admingroup=='root' 
     },

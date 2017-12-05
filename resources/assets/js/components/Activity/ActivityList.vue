@@ -15,7 +15,7 @@
 
           .col-sm-12
             .monthGroup(v-for="monthSet in chunkedList")
-              h3 {{monthSet.time.slice(0,4)+' '+monthSet.time.slice(4)}}月
+              h3 {{monthSet.time.slice(0,4)+'  '+monthSet.time.slice(4)}}月
               ul
                 li(v-for="activity in monthSet.events")
                   ActivityInfoRow(:event_id="activity.id", :key="activity.id")

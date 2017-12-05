@@ -9,8 +9,8 @@
       p.visible-xs(v-html="event.description.slice(0,70)+'...'")
       p.hidden-xs(v-html="event.description")
       hr
-      span 狀態: {{translate_status(event_status)}} &nbsp;
-      router-link.btn.btn-primary(
+      span 狀態: {{get_event_status_translate(event_status).label}} &nbsp;
+      //router-link.btn.btn-primary(
         role="button", 
         :to="'/activity/'+event_id") 詳情資訊
       
@@ -22,11 +22,12 @@
       br.visible-xs
 
       span(v-if="user && user.admingroup=='root'") 
+        br.visible-xs
         span.hidden-xs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        span 管理功能：
+        span 管理：
         router-link.btn.btn-info(
           :to="'/manage/activity/'+event_id+'/list'"
-          v-if="user && user.admingroup=='root'") 管理報名 ({{event.regist_count}}筆)
+          v-if="user && user.admingroup=='root'") 報名清單 ({{event.regist_count}}筆)
 
         router-link.btn.btn-default(
           :to="'/manage/activity/'+event_id"
