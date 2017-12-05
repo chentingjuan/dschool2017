@@ -6,9 +6,11 @@
           li.breadcrumb-item 
             router-link(to="/activity") 管理活動
           li.breadcrumb-item.active 報名清單
+          
         .panel.panel-default(v-if="registUserList")
           .panel-heading
-            h2 {{ strip_tags(event.title) }} 報名清單 (共{{registUserList.length}}筆報名)
+            h2 {{ strip_tags(event.title) }} 清單 (共{{registUserList.length}}筆報名)
+            router-link.btn.btn-primary(:to="`/manage/activity/${event.id}`") 編輯回信資料
           .panel-body
             h4
             vue_lazy_table(:table_data="registUserList",
