@@ -4,7 +4,7 @@
       .container
         .row
           .col-sm-12
-            h2 學院活動清單
+            h1 學院活動清單
             br
         .row
           .col-sm-12
