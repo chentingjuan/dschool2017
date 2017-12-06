@@ -3,9 +3,7 @@
     .container
       .row
         .col-sm-12
-          br
-          br
-          br
+
           ol.breadcrumb
             li.breadcrumb-item 
               router-link(to="/news") 新聞管理
