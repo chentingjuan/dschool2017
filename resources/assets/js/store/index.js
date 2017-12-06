@@ -7,6 +7,7 @@ const store = new Vuex.Store({
     csrf_token: window.csrf_token,
     activities: [],
     posts: [],
+    teammembers: [],
     scrollTop: 0,
     loading: true,
   },
@@ -25,6 +26,9 @@ const store = new Vuex.Store({
     },
     setPosts(state, value) {
       state.posts = value
+    },
+    setTeammembers(state, value) {
+      state.teammembers = value
     }
   },
   actions: {
@@ -36,10 +40,16 @@ const store = new Vuex.Store({
     loadWebsite(context){
       context.dispatch("loadEvents")
       context.dispatch("loadPosts")
+      context.dispatch("loadTeammembers")
     },
     loadPosts(context){
       axios.get("/api/post").then((res) => {
         context.commit("setPosts", res.data)
+      })
+    },
+    loadTeammembers(context) {
+      axios.get("/api/teammember").then((res) => {
+        context.commit("setTeammembers", res.data)
       })
     }
   }

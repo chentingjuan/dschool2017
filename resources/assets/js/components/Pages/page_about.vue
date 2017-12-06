@@ -61,11 +61,16 @@
             h4.type {{ memberCata.type }}
             img.people( :src="memberCata.img", style="width: 100%")
             .btn 查看更多
-
+        .row
+          .col-sm-12
+            .col-sm-3(v-for="member in teammembers")
+              img(:src="member.cover" , style='width: 100%')
+              h3 {{member.name}}
 
 </template>
 
 <script>
+import {mapState} from "vuex"
 export default {
   data(){
    return {
@@ -93,6 +98,9 @@ export default {
        }
      ]
    }
+  },
+  computed:{
+    ...mapState(['teammembers'])
   }
 }
 </script>
