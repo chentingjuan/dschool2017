@@ -2,7 +2,7 @@
   .page.page_implement
     section.sectionHero.blue
       //- h1 實作中心 D-SCHOOL
-      img.coverGraphic(src="http://dschool2017.dev/img/GraphicImplementation.svg")
+      img.coverGraphic(src="/img/GraphicImplementation.svg")
     section.sectionIntro.white
       .container
         .row
