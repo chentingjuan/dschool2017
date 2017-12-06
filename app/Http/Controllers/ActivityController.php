@@ -206,7 +206,7 @@ class ActivityController extends Controller
 
                 //replace image path to absolute
                 $re = '/src=\"\/storage\//';
-                $data["mailcontent"] = preg_replace($re , "src=\"http://2017.dschool.ntu.edu.tw/storage/",  $data["mailcontent"]);
+                $data["mailcontent"] = preg_replace($re , "style=\"max-width: 100%; height: auto;\" src=\"http://2017.dschool.ntu.edu.tw/storage/",  $data["mailcontent"]);
                 
                 $re = '/(dschool2017\.dev)/';
                 $data["mailcontent"] = preg_replace($re , "2017.dschool.ntu.edu.tw",  $data["mailcontent"]);
