@@ -115,6 +115,18 @@ $(window).scroll(()=>{
     store.commit("setScrollTop",window.scrollY)
 })
 
+
+var timer = setTimeout(() => {
+    store.commit("setLoading", false)
+    clearTimeout(timer)
+}, 2000);
+
+// window.onload = function () {
+//     if (!timer){
+//         store.commit("setLoading", false)
+//     }
+// }
+
 const app = new Vue({
     el: '#app',
     router,

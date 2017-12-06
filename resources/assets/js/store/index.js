@@ -7,9 +7,13 @@ const store = new Vuex.Store({
     csrf_token: window.csrf_token,
     activities: [],
     posts: [],
-    scrollTop: 0
+    scrollTop: 0,
+    loading: true,
   },
   mutations: {
+    setLoading(state, value) {
+      state.loading = value
+    },
     set_user(state, value){
       state.user=value;
     },
