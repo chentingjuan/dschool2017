@@ -205,10 +205,10 @@ class ActivityController extends Controller
                 ];
 
                 //replace image path to absolute
-                $re = '/src=\"(\/storage\/).*?\"/';
-                $data["mailcontent"] = preg_replace($re , "http://2017.dschool.ntu.edu.tw/storage/",  $data["mailcontent"]);
+                $re = '/src=\"\/storage\//';
+                $data["mailcontent"] = preg_replace($re , "src=\"http://2017.dschool.ntu.edu.tw/storage/",  $data["mailcontent"]);
                 
-                $re = '/dschool2017\.dev/';
+                $re = '/(dschool2017\.dev)/';
                 $data["mailcontent"] = preg_replace($re , "2017.dschool.ntu.edu.tw",  $data["mailcontent"]);
                 
                 // dd( $data["mailcontent"]);
