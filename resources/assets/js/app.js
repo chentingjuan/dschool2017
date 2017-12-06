@@ -12,7 +12,14 @@ import router from "./router"
 import {mapState} from "vuex"
 import schoolData from './dataSchools'
 window.Vue = require('vue');
+import VueAnalytics from 'vue-analytics'
 
+if (document.domain != "dschool2017.dev") {
+    Vue.use(VueAnalytics, {
+        id: 'UA-52977512-22',
+        router
+    })
+}
 
 
 /**
