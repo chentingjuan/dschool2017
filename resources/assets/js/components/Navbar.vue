@@ -17,7 +17,7 @@
           img(src='http://dschool.ntu.edu.tw/2017/assets/index__pageLogo.svg')
           span 台大創新設計學院
 
-      #app-navbar-collapse.collapse.navbar-collapse
+      #app-navbar-collapse.collapse.navbar-collapse(@click="toggleNav")
         // Left Side Of Navbar
         ul.nav.navbar-nav
           li(v-if="is_admin")
@@ -46,7 +46,7 @@
 
 
         // Right Side Of Navbar
-        ul.nav.navbar-nav.navbar-right
+        ul.nav.navbar-nav.navbar-right()
           // Authentication Links
           li
             a(href="/login", v-if = "!user") 登入 {{user}}
@@ -99,7 +99,9 @@ export default {
         console.log(res.data);
         this.set_user(null);
       })
-    }
+    },toggleNav(){
+      $(".navbar-collapse").collapse('hide');
+    },
   }
 }
 </script>
