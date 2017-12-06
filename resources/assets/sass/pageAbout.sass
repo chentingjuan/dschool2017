@@ -1,0 +1,85 @@
+
+.page_about
+  .sectionHero
+    +flexCenter
+    +size(100%,100vh)
+    .coverGraphic
+      width: 85vmin
+      height: 85vmin
+  .sectionQuestion
+    padding: 50px 
+    h2
+      font-size: 48px
+      font-weight: 700
+      // margin-left: auto
+      // margin-right: auto
+      text-align: center
+      
+    hr
+      margin-left: auto
+      margin-right: auto
+      background-color: $colorBlue
+    .container
+      padding: 50px
+      box-shadow: 25px 25px 0px $colorOrange
+    .num
+      color: $colorOrange
+      font-size: 150px
+      position: absolute
+      font-weight: 900
+      top: 0px
+
+    .question
+      background-color: $colorBlue
+      color: white
+      padding: 30px
+      width: 80%
+      line-height: 1.5
+      letter-spacing: 1px
+      position: relative
+      z-index: 1
+      margin-top: 50px
+      margin-bottom: 50px
+      display: flex
+    .row  
+      // display: flex
+
+    .col-answer
+      padding: 20px
+      box-sizing: border-box
+      display: flex
+      align-items: center
+      justify-content: center
+    .row:nth-child(2n+1)
+      .question
+        left: 50px
+      .num
+        right: 0px
+        bottom: 0
+
+  .sectionMember
+    .col-cata
+      display: flex
+      flex-direction: column
+      align-items: center
+      cursor: pointer
+      &:hover
+        background-color: #fafafa
+      .eng
+        font-size: 16px
+        color: $colorRed
+      .label
+        font-size: 42px
+        font-weight: 900
+        color: $colorBlue
+        text-align: left
+        margin: 0 
+      .type
+        font-size: 28px
+        color: #eee
+      .people
+
+        width: 100%
+        max-width: 150px
+      .btn
+        margin-top: 30px

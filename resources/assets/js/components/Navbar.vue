@@ -20,7 +20,7 @@
       #app-navbar-collapse.collapse.navbar-collapse
         // Left Side Of Navbar
         ul.nav.navbar-nav
-          li
+          li(v-if="is_admin")
             a(href="/about" v-if="reallink") 關於學院
             router-link(to="/about" v-if="!reallink") 關於學院
 
