@@ -204,6 +204,16 @@ class ActivityController extends Controller
                     'end_response_date'=> $activity->end_response_date?$activity->end_response_date:"規定日期前"
                 ];
 
+                //replace image path to absolute
+                $re = '/src=\"(\/storage\/).*?\"/';
+                $data["mailcontent"] = preg_replace($re , "http://2017.dschool.ntu.edu.tw/storage/",  $data["mailcontent"]);
+                
+                $re = '/dschool2017\.dev/';
+                $data["mailcontent"] = preg_replace($re , "2017.dschool.ntu.edu.tw",  $data["mailcontent"]);
+                
+                // dd( $data["mailcontent"]);
+                // return $data["mailcontent"];
+
                 if ($existed_record){
                     if ($existed_record->status != "CONFIRMED" &&  $action!="cancel"){
 
