@@ -13,7 +13,7 @@
             hr
             h2 {{ post.title }}
             h4.date {{ post.date }}
-            p {{ post.description }}
+            p(v-html="strip_tags(post.description || post.content).slice(0,200)")
 
     section.sectionContent.white
       .container

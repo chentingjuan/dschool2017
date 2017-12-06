@@ -28,7 +28,7 @@
                 .infos
                   h4.date {{ post.date }}
                   h3.title {{ post.title }} {{ ((!post.show && is_admin)?"(草稿)":"" ) }}
-                  p.content {{ post.description }}
+                  p.content {{ strip_tags(post.description || post.content).slice(0,200) }}
                 router-link.btn.btn-primary.btn-edit(
                   v-if="is_admin", 
                   :to="'/manage/post/'+post.id") 編輯

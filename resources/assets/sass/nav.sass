@@ -1,5 +1,6 @@
 .nav.navbar-nav
   li a
+    letter-spacing: 1px
     &:before
       content: ""
       display: block
@@ -9,7 +10,6 @@
       bottom: 0
       left: 0
       background-color: $colorRed
-      letter-spacing: 1px
       +trans
 
   a
@@ -57,6 +57,7 @@ nav.navbar.navbar-default
       &:hover
         color: $colorRed
   .navbar-nav
+    // background-color: #fff
     li a
       // &:before
       //   content: ""
@@ -95,6 +96,12 @@ nav.navbar.navbar-default
         &.black
           opacity: 0
 
+      // .navbar-collapse
+      //   .navbar-nav li
+      //     background-color: $colorBlue
+      //     a
+      //       color: white
+            
       .navbar-header,.navbar-nav
         a
           color: white

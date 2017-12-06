@@ -85,7 +85,18 @@
 
         .col-sm-8
           .panel.panel-default
-            .panel-heading Content
+            .panel-heading 短描述
+            .panel-body
+              .form-group
+                .col-sm-12
+                  VueEditor.ve(:id ="'description'", v-model="post.description" ,
+                    :useCustomImageHandler="true",
+                    @imageAdded="handleImageAdded",
+                    :placeholder="strip_tags(post.content).slice(0,200)" )
+                  br
+                  br
+          .panel.panel-default
+            .panel-heading 內容
             .panel-body
               .form-group
                 .col-sm-12
@@ -120,8 +131,9 @@ export default {
       post: {
         show: 1,
         title: "新文章",
-        date: (new Date()).toLocaleString().split(" ")[0].replace(/\//g,"-")
-
+        date: (new Date()).toLocaleString().split(" ")[0].replace(/\//g,"-"),
+        description: "",
+        content: ""
       }
     }
   },
