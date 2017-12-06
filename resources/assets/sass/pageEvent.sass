@@ -149,6 +149,7 @@ $span: 8px
   .section_teacher
     padding-top: 50px
     padding-bottom: 50px
+    color: white
     .head
       width: 200px
       height: 200px
@@ -186,8 +187,12 @@ $span: 8px
         content: ""
         +size(30px,8px)
         background-color: $colorOrange
-    p.teacher_description
-      color: $colorOrange
+    
+    p
+      color: white
+      &.teacher_description
+        &,& p
+          color: $colorOrange
 
       
   .section_register
