@@ -61,12 +61,16 @@
             h4.type {{ memberCata.type }}
             img.people( :src="memberCata.img", style="width: 100%")
             .btn 查看更多
-        .row
+        .row.row_members
           .col-sm-12
-            .col-sm-3(v-for="member in teammembers")
-              img(:src="member.cover" , style='width: 100%')
+            .col-sm-3.col-member(v-for="member in teammembers")
+              .img(:style="cssbg(member.cover)" )
+                .cata(v-if="memberCata[member.cata-1]") {{memberCata[member.cata-1].type}}
               h3 {{member.name}}
+              h5 {{member.position}}
+                span(v-if='member.company') ,{{member.company}}
 
+              
 </template>
 
 <script>
