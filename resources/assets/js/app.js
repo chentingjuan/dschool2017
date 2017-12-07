@@ -77,13 +77,13 @@ Vue.mixin({
         get_event_confirm_type_translate(txt){
             switch (txt) {
                 case "yes":
-                    return { label: "錄取" }
+                    return { status: txt, label: "錄取", symbol: "✓"}
                 case "no":
-                    return { label: "不錄取" }
+                    return { status: txt, label: "不錄取", symbol:  "☓"}
                 case 'pending':
-                    return { label: "備取" }
+                    return { status: txt, label: "備取", symbol: "△"}
             }
-            return { label: "" }
+            return { status: txt, label: "", symbol: "-" }
         },
         handleImageAdded(file, Editor, cursorLocation) {
             // An example of using FormData

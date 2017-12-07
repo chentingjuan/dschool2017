@@ -127,8 +127,8 @@ export default {
             temp['q'+oid]=o.answer            
           })
           console.log(formdata)
-          let confirm_type_text = this.get_event_confirm_type_translate(d.confirm_type).label
-          if (!confirm_type_text) confirm_type_text="-"
+          let confirm_type_obj= this.get_event_confirm_type_translate(d.confirm_type)
+          let confirm_type_text= `${confirm_type_obj.label+confirm_type_obj.symbol}`
           return {
             record_id: d.id,
             serial: d.serial ,
@@ -235,6 +235,8 @@ export default {
     /* margin: 15px */
     max-width: 700px
     text-align: left
+    max-height: 80vh
+    overflow-y: scroll
     h1
       margin-top: 0
 </style>
