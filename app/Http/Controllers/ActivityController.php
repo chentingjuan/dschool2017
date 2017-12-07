@@ -186,6 +186,35 @@ class ActivityController extends Controller
         // turn cancel to true
     }
 
+    //預覽寄送出新的內容/
+    //====PENDING  合併下方的寄信，把產生信的部分合併
+    public function previewMail($activityId,$action){
+        $activity = Activity::find($activityId);
+        $data = [
+            'time' => $activity->time_detail,
+            'title'=> $activity->title, 
+            'mailcontent'=> $activity->mailcontent?$activity->mailcontent:"" , 
+            'end_response_date'=> $activity->end_response_date?$activity->end_response_date:"規定日期前"
+        ];
+        $mail_title = '台大創新設計學院【'.strip_tags($activity->title).'】';
+        if ($action=="yes"){
+            $mail_title .= "錄取通知";
+        }else if ($action=="pending"){
+            $mail_title .= "備取通知";
+        }else if ($action=="no"){
+            $mail_title .= "不錄取通知";
+        }
+        //replace image path to absolute
+        $re = '/src=\"\/storage\//';
+        $data["mailcontent"] = preg_replace($re , "style=\"max-width: 100%; height: auto;\" src=\"http://2017.dschool.ntu.edu.tw/storage/",  $data["mailcontent"]);
+        
+        $re = '/(dschool2017\.dev)/';
+        $data["mailcontent"] = preg_replace($re , "2017.dschool.ntu.edu.tw",  $data["mailcontent"]);
+                
+        return "<h2>".$mail_title."</h2><br><br>".view('emails.activity.confirm.'.$action)
+                    ->with($data);
+    }
+
 
     //管理員確認此筆紀錄為報名成功
     public function ConfirmRecord($recordId,$action){

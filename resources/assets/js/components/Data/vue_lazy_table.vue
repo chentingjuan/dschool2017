@@ -26,7 +26,8 @@
             .btn.btn-default(
               v-for="btn in btns", 
               @click="btn.action(row)",
-              :class="{active: func_exec(btn.class,row)}") {{btn.label}}
+              :class="{active: func_exec(btn.class,row)}",
+              v-show="get_show_status(btn,row)") {{btn.label}}
             //.btn.btn-danger 刪除
     .page_nav
       .btn.btn-default(v-if="pages.length>1",
@@ -237,6 +238,19 @@ export default {
       let dateString = ( new Date().toLocaleDateString()).replace(/[\/\s\:]/g,"");
       exportCSVFile(headers, this.sorted_data, fileTitle + dateString); 
 
+    },
+    get_show_status(btn,row){
+      if (typeof btn.show == "undefined"){
+        return true
+      }
+      if (typeof btn.show == "boolean"){
+        return btn.show
+      }
+
+      if (typeof btn.show == "function"){
+        return btn.show(row)
+      }
+      return false
     }
   }
 }

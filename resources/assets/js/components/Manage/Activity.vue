@@ -10,7 +10,15 @@
         .panel.panel-default(v-if="registUserList")
           .panel-heading
             h2 {{ strip_tags(event.title) }} 清單 (共{{registUserList.length}}筆報名)
-            router-link.btn.btn-primary(:to="`/manage/activity/${event.id}`") 編輯回信資料
+            router-link.btn.btn-primary(:to="`/manage/activity/${event.id}`") 編輯回信
+            label 預覽回信: 
+            .btn-group
+              .btn.btn-default(@click="previewMail('yes')") 錄取
+              .btn.btn-default(@click="previewMail('pending')") 備取
+              .btn.btn-default(@click="previewMail('no')") 不錄取
+            simplert(:useRadius="true"
+                :useIcon="false"
+                ref="simplert")
           .panel-body
             h4
             vue_lazy_table(:table_data="registUserList",
@@ -26,6 +34,9 @@
 <script>
 import {mapState} from 'vuex'
 import vue_lazy_table from '../Data/vue_lazy_table'
+import Simplert from 'vue2-simplert'
+
+
 export default {
     data() {
       return {
@@ -39,12 +50,18 @@ export default {
             class: function(row){
               console.log("row:",row)
               return row.confirm_o=="yes"
+            },
+            show(row){
+              return row.confirm_o==null || row.confirm_o==""
             }
           },{
             label: "備取",
             action: this.confirmRecordPending,
             class: function(row){
               return row.confirm_o=="pending"
+            },
+            show(row){
+              return row.confirm_o==null || row.confirm_o==""
             }
             // class: "btn-warning"
           },{
@@ -52,17 +69,23 @@ export default {
             action: this.confirmRecordNo,
             class: function(row){
               return row.confirm_o=="no"
+            },
+            show(row){
+              return row.confirm_o==null || row.confirm_o==""
             }
             // class: "btn-default"
           },{
             label: "取消確認",
             action: this.confirmRecordCancel,
-            class: function(){}
+            class: function(){},
+            show(row){
+              return !(row.confirm_o==null || row.confirm_o=="")
+            }
             // class: "btn-default"
           }
         ],
         tableRows: [
-          "serial -> 報名序號#",
+          "serial -> 序號",
           "name -> 名字",
           "student_id -> 學號",
           "department -> 學校/單位",
@@ -104,6 +127,8 @@ export default {
             temp['q'+oid]=o.answer            
           })
           console.log(formdata)
+          let confirm_type_text = this.get_event_confirm_type_translate(d.confirm_type).label
+          if (!confirm_type_text) confirm_type_text="-"
           return {
             record_id: d.id,
             serial: d.serial ,
@@ -113,7 +138,7 @@ export default {
             phone: d.user.phone,
             email: d.user.email,
             status: this.get_event_status_translate(d.status).label,
-            confirm: this.get_event_confirm_type_translate(d.confirm_type).label,
+            confirm: confirm_type_text,
             confirm_o: d.confirm_type,
             time: d.created_at,
             ...temp
@@ -122,7 +147,7 @@ export default {
       }
     },
     components:{
-      vue_lazy_table
+      vue_lazy_table,Simplert
     },
     methods: {
       confirmRecordYes(record){
@@ -147,6 +172,11 @@ export default {
               //使用傳回的資料更新該筆報名
               Object.assign(recordObj,res.data.record)
               alert("已取消該筆報名確認")
+              // let obj = {
+              //   message: "已取消該筆報名確認",
+              //   type: 'info'
+              // }
+              // this.$refs.simplert.openSimplert(obj)
             })
           }
         }else{
@@ -166,11 +196,29 @@ export default {
               //使用傳回的資料更新該筆報名
               Object.assign(recordObj,res.data.record)
               alert("已"+action_label+"該筆報名")
+
+              // let obj = {
+              //   message: "已取消該筆報名確認",
+              //   type: 'info'
+              // }
+              // this.$refs.simplert.openSimplert(obj)
             })
 
           }
 
         }
+      },
+      previewMail(type){
+        axios.get(`/api/activity/${this.event.id}/mail/${type}`).then((res)=>{
+          //預覽寄出信的內容
+          // Object.assign(recordObj,res.data.record)
+          // alert(res.data)
+          let obj = {
+              message: res.data,
+              type: 'info'
+          }
+          this.$refs.simplert.openSimplert(obj)
+        })
       }
     }
 }
@@ -182,4 +230,11 @@ export default {
     list-style: none
     padding: 0
     margin: 0
+  .simplert__content
+    width: calc(100% - 30px) !important
+    /* margin: 15px */
+    max-width: 700px
+    text-align: left
+    h1
+      margin-top: 0
 </style>

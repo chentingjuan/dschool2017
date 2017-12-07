@@ -1,8 +1,9 @@
 const elixir = require('laravel-elixir');
 
 require('laravel-elixir-vue-2');
+require('laravel-elixir-webpack-official')
 require('laravel-blade-jade');
-require('laravel-elixir-jade');
+var path = require("path");
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -14,10 +15,32 @@ require('laravel-elixir-jade');
  |
  */
 
+// const PrerenderSpaPlugin = require('prerender-spa-plugin')
+// elixir.webpack.mergeConfig({
+//     plugins: [
+//         // new webpack.ProvidePlugin({
+//         //     $: 'jquery',
+//         //     jQuery: 'jquery',
+//         //     'window.jQuery': 'jquery',
+//         // }),
+//         new PrerenderSpaPlugin(
+//             // Path to compiled app
+//             path.join(__dirname, '../public'),
+//             // List of endpoints you wish to prerender
+//             ['/', '/about', '/activity', '/news', '/implement', '/service', '/question']
+//         )
+//     ]
+// });
+
 elixir((mix) => {
-    mix.sass('app.sass')
+
+    //https://vuejs-templates.github.io/webpack/prerender.html
+
+
+    mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/', 'public/fonts/bootstrap')
+       .sass('app.sass')
        .webpack([
-        //   './node_modules/babel-polyfill/dist/polyfill.js',
+          './node_modules/babel-polyfill/dist/polyfill.js',
           'app.js'
         ],'public/js/app.js')
     //    .webpack([
@@ -31,4 +54,5 @@ elixir((mix) => {
     //     search: '**/*.jade',
     //     src: '/blade/'
     // });
+
 });

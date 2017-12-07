@@ -1,5 +1,8 @@
 <template lang="pug">
   .manage_event_edit(v-if="event")
+    simplert(:useRadius="true"
+      :useIcon="false"
+      ref="simplert")
     .container
       .row
         .col-sm-12
@@ -246,6 +249,7 @@ import {mapState} from 'vuex'
 import Vue from 'Vue'
 import datePicker from 'vue-bootstrap-datetimepicker'
 import QuestionRow from '../Question/QuestionRow'
+import Simplert from 'vue2-simplert'
 
 export default {
   props: [
@@ -334,7 +338,7 @@ export default {
       return ori_data
     },
     ...mapState(['csrf_token'])
-  },
+  }, 
   methods:{
     updateActivity(){
       axios.post(`/api/activity/${this.event.id}`,{
@@ -343,7 +347,12 @@ export default {
         dataType: 'JSON',
         ...this.dataForSend
       }).then((res)=>{
-        alert("儲存完成！")
+        // alert("儲存完成！")
+        let obj = {
+          message: "儲存完成！",
+          type: 'info'
+        }
+        this.$refs.simplert.openSimplert(obj)
         // this.event = res.data
         // // this.event.cover=JSON.parse(this.event.cover)
         // this.event.teacher=JSON.parse(this.event.teacher)
@@ -415,7 +424,8 @@ export default {
     VueEditor , 
     default_pic_selector, 
     datePicker,
-    QuestionRow
+    QuestionRow,
+    Simplert
   }
 }
 </script>

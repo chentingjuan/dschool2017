@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+<!-- Header -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>台灣大學創新設計學院</title>
+<meta name="author" content="GW-Design(http://www.gw-design.com)">
+<meta name="description" content="國立臺灣大學為全面推動創造力與創新能力的教育，以強調跨領域學習環境、加強學生動手做之能力、並解決實用性問題為三大特色，以期有效的整合全校資源，建構創新設計的教學課程與學習環境，形成校園師生多元創新、主動實現設計的文化氛圍，特成立校級功能性「國立臺灣大學創新設計學院」。
+">
+<meta name="keywords" content="國立臺灣大學為全面推動創造力與創新能力的教育，以強調跨領域學習環境、加強學生動手做之能力、並解決實用性問題為三大特色，以期有效的整合全校資源，建構創新設計的教學課程與學習環境，形成校園師生多元創新、主動實現設計的文化氛圍，特成立校級功能性「國立臺灣大學創新設計學院」。
+">
+<meta property="og:title" content="台灣大學創新設計學院"/>
+<meta property="og:description" content="國立臺灣大學為全面推動創造力與創新能力的教育，以強調跨領域學習環境、加強學生動手做之能力、並解決實用性問題為三大特色，以期有效的整合全校資源，建構創新設計的教學課程與學習環境，形成校園師生多元創新、主動實現設計的文化氛圍，特成立校級功能性「國立臺灣大學創新設計學院」。
+"/>
+<meta property="og:site_name" content="台灣大學創新設計學院"/>
+<meta property="og:url" content="http://dschool.ntu.edu.tw/"/>
+<meta property="og:type" content="website"/>
+<link rel="shortcut icon" href="http://dschool.ntu.edu.tw/assets/images/favicon.ico"/>
+<link rel="bookmark" href="http://dschool.ntu.edu.tw/assets/images/favicon.ico"/>
+<!-- 加載 Bootstrap CSS-->
+<link rel="stylesheet" href="http://dschool.ntu.edu.tw/assets/css/normalize.css" /><!-- 重定義瀏覽器樣式 -->
+<link rel="stylesheet" type="text/css" href="http://dschool.ntu.edu.tw/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="http://dschool.ntu.edu.tw/assets/css/style.css" />
+<link rel="stylesheet" type="text/css" href="http://dschool.ntu.edu.tw/assets/css/style-responsive.css" />
+<link rel="stylesheet" type="text/css" href="http://dschool.ntu.edu.tw/assets/css/pagination.css" />
+<link rel="stylesheet" type="text/css" href="http://dschool.ntu.edu.tw/assets/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="http://dschool.ntu.edu.tw/assets/jkslider/css/slider-style.css" />
+<link rel="stylesheet" type='text/css' href="http://dschool.ntu.edu.tw/assets/jkslider/css/slippry.css" />
+<!--[if lt IE 9]>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]--><!-- 支持IE8以下瀏覽器 -->
+<!-- 加載 JQuery -->
+<script type="text/javascript" src="http://dschool.ntu.edu.tw/assets/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://dschool.ntu.edu.tw/assets/js/bootstrap.min.js"></script>
+<!-- Header end -->
+</head>
+<!-- body -->
+<body>
+<link rel="stylesheet" type="text/css" href="http://dschool.ntu.edu.tw/assets/preloader/examples.css" />
+				<script src="http://dschool.ntu.edu.tw/assets/preloader/jquery.preloader.min.js"></script>
+				<div id="preloader">
+				    <div id="preloader-inner"></div>
+				</div>				
+				<script type="text/javascript">
+					$(window).preloader({
+					        delay: 300
+					    });
+				</script> 
+<!--navbar-->
+    <div class="header-home">		
+        <nav class="navbar navbar-default-home navbar-fixed-top">
+            <div class="container">	          
+                <div class="col-md-12 languages"><a href="http://dschool.ntu.edu.tw/about/about_en"><img src="/assets/images/en.png" alt=""></a></div>
+                <a class="navbar-brand" href="http://dschool.ntu.edu.tw/">
+                <img src="http://dschool.ntu.edu.tw/assets/images/logo.jpg" alt="台大創新設計學院"></a>
+                <div class="menu"> <a class="toggleMenu" href="http://dschool.ntu.edu.tw/">
+                      <img src="http://dschool.ntu.edu.tw/assets/images/nav_icon.png" alt="" /></a>                     
+                      <ul class="nav" id="nav">
+                        <li class="menu-01"><a href="http://dschool.ntu.edu.tw/about/index">學院簡介</a></li>
+                        <li class="menu-02"><a href="http://dschool.ntu.edu.tw/courses/index">學院課程</a></li>
+                        <li class="menu-03"><a href="http://dschool.ntu.edu.tw/events/index">學院活動</a></li>
+                        <li class="menu-04"><a href="http://dschool.ntu.edu.tw/question/index">常見問題</a></li>
+                        <li class="menu-05"><a href="http://dschool.ntu.edu.tw/contact/index">聯繫我們</a></li>
+                        <div class="clear"></div>
+                      </ul>				          
+                </div> 
+            </div>
+        </nav>
+    </div>
+<!--end navbar-->
+<!--banner-->
+<div class="htmleaf-container">
+    <div class="htmleaf-content">
+    <!---start-slider---->
+    <script>
+          jQuery('#jquery-demo').slippry({
+          // general elements & wrapper
+          slippryWrapper: '<div class="sy-box jquery-demo" />', // wrapper to wrap everything, including pager
+          // options true, false ->
+          adaptiveHeight: false, // height of the sliders adapts to current slide
+          useCSS: false, //  fallback to js if no browser support
+          autoHover: false,
+          transition: 'fade'
+        });
+    </script>
+
+    <!----start-image-slider---->
+    <div class="container-fulid">
+    <div class="row">
+    <div class="img-slider">
+        <div class="wrap">
+        <ul id="jquery-demo">
+            <li>
+            <a href="" target="_blank">
+              <img src="http://dschool.ntu.edu.tw/assets/images/2017/06/DSC02457.jpg" alt="" />
+            </a>
+            <div class="slider-detils">
+                <a href=""><h3>D-Day </h3></a>
+                <span>創新設計學院期末成果展</span>
+            </div>
+          </li>
+            <li>
+            <a href="" target="_blank">
+              <img src="http://dschool.ntu.edu.tw/assets/images/2017/04/工作區域 2.jpg" alt="" />
+            </a>
+            <div class="slider-detils">
+                <a href=""><h3>D-School</h3></a>
+                <span>建立台大師生跨領域合作的空間，用創新的方式解決社會上重要問題，並實際動手實踐，提昇台灣整體競爭力</span>
+            </div>
+          </li>
+            <li>
+            <a href="http://dschool.ntu.edu.tw/aschool/index.php" target="_blank">
+              <img src="http://dschool.ntu.edu.tw/assets/images/2017/03/DSC05933.jpg" alt="" />
+            </a>
+            <div class="slider-detils">
+                <a href="http://dschool.ntu.edu.tw/aschool/index.php"><h3>食養城市・人文農創</h3></a>
+                <span>以跨域課程在城鄉場域實踐社會價值、創造人文養分</span>
+            </div>
+          </li>
+            <li>
+            <a href="http://www.urbnext.org.tw/index.php" target="_blank">
+              <img src="http://dschool.ntu.edu.tw/assets/images/2017/04/14818552225e1af46ee86fdb46.jpg" alt="" />
+            </a>
+            <div class="slider-detils">
+                <a href="http://www.urbnext.org.tw/index.php"><h3>無邊界大學</h3></a>
+                <span>跨越「學科、校園、時空、知識」的邊界：集結各專業人才與資源，突破校園的藩籬，將文化與歷史的涵養匯集於當代反思。</span>
+            </div>
+          </li>
+          </ul>
+        </div>
+    </div>
+    <div class="clear"> </div>
+    <!----//End-image-slider---->
+    </div>
+    </div>
+    </div>
+</div>
+<!--end banner-->
+<div class="main-home">
+<div class="home_block_1_content" id="home_block_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-xs-12"> 
+            <div class="index_title"><h2>最新消息</h2><hr></div>                
+                <!-- news left -->
+                                <div class="col-md-6 col-xs-12 home_block_1_box">
+                    <div class="article_image">
+                        <a href="http://dschool.ntu.edu.tw/events/page/70"><img src="http://dschool.ntu.edu.tw/"></a>
+                    </div>
+                    <div class="home-explanation">
+                        <h4>【講座活動】李麗華女士：我的救援名單</h4>
+                        <div class="article">這學期生命教育中心與創新設計學院（D-School@NTU）特邀宜蘭漁工職業工會秘書長李麗華小姐到臺大校園演講，分享她長期關注外籍漁工、為弱勢發聲的心路歷程；內容精彩可期，千萬不能錯過喔！</div>
+                        <div class="more"><a href="http://dschool.ntu.edu.tw/events/page/70">MORE<i class="fa fa-angle-right"></i></a></div></div>
+                </div> 
+                                <div class="col-md-6 col-xs-12 home_block_1_box">
+                    <div class="article_image">
+                        <a href="http://dschool.ntu.edu.tw/events/page/69"><img src="http://dschool.ntu.edu.tw/assets/images/2017/07/01.jpg"></a>
+                    </div>
+                    <div class="home-explanation">
+                        <h4>木工藝實作課程成果發表會</h4>
+                        <div class="article">與北科大W.School首創木工藝實作課程，用一週的時間刨開心中對木工藝的愛</div>
+                        <div class="more"><a href="http://dschool.ntu.edu.tw/events/page/69">MORE<i class="fa fa-angle-right"></i></a></div></div>
+                </div> 
+                            
+                <!-- news left end --> 
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-10-18</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/70">【講座活動】李麗華女士：我的救援名單</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-07-15</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/69">木工藝實作課程成果發表會</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-06-17</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/56">學院小幫手招募中！</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-06-17</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/68">D-Day期末成果發表會</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-05-28</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/62">《褒種茶》音樂會</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-05-27</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/67"><制宅自造>空間設計勇奪全國冠軍</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-05-23</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/66">來聊天Bar!</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-05-03</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/61">野生的力量—策展到社會設計的路徑與想像</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-04-13</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/60">絹印工作坊</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-03-29</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/58">【講座】植劇場創新之路 </a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-03-29</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/64">設計思考Ｘ乳癌篩檢</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-03-23</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/57">基礎3d建模設計工作坊</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-03-13</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/59">教授如何走更遠的鬼點子</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-02-20</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/63">【暖科技】課程講座——楊玉欣</a></h4>
+                </div>
+                                <div class="col-md-12 home_block_1_box_list">                    
+                    <div class="date">2017-01-07</div>
+                    <h4><a href="http://dschool.ntu.edu.tw/events/page/52">D-Day期末成果發表會</a></h4>
+                </div>
+                 
+            </div>  
+            <div class="col-md-4 home-right">
+            <!--right-01-->
+            <div class="col-xs-12"> 
+            <div class="index_title"><h2>學院公告</h2><hr></div>   
+              <!-- news right -->
+                            <div class="news-right-content">
+                  <div class="date-right-2">
+                      <span class="day">03</span>
+                      <span class="month">Jul</span>
+                  </div>
+                  <div class="date-right-content-home">
+                    <a href="http://dschool.ntu.edu.tw/events/page/31"><h3>創新設計學院開放暑期實作專案申請</h3></a>
+                    暑期實作專案開放申請                  </div>
+              </div>
+                            <div class="news-right-content">
+                  <div class="date-right-2">
+                      <span class="day">19</span>
+                      <span class="month">Mar</span>
+                  </div>
+                  <div class="date-right-content-home">
+                    <a href="http://dschool.ntu.edu.tw/events/page/65"><h3>體會設計思考的魔力——設計思考入門課程</h3></a>
+                    有沒有什麼辦法能滿足同學們想快數了解設計思考的方式呢？這學期特別以「工作坊」形式開設了『設計思考入門』課程。
+讓同學們在兩天內快速體驗設計思考的魔力！                  </div>
+              </div>
+                            <div class="news-right-content">
+                  <div class="date-right-2">
+                      <span class="day">17</span>
+                      <span class="month">Nov</span>
+                  </div>
+                  <div class="date-right-content-home">
+                    <a href="http://dschool.ntu.edu.tw/events/page/47"><h3>【Arduino 控制板】工作坊</h3></a>
+                    想要設計出能與他人或環境互動的作品嗎?
+使用控制板是目前最方便主流的方法喔！
+                  </div>
+              </div>
+                            <div class="news-right-content">
+                  <div class="date-right-2">
+                      <span class="day">29</span>
+                      <span class="month">Oct</span>
+                  </div>
+                  <div class="date-right-content-home">
+                    <a href="http://dschool.ntu.edu.tw/events/page/42"><h3>【超簡單速寫2.0】生活速寫工作坊</h3></a>
+                    你以為你不會速寫嗎？快放棄這個想法吧！看看經過兩天的扎實磨練後，同學們畫出怎樣的精彩作品！                  </div>
+              </div>
+                            <div class="news-right-content">
+                  <div class="date-right-2">
+                      <span class="day">17</span>
+                      <span class="month">Oct</span>
+                  </div>
+                  <div class="date-right-content-home">
+                    <a href="http://dschool.ntu.edu.tw/events/page/44"><h3>台大跨領域教學聯盟: 十月21趴</h3></a>
+                    創新設計學院、食養農創，以及無邊界大學三方決議，為了讓學生們能在更完整的教學體系下成長茁壯，教師們主動進行跨領域交流、分享和回饋。因此有了每月的「21趴」，即是每個月第二個禮拜一所舉辦的教師交流晚會。                  </div>
+              </div>
+                            <!-- news right end -->
+            </div>              
+            <!--right-01 end-->
+            <!--right-02-->
+            <div class="col-xs-12 youtube">
+            <div class="index_title"><h2>熱門影音</h2><hr></div>
+            	                <div class="row">                    
+                    <div class="col-md-12 video">
+                    <iframe width="100%" height="" src="https://www.youtube.com/embed/1I75XIiUUIo?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+                    </div>
+<!--
+                    <div class="col-md-12 image"><a class="vdobsox" href="https://www.youtube.com/embed/1I75XIiUUIo?rel=0&amp;wmode=transparent"><div class="snshover"><img src="http://dschool.ntu.edu.tw/assets/images/2015/12/youtube_img_01.jpg" alt="暖科技課程"></div></a></div>
+                    <div class="col-md-12 link">
+                    <a class="vdobsox center" href="https://www.youtube.com/embed/1I75XIiUUIo?rel=0&amp;wmode=transparent">暖科技課程</a></div>
+-->
+                </div>
+                                <div class="row">                    
+                    <div class="col-md-12 video">
+                    <iframe width="100%" height="" src="https://www.youtube.com/embed/qoA988p9Y_A?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+                    </div>
+<!--
+                    <div class="col-md-12 image"><a class="vdobsox" href="https://www.youtube.com/embed/qoA988p9Y_A?rel=0&amp;wmode=transparent"><div class="snshover"><img src="http://dschool.ntu.edu.tw/assets/images/2015/12/youtube_img_02.jpg" alt="智齡設計"></div></a></div>
+                    <div class="col-md-12 link">
+                    <a class="vdobsox center" href="https://www.youtube.com/embed/qoA988p9Y_A?rel=0&amp;wmode=transparent">智齡設計</a></div>
+-->
+                </div>
+                                <div class="row">                    
+                    <div class="col-md-12 video">
+                    <iframe width="100%" height="" src="https://www.youtube.com/embed/_h0oZuvPpW8?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+                    </div>
+<!--
+                    <div class="col-md-12 image"><a class="vdobsox" href="https://www.youtube.com/embed/_h0oZuvPpW8?rel=0&amp;wmode=transparent"><div class="snshover"><img src="http://dschool.ntu.edu.tw/assets/images/2015/12/youtube_img_03.jpg" alt="食養城市人文農創"></div></a></div>
+                    <div class="col-md-12 link">
+                    <a class="vdobsox center" href="https://www.youtube.com/embed/_h0oZuvPpW8?rel=0&amp;wmode=transparent">食養城市人文農創</a></div>
+-->
+                </div>
+                                <div class="row">                    
+                    <div class="col-md-12 video">
+                    <iframe width="100%" height="" src="https://www.youtube.com/embed/7XPtejuHo4o?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+                    </div>
+<!--
+                    <div class="col-md-12 image"><a class="vdobsox" href="https://www.youtube.com/embed/7XPtejuHo4o?rel=0&amp;wmode=transparent"><div class="snshover"><img src="http://dschool.ntu.edu.tw/" alt="學院簡介"></div></a></div>
+                    <div class="col-md-12 link">
+                    <a class="vdobsox center" href="https://www.youtube.com/embed/7XPtejuHo4o?rel=0&amp;wmode=transparent">學院簡介</a></div>
+-->
+                </div>
+                                <div class="row">                    
+                    <div class="col-md-12 video">
+                    <iframe width="100%" height="" src="https://www.youtube.com/embed/bYsQfTIjexs?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+                    </div>
+<!--
+                    <div class="col-md-12 image"><a class="vdobsox" href="https://www.youtube.com/embed/bYsQfTIjexs?rel=0&amp;wmode=transparent"><div class="snshover"><img src="http://dschool.ntu.edu.tw/" alt="2016《初見坪林-鬥逗聽》聲態創藝音樂會"></div></a></div>
+                    <div class="col-md-12 link">
+                    <a class="vdobsox center" href="https://www.youtube.com/embed/bYsQfTIjexs?rel=0&amp;wmode=transparent">2016《初見坪林-鬥逗聽》聲態創藝音樂會</a></div>
+-->
+                </div>
+                                <div class="row">                    
+                    <div class="col-md-12 video">
+                    <iframe width="100%" height="" src="https://www.youtube.com/embed/HUlAYwRxdns?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+                    </div>
+<!--
+                    <div class="col-md-12 image"><a class="vdobsox" href="https://www.youtube.com/embed/HUlAYwRxdns?rel=0&amp;wmode=transparent"><div class="snshover"><img src="http://dschool.ntu.edu.tw/" alt="色計古典音樂會"></div></a></div>
+                    <div class="col-md-12 link">
+                    <a class="vdobsox center" href="https://www.youtube.com/embed/HUlAYwRxdns?rel=0&amp;wmode=transparent">色計古典音樂會</a></div>
+-->
+                </div>
+                                <div class="row">                    
+                    <div class="col-md-12 video">
+                    <iframe width="100%" height="" src="https://www.youtube.com/embed/<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fntudschool%2Fvideos%2F1866756910235387%2F&show_text=0&width=560" width="560" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+                    </div>
+<!--
+                    <div class="col-md-12 image"><a class="vdobsox" href="https://www.youtube.com/embed/<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fntudschool%2Fvideos%2F1866756910235387%2F&show_text=0&width=560" width="560" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>?rel=0&amp;wmode=transparent"><div class="snshover"><img src="http://dschool.ntu.edu.tw/" alt="D-Day"></div></a></div>
+                    <div class="col-md-12 link">
+                    <a class="vdobsox center" href="https://www.youtube.com/embed/<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fntudschool%2Fvideos%2F1866756910235387%2F&show_text=0&width=560" width="560" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>?rel=0&amp;wmode=transparent">D-Day</a></div>
+-->
+                </div>
+                 
+                <link rel="stylesheet" type="text/css" href="http://dschool.ntu.edu.tw/assets/colorbox/css/normalize.css" />	 
+				<link rel="stylesheet" type="text/css" href="http://dschool.ntu.edu.tw/assets/colorbox/css/default.css">
+				<link rel="stylesheet" href="http://dschool.ntu.edu.tw/assets/colorbox/example/colorbox.css" />
+				<!--[if IE]>
+					<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+				<![endif]-->	
+				<script src="http://dschool.ntu.edu.tw/assets/colorbox/js/jquery.colorbox-min.js"></script><script>
+					$(function(){
+						$(".imgsbox").colorbox({slideshow:true, rel:"imgbox"});
+						$(".vdobsox").colorbox({iframe:true, innerWidth:853, innerHeight:480});
+						$(".ajaxbox").colorbox();
+						$(".pagebox").colorbox({iframe:true, width:"960px", height:"85%"});
+						$(".linebox").colorbox({inline:true, width:"50%"});
+						$("#click").click(function(){ 
+							$("#click").css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"})
+								.text("Open this window again and this message will still be here.");
+							return false;
+						});
+					});
+				</script>            
+            </div>            
+            <!--right-02 end-->
+            </div>
+            </div>                   
+        </div>       
+    </div>
+</div>
+<!-- courses -->
+<div class="home_block_2_content" id="home_block_2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12"> 
+            <div class="index_title_2"><h2>學院課程</h2><hr></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="courses_content" id="courses">
+    <div class="container">
+        <div class="text-center">
+                    <div class="col-md-3 col-sm-6 col-xs-12 courses_grid1">
+            <a href="http://dschool.ntu.edu.tw/courses/page/3">
+            <img src="http://dschool.ntu.edu.tw/assets/images/2015/11/1447173183478339ee9b5666b5.png"></a>
+            <h3 class="m_1">全球創新的原理與實踐</h3>
+            <h4 class="m_1">DS5303 / Z01 U0030</h4>
+            <p class="m_2">教育的終極不僅僅是在教授知識，更重要的是增長見識，同時加強人與人交流，除了教授與學生之間、也包括同學與同學之間相互學習的關係。世界課堂全球課程(iPodia Program)是由南加州大學維特比工程學院(USC Viterbi School of Engineering)帶領的iPodia聯盟創建，透過“無邊界課堂”(classroom-without-borders)讓聯盟學院的學生在同一個課堂參與互動，在沉浸式的即時網真環境中獲得合作學習的益處。 ...</p>
+            <a href="http://dschool.ntu.edu.tw/courses/page/3" class="courses_btn">MORE</a>
+            </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 courses_grid1">
+            <a href="http://dschool.ntu.edu.tw/courses/page/4">
+            <img src="http://dschool.ntu.edu.tw/assets/images/2015/11/1447173195fa592c4ccf289086.png"></a>
+            <h3 class="m_1">創新車輛設計</h3>
+            <h4 class="m_1">DS5304 / Z01 U0040</h4>
+            <p class="m_2">創新車輛設計歡迎所有對車輛有夢想的同學一起來逐夢，我們將結合工程領域與人文科學領域的專家，從不同面向探討車輛在使用上的各種議題。修課學生將以跨領域組隊的方式，從車輛新知的吸收，車輛現況的了解，到車輛使用上的體驗，提出車輛使用上的創新提案，並在D-School場域與車輛產業專家互動，以最有效率的方式將創新概念實現於實體車輛。 ...</p>
+            <a href="http://dschool.ntu.edu.tw/courses/page/4" class="courses_btn">MORE</a>
+            </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 courses_grid1">
+            <a href="http://dschool.ntu.edu.tw/courses/page/5">
+            <img src="http://dschool.ntu.edu.tw/assets/images/2016/04/DS5305.png"></a>
+            <h3 class="m_1">暖科技</h3>
+            <h4 class="m_1">DS5305／Z01 U0020</h4>
+            <p class="m_2">貼近使用者需求打造「暖科技」
+科技總讓人有冰冷的感覺，本課程以跨領域創新的方式，透過動手做，讓科技溫暖人心，暖科技從人文關懷出發，融合跨領域專業共同創新體貼服務社會大眾的需要，從不同需求建立了解後，提出具體的解決方案。
+ ...</p>
+            <a href="http://dschool.ntu.edu.tw/courses/page/5" class="courses_btn">MORE</a>
+            </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 courses_grid1">
+            <a href="http://dschool.ntu.edu.tw/courses/page/8">
+            <img src="http://dschool.ntu.edu.tw/assets/images/2016/08/5103.png"></a>
+            <h3 class="m_1">設計如何說故事</h3>
+            <h4 class="m_1">DS5103/Z01 U0090</h4>
+            <p class="m_2">那些令人難以忘懷的故事為何出眾？使好故事散發迷人魅力的元素如何產生？透過密集課程訓練，從Investigate、Retell到Invent，以實作方式拆解說故事的技巧及核心，找出一個好故事的靈魂，並且掌握說故事的技巧。 ...</p>
+            <a href="http://dschool.ntu.edu.tw/courses/page/8" class="courses_btn">MORE</a>
+            </div>
+                </div>
+    </div>
+</div>    
+<!-- courses end -->
+</div>
+<!-- footer -->
+<div class="footer">
+  <div class="footer_bottom">
+    <div class="follow-us"> <a class="fa fa-facebook social-icon" href="https://www.facebook.com/ntudschool" target=_blank ></a> <a class="fa fa-envelope social-icon" href="mailto:ntudschool@ntu.edu.tw" target=_blank ></a></div>
+    <div class="copy">
+      <p>Copyright © 2015 All Right Reserved D-School@NTU</p>
+    </div>
+  </div>
+</div>
+<!-- java script -->
+	<script type="text/javascript" src="http://dschool.ntu.edu.tw/assets/jkslider/js/slippry.js"></script>
+	<script type="text/javascript" src="http://dschool.ntu.edu.tw/assets/js/responsive-nav.js"></script>
+<!-- end java script -->
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-83055126-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+	<style>
+					* {margin: 0;padding: 0;}
+					img {border: 0 none;}
+				</style>
+				<script src="http://dschool.ntu.edu.tw/assets/gotop/js/scrolltotop.js"></script>
+				<script>
+					$(function(){	
+						scrolltotop.offset(10,195);
+						scrolltotop.init(); 
+					});	
+				</script>
+					<div id="topcontrol" style="position: fixed; cursor: pointer; display:none;"></div>	
+</body>
+</html>
