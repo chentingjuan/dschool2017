@@ -25,11 +25,11 @@
         br.visible-xs
         span.hidden-xs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         span 管理：
-        router-link.btn.btn-info(
+        router-link.btn.grey(
           :to="'/manage/activity/'+event_id+'/list'"
           v-if="user && user.admingroup=='root'") 報名清單 ({{event.regist_count}}筆)
 
-        router-link.btn.btn-default(
+        router-link.btn.outline.grey(
           :to="'/manage/activity/'+event_id"
           v-if="user && user.admingroup=='root'") 編輯活動
           

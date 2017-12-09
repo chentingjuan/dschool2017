@@ -74,7 +74,7 @@
               button.btn.btn-primary(
                 role="button", 
                 @click="registerEvent") {{(get_event_status_translate(event_status).registed)?"你已經報名囉！":"我要報名"}}
-              button.btn.btn-default.btn-link(
+              button.btn.secondary.opacity(
                 role="button", 
                 @click="cancelEvent",
                 v-if="get_event_status_translate(event_status).registed") 取消報名

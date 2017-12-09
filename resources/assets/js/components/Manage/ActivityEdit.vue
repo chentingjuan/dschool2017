@@ -12,8 +12,9 @@
             li.breadcrumb-item.active 活動編輯
         
           h2(v-if="event_id") 編輯活動- {{ strip_tags(event.title) }}
-            button.btn.btn-danger.pull-right(@click="deleteActivity") 刪除活動
-            button.btn.btn-primary.pull-right(@click="updateActivity") 儲存更新
+            button.btn.orange.pull-right(@click="deleteActivity") 刪除活動
+            button.btn.grey.pull-right(@click="updateActivity") 儲存更新
+            router-link.btn.outline.grey.pull-right(:to="`/event/${event_id}`") 前往頁面
           h2(v-else) 新增活動- {{ strip_tags(event.title) }}
             button.btn.btn-primary.pull-right(@click="updateActivity") 儲存活動
           hr

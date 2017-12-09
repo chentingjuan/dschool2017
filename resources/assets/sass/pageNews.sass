@@ -1,6 +1,79 @@
 .page.page_news
+  .news_box
+    display: block
+    //padding: 20px
+    background-color: #fff
+    border-radius: 5px
+    overflow: hidden
+    position: relative
+    transition: 0.5s
+    min-height: 560px
+    margin-bottom: 30px
+    text-decoration: none
+    left: 0
+    top: 0
+    .date
+      opacity: 0.5
+      margin-top: 0
+      color: $colorBlue
+    .title
+      line-height: 1.6
+      margin-top: 0
+      font-weight: 700
+      color: $colorBlue
+      font-size: 36px
+    p
+      font-size: 16px
+      letter-spacing: 1px
+      // opacity: 0.9
+    .infos
+      padding: 20px
+    .img
+      min-height: 280px
+      background-position: center center
+      background-size: cover
+    &:hover
+      left: -5px
+      top: -5px
+      box-shadow: 5px 5px $colorOrange
+  .btn.btn-edit
+    position: absolute
+    right: 10px
+    top: 15px
+    // padding: 5px 10px
+    background-color: rgba(white,0.9)
+    color: black
+    border: none
+    letter-spacing: 2px
+    &:hover
+      background-color: white
+    
+
   .sectionHero
-    //@extend .theme.blue
+    padding-bottom: 0
+    .img,.news_box
+      min-height: 500px
+      display: flex
+      justify-content: center
+      align-items: center
+    .spottext
+      font-weight: 700
+      color: $colorBlue
+      font-size: 24px
+    hr
+      border: none
+      +size(60px,10px)
+      background-color: $colorBlue
+      margin-left: 0
+
+  .sectionNews
+    padding-top: 0
+    .news_box
+      min-height: 300px
+      .img
+        min-height: 250px
+        width: 100%
+    @extend .theme.blue
     ul
       list-style: none
     li
@@ -8,51 +81,5 @@
       a
         text-decoration: none
         color: $colorBlue
-      .news_box
-        display: block
-        //padding: 20px
-        background-color: #fff
-        border-radius: 5px
-        overflow: hidden
-        position: relative
-        transition: 0.5s
-        min-height: 560px
-        margin-bottom: 30px
-        left: 0
-        top: 0
-        // +bx_shadow
-        //img
-          //margin: -20px
-        .date
-          opacity: 0.7
-          margin-top: 0
-        .title
-          line-height: 1.6
-          margin-top: 0
-          font-weight: 700
-          color: $colorBlue
-        p
-          font-size: 16px
-          letter-spacing: 1px
-          // opacity: 0.9
-        .infos
-          padding: 20px
-        .img
-          min-height: 280px
-          background-position: center center
-          background-size: cover
-        &:hover
-          left: -5px
-          top: -5px
-          box-shadow: 5px 5px $colorOrange
-  .btn.btn-edit
-    position: absolute
-    right: 20px
-    top: 20px
-    padding: 5px 10px
-    background-color: rgba(white,0.7)
-    color: black
-    border: none
-    letter-spacing: 2px
-    &:hover
-      background-color: white
+      p
+        color: $colorBlue
