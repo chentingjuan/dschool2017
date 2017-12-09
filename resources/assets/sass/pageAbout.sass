@@ -7,7 +7,10 @@
       width: 85vmin
       height: 85vmin
   .sectionQuestion
-    padding: 50px 
+    padding: 40px 
+    .row-qa
+      padding-top: 20px
+      padding-bottom: 20px
     h2
       font-size: 48px
       font-weight: 700
@@ -21,13 +24,14 @@
       background-color: $colorBlue
     .container
       padding: 50px
+    .container.card
       box-shadow: 25px 25px 0px $colorOrange
     .num
       color: $colorOrange
       font-size: 150px
       position: absolute
       font-weight: 900
-      top: 0px
+      top: -100px
 
     .question
       background-color: $colorBlue
@@ -41,6 +45,16 @@
       margin-top: 50px
       margin-bottom: 50px
       display: flex
+      &:before
+        content: ""
+        display: block
+        background-color: $colorBlue
+        +size(150px,90px)
+        transform: skewX(-40deg) rotate(10deg)
+        position: relative
+        left: -30px
+
+        
     .row  
       // display: flex
 
@@ -53,6 +67,14 @@
     .row:nth-child(2n+1)
       .question
         left: 50px
+        &:before
+          position: absolute
+          +size(60px,36px)
+          top: 20px
+          right: -20px
+          transform: skewX(40deg) rotate(-10deg)
+          left: initial
+
       .num
         right: 0px
         bottom: 0
