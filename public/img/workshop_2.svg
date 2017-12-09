@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="221px" height="221px" viewBox="0 0 221 221" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>workshop_2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="workshop_2">
+            <rect id="Rectangle-29-Copy" fill="#F8F8F8" x="11" y="11" width="198.758744" height="198.486486" rx="99.2432432"></rect>
+            <g id="Group-8" transform="translate(110.246965, 108.305839) rotate(-15.000000) translate(-110.246965, -108.305839) translate(42.746965, 88.805839)" fill="#081248">
+                <rect id="Rectangle-3" x="0" y="-1.36424205e-12" width="30" height="38.0699997"></rect>
+                <rect id="Rectangle-3" x="32" y="13.8450942" width="71" height="11.0760753"></rect>
+                <rect id="Rectangle-3-Copy" x="105" y="0" width="30" height="38.0699997"></rect>
+            </g>
+            <polygon id="Path-81" fill="#FF6C4D" points="79 104.412281 96 138.5 130.5 130 129 93.8859649 121.54386 93.8859649 118 90.5 104.75 88 79 97.3947368"></polygon>
+            <path d="M96.0047011,139 C109.004701,171.666667 104.671368,193.333333 83.0047011,204 C82.5047011,204 122.004701,217.5 146.004701,204 C162.004701,195 163.838034,193.5 151.504701,199.5 L130.504701,130 L96.0047011,139 Z" id="Path-84" fill="#E8E5E5"></path>
+        </g>
+    </g>
+</svg>

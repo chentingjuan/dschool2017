@@ -13,13 +13,14 @@
         .col-sm-10
           .row.row-content
             .col-sm-4(v-for="item in service_items")
+              img.img_service(:src="item.image")
               h3 {{item.title}}
               p {{item.content}}
               .btn.orange {{item.btn_label}}
   section.sectionSpace.theme.blue
     .container-fluid
       .row
-        .col-sm-4
+        .col-sm-4.col-section-info
           h3.eng Space
           h2 租借場地
           hr
@@ -31,13 +32,12 @@
               p 學院內目前設有五間教室，分別為課程教室、討論間以及實作中心。
               h3 可借用時段
               p 當月20日起開放次月預約，開放時段為週一至週五，9:00至21:00本院有權保留教室調動權責(假日暫不開放)
-        .col-sm-8.card.theme.orange
-          .row
-            .card.theme.white
-              .col-sm-7
-                img(alt="pic")
-              .col-sm-5
-                h3 404室
+        .col-sm-8.card.theme.orange.card-main-info
+          .row.row-main-info
+            .card.theme.white.card-main-space
+              .col-sm-7.col-md-5.col-space-img
+              .col-sm-5.col-md-7.col-info
+                h3.roomname 404室
                 h4 梯形教室
                 p 為設計思考課程授課教室，亦作為學院工作坊空間及簡單會議空間。可容納25-30人使用。
                 .btn.orange 了解更多
@@ -71,7 +71,7 @@
   section.sectionWorkshop.theme.blue
     .container-fluid
       .row.card.theme.orange
-        .col-sm-2
+        .col-sm-3
           .row
           h3.eng Workshop
           h2 申請工作坊
@@ -79,13 +79,13 @@
           p 本院目前提供下開方案供申請者依時間、需求申請。申請流程請依時間限制提前提出申請表。
 
           
-        .col-sm-10
+        .col-sm-9
           .row
-            .col-sm-3.col-workshop(v-for="i in 4")
-              .duration ?hr
-              .img_workshop(alt="設備圖片")
-              h3 客製化工作坊
-              p 認識設計思考，並運用設計思考流程解決特定問題
+            .col-sm-3.col-workshop(v-for="workshop in workshops")
+              .duration {{workshop.length}}hr
+              img.img_workshop(:src="workshop.cover")
+              h3 {{workshop.title}}
+              p {{workshop.content}}
               .btn.white 了解更多
             
 
@@ -101,20 +101,46 @@ export default {
        {
          title: "學院空間使用",
          content: "創新設計學院配合課程、活動等多原用途，設計專屬空間。(僅開放學院課程與合作計畫借用申請。)",
-         btn_label: "前往租借"
+         btn_label: "前往租借",
+         image: "/img/service_3.svg"
        },
        {
          title: "設備使用申請",
          content: "輔助課程、活動的重要角色；並可協助同學課程或專案執行。(僅開放學院課程與合作計畫申請。)",
-         btn_label: "前往租借"
+         btn_label: "前往租借",
+         image: "/img/service_2.svg"
        },{
          title: "設計思考工作坊",
          content: "學院為推廣設計思考，量身打造實作類型工作坊，讓設計思考活用於生活中。",
-         btn_label: "前往申請"
+         btn_label: "前往申請",
+         image: "/img/service_1.svg"
        }
-     ]
+     ],
+    
+    workshops: [
+      {
+        length: "?",
+        cover: "/img/workshop_1.svg",
+        title: "客製化工作坊",
+        content: "認識設計思考，並運用設計思考流程解決特定問題"
+      },{
+        length: "3",
+        cover: "/img/workshop_2.svg",
+        title: "體驗工作坊",
+        content: "認識設計思考，並運用互動練習體驗設計思考流程，初探設計思考概念(mindset)"
+      },{
+        length: "8",
+        cover: "/img/workshop_3.svg",
+        title: "概念工作坊",
+        content: "認識惡既思考，暸解操作心法及體驗流程操作實務"
+      },{
+        length: "16",
+        cover: "/img/workshop_4.svg",
+        title: "概念工作坊",
+        content: "認識設計思考，暸解操作心法後，進行完整流程演練並能進一步思考應用"
+      }
+    ]
    }
-   
   }
 }
 </script>
