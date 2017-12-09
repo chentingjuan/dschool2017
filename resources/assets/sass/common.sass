@@ -7,19 +7,53 @@
     height: 8px
     background-color: $colorBlue
     margin-left: 0
+
+  &.blue
+    background-color: $colorBlue
+    color: white
+    h1,h2,h3,h4,h5,h6,p
+      color: white
+    p
+      opacity: 0.8
+    hr
+      background-color: $colorOrange
+    &.primary
+      color: $colorOrange
+
+  &.orange
+    background-color: $colorOrange
+    color: white
+    h1,h2,h3,h4,h5,h6,p
+      color: white
+      &.eng
+        color: $colorBlue
+    p
+      opacity: 0.8
+    hr
+      background-color: $colorOrange
+    .primary
+      color: $colorOrange
+    .secondary
+      color: $colorBlue
+  
   &.white
     background-color: #fff
     color: $colorBlue
     .btn.btn-primary
       background-color: $colorOrange
-  &.blue
-    background-color: $colorBlue
-    hr
-      background-color: $colorOrange
-    color: white
-    &.primary
-      color: $colorOrange
-  
+    h1,h2,h3,h4,h5,h6,p
+      color: $colorBlue
+      
+.btn
+  border-radius: 50px
+  letter-spacing: 1px
+  padding: 5px 20px
+
+  &.white
+    background-color: white
+    color: $colorBlue
+    &:hover
+      background-color: #ccc
 .card
   border-radius: 10px
   padding: 30px
