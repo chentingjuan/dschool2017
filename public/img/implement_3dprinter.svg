@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="371px" height="450px" viewBox="0 0 371 450" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>implement_3dprinter</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="implement_3dprinter">
+            <rect id="Rectangle-22" fill="#14114B" x="337" y="16" width="30" height="439"></rect>
+            <rect id="Rectangle-22" fill="#14114B" x="4" y="16" width="30" height="439"></rect>
+            <rect id="Rectangle-22" fill="#14114B" transform="translate(70.000000, 107.500000) rotate(-30.000000) translate(-70.000000, -107.500000) " x="65" y="-13" width="10" height="241"></rect>
+            <rect id="Rectangle-22" fill="#14114B" transform="translate(283.000000, 107.500000) rotate(-330.000000) translate(-283.000000, -107.500000) " x="278" y="-13" width="10" height="241"></rect>
+            <rect id="Rectangle-2" fill="#14114B" x="122" y="197" width="115" height="66"></rect>
+            <rect id="Rectangle-2" fill="#3F3D69" x="158" y="197" width="79" height="66"></rect>
+            <rect id="Rectangle-2" fill="#14114B" x="124" y="272" width="111" height="26"></rect>
+            <polyline id="Path-70" stroke="#FF5559" stroke-width="9" points="178.564875 306 178.564875 374.942027 145.351966 408.163423 236.527474 408.163423 236.527474 414.905617 146.095812 414.905617 146.095812 426.438479 235.522311 426.438479 235.522311 436.386955 141 436.386955 141 447 237 447"></polyline>
+            <rect id="Rectangle-2" fill="#14114B" transform="translate(177.500000, 319.000000) scale(1, -1) translate(-177.500000, -319.000000) " x="167" y="306" width="21" height="26"></rect>
+            <rect id="Rectangle-2" fill="#14114B" x="5" y="1" width="362" height="59"></rect>
+            <rect id="Rectangle-2" fill="#3F3D69" x="97" y="21" width="270" height="39"></rect>
+        </g>
+    </g>
+</svg>

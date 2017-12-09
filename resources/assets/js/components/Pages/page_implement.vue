@@ -3,103 +3,122 @@
     section.sectionHero.blue
       //- h1 實作中心 D-SCHOOL
       img.coverGraphic(src="/img/GraphicImplementation.svg")
-    section.sectionIntro.white
+    section.sectionIntro.theme.white
       .container
         .row
           .col-sm-5
-            img(alt="3d printer")
-          .col-sm-7
-            h2 解放無限的潛能，每個人能夠動手做
+            img.printer(src="/img/implement_3dprinter.svg")
+          .col-sm-7.col-info
+            h2.secondary 解放無限的潛能，每個人能夠動手做
             p 創新設計學院的實作中心，<br>為所有台大師生提供一個可親自動手實作、驗證設計的空間，<br>鼓勵勇於將想法化為現實而不怕失敗的創新精神。<br>中心內設有多種發想輔助工具、材料、輕型加工設備及手工具，<br>並不定期舉辦各式實作教學工作坊，增進台大師生的實作技巧。<br>此外中心開放時間常駐有管理團隊輪值，確保使用者之安全。<br>
     section.sectionJump
       .container-fluid
         .row
-          .col-sm-6
-          .col-sm-6
-    section.sectionRule.grey
-      h3.eng Rules
-      h2 使用規則
-      hr
-      .panel.white
-        .row
-          .col-sm-4
-            h3 開放對象
-            p 台大全體師生(創新設計學院師生優先)，及向創新設計學院申請通過者。
-            br
-            h3 開放時間
-            p 週一 / 週四 / 週五，09:00-16:30。<br>不含例假日及學院課程活動使用時間，<br>寒暑假辦法另行公告。
+          .col-sm-6.theme.orange
+            h3 Rules
+            h2 使用規則
+          .col-sm-6.theme.blue
+            h3 Equipments
+            h2 相關設備
 
-          .col-sm-8
-            h3 注意事項
-            ul
-              li 1.    使用過程中確實遵守各項安全守則，並遵從管理人員指示，如有任何問題請至管理櫃檯洽詢
-              li 禁止擅自攜帶非課程、業務相關人員進入避免造成危險
-              li 工具材料限於學院內使用，並當日完成歸還(經申請許可者除外)
-              li 實作中心鼓勵眾人分享作品與回饋，但中心內創作的一切智慧財產權仍完全規原創作者所有
-              li 實作中心以協助製作創新原型為主要功能，不提供商業用途之大量製造
-              li 本要點如有不足之處，應依創新設計學院之規定；創新設計學院保留修改本要點之權利
-
-    section.sectionProgress.blue
-      h3.eng Progress
-      h2 使用流程
-      hr
+    section.sectionRule.theme.grey
       .container
         .row
           .col-sm-3
-            img(alt="icon")
+            h3.eng Rules
+            h2 使用規則
+            hr
+          .col-sm-9
+            .panel.card.white
+              .row
+                .col-sm-4
+                  h3 開放對象
+                  p 台大全體師生(創新設計學院師生優先)，及向創新設計學院申請通過者。
+                  br
+                  h3 開放時間
+                  p 週一 / 週四 / 週五，09:00-16:30。<br>不含例假日及學院課程活動使用時間，<br>寒暑假辦法另行公告。
+
+                .col-sm-8
+                  h3 注意事項
+                  br
+                  p
+                    | 1. 使用過程中確實遵守各項安全守則，並遵從管理人員指示，如有任何問題請至管理櫃檯洽詢
+                    | <br>2. 禁止擅自攜帶非課程、業務相關人員進入避免造成危險
+                    | <br>3. 工具材料限於學院內使用，並當日完成歸還(經申請許可者除外)
+                    | <br>4. 實作中心鼓勵眾人分享作品與回饋，但中心內創作的一切智慧財產權仍完全規原創作者所有
+                    | <br>5. 實作中心以協助製作創新原型為主要功能，不提供商業用途之大量製造
+                    | <br>6. 本要點如有不足之處，應依創新設計學院之規定；創新設計學院保留修改本要點之權利
+
+    section.sectionProgress.theme.blue
+      .container
+        .row
+          .col-sm-12
+            h3.eng Progress
+            h2 使用流程
+            hr
+            
+        .row
+          .col-sm-3.col-progress
+            img.img-progress(src="/img/implement_progress_1.svg")
             h3 
-              span.num 1.
+              span.num 1
               span 登記
             p 於開放時間持證件至卓越大樓405管理櫃台，登記使用設備、材料、空間，及時間。
             .btn.white.outline 登記使用
           
-          .col-sm-3
-            img(alt="icon")
+          .col-sm-3.col-progress
+            img.img-progress(src="/img/implement_progress_2.svg")
             h3 
-              span.num 2.
+              span.num 2
               span 驗證
             p 經管理人員確認身分符合且確實了解設備操作方式後，繳交證件即可使用空間及設備。
             .btn.white.outline 申請驗證
           
-          .col-sm-3
-            img(alt="icon")
+          .col-sm-3.col-progress
+            img.img-progress(src="/img/implement_progress_3.svg")
             h3 
-              span.num 3.
+              span.num 3
               span 清潔
             p 使用結束後妥善清潔場地、設備並復原環境。
-          .col-sm-3
-            img(alt="icon")
+          
+          .col-sm-3.col-progress
+            img.img-progress(src="/img/implement_progress_4.svg")
             h3 
-              span.num 4.
+              span.num 4
               span 檢查
             p 至管理櫃台請管理人員檢查確認，確認無誤後登記取回證件。
 
-    section.sectionDevices.white
-      h3.eng Devices
-      h2 設備一覽
-      hr
+    section.sectionDevices.theme.white
       .container
         .row
-          .col-sm-3
-          .col-sm-3
-          .col-sm-3
-          .col-sm-3
-        .row
-          .col-sm-3
-          .col-sm-3
-          .col-sm-3
-          .col-sm-3
+          .col-sm-12
+            h3.eng Devices
+            h2 設備一覽
+            hr
+            .container
+              .row
+                .col-sm-3
+                .col-sm-3
+                .col-sm-3
+                .col-sm-3
+              .row
+                .col-sm-3
+                .col-sm-3
+                .col-sm-3
+                .col-sm-3
 
-    section.sectionQuestion.white
-      h3.eng Q&A
-      h2 常見問題
-      hr
+    section.sectionQuestion.theme.white
       .container
+        .row
+          .col-sm-12
+            h3.eng Q&A
+            h2 常見問題
+            hr
         .row(v-for="qa in qas")
           .col-sm-4 
-            h3(v-html="qa.question")
+            h4.theme.blue.question(v-html="qa.question")
           .col-sm-8
-            p(v-html="qa.answer")
+            p.answer(v-html="qa.answer")
 </template>
 
 <script>
