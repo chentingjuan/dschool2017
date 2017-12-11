@@ -23,17 +23,19 @@
           td
             .btn.btn-default(@click="edit(row)",
                              v-if="edit") {{edit_btn_text?edit_btn_text:'編輯'}}
-            .btn.btn-default(
-              v-for="btn in btns", 
-              @click="btn.action(row)",
-              :class="{active: func_exec(btn.class,row)}",
-              v-show="get_show_status(btn,row)") {{btn.label}}
+            .btn-group
+              .btn.grey.outline(
+                v-for="btn in btns", 
+                @click="btn.action(row)",
+                :class="{active: func_exec(btn.class,row)}",
+                v-if="get_show_status(btn,row)") {{btn.label}}
             //.btn.btn-danger 刪除
     .page_nav
-      .btn.btn-default(v-if="pages.length>1",
-                       v-for="p in pages",
-                       :class="{active: page==p}",
-                       @click="page=p") {{p}}
+      .btn-group
+        .btn.grey.outline(v-if="pages.length>1",
+                        v-for="p in pages",
+                        :class="{active: page==p}",
+                        @click="page=p") {{p}}
 </template>
 
 <script>

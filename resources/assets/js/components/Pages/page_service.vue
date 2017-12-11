@@ -16,7 +16,7 @@
               img.img_service(:src="item.image")
               h3 {{item.title}}
               p {{item.content}}
-              .btn.orange {{item.btn_label}}
+              .btn.orange(@click="scrollTo(item.scroll_target)") {{item.btn_label}}
   section.sectionSpace.theme.blue
     .container-fluid
       .row
@@ -81,7 +81,7 @@
           
         .col-sm-9
           .row
-            .col-sm-3.col-workshop(v-for="workshop in workshops")
+            .col-md-3.col-sm-6.col-xs-12.col-workshop(v-for="workshop in workshops")
               .duration {{workshop.length}}hr
               img.img_workshop(:src="workshop.cover")
               h3 {{workshop.title}}
@@ -95,6 +95,8 @@
 
 <script>
 export default {
+  mounted(){
+  },
   data(){
    return {
      service_items: [
@@ -102,18 +104,21 @@ export default {
          title: "學院空間使用",
          content: "創新設計學院配合課程、活動等多原用途，設計專屬空間。(僅開放學院課程與合作計畫借用申請。)",
          btn_label: "前往租借",
-         image: "/img/service_3.svg"
+         image: "/img/service_3.svg",
+         scroll_target: ".sectionSpace"
        },
        {
          title: "設備使用申請",
          content: "輔助課程、活動的重要角色；並可協助同學課程或專案執行。(僅開放學院課程與合作計畫申請。)",
          btn_label: "前往租借",
-         image: "/img/service_2.svg"
+         image: "/img/service_2.svg",
+         scroll_target: ".sectionDevice"
        },{
          title: "設計思考工作坊",
          content: "學院為推廣設計思考，量身打造實作類型工作坊，讓設計思考活用於生活中。",
          btn_label: "前往申請",
-         image: "/img/service_1.svg"
+         image: "/img/service_1.svg",
+         scroll_target: ".sectionWorkshop"
        }
      ],
     
@@ -139,8 +144,15 @@ export default {
         title: "概念工作坊",
         content: "認識設計思考，暸解操作心法後，進行完整流程演練並能進一步思考應用"
       }
-    ]
+    ],
+    
    }
+
+  },
+  methods: {
+    scrollTo(target){
+      $("html,body").animate({scrollTop: $(target).offset().top }) 
+    }
   }
 }
 </script>

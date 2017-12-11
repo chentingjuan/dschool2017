@@ -13,9 +13,9 @@
             router-link.btn.btn-primary(:to="`/manage/activity/${event.id}`") 編輯回信
             label 預覽回信: 
             .btn-group
-              .btn.btn-default(@click="previewMail('yes')") 錄取
-              .btn.btn-default(@click="previewMail('pending')") 備取
-              .btn.btn-default(@click="previewMail('no')") 不錄取
+              .btn.btn.outline.grey(@click="previewMail('yes')") 錄取
+              .btn.btn.outline.grey(@click="previewMail('pending')") 備取
+              .btn.btn.outline.grey(@click="previewMail('no')") 不錄取
             simplert(:useRadius="true"
                 :useIcon="false"
                 ref="simplert")
