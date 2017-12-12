@@ -59,15 +59,18 @@ import page_service from "../components/Pages/page_service.vue"
 import page_about from "../components/Pages/page_about.vue"
 import page_question from "../components/Pages/page_question.vue"
 
+import page_equipment from "../components/Equipment/EquipmentList.vue"
+
 const routes = [
   { path: '/', component: Homepage },
   { path: '/service', component: page_service },
+  { path: '/service/equipment', component: page_equipment },
   { path: '/about', component: page_about },
   { path: '/question', component: page_question },
   { path: '/implement', component: page_implement },
   { path: '/news', component: page_news },
   { path: '/news/:title', component: page_post, props: true },
-
+  
   { path: '/manage/post', component: ManagePostList },
   { path: '/manage/post/new', component: ManagePostEdit, props: true },
   { path: '/manage/post/:post_id', component: ManagePostEdit, props: true },

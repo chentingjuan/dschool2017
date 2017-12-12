@@ -25,6 +25,7 @@
 @import "./pagePost"
 @import "./pageService"
 @import "./pageActivityList"
+@import "./pageEquipmentList"
 
 html,body
   margin: 0
@@ -34,6 +35,19 @@ html
 
 body
   background-color: $colorBlue
+
+[class^="route_manage"]
+  .btn-group
+    .btn
+      font-size: 15px
+      padding: 5px 10px
+      &:first-child
+        padding-left: 15px
+      &:last-child
+        padding-right: 15px
+    min-width: 200px
+    //min-width: 110px
+    // width: 110px
 
 //-------------------------
 .fade-enter-active,.fade-leave-active

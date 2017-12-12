@@ -48,6 +48,7 @@ Route::get('/question', 'PublicController@Spa');
 Route::get('/news', 'PublicController@Spa');
 Route::get('/news/{news}', 'PublicController@Spa');
 
+Route::get('/service/equipment', 'homeController@index');
 
 Route::get('/userlist', "homeController@userlist");
 
@@ -70,6 +71,7 @@ Route::group(["prefix"=>"api"],function(){
     Route::resource('question',"QuestionController");
     Route::resource('post',"PostController");
     Route::resource('teammember',"TeammemberController");
+    Route::resource('equipment',"EquipmentController");
 
 
     //管理員確認報名
