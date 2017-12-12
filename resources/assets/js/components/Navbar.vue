@@ -41,6 +41,10 @@
             router-link(to="/service" v-if="!reallink") 服務
 
           li(v-if="is_admin")
+            a(href="/service/equipment" v-if="reallink") 設備借閱
+            router-link(to="/service/equipment" v-if="!reallink") 設備借閱
+
+          li(v-if="is_admin")
             a(href="/question" v-if="reallink") 常見問題
             router-link(to="/question" v-if="!reallink") 常見問題
 
