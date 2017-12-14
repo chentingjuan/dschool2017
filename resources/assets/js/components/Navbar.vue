@@ -41,8 +41,8 @@
             router-link(to="/service" v-if="!reallink") 服務
 
           li(v-if="is_admin")
-            a(href="/service/equipment" v-if="reallink") 設備借閱
-            router-link(to="/service/equipment" v-if="!reallink") 設備借閱
+            a(href="/service/equipment" v-if="reallink") 設備借用
+            router-link(to="/service/equipment" v-if="!reallink") 設備借用
 
           li(v-if="is_admin")
             a(href="/question" v-if="reallink") 常見問題
@@ -67,11 +67,14 @@
                 a(href="/my/activity" v-if="reallink") 我的活動
                 router-link(to="/my/activity" v-if="!reallink") 我的活動
               li
-                a(href="/my/equipment" v-if="reallink") 設備借用管理
-                router-link(to="/my/equipment" v-if="!reallink") 設備借用管理
+                a(href="/my/equipment" v-if="reallink") 我的借用
+                router-link(to="/my/equipment" v-if="!reallink") 我的借用
               li(v-if="is_admin")
                 a(href="/manage/user" v-if="reallink") 會員清單
                 router-link(to="/manage/user" v-if="!reallink") 會員清單
+              li(v-if="is_admin")
+                a(href="/manage/equipment/list" v-if="reallink") 借用管理
+                router-link(to="/manage/equipment/list" v-if="!reallink") 借用管理
               li
                 a(href="/login") 登出
                 //- div(onclick="event.preventDefault();document.getElementById('logout-form').submit();") 登出

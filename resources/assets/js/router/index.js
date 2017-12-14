@@ -62,6 +62,7 @@ import page_equipment from "../components/Equipment/EquipmentList.vue"
 
 
 import page_my_equipment from "../components/Equipment/MyEquipment.vue"
+import manage_equipment_list from "../components/manage/EquipmentRecordList.vue"
 
 const routes = [
   { path: '/', component: Homepage },
@@ -80,6 +81,8 @@ const routes = [
   { path: '/manage/activity/:event_id/list', component: ManageActivity ,props: true},
   { path: '/manage/activity/:event_id', component: comManageActivitEdit ,props: true},
   { path: '/manage/user', component: comManageUser ,props: true},
+  { path: '/manage/equipment/list', component: manage_equipment_list},
+
   { path: '/activity/:event_id', component: ActivitySmall ,props: true},
   { path: '/activity', component: comActivityList ,props: true},
   { path: '/my/activity', component: Homepage },

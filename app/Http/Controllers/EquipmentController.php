@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Auth;
 use App\Equip_rent;
 use App\Equip_rent_record;
+use Mail;
 
 class EquipmentController extends Controller
 {
@@ -66,23 +67,58 @@ class EquipmentController extends Controller
                     // "start_datetime" => $equip["count"],
                     // "status" => $equip["status"]
                 ]);
+
+               
                 // array_push($equips,$equip );
             }
+            
 
             // return $equip_rent->equip_rent_record()->get();
             $equip_rent_result= Equip_rent::where("id",$equip_rent_id)->with('equip_rent_record')->first();
             foreach($equip_rent_result['equip_rent_record'] as $equip){
                 $equip["equipment"]=$equip->equipment;
             }
-            
+            // dd($equip_rent_result->toArray());
+            $mail_title="設備租用申請通知#".$equip_rent->id." - ".$inputs["name"];
+            Mail::send('emails.equipment.notifymanage', $equip_rent_result->toArray(), function($message) use ($mail_title){
+                $message
+                    ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
+                    // ->bcc('frank890417@gmail.com', '吳哲宇')
+                    ->to('frank890417@gmail.com', '台大創新設計學院 設備管理')
+                    ->subject($mail_title);
+            });
+
             return $equip_rent_result;
             // equipment
         }
         
 
+      
         // $equipment = Equipment::find($equipment->id);
         // return $equipment;
     }
 
+    public function confirm(){
+        $inputs = Input::all();
+        // dd($inputs);
+        // return print_r($inputs);
+        Equip_rent::find($inputs['id'])
+            ->update($inputs);
+        Equip_rent::find($inputs['id'])
+            ->update(["confirmed"=>true]);     
+        //如果是取消就設定confirmed=false (記得不要改到cancel，是取消此單)
+        if (array_key_exists("cancel_confirm",$inputs) && $inputs["cancel_confirm"]){
+            Equip_rent::find($inputs['id'])
+            ->update(["confirmed"=>false]);  
+        }   
+        foreach($inputs['equip_rent_record'] as $equip){
+            Equip_rent_record::find($equip['id'])->update( $equip);
+        }
+        $equip_rent_result= Equip_rent::where("id",$inputs['id'])->with('equip_rent_record')->first();
+        foreach($equip_rent_result['equip_rent_record'] as $equip){
+            $equip["equipment"]=$equip->equipment;
+        }
+        return ["status"=>"ok!","data"=>$equip_rent_result];
+    }
 
 }

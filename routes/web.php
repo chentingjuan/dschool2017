@@ -27,7 +27,7 @@ Route::group(["prefix"=>"manage"],function(){
     Route::get('/activity/{activityId}', "ManageController@Activity");
     Route::get('/activity/{activityId}/list', "ManageController@Activity");
     Route::get('/activity/{activityId}/edit', "ManageController@ActivityEdit");
-  
+    Route::get("/equipment/list", "ManageController@Spa");
 });
 
 
@@ -76,6 +76,7 @@ Route::group(["prefix"=>"api"],function(){
     Route::resource('equipment',"EquipmentController");
 
     Route::post("/equipment/rent","EquipmentController@rent");
+    Route::post("/equipment/confirm","EquipmentController@confirm");
     //管理員確認報名
     Route::post('/activity/record/{recordId}/confirm/{action}', "ActivityController@ConfirmRecord");
     Route::post('/activity/record/{recordId}/confirm', "ActivityController@ConfirmRecord");
