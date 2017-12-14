@@ -18,8 +18,8 @@
       tbody
         tr(v-for="(row,rid) in sliced_data", :key="rid")
           td(v-for = "row_key in (row_keys || default_row_keys)",
-             v-if = "row_name_alias(row_key)!='__hide'")
-            | {{ row[row_key] }}
+             v-if = "row_name_alias(row_key)!='__hide'",
+             v-html=" transbr(row[row_key])")
           td
             .btn.btn-default(@click="edit(row)",
                              v-if="edit") {{edit_btn_text?edit_btn_text:'編輯'}}
@@ -152,7 +152,13 @@ export default {
     }
   },
   methods: { 
-
+    transbr(data){
+      if ( (""+data).indexOf("\n")!=-1){
+        return (""+data).replace(/\n/g,'<br>')
+      }else{
+        return data
+      }
+    },
     func_exec(func,para){
       return func(para)
     },

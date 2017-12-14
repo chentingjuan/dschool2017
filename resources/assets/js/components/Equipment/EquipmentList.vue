@@ -154,7 +154,7 @@
             h3 完成借用申請
             h4 借用單號 \#{{equip_rent.id}}
             pre(v-html="equip_rent")
-            .btn.orange 前往我的申請清單
+            router-link.btn.orange(to="/my/equipment") 前往我的申請清單
 
 
 </template>
@@ -162,6 +162,7 @@
 <script>
 import {mapState} from 'vuex'
 import axios from 'Axios'
+
 export default {
   data(){
     return {
@@ -263,7 +264,9 @@ export default {
         this.stage=4
       })
     }
-  }
+  },
+  
+
 }
 </script>
 

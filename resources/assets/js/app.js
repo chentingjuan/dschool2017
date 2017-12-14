@@ -90,11 +90,11 @@ Vue.mixin({
         get_equipment_confirm_type_translate(txt) {
             switch (txt) {
                 case "unconfirmed":
-                    return { status: txt, label: "未確認"}
+                    return { status: txt, label: "未審核", symbol: "-"}
                 case "yes":
-                    return { status: txt, label: "申請已通過" }
+                    return { status: txt, label: "已核准", symbol: "✓"}
                 case 'no':
-                    return { status: txt, label: "申請未通過" }
+                    return { status: txt, label: "不核准", symbol: "☓"}
             }
             return { status: txt, label: "", symbol: "-" }
         },
