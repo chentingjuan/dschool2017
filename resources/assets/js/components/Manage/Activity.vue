@@ -10,6 +10,7 @@
         .panel.panel-default(v-if="registUserList")
           .panel-heading
             h2 {{ strip_tags(event.title) }} 清單 (共{{registUserList.length}}筆報名)
+            br
             router-link.btn.btn-primary(:to="`/manage/activity/${event.id}`") 編輯回信
             label 預覽回信: 
             .btn-group
@@ -19,8 +20,8 @@
             simplert(:useRadius="true"
                 :useIcon="false"
                 ref="simplert")
+            h4 {{confirm_status}}
           .panel-body
-            h4
             vue_lazy_table(:table_data="registUserList",
                      :rows="tableRows",
                      :btns="event_btns")
@@ -35,7 +36,7 @@
 import {mapState} from 'vuex'
 import vue_lazy_table from '../Data/vue_lazy_table'
 import Simplert from 'vue2-simplert'
-
+import _ from "lodash"
 
 export default {
     data() {
@@ -144,6 +145,20 @@ export default {
             ...temp
           }
         })
+      },
+      confirm_status(){
+        let _this = this
+        let result= _.groupBy(this.lists || [],(obj)=>(obj.confirm_type) || "尚未確認" )
+                     
+        let resulttext="";
+        // console.log(Object.keys(result))
+        Object.keys(result).forEach(key=>{
+          console.log(_this.get_event_confirm_type_translate(key))
+          if (key){
+            resulttext += _this.get_event_confirm_type_translate(key).status + ": "+ result[key].length+ "  / "
+          }
+        })
+        return resulttext
       }
     },
     components:{
