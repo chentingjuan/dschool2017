@@ -19,9 +19,10 @@
                 h5 名字： {{equip_record.name}}
                 h5 電話： {{equip_record.phone}}
                 h5 帶出學院： {{equip_record.bringout?"是":"否"}}
-                h5 借用時間： {{equip_record.start_datetime}}-{{equip_record.end_datetime}}
-                h5 原因： {{equip_record.reason}}
+                h5 借用開始時間： {{equip_record.start_datetime}}
+                h5 借用結束時間： {{equip_record.end_datetime}}
                 h5 申請時間： {{equip_record.created_at}}
+                h5 原因： {{equip_record.reason}}
               .col-sm-6
                 ul.list-group
                   li.list-group-item(v-for="equip_rent_item in equip_record.equip_rent_record")

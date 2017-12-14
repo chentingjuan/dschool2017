@@ -19,6 +19,8 @@ class Equip_rent extends Model
         "bringout",
         "cancel",
         "confirmed",
+        "start_datetime",
+        "end_datetime",
         "paid",
         "return"
     ];

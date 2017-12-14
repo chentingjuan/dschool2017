@@ -58,7 +58,7 @@ export default {
   },
   mounted(){
     axios.get("/api/user/equipment").then(res=>{
-      this.equip_records=res.data
+      this.equip_records=res.data.reverse()
     })
   },
   computed:{

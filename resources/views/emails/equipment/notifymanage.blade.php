@@ -2,7 +2,8 @@
 申請者姓名：{{$name}} <br>
 電話：{{$phone}} <br>
 原因：{{$reason}} <br>
-借用時段：{{$start_datetime}} - {{$end_datetime}} <br>
+借用開始時間：{{$start_datetime}} <br>
+借用結束時間：{{$end_datetime}} <br>
 填寫申請時間：{{ $created_at }} <br>
 原因：{{$reason}} <br>
 是否帶出學院：{{$bringout?"是":"否"}} <br>

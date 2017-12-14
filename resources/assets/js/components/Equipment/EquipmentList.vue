@@ -35,12 +35,13 @@
               .col-sm-3
                 label 借用開始時間
               .col-sm-9
-                input.form-control(v-model="apply.start_datetime", type="datetime")
+                //- input.form-control(v-model="apply.start_datetime", type="datetime")
+                datePicker(v-model="apply.start_datetime", name="apply_start_time", :config="{format: 'YYYY-MM-DD HH:mm',useCurrent: true,showClear: true,stepping: 60,sideBySide: true}")
             .row
               .col-sm-3
                 label 借用結束時間
               .col-sm-9
-                input.form-control(v-model="apply.end_datetime", type="datetime")
+                datePicker(v-model="apply.end_datetime", name="apply_end_time", :config="{format: 'YYYY-MM-DD HH:mm',useCurrent: true,showClear: true,stepping: 60,sideBySide: true}")
             
             .row
               .col-sm-3
@@ -136,6 +137,12 @@
                     label 借用結束時間
                   .col-sm-9
                     label {{apply.end_datetime}}
+
+                .row(v-if="apply.bringout")
+                  .col-sm-3
+                    label 參考押金(攜出學院)
+                  .col-sm-9
+                    label {{ensure_money}}元
                   
                 .row
                   .col-sm-12
@@ -144,7 +151,30 @@
                       li(v-for="equip in equip_list")
                         h4 {{equip.name}}
                           span x {{equip.count}}
+                
                 .row
+                  .col-sm-12
+                    hr
+                    br
+                    
+                    h3 
+                      br
+                      | 借用設備注意事項
+                      br
+
+                    h4(v-if="apply.bringout") 攜出使用須繳納的押金將依借用情形調整，實際金額請見審核通知信，並於領取設備時全額繳交。
+
+                    p 請於預約時間領取與歸還設備，累計2次未準時領取或歸還者，將列入黑名單（如：1次未準時領取+1次未準時歸還=列入黑名單），此後不予借用設備。
+                      | <br>單次借用期限為10天(借用日為第1天)，同類設備限借1台，期滿後，借用者應主動歸還，逾期歸還則以單日租借費用100元計算，直至實際歸還日為止。
+                      | <br>設備器材攜出學院空間須繳交押金，待器材歸還經確認無損毀，則歸還押金。
+                      | <br>借用者（單位）於借用期間須保管借用設備並不得轉借他人，並負設備損壞賠償責任。
+                      | <br>不得安裝非法軟體與存入非經授權的機密資料，歸還前借用者需自行將個人重要資料備份並從設備中將個人資料刪除。
+                      | <br>本設備僅限於公務使用，禁止用於私人用途。外借可攜式設備(如筆記型電腦)，於使用時切勿拆卸相關零組件(如：硬碟機、光碟機、記憶體等...)，如有更動到原配置之硬體規格者，將視情況要求賠償。不可將可攜式設備(如筆記型電腦)或可攜式儲存媒體置於視線以外之處並隨身攜帶以避免遺失遭竊。
+
+                    hr
+
+                .row
+                
                   .col-sm-12
                     .btn.orange(@click="confirm_order") 確認借用資訊
 
@@ -153,7 +183,7 @@
           .col-sm-12
             h3 完成借用申請
             h4 借用單號 \#{{equip_rent.id}}
-            pre(v-html="equip_rent")
+            //pre(v-html="equip_rent")
             router-link.btn.orange(to="/my/equipment") 前往我的申請清單
 
 
@@ -163,6 +193,7 @@
 import {mapState} from 'vuex'
 import axios from 'Axios'
 
+import datePicker from 'vue-bootstrap-datetimepicker'
 export default {
   data(){
     return {
@@ -258,6 +289,8 @@ export default {
         phone: this.apply.phone,
         reason: this.apply.reason,
         bringout: this.apply.bringout,
+        start_datetime: this.apply.start_datetime,
+        end_datetime: this.apply.end_datetime,
         equips: this.equip_list
       }).then(res=>{
         this.equip_rent=res.data
@@ -265,7 +298,9 @@ export default {
       })
     }
   },
-  
+  components:{
+    datePicker
+  }
 
 }
 </script>

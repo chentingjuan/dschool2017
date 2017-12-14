@@ -55,6 +55,8 @@ class EquipmentController extends Controller
                 "phone" =>  $inputs["phone"],
                 "reason" =>  $inputs["reason"],
                 "bringout" =>  $inputs["bringout"],
+                "start_datetime" =>  $inputs["start_datetime"],
+                "end_datetime" =>  $inputs["end_datetime"],
             ]);
             $equip_rent_id=$equip_rent->id;
             $equips = [];

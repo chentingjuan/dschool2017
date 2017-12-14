@@ -50,7 +50,7 @@
                   labal.col-sm-3 時間
                   .col-sm-9
                     //- input.form-control(v-model="event.time")
-                    datePicker(v-model="event.time", name="event_time", :config="{format: 'YYYY-MM-DD HH:mm:ss',useCurrent: true}")
+                    datePicker(v-model="event.time", name="event_time", :config="{format: 'YYYY-MM-DD HH:mm',useCurrent: true,showClear: true,sideBySide: false}")
                   br
                   br
               .form-group
@@ -73,7 +73,7 @@
                 .row
                   labal.col-sm-3 報名開始
                   .col-sm-9
-                    datePicker(v-model="event.open_time", name="event_open_time", :config="{format: 'YYYY-MM-DD HH:mm:ss',useCurrent: true}")
+                    datePicker(v-model="event.open_time", name="event_open_time", :config="{format: 'YYYY-MM-DD HH:mm',useCurrent: true,showClear: true,sideBySide: false}")
                     //- input.form-control(v-model="event.open_time", placeholder="2017-10-18 00:00:00")
                   br
                   br
@@ -81,7 +81,7 @@
                 .row
                   labal.col-sm-3 報名結束
                   .col-sm-9
-                    datePicker(v-model="event.close_time", name="event_close_time", :config="{format: 'YYYY-MM-DD HH:mm:ss',useCurrent: true}")
+                    datePicker(v-model="event.close_time", name="event_close_time", :config="{format: 'YYYY-MM-DD HH:mm',useCurrent: true,showClear: true,sideBySide: false}")
                     //- input.form-control(v-model="event.close_time", placeholder="2017-10-18 00:00:00")
                   br
                   br
