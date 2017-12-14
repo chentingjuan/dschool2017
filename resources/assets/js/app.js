@@ -5,6 +5,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+// console.log(process.env.NODE_ENV)
+
 require('./bootstrap');
 
 import store from "./store"
@@ -128,11 +130,11 @@ var timer = setTimeout(() => {
     clearTimeout(timer)
 }, 2000);
 
-// window.onload = function () {
-//     if (!timer){
-//         store.commit("setLoading", false)
-//     }
-// }
+window.onload = function () {
+    if (!timer){
+        store.commit("setLoading", false)
+    }
+}
 
 const app = new Vue({
     el: '#app',

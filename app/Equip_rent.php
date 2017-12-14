@@ -6,5 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Equip_rent extends Model
 {
-    //
+    public function equip_rent_record()
+    {
+        return $this->hasMany('App\Equip_rent_record');
+    }
+    //    
+    protected $fillable= [
+        "user_id",
+        "name",
+        "phone",
+        "reason",
+        "bringout",
+        "cancel",
+        "confirmed",
+        "paid",
+        "return"
+    ];
+    
 }

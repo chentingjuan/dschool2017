@@ -51,10 +51,45 @@
       background-color: $colorOrange
 
     background-color: $colorBlue
+    position: relative
     .container
       padding: 40px 50px
       border-radius: 10px
+      z-index: 10
+      position: relative
       @extend .theme.white
+    .cross
+      position: absolute
+      left: 0px
+      top: 100px
+      &:before,&:after
+        content: ""
+        display: block
+        +size(280px,90px)
+        background-color: $colorOrange
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%,-50%)
+      &:nth-child(2)
+        left: initial
+        top: initial
+        right: 0px 
+        bottom: 100px
+      &:before
+        transform: translate(-50%,-50%) rotate(45deg)
+      &:after
+        transform: translate(-50%,-50%) rotate(-45deg)
+  
+    strong
+      // font-size: 20px
+      font-weight: 800
+      margin-top: 10px
+      // margin-bottom: 10px
+      display: inline-block
+      // &+br
+        // display: none
+
     p
       color: $colorBlue
       font-size: 17px

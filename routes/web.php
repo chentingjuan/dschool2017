@@ -48,7 +48,7 @@ Route::get('/question', 'PublicController@Spa');
 Route::get('/news', 'PublicController@Spa');
 Route::get('/news/{news}', 'PublicController@Spa');
 
-Route::get('/service/equipment', 'homeController@index');
+Route::get('/service/equipment', 'HomeController@index');
 
 Route::get('/userlist', "homeController@userlist");
 
@@ -73,7 +73,7 @@ Route::group(["prefix"=>"api"],function(){
     Route::resource('teammember',"TeammemberController");
     Route::resource('equipment',"EquipmentController");
 
-
+    Route::post("/equipment/rent","EquipmentController@rent");
     //管理員確認報名
     Route::post('/activity/record/{recordId}/confirm/{action}', "ActivityController@ConfirmRecord");
     Route::post('/activity/record/{recordId}/confirm', "ActivityController@ConfirmRecord");

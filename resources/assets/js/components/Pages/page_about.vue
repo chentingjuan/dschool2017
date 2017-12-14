@@ -63,7 +63,8 @@
             h2 成員介紹
             hr
         .row
-          .col-sm-3.col-cata(v-for="memberCata in memberCata")
+          .col-sm-3.col-cata(v-for="(memberCata,mid) in memberCata",
+                             @click="nowCata = mid+1")
             h5.eng {{ memberCata.eng }}
             h3.label {{ memberCata.label }}
             h4.type {{ memberCata.type }}
@@ -71,7 +72,8 @@
             .btn 查看更多
         .row.row_members
           .col-sm-12
-            .col-sm-3.col-member(v-for="member in teammembers")
+            .col-sm-3.col-member(
+              v-for="member in filtered_teammember")
               .img(:style="cssbg(member.cover)" )
                 .cata(v-if="memberCata[member.cata-1]") {{memberCata[member.cata-1].type}}
               h3 {{member.name}}
@@ -134,11 +136,16 @@ export default {
          type: "歷屆夥伴",
          img: "/img/about_sectionMembers_staffIcon4.svg"
        }
-     ]
+     ],
+     nowCata: ""
    }
   },
   computed:{
-    ...mapState(['teammembers'])
+    ...mapState(['teammembers']),
+    filtered_teammember(){
+      return this.teammembers
+              .filter(o=>o.cata==this.nowCata || !this.nowCata)
+    }
   }
 }
 </script>

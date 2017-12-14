@@ -16,9 +16,12 @@
             p(v-html="strip_tags(post.description || post.content).slice(0,200)")
 
     section.sectionContent.white
+      .cross
+      .cross
       .container
         //.col-sm-7.col-cover
         p(v-html="trans(post.content)")
+        
     section.sectionMore.blue
       .container-fluid
         .row

@@ -9,7 +9,7 @@ const store = new Vuex.Store({
     posts: [],
     teammembers: [],
     scrollTop: 0,
-    loading: false,
+    loading: document.domain != "dschool2017.dev",
   },
   mutations: {
     setLoading(state, value) {
