@@ -58,8 +58,10 @@ import page_post from "../components/Pages/page_post.vue"
 import page_service from "../components/Pages/page_service.vue"
 import page_about from "../components/Pages/page_about.vue"
 import page_question from "../components/Pages/page_question.vue"
-
 import page_equipment from "../components/Equipment/EquipmentList.vue"
+
+
+import page_my_equipment from "../components/Equipment/MyEquipment.vue"
 
 const routes = [
   { path: '/', component: Homepage },
@@ -80,7 +82,8 @@ const routes = [
   { path: '/manage/user', component: comManageUser ,props: true},
   { path: '/activity/:event_id', component: ActivitySmall ,props: true},
   { path: '/activity', component: comActivityList ,props: true},
-  { path: '/my/activity', component: Homepage},
+  { path: '/my/activity', component: Homepage },
+  { path: '/my/equipment', component: page_my_equipment },
   { path: '*', component: Homepage, meta: { title: "首頁" } }
 ];
 

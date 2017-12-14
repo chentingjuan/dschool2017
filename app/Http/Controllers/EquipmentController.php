@@ -83,4 +83,6 @@ class EquipmentController extends Controller
         // $equipment = Equipment::find($equipment->id);
         // return $equipment;
     }
+
+
 }

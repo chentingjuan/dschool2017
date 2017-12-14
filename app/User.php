@@ -59,7 +59,14 @@ class User extends Authenticatable
 
     public function registRecords(){
         return $this->hasMany('App\RegistRecord', 'user_id', 'id');
+    } 
+    
+    public function equipRents(){
+        return $this->hasMany('App\Equip_rent', 'user_id', 'id');
     }
+
+
+    
 
     // public function edit(Model $model)
     // {

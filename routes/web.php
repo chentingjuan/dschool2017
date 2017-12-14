@@ -54,6 +54,7 @@ Route::get('/userlist', "homeController@userlist");
 
 Route::get('/activity', "PublicController@Spa");
 Route::get('/my/activity', "PublicController@Spa");
+Route::get('/my/equipment', "PublicController@Spa");
 Route::get('/user/activity', "HomeController@RegistedEvent");
 
 Route::get('/activity/{activityId}', "PublicController@Activity");
@@ -63,6 +64,7 @@ Route::group(["prefix"=>"api"],function(){
     // Route::get('/api/{activityId}', "PublicController@Spa");
     Route::get('/user/activity', "ApiController@getAllRegistedEvent");
     Route::get('/user/list', "ApiController@getUserList");
+    Route::get('/user/equipment', "ApiController@getEquipmentList");
     
     Route::get('/activity/list/{activityId}', "ApiController@getEventRegisterList");
     Route::post('/activity/list',"ActivityController@getList");

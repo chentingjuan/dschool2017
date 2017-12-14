@@ -21,7 +21,7 @@ class EquipRentRecords extends Migration
             $table->integer("equip_rent_id")->nullable();
             $table->string("user_id")->nullable();
             $table->integer("count")->default(0)->nullable();
-            $table->string("status")->default("uncofirmed")->nullable();
+            $table->string("status")->default("unconfirmed")->nullable();
             $table->text("note")->nullable();
             $table->datetime("start_datetime")->nullable();
             $table->datetime("end_datetime")->nullable();

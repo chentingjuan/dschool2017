@@ -87,6 +87,17 @@ Vue.mixin({
             }
             return { status: txt, label: "", symbol: "-" }
         },
+        get_equipment_confirm_type_translate(txt) {
+            switch (txt) {
+                case "unconfirmed":
+                    return { status: txt, label: "未確認"}
+                case "yes":
+                    return { status: txt, label: "申請已通過" }
+                case 'no':
+                    return { status: txt, label: "申請未通過" }
+            }
+            return { status: txt, label: "", symbol: "-" }
+        },
         handleImageAdded(file, Editor, cursorLocation) {
             // An example of using FormData
             // NOTE: Your key could be different such as:

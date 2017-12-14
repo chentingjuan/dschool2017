@@ -12,7 +12,9 @@ use Auth;
 use App\User;
 use App\Activity;
 use Intervention\Image\ImageManagerStatic as Image;
-
+use App\Equipment;
+use App\Equip_rent;
+use App\Equip_rent_record;
 class ApiController extends Controller
 {
     //activity
@@ -86,5 +88,26 @@ class ApiController extends Controller
         }
     }
     
+    //取得使用者租借清單
+    public function getEquipmentList(){
+        if ( Auth::check() ){
+            $user = Auth::user();
+            $equip_record= 
+                $user->equipRents()
+                     ->where("cancel",false)
+                    ->with("equip_rent_record")->get();
+            // return $equip_record;
+            foreach ($equip_record as $eqrecord){
+                foreach ($eqrecord["equip_rent_record"] as $equip_rr){
+                    $equip_rr["equipment"]=Equipment::find($equip_rr["id"]);
+                }
+            }
+            return $equip_record;
+        }else{
+            return [];
+        }
+
+    }
+
 
 }

@@ -66,6 +66,9 @@
               li
                 a(href="/my/activity" v-if="reallink") 我的活動
                 router-link(to="/my/activity" v-if="!reallink") 我的活動
+              li
+                a(href="/my/equipment" v-if="reallink") 設備借用管理
+                router-link(to="/my/equipment" v-if="!reallink") 設備借用管理
               li(v-if="is_admin")
                 a(href="/manage/user" v-if="reallink") 會員清單
                 router-link(to="/manage/user" v-if="!reallink") 會員清單

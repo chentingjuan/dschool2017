@@ -14,11 +14,11 @@
           .col-sm-3
             h3.service_progress(@click="stage=3", :class="{active: stage>=3}") 確認內容
           .col-sm-3 
-            h3.service_progress(@click="stage=4", :class="{active: stage>=4}") 租借完成
+            h3.service_progress(:class="{active: stage>=4}") 租借完成
         .row
           .col-sm-12(v-if="stage==1")
-            h4 申請人資料
-            
+            h3 申請人資料
+            br
             .row
               .col-sm-3
                 label 申請人姓名
@@ -61,6 +61,9 @@
           .list-group.col-sm-2.list-catas
             input.form-control(v-model="keyword",
               placeholder="輸入關鍵字...")
+            .btn.orange(@click="stage=3") 確認租借
+            br
+            br
             .list-group-item(
               v-for="cata in catas",
               @click="now_cata=cata",
