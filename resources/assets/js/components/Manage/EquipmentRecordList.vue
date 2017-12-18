@@ -21,6 +21,7 @@
                 h5 帶出學院： {{equip_record.bringout?"是":"否"}}
                 h5 借用開始時間： {{equip_record.start_datetime}}
                 h5 借用結束時間： {{equip_record.end_datetime}}
+                h5 參考保證金： {{equip_record.ensure_money}}
                 h5 申請時間： {{equip_record.created_at}}
                 h5 原因： {{equip_record.reason}}
               .col-sm-6
@@ -38,6 +39,12 @@
                                 @click="equip_rent_item.status='no'") 不核准
               .col-sm-2
                 h4 狀態：{{ equip_record.confirmed?'已審核':'未審核' }}
+                .form-group(v-if="equip_record.bringout")
+                  label 需繳納保證金：
+                  input.form-control(:placeholder="equip_record.ensure_money", v-model="equip_record.custom_deposit")
+                .form-group
+                  label 領取日期：
+                  datePicker(:placeholder="equip_record.start_datetime", v-model="equip_record.custom_start_datetime", name="event_time", :config="{format: 'YYYY-MM-DD HH:mm',useCurrent: true,showClear: true,stepping: 60}")
                 .btn.orange(v-if="!equip_record.confirmed",
                             @click="confirmRecord(equip_record,eid)") 審核確認
                 .btn.grey.outline(v-if="equip_record.confirmed",
@@ -47,6 +54,7 @@
 
 <script>
 import vue_lazy_table from '../Data/vue_lazy_table'
+import datePicker from 'vue-bootstrap-datetimepicker'
 
 export default {
   data(){
@@ -62,21 +70,27 @@ export default {
         "confirmed -> 確認",
         "paid -> 付款",
         "return -> 歸還",
+        "ensure_money -> 參考保證金",
         "start_datetime -> 借用開始",
         "end_datetime -> 借用結束",
         "created_at -> 申請時間",
         "updated_at -> __hide",
         "content -> 借用細節",
+        "content -> 借用細節",
+        "content -> 借用細節",
         
-        
-        "user_id -> __hide",
-        "equip_rent_record -> __hide",
         
       ]
     }
   },
   mounted(){
     axios.get("/api/user/equipment").then(res=>{
+      res.data.forEach(o=>{
+        o.ensure_money = o.equip_rent_record.reduce((total,a)=> 
+           total+ a.equipment.deposit || 0,0)
+      })
+        //  ensure_money: r.equip_rent_record.reduce((total,a)=> 
+          //  total+ a.equipment.deposit || 0,""),
       this.equip_records=res.data.reverse()
     })
   },
@@ -100,22 +114,30 @@ export default {
     }
   },
   components: {
-    vue_lazy_table
+    vue_lazy_table,
+    datePicker
   },
   methods: {
 
     cancelRecord(equip_record,eid){
       equip_record.equip_rent_record.forEach(r=>r.status="unconfirmed");
       axios.post("/api/equipment/confirm",{...equip_record,cancel_confirm:true}).then(res=>{
+        res.data.data.ensure_money = res.data.data.equip_rent_record
+            .reduce((total,a)=>  total+ a.equipment.deposit || 0,0)
+        
         Vue.set(this.equip_records,eid,res.data.data)
-        alert(res.data.status)
+        alert("已取消"+res.data.status)
       })
     },
     confirmRecord(equip_record,eid){
-      axios.post("/api/equipment/confirm",{...equip_record}).then(res=>{
-        Vue.set(this.equip_records,eid,res.data.data)
-        alert(res.data.status)
-      })
+      if (confirm("確認審核並寄信通知使用者嗎？")){
+        axios.post("/api/equipment/confirm",{...equip_record}).then(res=>{
+          res.data.data.ensure_money = res.data.data.equip_rent_record
+              .reduce((total,a)=>  total+ a.equipment.deposit || 0,0)
+          Vue.set(this.equip_records,eid,res.data.data)
+          alert("已確認"+res.data.status)
+        })
+      }
     }
 
 

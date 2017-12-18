@@ -85,8 +85,8 @@ class EquipmentController extends Controller
             Mail::send('emails.equipment.notifymanage', $equip_rent_result->toArray(), function($message) use ($mail_title){
                 $message
                     ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
-                    // ->bcc('frank890417@gmail.com', '吳哲宇')
-                    ->to('frank890417@gmail.com', '台大創新設計學院 設備管理')
+                    ->bcc('frank890417@gmail.com', '吳哲宇')
+                    ->to('ntudschool@ntu.edu.tw', '台大創新設計學院 設備管理')
                     ->subject($mail_title);
             });
 
@@ -112,13 +112,33 @@ class EquipmentController extends Controller
         if (array_key_exists("cancel_confirm",$inputs) && $inputs["cancel_confirm"]){
             Equip_rent::find($inputs['id'])
             ->update(["confirmed"=>false]);  
-        }   
+        }
         foreach($inputs['equip_rent_record'] as $equip){
             Equip_rent_record::find($equip['id'])->update( $equip);
         }
         $equip_rent_result= Equip_rent::where("id",$inputs['id'])->with('equip_rent_record')->first();
+        $total_deposit=0;
         foreach($equip_rent_result['equip_rent_record'] as $equip){
             $equip["equipment"]=$equip->equipment;
+            $total_deposit+=$equip["equipment"]['deposit']?$equip["equipment"]['deposit']:0;
+        }
+
+        if (array_key_exists("cancel_confirm",$inputs) && $inputs["cancel_confirm"]){
+        }else{
+            $equip_rent = Equip_rent::find($inputs['id']);
+            $usedata = $equip_rent_result->toArray();
+            $usedata['ensure_money']=$equip_rent_result['custom_deposit']?$equip_rent_result['custom_deposit']:$total_deposit ;
+            $usedata['start_datetime']=$usedata['custom_start_datetime']?$usedata['custom_start_datetime']:$usedata['start_datetime'];
+
+            $mail_title="【創新設計學院】設備借用審核結果 #".$equip_rent->id." - ".$inputs["name"];
+            Mail::send('emails.equipment.notifyresult', $usedata , function($message) use ($mail_title){
+                $message
+                    ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
+                    ->bcc('frank890417@gmail.com', '吳哲宇')
+                    ->to($user->email,$user->name)
+                    ->subject($mail_title);
+            });
+
         }
         return ["status"=>"ok!","data"=>$equip_rent_result];
     }

@@ -22,7 +22,9 @@ class Equip_rent extends Model
         "start_datetime",
         "end_datetime",
         "paid",
-        "return"
+        "return",
+        "custom_deposit",
+        "custom_start_datetime"
     ];
     
 }

@@ -50,6 +50,9 @@ export default {
         "content -> 借用細節",
         
         
+        "custom_deposit -> 最終押金",
+        "custom_start_datetime -> 領取時間",
+        
         "user_id -> __hide",
         "equip_rent_record -> __hide",
         
