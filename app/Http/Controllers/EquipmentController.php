@@ -104,44 +104,49 @@ class EquipmentController extends Controller
         $inputs = Input::all();
         // dd($inputs);
         // return print_r($inputs);
-        Equip_rent::find($inputs['id'])
-            ->update($inputs);
-        Equip_rent::find($inputs['id'])
-            ->update(["confirmed"=>true]);     
-        //如果是取消就設定confirmed=false (記得不要改到cancel，是取消此單)
-        if (array_key_exists("cancel_confirm",$inputs) && $inputs["cancel_confirm"]){
+
+
+        if (Auth::check()){
+            $user = Auth::user();
             Equip_rent::find($inputs['id'])
-            ->update(["confirmed"=>false]);  
-        }
-        foreach($inputs['equip_rent_record'] as $equip){
-            Equip_rent_record::find($equip['id'])->update( $equip);
-        }
-        $equip_rent_result= Equip_rent::where("id",$inputs['id'])->with('equip_rent_record')->first();
-        $total_deposit=0;
-        foreach($equip_rent_result['equip_rent_record'] as $equip){
-            $equip["equipment"]=$equip->equipment;
-            $total_deposit+=$equip["equipment"]['deposit']?$equip["equipment"]['deposit']:0;
-        }
+                ->update($inputs);
+            Equip_rent::find($inputs['id'])
+                ->update(["confirmed"=>true]);     
+            //如果是取消就設定confirmed=false (記得不要改到cancel，是取消此單)
+            if (array_key_exists("cancel_confirm",$inputs) && $inputs["cancel_confirm"]){
+                Equip_rent::find($inputs['id'])
+                ->update(["confirmed"=>false]);  
+            }
+            foreach($inputs['equip_rent_record'] as $equip){
+                Equip_rent_record::find($equip['id'])->update( $equip);
+            }
+            $equip_rent_result= Equip_rent::where("id",$inputs['id'])->with('equip_rent_record')->first();
+            $total_deposit=0;
+            foreach($equip_rent_result['equip_rent_record'] as $equip){
+                $equip["equipment"]=$equip->equipment;
+                $total_deposit+=$equip["equipment"]['deposit']?$equip["equipment"]['deposit']:0;
+            }
 
-        if (array_key_exists("cancel_confirm",$inputs) && $inputs["cancel_confirm"]){
-        }else{
-            $equip_rent = Equip_rent::find($inputs['id']);
-            $usedata = $equip_rent_result->toArray();
-            $usedata['ensure_money']=$equip_rent_result['custom_deposit']?$equip_rent_result['custom_deposit']:$total_deposit ;
-            $usedata['start_datetime']=$usedata['custom_start_datetime']?$usedata['custom_start_datetime']:$usedata['start_datetime'];
+            if (array_key_exists("cancel_confirm",$inputs) && $inputs["cancel_confirm"]){
+            }else{
+                $equip_rent = Equip_rent::find($inputs['id']);
+                $usedata = $equip_rent_result->toArray();
+                $usedata['ensure_money']=$equip_rent_result['custom_deposit']?$equip_rent_result['custom_deposit']:$total_deposit ;
+                $usedata['start_datetime']=$usedata['custom_start_datetime']?$usedata['custom_start_datetime']:$usedata['start_datetime'];
 
-            $mail_title="【創新設計學院】設備借用審核結果 #".$equip_rent->id." - ".$inputs["name"];
-            Mail::send('emails.equipment.notifyresult', $usedata , function($message) use ($mail_title){
-                $message
-                    ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
-                    ->bcc('frank890417@gmail.com', '吳哲宇')
-                    ->to($user->email,$user->name)
-                    ->subject($mail_title);
-            });
-            return ["status"=>"ok!","data"=>$equip_rent_result];
+                $mail_title="【創新設計學院】設備借用審核結果 #".$equip_rent->id." - ".$inputs["name"];
+                Mail::send('emails.equipment.notifyresult', $usedata , function($message) use ($mail_title){
+                    $message
+                        ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
+                        ->bcc('frank890417@gmail.com', '吳哲宇')
+                        ->to($user->email,$user->name)
+                        ->subject($mail_title);
+                });
+                return ["status"=>"ok!","data"=>$equip_rent_result];
 
+            }
+            return ["status"=>"error","data"=>$equip_rent_result];
         }
-        return ["status"=>"error","data"=>$equip_rent_result];
     }
 
 }
