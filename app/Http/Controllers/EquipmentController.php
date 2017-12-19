@@ -135,7 +135,7 @@ class EquipmentController extends Controller
                 $usedata['start_datetime']=$usedata['custom_start_datetime']?$usedata['custom_start_datetime']:$usedata['start_datetime'];
 
                 $mail_title="【創新設計學院】設備借用審核結果 #".$equip_rent->id." - ".$inputs["name"];
-                Mail::send('emails.equipment.notifyresult', $usedata , function($message) use ($mail_title){
+                Mail::send('emails.equipment.notifyresult', $usedata , function($message) use ($mail_title,$user){
                     $message
                         ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
                         ->bcc('frank890417@gmail.com', '吳哲宇')
