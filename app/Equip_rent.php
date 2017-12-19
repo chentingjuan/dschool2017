@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Equip_rent extends Model
 {
+    public function user()
+    {
+        return $this->hasOne('App\User','id','user_id');
+    }
     public function equip_rent_record()
     {
         return $this->hasMany('App\Equip_rent_record');

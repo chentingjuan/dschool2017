@@ -117,7 +117,7 @@ class ApiController extends Controller
             if ($user->admingroup=="root"){
                 $equip_record= 
                     Equip_rent::where("cancel",false)
-                        ->with("equip_rent_record")->get();
+                        ->with("equip_rent_record")->with('user')->get();
                 // return $equip_record;
                 foreach ($equip_record as $eqrecord){
                     foreach ($eqrecord["equip_rent_record"] as $equip_rr){

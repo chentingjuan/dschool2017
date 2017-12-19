@@ -104,6 +104,7 @@ class EquipmentController extends Controller
         $inputs = Input::all();
         // dd($inputs);
         // return print_r($inputs);
+        
 
 
         if (Auth::check()){
@@ -120,7 +121,7 @@ class EquipmentController extends Controller
             foreach($inputs['equip_rent_record'] as $equip){
                 Equip_rent_record::find($equip['id'])->update( $equip);
             }
-            $equip_rent_result= Equip_rent::where("id",$inputs['id'])->with('equip_rent_record')->first();
+            $equip_rent_result= Equip_rent::where("id",$inputs['id'])->with('equip_rent_record')->with('user')->first();
             $total_deposit=0;
             foreach($equip_rent_result['equip_rent_record'] as $equip){
                 $equip["equipment"]=$equip->equipment;
@@ -129,17 +130,17 @@ class EquipmentController extends Controller
 
             if (array_key_exists("cancel_confirm",$inputs) && $inputs["cancel_confirm"]){
             }else{
-                $equip_rent = Equip_rent::find($inputs['id']);
+                // $equip_rent = Equip_rent::find($inputs['id'])->with('user')->get();
                 $usedata = $equip_rent_result->toArray();
                 $usedata['ensure_money']=$equip_rent_result['custom_deposit']?$equip_rent_result['custom_deposit']:$total_deposit ;
                 $usedata['start_datetime']=$usedata['custom_start_datetime']?$usedata['custom_start_datetime']:$usedata['start_datetime'];
 
-                $mail_title="【創新設計學院】設備借用審核結果 #".$equip_rent->id." - ".$inputs["name"];
-                Mail::send('emails.equipment.notifyresult', $usedata , function($message) use ($mail_title,$user){
+                $mail_title="【創新設計學院】設備借用審核結果 #".$equip_rent_result->id." - ".$inputs["name"];
+                Mail::send('emails.equipment.notifyresult', $usedata , function($message) use ($mail_title,$equip_rent_result ){
                     $message
                         ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
                         ->bcc('frank890417@gmail.com', '吳哲宇')
-                        ->to($user->email,$user->name)
+                        ->to($equip_rent_result->user->email,$equip_rent_result->user->name)
                         ->subject($mail_title);
                 });
                 return ["status"=>"ok!","data"=>$equip_rent_result];
