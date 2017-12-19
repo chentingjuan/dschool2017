@@ -109,5 +109,29 @@ class ApiController extends Controller
 
     }
 
+    //取得使用者租借清單
+    public function getEquipmentListAll(){
+        if ( Auth::check() ){
+            $user = Auth::user();
+            // dd($user);
+            if ($user->admingroup=="root"){
+                $equip_record= 
+                    Equip_rent::where("cancel",false)
+                        ->with("equip_rent_record")->get();
+                // return $equip_record;
+                foreach ($equip_record as $eqrecord){
+                    foreach ($eqrecord["equip_rent_record"] as $equip_rr){
+                        $equip_rr["equipment"]=Equipment::find($equip_rr["id"]);
+                    }
+                }
+            }
+            return $equip_record;
+        }else{
+            return [];
+        }
+
+    }
+
+
 
 }

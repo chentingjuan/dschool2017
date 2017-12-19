@@ -73,10 +73,14 @@ Route::group(["prefix"=>"api"],function(){
     Route::resource('question',"QuestionController");
     Route::resource('post',"PostController");
     Route::resource('teammember',"TeammemberController");
+    
+    Route::get("/equipment/all","ApiController@getEquipmentListAll");
     Route::resource('equipment',"EquipmentController");
 
     Route::post("/equipment/rent","EquipmentController@rent");
     Route::post("/equipment/confirm","EquipmentController@confirm");
+
+
     //管理員確認報名
     Route::post('/activity/record/{recordId}/confirm/{action}', "ActivityController@ConfirmRecord");
     Route::post('/activity/record/{recordId}/confirm', "ActivityController@ConfirmRecord");

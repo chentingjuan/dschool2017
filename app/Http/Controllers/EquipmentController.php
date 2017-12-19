@@ -138,9 +138,10 @@ class EquipmentController extends Controller
                     ->to($user->email,$user->name)
                     ->subject($mail_title);
             });
+            return ["status"=>"ok!","data"=>$equip_rent_result];
 
         }
-        return ["status"=>"ok!","data"=>$equip_rent_result];
+        return ["status"=>"error","data"=>$equip_rent_result];
     }
 
 }

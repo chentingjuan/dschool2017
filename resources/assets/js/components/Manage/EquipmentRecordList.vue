@@ -84,7 +84,7 @@ export default {
     }
   },
   mounted(){
-    axios.get("/api/user/equipment").then(res=>{
+    axios.get("/api/equipment/all").then(res=>{
       res.data.forEach(o=>{
         o.ensure_money = o.equip_rent_record.reduce((total,a)=> 
            total+ a.equipment.deposit || 0,0)
