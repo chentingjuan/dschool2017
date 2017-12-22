@@ -3,243 +3,185 @@
     simplert(:useRadius="true"
       :useIcon="false"
       ref="simplert")
-    .container
-      .row
-        .col-sm-12
-          ol.breadcrumb
-            li.breadcrumb-item 
-              router-link(to="/activity") 管理活動
-            li.breadcrumb-item.active 活動編輯
-        
-          h2(v-if="event_id") 編輯活動- {{ strip_tags(event.title) }}
-            button.btn.orange.pull-right(@click="deleteActivity") 刪除活動
-            button.btn.grey.pull-right(@click="updateActivity") 儲存更新
-            router-link.btn.outline.grey.pull-right(:to="`/event/${event_id}`") 前往頁面
-          h2(v-else) 新增活動- {{ strip_tags(event.title) }}
-            button.btn.btn-primary.pull-right(@click="updateActivity") 儲存活動
-          hr
-
-        .col-sm-4
-          .panel.panel-primary
-            .panel-heading 基本資訊
-            .panel-body
-              .form-group
-                .row
-                  labal.col-sm-3 類型
-                  .col-sm-9
-                    select.form-control(v-model="event.type")
-                      option(v-for="op in activityTypeOptions", :value="op.value") {{op.tag}}
-                  br
-                  br
-              .form-group
-                .row
-                  labal.col-sm-3 標題
-                  .col-sm-9
-                    input.form-control(v-model="event.title")
-                  br
-                  br
-              .form-group
-                .row
-                  labal.col-sm-3 地點
-                  .col-sm-9
-                    input.form-control(v-model="event.place")
-                  br
-                  br
-              .form-group
-                .row
-                  labal.col-sm-3 時間
-                  .col-sm-9
-                    //- input.form-control(v-model="event.time")
-                    datePicker(v-model="event.time", name="event_time", :config="{format: 'YYYY-MM-DD HH:mm',useCurrent: true,showClear: true,sideBySide: false}")
-                  br
-                  br
-              .form-group
-                .row
-                  labal.col-sm-3 顯示<br>時間
-                  .col-sm-9
-                    input.form-control(v-model="event.time_detail")
-                  br
-                  br
-              .form-group
-                .row
-                  labal.col-sm-3 封面
-                  .col-sm-9
-                    input.form-control(v-model="event.cover")
-                    img(:src="event.cover", style="width: 100%")
-                    default_pic_selector(@select_pic="select_pic")
-                  br
-                  br
-              .form-group
-                .row
-                  labal.col-sm-3 報名開始
-                  .col-sm-9
-                    datePicker(v-model="event.open_time", name="event_open_time", :config="{format: 'YYYY-MM-DD HH:mm',useCurrent: true,showClear: true,sideBySide: false}")
-                    //- input.form-control(v-model="event.open_time", placeholder="2017-10-18 00:00:00")
-                  br
-                  br
-              .form-group
-                .row
-                  labal.col-sm-3 報名結束
-                  .col-sm-9
-                    datePicker(v-model="event.close_time", name="event_close_time", :config="{format: 'YYYY-MM-DD HH:mm',useCurrent: true,showClear: true,sideBySide: false}")
-                    //- input.form-control(v-model="event.close_time", placeholder="2017-10-18 00:00:00")
-                  br
-                  br
-        .col-sm-8
-          .button-group
-            .btn.btn-default(v-for="p in panellist" @click="panel=p.value", :class="{'btn-primary':panel==p.value}") {{p.label}}
-          .panel.panel-default(v-if="panel=='detail'")
-            .panel-heading 詳細內容
-            .panel-body
-              .form-group
-                labal.col-sm-3 描述
-                .col-sm-9
-                  VueEditor.ve(:id ="'description'", v-model="event.description",
-                    :useCustomImageHandler="true",
-                    @imageAdded="handleImageAdded"  )
-                  br
-                  br
-              .form-group
-                labal.col-sm-3 註冊資訊
-                .col-sm-9
-                  VueEditor.ve(:id ="'register_info'", v-model="event.register_info",
-                    :useCustomImageHandler="true",
-                    @imageAdded="handleImageAdded" )
-                  br
-                  br
-          .panel.panel-default(v-if="panel=='teacher'")
-            .panel-heading 師資
-            .panel-body
-              .form-group(v-for="(teacher,teacherId) in event.teacher", style="margin-top: 10px")
-                .row
-                  .col-sm-12
-                    .container-fluid
-                      h4(style="width: 100%") {{teacherId+1}}. {{teacher.name}}
-                        .btn.btn-danger.pull-right(@click="event.teacher.splice(teacherId,1)") 刪除
-                      .row.form-group
-                        .col-sm-2
-                          h5 姓名
-                        .col-sm-10
-                          input.form-control(v-model="teacher.name", placeholder="姓名")
-                      .row.form-group
-                        .col-sm-2
-                          h5 照片
-                        .col-sm-10(style="display: flex")
-                          .imgs
-                            img(:src="teacher.cover" , style="width: 80px")
-                          .control(style="width: 100%")
-                            input.form-control(v-model="teacher.cover", placeholder="照片網址")
-                            default_pic_selector(@select_pic="(obj)=>{event.teacher[teacherId].cover=obj.url}")
-                      
-                      .row.form-group
-                        .col-sm-2
-                          h5 描述
-                        .col-sm-10
-                          VueEditor.ve(:id ="'teacher_description_'+teacherId", v-model="teacher.description",
-                    :useCustomImageHandler="true",
-                    @imageAdded="handleImageAdded" )                          
-                      .row.form-group
-                        .col-sm-2
-                          h5 其他
-                        .col-sm-10
-                          VueEditor.ve(:id ="'teacher_other_'+teacherId", v-model="teacher.other",
-                    :useCustomImageHandler="true",
-                    @imageAdded="handleImageAdded" )                  
-                      hr
-                      br
-              .form-group
-                .col-sm-12
-                  .btn.btn-default.form-control(@click="event.teacher.push({name: '',description:''})") + 新增
-                  br
-                  br
-                  br
-                  br
+    el-container.container
+      el-header
+        el-breadcrumb(separator="/")
+          el-breadcrumb-item(to="/activity") 管理活動
+          el-breadcrumb-item 活動編輯
+      el-header
+        h3(v-if="event_id") 編輯活動- {{ strip_tags(event.title) }}
+          el-button.pull-right(round type="danger" @click="deleteActivity") 刪除活動
+          el-button.pull-right(round type="primary" @click="updateActivity") 儲存更新
+          router-link(:to="`/event/${event_id}`")
+            el-button.pull-right(round) 前往頁面
+        h3(v-else) 新增活動- {{ strip_tags(event.title) }}
+          el-button.pull-right(round type="primary" @click="updateActivity") 儲存更新
+        br
+        br
+      el-container
+        el-main
+          el-tabs(v-model="panel" )
+            el-tab-pane(v-for="p in panellist" ,
+                          :label="p.label",
+                          :name="p.value")
+          el-form(v-if="panel=='detail'", label-width="100px")
+            el-form-item(label="描述")
+              VueEditor.ve(:id ="'description'", v-model="event.description",
+                :useCustomImageHandler="true",
+                @imageAdded="handleImageAdded"  )
+            el-form-item(label="註冊資訊")
+              VueEditor.ve(:id ="'register_info'", v-model="event.register_info",
+                :useCustomImageHandler="true",
+                @imageAdded="handleImageAdded" )
+          
+          el-form.panel-body(v-if="panel=='main'" label-width="60px")
+            el-form-item(label="類型")
+              el-select(v-model="event.type")
+                el-option(v-for="op in activityTypeOptions", :value="op.value" , :label="op.tag")
+            el-form-item(label="標題")
+              el-input(v-model="event.title")
+            el-form-item(label="地點")
+              el-input(v-model="event.place")
+            el-form-item(label="時間")
+              el-date-picker(
+                v-model="event.time",
+                type="datetime",
+                placeholder="活動時間",
+                value-format="yyyy-MM-dd HH:mm:ss")
+            el-form-item(label="顯示")
+              el-input(v-model="event.time_detail" , placeholder="顯示時間(例: 106/11/12、14)")
+            el-form-item(label="封面")
+              el-input(v-model="event.cover")
+              img(:src="event.cover", style="width: 100%;max-width: 100px")
+              default_pic_selector(@select_pic="select_pic")
+            el-form-item(label="報名")
+              el-date-picker(
+                v-model="event.open_time",
+                type="datetime",
+                placeholder="報名開始時間",
+                value-format="yyyy-MM-dd HH:mm:ss")
+            el-form-item
+              el-date-picker(
+                v-model="event.close_time",
+                type="datetime",
+                placeholder="報名結束時間",
+                value-format="yyyy-MM-dd HH:mm:ss")
+          el-form(v-if="panel=='teacher'")
+            div(v-for="(teacher,teacherId) in event.teacher", style="margin-top: 10px")
+              h4(style="width: 100%") {{teacherId+1}}. {{teacher.name}}
+                .btn.btn-danger.pull-right(@click="event.teacher.splice(teacherId,1)") 刪除
               
-          .panel.panel-default(v-if="panel=='album'")
-            .panel-heading 相簿
-            .panel-body
-              .form-group
-                .row
-                  .col-sm-12
-                    label 相簿
-                  .col-sm-12(v-for="(pic,picid) in event.album")
-                    .row
-                      .col-sm-9
-                        .row
-                          .col-sm-3
-                            img(:src="pic.image", style="width: 100%")
-                          .col-sm-9
-                            input.form-control(v-model="event.album[picid].image" ,placeholder="照片網址")
-                            textarea.form-control(v-model="event.album[picid].caption", placeholder="描述")
-                      
-                      .col-sm-3
-                        default_pic_selector(@select_pic="(obj)=>{event.album[picid].image=obj.url}")
-                        .btn.btn-danger(@click="event.album.splice(picid,1)") 刪除
-                      .col-sm-12
-                        hr
-                  .col-sm-12
-                    .btn.btn-primary(@click="event.album.push({image:'',caption:''})") 新增照片
+              .container-fluid
+                .row.form-group
+                  .col-sm-2
+                    h5 姓名
+                  .col-sm-10
+                    el-form-item
+                      el-input(v-model="teacher.name", placeholder="姓名")
+                .row.form-group
+                  .col-sm-2
+                    h5 照片
+                  .col-sm-10(style="display: flex")
+                    .imgs
+                      img(:src="teacher.cover" , style="width: 80px")
+                    .control(style="width: 100%")
+                      el-input(v-model="teacher.cover", placeholder="照片網址")
+                      default_pic_selector(@select_pic="(obj)=>{event.teacher[teacherId].cover=obj.url}")
+                
+                .row.form-group
+                  .col-sm-2
+                    h5 描述
+                  .col-sm-10
+                    VueEditor.ve(:id ="'teacher_description_'+teacherId", v-model="teacher.description",
+                        :useCustomImageHandler="true",
+                        @imageAdded="handleImageAdded" )                          
+                .row.form-group
+                  .col-sm-2
+                    h5 其他
+                  .col-sm-10
+                    VueEditor.ve(:id ="'teacher_other_'+teacherId", v-model="teacher.other",
+                        :useCustomImageHandler="true",
+                        @imageAdded="handleImageAdded" )                  
+                hr
+                br
+            .form-group
+              .col-sm-12
+                .btn.btn-default.form-control(@click="event.teacher.push({name: '',description:''})") + 新增
 
-          .panel.panel-default(v-if="panel=='qa'")
-            .panel-heading 問答
-            .panel-body
-              .form-group
-                .row
-                  .col-sm-12
-                    label 問題
-                  .col-sm-12
-                    .form-group(v-for="(qa,qaid) in event.question", v-if="typeof qa=='object'", :name="'qa'+qaid")
-                      .form-group(v-if="qa")
-                        .row
-                          .col-sm-3
-                            label {{qaid+1}}. {{qa.question}}
-                          .col-sm-9
-                            input.form-control(v-model="qa.question")
-                        .row
-                          .col-sm-3
-                            label 類型
-                          .col-sm-9
-                            select.form-control(v-model="qa.type")
-                              option(value="short") 簡答
-                              option(value="long") 詳答
-                              option(value="select") 選擇
-                        .row(v-if="qa.type=='select'")
-                          .col-sm-3
-                            label 選項(以/隔開)
-                          .col-sm-9
-                            input.form-control(v-model="qa.options", placeholder="素/葷")
-                        .row
-                          .col-sm-3
-                            label 必填
-                          .col-sm-9
-                            .button-group
-                              .btn.btn-default(@click="qa.require=0", :class="{'btn-primary': !qa.require}") 非必填
-                              .btn.btn-default(@click="qa.require=1", :class="{'btn-primary': qa.require}") 必填
-                        .btn.btn-danger(@click="removeQuestion(qa.id)") 移除問題
-                    .form-group
+              
+          el-form(v-if="panel=='album'")
+            .form-group
+              .row
+                .col-sm-12
+                  label 相簿
+                .col-sm-12(v-for="(pic,picid) in event.album")
+                  .row
+                    .col-sm-9
+                      .row
+                        .col-sm-3
+                          img(:src="pic.image", style="width: 100%")
+                        .col-sm-9
+                          el-input(v-model="event.album[picid].image" ,placeholder="照片網址")
+                          textarea.form-control(v-model="event.album[picid].caption", placeholder="描述")
+                    
+                    .col-sm-3
+                      default_pic_selector(@select_pic="(obj)=>{event.album[picid].image=obj.url}")
+                      .btn.btn-danger(@click="event.album.splice(picid,1)") 刪除
+                    .col-sm-12
                       hr
-                      br
-                      .btn.btn-primary.form-control(@click="addQuestion") 新增問題
-            br
-            br
-          .panel.panel-default(v-if="panel=='email'")
-            .panel-heading 寄信資料
-            .panel-body
-              .form-group
-                labal.col-sm-3 提醒事項
-                .col-sm-9
-                  VueEditor.ve(:id ="'mailcontent'", v-model="event.mailcontent",
-                    :useCustomImageHandler="true",
-                    @imageAdded="handleImageAdded"  )
+                .col-sm-12
+                  el-button(rounded @click="event.album.push({image:'',caption:''})") 新增照片
+
+          el-form(v-if="panel=='qa'")
+            .row
+              .col-sm-12
+                .form-group(v-for="(qa,qaid) in event.question", v-if="typeof qa=='object'", :name="'qa'+qaid")
+                  .form-group(v-if="qa")
+                    el-form-input.row
+                      .col-sm-3
+                        label {{qaid+1}}. {{qa.question}}
+                      .col-sm-9
+                        el-input(v-model="qa.question")
+                    el-form-input.row
+                      .col-sm-3
+                        label 類型
+                      .col-sm-9
+                        el-select(v-model="qa.type")
+                          el-option(value="short", label="簡答") 
+                          el-option(value="long", label="詳答") 
+                          el-option(value="select", label="選擇") 
+                    el-form-input.row(v-if="qa.type=='select'")
+                      .col-sm-3
+                        label 選項(以/隔開)
+                      .col-sm-9
+                        el-input(v-model="qa.options", placeholder="素/葷")
+                    el-form-input.row
+                      .col-sm-3
+                        label 必填
+                      .col-sm-9
+                        .button-group
+                          .btn.btn-default(@click="qa.require=0", :class="{'btn-primary': !qa.require}") 非必填
+                          .btn.btn-default(@click="qa.require=1", :class="{'btn-primary': qa.require}") 必填
+                    .btn.btn-danger(@click="removeQuestion(qa.id)") 移除問題
+                .form-group
+                  hr
                   br
-                  br
-              .form-group
-                labal.col-sm-3 結束回覆日期
-                .col-sm-9
-                  input.form-control(v-model="event.end_response_date",
-                                     placeholder="結束回覆日期 (11/2 星期x)")
-                  br
-                  br
+                  el-button.form-control(@click="addQuestion") 新增問題
+
+          el-form(v-if="panel=='email'")
+            .form-group
+              labal.col-sm-3 提醒事項
+              .col-sm-9
+                VueEditor.ve(:id ="'mailcontent'", v-model="event.mailcontent",
+                  :useCustomImageHandler="true",
+                  @imageAdded="handleImageAdded"  )
+                br
+                br
+            .form-group
+              labal.col-sm-3 結束回覆日期
+              .col-sm-9
+                el-input(v-model="event.end_response_date",
+                                    placeholder="結束回覆日期 (11/2 星期x)")
 </template>
 
 <script>
@@ -258,8 +200,9 @@ export default {
   ],
   data() {
     return {
-      panel: "detail",
+      panel: "main",
       panellist: [
+        {label: "活動設定",value:"main"},
         {label: "詳細資訊",value:"detail"},
         {label: "相簿",value:"album"},
         {label: "師資",value:"teacher"},
