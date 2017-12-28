@@ -44,7 +44,7 @@
             a(href="/service/equipment" v-if="reallink") 設備借用
             router-link(to="/service/equipment" v-if="!reallink") 設備借用
 
-          li(v-if="is_admin")
+          li
             a(href="/question" v-if="reallink") 常見問題
             router-link(to="/question" v-if="!reallink") 常見問題
 

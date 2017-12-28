@@ -129,7 +129,15 @@ Vue.mixin({
             }
             // console.log(result)
             return result
-        }
+        },
+        scrollTo(cname,custon_option) {
+            let options = Object.assign({
+                pan: 0
+            },
+                custon_option
+            )
+            $("html,body").animate({ scrollTop: $(cname).offset().top + options.pan})
+        },
 
     }
 })

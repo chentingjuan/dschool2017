@@ -15,7 +15,7 @@
             h3.service_progress(@click="stage=3", :class="{active: stage>=3}") 確認內容
           .col-sm-3 
             h3.service_progress(:class="{active: stage>=4}") 租借完成
-        .row
+        .row.row-datas
           .col-sm-12(v-if="stage==1")
             h3 申請人資料
             br
@@ -84,10 +84,10 @@
                 p {{ equip.model }}
                 | {{equip.accessories}}
                 br
-                .btn-group
-                  .btn.grey.outline(@click="user_count_delta(equip,-1)") -
-                  .btn.grey.outline {{ equip.user_count }}
-                  .btn.grey.outline(@click="user_count_delta(equip,1)") + 
+                br
+                el-input-number(v-model="equip.user_count" 
+                                :min="0" ,:max="equip.count",
+                                size="mini")
           .list-group.fixed_cart
             ul.cart-list
               li.list-group-item(v-for="equip_item in equip_list")

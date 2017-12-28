@@ -28,3 +28,54 @@
 
 @mixin bx_shadow
   box-shadow: 0px 0px 20px rgba(0,0,0,0.4)
+
+  
+//RWD
+
+=range_width($min: 0,$max: $min)
+  @if ($max==$min)
+    @media screen and (min-width: $min)
+      @content
+  @else
+    @media screen and (max-width: $max - 1px) and (min-width: $min) 
+      @content
+  
+
+=range_height($min: 0,$max: $min)
+  @if ($max==$min)
+    @media screen and (min-height: $min)
+      @content
+  @else
+    @media screen and (max-height: $max - 1px) and (min-height: $min) 
+      @content
+  
+
+$break_lg: 1600px
+$break_md: 1200px
+$break_sm: 800px
+$break_xs: 500px
+
+$grid_gutter: 24px
+
+=rwd_md
+  +range_width(0px,$break_md)
+    @content
+=rwd_lg
+  +range_width(0px,$break_lg)
+    @content
+=rwd_sm
+  +range_width(0px,$break_sm)
+    @content
+=rwd_xs
+  +range_width(0px,$break_xs)
+    @content
+
+
+=cover_opacity($color: black)
+  display: block
+  content: ""
+  position: absolute
+  +size(100%,100%)
+  left: 0
+  top: 0
+  background-color: $color

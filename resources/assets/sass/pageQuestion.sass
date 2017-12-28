@@ -1,0 +1,33 @@
+.anchors
+  position: fixed
+  top: 50%
+  left: 0
+  transform: translateY(-50%)
+  color: transparent
+  list-style: none
+  +trans
+
+  +rwd_sm
+    display: none
+
+  &:hover
+    color: rgba(black,0.4)  
+
+  li
+    cursor: pointer
+    list-style: none
+    margin-top: 5px
+      +trans
+
+    &:before
+      content: ""
+      display: inline-block
+      margin-right: 5px
+      +size(10px,3px)
+      background-color: rgba(black,0.3)
+      +trans
+    &:hover
+      &:before
+        +size(20px,3px)
+        background-color: rgba(black,0.8)
+      color: rgba(black,0.8)

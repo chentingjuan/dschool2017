@@ -14,6 +14,11 @@ p
   color: $colorBlue
   font-weight: 400
   font-size: 15px
+a
+  color: $colorOrange
+  &:hover
+    color: darken($colorOrange,10)
+
 .theme
   hr
     border: none
@@ -151,6 +156,12 @@ p
 
     &.sectionHero
       min-height: 80vh
+      padding-top: 10vh
+      padding-bottom: 10vh
+      +flexCenter
+
+      .coverGraphic
+        width: 70%
     
     padding-top: 100px
     padding-bottom: 100px

@@ -51,7 +51,7 @@
     {{-- Script BEFORE app.js --}}
     @yield('require_js')
     <script>
-    if (document.domain.indexOf("dschool2017.dev")!=-1){
+    if (document.domain.indexOf("dschool2017.test")!=-1){
         document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +':35729/livereload.js?snipver=1"></' + 'script>');
       }
     </script>
