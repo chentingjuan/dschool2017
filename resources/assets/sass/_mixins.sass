@@ -6,8 +6,10 @@
 @mixin size($w:100%,$h:$w)
   width: $w
   height: $h
+
 @mixin trans($s:0.5s)
   transition: $s
+  transition-timing-function: opacity linear
 
 @mixin size($w,$h:$w)
   width: $w

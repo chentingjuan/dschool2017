@@ -1,5 +1,5 @@
 <template lang="pug">
-  .manage_event_edit(v-if="event")
+  .page.manage.manage_event_edit(v-if="event")
     simplert(:useRadius="true"
       :useIcon="false"
       ref="simplert")

@@ -46,6 +46,7 @@
     "jsonfile": "^4.0.0",
     "mysql": "^2.15.0",
     "pug": "^2.0.0-rc.4",
+    "sass-easing": "^1.0.3",
     "vue": "^2.4.4",
     "vue-bootstrap-datetimepicker": "^4.1.0",
     "vue-datetime-picker": "^0.2.1",

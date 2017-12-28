@@ -34,7 +34,7 @@
               span  臺大創新學院是在做什麼的啊？
 
       
-    section.sectionTimeline.theme.blue
+    //section.sectionTimeline.theme.blue
       .container
         .row
           .col-sm-12
@@ -64,20 +64,23 @@
             hr
         .row
           .col-sm-3.col-cata(v-for="(memberCata,mid) in memberCata",
-                             @click="nowCata = mid+1")
-            h5.eng {{ memberCata.eng }}
-            h3.label {{ memberCata.label }}
-            h4.type {{ memberCata.type }}
-            img.people( :src="memberCata.img", style="width: 100%")
-            .btn 查看更多
-        .row.row_members
-          .col-sm-12
+                             v-if="nowCata==mid+1 || nowCata==-1")
+            span(@click="nowCata = mid+1",)
+              h5.eng {{ memberCata.eng }}
+              h3.label {{ memberCata.label }}
+              h4.type {{ memberCata.type }}
+              img.people.wow.slideInBottom( :src="memberCata.img", style="width: 100%")
+            .btn.btn-text(v-if="nowCata!=-1", @click="nowCata=-1")
+              i.fa.fa-angle-left
+              | &lt; 返回總表
+        
+          .col-sm-9
             .col-sm-3.col-member(
               v-for="member in filtered_teammember")
               .img(:style="cssbg(member.cover)" )
                 .cata(v-if="memberCata[member.cata-1]") {{memberCata[member.cata-1].type}}
-              h3 {{member.name}}
-              h5 {{member.position}}
+              h3 {{member.name}} 
+              h5 {{member.position}} 
                 span(v-if='member.company') ,{{member.company}}
 
               
@@ -85,7 +88,15 @@
 
 <script>
 import {mapState} from "vuex"
+import {WOW} from "wowjs"
+   var wow = new WOW()
 export default {
+  mounted(){
+    setTimeout(function(){
+      wow.sync()
+
+    },1000)
+  },
   data(){
    return {
      QAs: [
@@ -137,7 +148,7 @@ export default {
          img: "/img/about_sectionMembers_staffIcon4.svg"
        }
      ],
-     nowCata: ""
+     nowCata: -1
    }
   },
   computed:{
