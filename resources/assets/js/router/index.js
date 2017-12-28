@@ -54,6 +54,7 @@ var Homepage = Vue.component('Homepage',comHomepage)
 
 import page_implement from "../components/Pages/page_implement.vue"
 import page_news from "../components/Pages/page_news.vue"
+import page_course from "../components/Pages/page_course.vue"
 import page_post from "../components/Pages/page_post.vue"
 import page_service from "../components/Pages/page_service.vue"
 import page_about from "../components/Pages/page_about.vue"
@@ -67,6 +68,7 @@ import manage_equipment_list from "../components/manage/EquipmentRecordList.vue"
 const routes = [
   { path: '/', component: Homepage },
   { path: '/service', component: page_service },
+  { path: '/course', component: page_course },
   { path: '/service/equipment', component: page_equipment },
   { path: '/about', component: page_about },
   { path: '/question', component: page_question },

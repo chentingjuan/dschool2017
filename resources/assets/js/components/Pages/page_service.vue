@@ -2,7 +2,7 @@
 .page.page_service
   section.sectionHero.blue
     h1 服務項目
-    img.coverGraphic(src="/img/about_sectionAbout_BigD.png")
+    //- img.coverGraphic(src="/img/about_sectionAbout_BigD.png")
   section.sectionAbout.theme.blue
     .container-fluid.theme.white.card
       .row.theme.orange
@@ -66,7 +66,7 @@
               h2 設備租借
               hr
               p 填寫後請於Slack私訊負責人(liuliu)，經確認後才為借用成功。<br>(外單位請用Email通知負責人：jingyilin@ntu.edu.tw)<br><br>設備維護：請將借用物品完全恢復至借用前狀態(線材分別捲好、確認設備電源確實關閉)才歸還。若是假日借用，請將器材整理清點後拍照(須清楚看到所有配件)上傳至Slack群組#return，並鎖入設備箱內。<br><br>設備借用以在學院內使用為主，若有攜出使用需求請洽學院承辦人：靜怡(02-3366-1869 #55395)，詳情請見   攜出規範
-              .btn.orange 前往租借
+              router-link.btn.orange(to="/service/equipment") 前往租借
 
   section.sectionWorkshop.theme.blue
     .container-fluid

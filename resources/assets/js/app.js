@@ -15,18 +15,17 @@ import {mapState} from "vuex"
 import schoolData from './dataSchools'
 window.Vue = require('vue');
 import VueAnalytics from 'vue-analytics'
-
-if (document.domain != "dschool2017.dev") {
-    Vue.use(VueAnalytics, {
-        id: 'UA-52977512-22',
-        router
-    })
-}
+import VueParallaxJs from 'vue-parallax-js'
+Vue.use(VueParallaxJs)
 
 import ElementUI from 'element-ui'
-
-
 Vue.use(ElementUI)
+
+var softScroll=true
+import soft_scroll from './plugins/soft_scroll'
+softScroll && soft_scroll.init()
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -40,6 +39,15 @@ Vue.component('Navbar', Navbar);
 import Clients from  './components/passport/Clients.vue'
 import AuthorizedClients from './components/passport/AuthorizedClients.vue'
 import PersonalAccessTokens from './components/passport/PersonalAccessTokens.vue'
+
+
+if (document.domain != "dschool2017.dev") {
+    Vue.use(VueAnalytics, {
+        id: 'UA-52977512-22',
+        router
+    })
+}
+
 
 //passport
 Vue.component(

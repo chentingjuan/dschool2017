@@ -1,6 +1,6 @@
 <template lang="pug">
   nav.navbar.navbar-default.navbar-fixed-top(:class="{ 'at_top':!scrollTop, 'navbar-fixed-top': fixed }")
-    .container
+    .container-fluid
       .navbar-header
         // Collapsed Hamburger
         button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#app-navbar-collapse')
@@ -12,45 +12,42 @@
         // Branding Image
         a.navbar-brand(href="/" v-if="reallink")
           img(src='http://dschool.ntu.edu.tw/2017/assets/index__pageLogo.svg')
-          span 台大創新設計學院
+          span D-school@NTU
         router-link.navbar-brand(to="/" v-else)
           img(src='http://dschool.ntu.edu.tw/2017/assets/index__pageLogo.svg')
-          span 台大創新設計學院
+          span D-school@NTU
 
       #app-navbar-collapse.collapse.navbar-collapse(@click="toggleNav")
-        // Left Side Of Navbar
-        ul.nav.navbar-nav
+
+        // Right Side Of Navbar
+        ul.nav.navbar-nav.navbar-right
           li(v-if="is_admin")
             a(href="/about" v-if="reallink") 關於學院
             router-link(to="/about" v-if="!reallink") 關於學院
-
-          li
-            a(href="/activity" v-if="reallink") 學院活動
-            router-link(to="/activity" v-if="!reallink") 學院活動
-
           li
             a(href="/news" v-if="reallink") 最新消息
             router-link(to="/news" v-if="!reallink") 最新消息
-
+          li
+            a(href="/activity" v-if="reallink") 學院活動
+            router-link(to="/activity" v-if="!reallink") 學院活動
+          li
+            a(href="/course" v-if="reallink") 課程介紹
+            router-link(to="/course" v-if="!reallink") 課程介紹
           li(v-if="is_admin")
             a(href="/implement" v-if="reallink") 實作中心
             router-link(to="/implement" v-if="!reallink") 實作中心
-
           li(v-if="is_admin")
             a(href="/service" v-if="reallink") 服務
             router-link(to="/service" v-if="!reallink") 服務
 
-          li(v-if="is_admin")
-            a(href="/service/equipment" v-if="reallink") 設備借用
-            router-link(to="/service/equipment" v-if="!reallink") 設備借用
+          //- li(v-if="is_admin")
+          //-   a(href="/service/equipment" v-if="reallink") 設備借用
+          //-   router-link(to="/service/equipment" v-if="!reallink") 設備借用
 
           li
             a(href="/question" v-if="reallink") 常見問題
             router-link(to="/question" v-if="!reallink") 常見問題
 
-
-        // Right Side Of Navbar
-        ul.nav.navbar-nav.navbar-right()
           // Authentication Links
           li
             a(href="/login", v-if = "!user") 登入 {{user}}
@@ -59,7 +56,8 @@
 
           li.dropdown(v-if="user")
             a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-              | {{user? user.name: ""}} {{user && user.admingroup=='root' ? ' [管理員]':'' }}
+              | {{user? user.name: ""}} 
+              | {{user && user.admingroup=='root' ? '':'' }}
               span.caret
             ul.dropdown-menu(role='menu')
                   

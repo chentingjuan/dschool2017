@@ -15,7 +15,7 @@
           .col-sm-12
             h2 我想了解
             hr
-        .row.row-qa(v-for="(qa,qaid) in QAs")            
+        .row.row-qa(v-for="(qa,qaid) in QAs" )            
           .col-sm-6.col-answer(v-if="qaid%2==1")
             p.answer(v-html="qa.answer")
           .col-sm-6
