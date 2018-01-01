@@ -47,6 +47,7 @@ Route::get('/about', 'PublicController@Spa');
 Route::get('/question', 'PublicController@Spa');
 Route::get('/course', 'PublicController@Spa');
 Route::get('/news', 'PublicController@Spa');
+Route::get('/style', 'PublicController@Spa');
 Route::get('/news/{news}', 'PublicController@Spa');
 
 Route::get('/service/equipment', 'HomeController@index');

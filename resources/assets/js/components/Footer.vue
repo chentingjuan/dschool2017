@@ -3,6 +3,7 @@ footer
   .container
     .row
       .col-sm-3
+        img(src="/img/index__pageLogoOrange.svg", width="80px")
         h3 台大創新設計學院
         h4 D-school@NTU
       .col-sm-9

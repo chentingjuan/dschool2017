@@ -1,5 +1,5 @@
 <template lang="pug">
-  nav.navbar.navbar-default.navbar-fixed-top(:class="{ 'at_top':!scrollTop, 'navbar-fixed-top': fixed }")
+  nav.navbar.navbar-default(:class="{ 'at_top':!scrollTop, 'navbar-fixed-top': fixed }")
     .container-fluid
       .navbar-header
         // Collapsed Hamburger
@@ -12,9 +12,11 @@
         // Branding Image
         a.navbar-brand(href="/" v-if="reallink")
           img(src='/img/index__pageLogo.svg')
+          img.orange(src='/img/index__pageLogoOrange.svg')
           //span D-school@NTU
         router-link.navbar-brand(to="/" v-else)
           img(src='/img/index__pageLogo.svg')
+          img.orange(src='/img/index__pageLogoOrange.svg')
           //span D-school@NTU
 
       #app-navbar-collapse.collapse.navbar-collapse(@click="toggleNav")

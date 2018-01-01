@@ -24,6 +24,7 @@
 @import "./common"
 @import "./nav"
 @import "./footer"
+@import "./pageCourse"
 @import "./pageLoading"
 @import "./pageAbout"
 @import "./pageEvent"
@@ -44,6 +45,13 @@ html
 body
   background-color: $colorBlue
 
+// html
+//   border: solid 10px white
+//   box-sizing: border-box
+//   height: 100vh
+//   overflow-y: scroll
+  
+
 [class^="route_manage"]
   .btn-group
     .btn
@@ -58,21 +66,79 @@ body
     // width: 110px
 
 //-------------------------
+$page_trans_time: 0.5s
 .fade-enter-active,.fade-leave-active
-  transition: opacity .5s
-
-.fade-enter,.fade-leave-to
+  transition: $page_trans_time
+  transition-timing-function: ease-in
+  position: relative
+  // opacity: 0
+  // &:before
+  //   transition: $page_trans_time
+  //   display: block
+  //   content: ""
+  //   width: 100%
+  //   background-color: white
+  //   height: 100vh
+  //   position: fixed
+  //   z-index: 10000
+  //   left: 0
+  //   top: 100vh
+  //   transition-timing-function: ease-in
+    // box-shadow: 0px 20px white
+  // &:after
+  //   display: block
+  //   content: ""
+  //   opacity: 0
+  //   transition: $page_trans_time
+  //   height: 100vh
+  //   position: fixed
+  //   z-index: 1
+  //   left: 0
+  //   width: 100%
+  //   top: 0
+  //   background-color: $colorBlue
+.fade-enter-active
+  opacity: 1
+  transition-timing-function: ease-out
+  &:before
+    top: 0
+    transition-timing-function: ease-out
+    // box-shadow: 0px 20px white
+.fade-enter
   opacity: 0
+  top: 30px
+.fade-enter-to
+  opacity: 1
+  top: 0px
+  // &:before
+  //   top: -100vh
+  // &:after
+  //   opacity: 0
+.fade-leave
+  opacity: 1
+  top: 0px
+.fade-leave-to
+  opacity: 0
+  top: -30px
+  // &:before
+  //   top: 0
+  // &:after
+  //   opacity: 1
+
+
 .fade-enter-to,.fade-leave
-  opacity: 1
+  // opacity: 1
 
-.fade-delay-enter-active
-  transition: opacity .5s .5s
-.fade-delay-leave-active
-  transition: opacity .5s
 
-.fade-delay-enter,.fade-delay-leave-to
-  opacity: 0
-.fade-delay-enter-to,.fade-delay-leave
-  opacity: 1
+
+// .fade-delay-enter-active
+//   transition: opacity .5s .5s
+// .fade-delay-leave-active
+//   transition: opacity .5s
+
+// .fade-delay-enter,.fade-delay-leave-to
+//   opacity: 0
+// .fade-delay-enter-to,.fade-delay-leave
+//   opacity: 1
+
 

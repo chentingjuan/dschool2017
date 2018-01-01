@@ -6,13 +6,17 @@ nav
     &:before
       content: ""
       display: block
-      width: 0%
-      height: 4px
+      width: 100%
+      height: 5px
       position: absolute
       bottom: 0
       left: 0
-      background-color: $colorRed
-      +trans
+      opacity: 0
+      background-color: $colorOrange
+      transform: translateY(10px)
+      transition: 0.5s
+      transtiion-timing-function: ease-out
+      transition-delay: 0s
 
   a
     transition: 0.5s
@@ -20,16 +24,25 @@ nav
     &.router-link-exact-active
       &:before
         width: 100%
+        height: 5px
+        opacity: 1
+        transform: translateY(0px)
 
     // border-bottom: solid 3px #f95356
     // background-color: #fafafa
-    // background-color: $colorRed
+    // background-color: $colorOrange
     // color: white
 .navbar-brand
+  position: relative
+  top: 15px
   img
     margin-right: 10px
     display: inline-block
     height: 25px
+    position: absolute
+    left: 0
+    top: 0
+    &.orange
 
 nav.navbar.navbar-default
   transition: 0.5s
@@ -59,7 +72,7 @@ nav.navbar.navbar-default
       transition: 0.5s
       font-size: 16px
       &:hover
-        color: $colorRed
+        color: $colorOrange
   .navbar-nav
     
     // background-color: #fff
@@ -75,14 +88,17 @@ nav.navbar.navbar-default
       //   top: 50%
       //   +trans
     & a.router-link-active,& a.router-link-exact-active
-      color: $colorRed
+      color: $colorOrange
       position: relative
       // margin-left: 15px
       // margin-right: 5px
 
       &:before
         width: 100%
-        background-color: $colorRed
+        height: 5px
+        transition-delay: 0.5s
+        transform: translateY(0px)
+        background-color: $colorOrange
         
   .dropdown-menu li a
     color: $colorBlue
@@ -103,7 +119,10 @@ nav.navbar.navbar-default
         margin-top: -10px
         &.black
           opacity: 0
-
+      .navbar-brand
+        img
+          &.orange
+            opacity: 0
       .navbar-collapse.collapse.in
         border-top-color: transparent
         position: relative
@@ -131,10 +150,10 @@ nav.navbar.navbar-default
         a
           color: white
           &.router-link-active
-            color: $colorRed
+            color: $colorOrange
 
           &:hover
-            color: $colorRed
+            color: $colorOrange
         .router-link-active
           background-color: transparent
 

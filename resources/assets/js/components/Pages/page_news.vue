@@ -1,7 +1,6 @@
 <template lang="pug">
   .page.page_news
-    //section.sectionHero.white
-      //- h1 實作中心 D-SCHOOL
+    section.sectionHero.theme.blue
       //- img.coverGraphic(src="http://dschool2017.dev/img/GraphicImplementation.svg")
     section.sectionHero.blue
       .container
@@ -21,7 +20,7 @@
           br
         .row
           .col-sm-12
-            router-link.news_box(:to="`/news/${spotPost.title}`").row
+            router-link.news_box.animated.fadeIn(:to="`/news/${spotPost.title}`").row
               .img(:style="cssbg(spotPost.cover)").col-sm-8
               .col-sm-4
                 .infos
@@ -39,8 +38,9 @@
           ul.col-sm-4( v-for="chunk in chunkedList")
             li(v-for="post in chunk",
               v-if="post.show || is_admin",
-              :style="{opacity: (!post.show && is_admin)?0.6:1}" )
-              router-link.news_box(:to="`/news/${post.title}`")
+              :style="{opacity: (!post.show && is_admin)?0.6:1}",
+              :key="post.title+post.id" )
+              router-link.news_box.animated.fadeIn(:to="`/news/${post.title}`")
                 .img.col-sm-12(:style="cssbg(post.cover)")
                 .infos.col-sm-12
                   h4.date {{ post.date }}
@@ -49,6 +49,7 @@
                 router-link.btn.btn-primary.btn-edit(
                   v-if="is_admin", 
                   :to="'/manage/post/'+post.id") 編輯
+            li.endbar
       
 </template>
 
@@ -60,6 +61,7 @@ export default {
   data(){
     return {
       // posts: []  
+      limit: 10
     }
   },
   computed:{
@@ -71,10 +73,12 @@ export default {
       return this.posts.map(o=>o.cata).filter((d,i,arr)=>arr.indexOf(d)==i)
     },
     chunkedList(){
-      let result = [[],[],[]]
-      this.posts.slice().reverse().forEach((d,i)=>{
-        result[i%3].push(d)
-      })
+      let useList = this.posts.slice().reverse().slice(0,this.limit)
+      let result = [
+                    useList.filter((d,i)=>i%3==0),
+                    useList.filter((d,i)=>i%3==1),
+                    useList.filter((d,i)=>i%3==2)
+                  ]
       return result
     },
     spotPost(){
@@ -82,11 +86,19 @@ export default {
               .slice().reverse().filter(o=>o.show)[0]
     }
   },
+  watch:{
+    scrollTop(){
+      if (this.scrollTop+$(window).height()*1.5>$(".endbar").offset().top){
+        this.limit+=9
+      }
+    }
+  },  
   mounted(){
     // axios.get("/api/post").then((res)=>{
     //   Vue.set(this,"posts",res.data)
       
     // })
+    
   }
 }
 </script>

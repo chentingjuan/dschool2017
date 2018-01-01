@@ -61,11 +61,16 @@ import page_about from "../components/Pages/page_about.vue"
 import page_question from "../components/Pages/page_question.vue"
 import page_equipment from "../components/Equipment/EquipmentList.vue"
 
+import page_style from "../components/Pages/page_style.vue"
+
 
 import page_my_equipment from "../components/Equipment/MyEquipment.vue"
 import manage_equipment_list from "../components/manage/EquipmentRecordList.vue"
 
 const routes = [
+  { path: '/style', component: page_style },
+
+
   { path: '/', component: Homepage },
   { path: '/service', component: page_service },
   { path: '/course', component: page_course },
@@ -126,6 +131,7 @@ router.afterEach((route) => {
   if (window.ga){
     ga('send', 'pageview',route.path);
   }
+  
 });
 
 export default router
