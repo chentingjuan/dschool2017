@@ -11,17 +11,17 @@
 
         // Branding Image
         a.navbar-brand(href="/" v-if="reallink")
-          img(src='http://dschool.ntu.edu.tw/2017/assets/index__pageLogo.svg')
-          span D-school@NTU
+          img(src='/img/index__pageLogo.svg')
+          //span D-school@NTU
         router-link.navbar-brand(to="/" v-else)
-          img(src='http://dschool.ntu.edu.tw/2017/assets/index__pageLogo.svg')
-          span D-school@NTU
+          img(src='/img/index__pageLogo.svg')
+          //span D-school@NTU
 
       #app-navbar-collapse.collapse.navbar-collapse(@click="toggleNav")
 
         // Right Side Of Navbar
         ul.nav.navbar-nav.navbar-right
-          li(v-if="is_admin")
+          li
             a(href="/about" v-if="reallink") 關於學院
             router-link(to="/about" v-if="!reallink") 關於學院
           li

@@ -45,6 +45,7 @@ Route::get('/implement', 'HomeController@index');
 Route::get('/service', 'PublicController@Spa');
 Route::get('/about', 'PublicController@Spa');
 Route::get('/question', 'PublicController@Spa');
+Route::get('/course', 'PublicController@Spa');
 Route::get('/news', 'PublicController@Spa');
 Route::get('/news/{news}', 'PublicController@Spa');
 
