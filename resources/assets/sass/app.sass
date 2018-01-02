@@ -21,9 +21,11 @@
 @import "mixins"
 
 //pages
+@import "./ds_theme"
 @import "./common"
 @import "./nav"
 @import "./footer"
+@import "./pageIndex"
 @import "./pageCourse"
 @import "./pageLoading"
 @import "./pageAbout"
@@ -39,8 +41,8 @@
 html,body
   margin: 0
   overflow-x: hidden
-html
-  overflow-y: scroll
+// html
+//   overflow-y: scroll
 
 body
   background-color: $colorBlue
@@ -49,8 +51,12 @@ body
 //   border: solid 10px white
 //   box-sizing: border-box
 //   height: 100vh
+//   max-height: 100vh
 //   overflow-y: scroll
+//   z-index: 20000
   
+// #app
+//   overflow: hidden
 
 [class^="route_manage"]
   .btn-group

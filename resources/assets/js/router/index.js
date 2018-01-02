@@ -52,6 +52,7 @@ var Homepage = Vue.component('Homepage',comHomepage)
 //routes
 
 
+import page_index from "../components/Pages/page_index.vue"
 import page_implement from "../components/Pages/page_implement.vue"
 import page_news from "../components/Pages/page_news.vue"
 import page_course from "../components/Pages/page_course.vue"
@@ -71,7 +72,7 @@ const routes = [
   { path: '/style', component: page_style },
 
 
-  { path: '/', component: Homepage },
+  { path: '/', component: page_index },
   { path: '/service', component: page_service },
   { path: '/course', component: page_course },
   { path: '/service/equipment', component: page_equipment },

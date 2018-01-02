@@ -14,10 +14,10 @@
     section.sectionJump
       .container-fluid
         .row
-          .col-sm-6.theme.orange
+          .col-sm-6.theme.orange(@click="scrollTo('.sectionRule')")
             h3 Rules
             h2 使用規則
-          .col-sm-6.theme.blue
+          .col-sm-6.theme.blue(@click="scrollTo('.sectionDevices')")
             h3 Equipments
             h2 相關設備
 

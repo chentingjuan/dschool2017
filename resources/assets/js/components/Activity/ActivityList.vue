@@ -4,8 +4,8 @@
       .container
         .row
           .col-sm-12
-            h1 學院活動清單
-            br
+            h1 學院活動
+            
         .row
           .col-sm-12
             router-link.btn.btn-primary.pull-right(v-if="user && user.admingroup=='root'",
@@ -15,7 +15,7 @@
 
           .col-sm-12
             .monthGroup(v-for="monthSet in chunkedList")
-              h3.month {{monthSet.time.slice(0,4)+'  '+monthSet.time.slice(4)}}月
+              h3.month {{monthSet.time.slice(0,4)+' / '+monthSet.time.slice(4)}}月
               ul
                 li(v-for="activity in monthSet.events")
                   ActivityInfoRow(:event_id="activity.id", :key="activity.id",title="查看資訊")
