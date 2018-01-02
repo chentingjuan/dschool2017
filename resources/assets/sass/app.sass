@@ -77,6 +77,9 @@ $page_trans_time: 0.5s
   transition: $page_trans_time
   transition-timing-function: ease-in
   position: relative
+  min-height: 100vh
+  footer
+    margin-top: 100vh
   // opacity: 0
   // &:before
   //   transition: $page_trans_time
@@ -106,6 +109,7 @@ $page_trans_time: 0.5s
 .fade-enter-active
   opacity: 1
   transition-timing-function: ease-out
+  min-height: 100vh
   &:before
     top: 0
     transition-timing-function: ease-out

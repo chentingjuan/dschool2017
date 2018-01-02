@@ -24,6 +24,7 @@
     height: 100vh
     overflow: hidden
     position: relative
+
     .logo 
       width: 100%
       max-width: 500px    
@@ -32,7 +33,7 @@
       top: 50%
       width: 100%
       left: 0
-      position: absolute
+      position: fixed
       border-top: solid 1px white
       border-top-style: dashed
       display: flex
@@ -41,8 +42,23 @@
       height: 1px
       padding-left: 100px
       animation: show 1s both
+      transition: 2s
+      &.first
+        .d
+          transition: 2s
+          @for $i from 1 through 5
+            &:nth-child(#{$i})
+              // width: #{$i*100}px
+              margin-left: #{(5-$i)*500-500}px
+              // animation-delay: #{$i*0.4}s
+              // animation-duration: #{$i*0.4+0.5}s 
+      &.second
+        .d
+          opacity: 0
+        .d1
+          margin-left: 0
 
-      img
+      .d
         width: 30vmin
         max-width: 220px
         margin-left: -50px
@@ -50,7 +66,8 @@
         transition: 0.5s
         
         animation: showLeft 0.8s both
-
+        &.d1
+          margin-right: 200px
         @for $i from 1 through 5
           &:nth-child(#{$i})
             // width: #{$i*100}px
@@ -118,4 +135,13 @@
         +size(50px,8px)
         border: none
         background-color: $colorOrange
-        
+  .sectionFirst 
+    height: 100vh
+    box-sizing: border-box
+    padding-top: 60vh
+  .sectionSecond
+    h2
+      color: $colorOrange
+      font-size: 40px
+    p
+      opacity: 0.9

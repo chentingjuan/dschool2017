@@ -101,7 +101,19 @@ const routes = [
 const router = new VueRouter({
   routes,
   base: "/",
-  mode: "history"
+  mode: "history",
+  scrollBehavior(to, from, savedPosition) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (savedPosition) {
+          resolve(savedPosition)
+        } else {
+          resolve({ x: 0, y: 0 })
+        }
+      }, 500)
+    })
+    
+  }
 })
 
 import store from "../store"
@@ -109,17 +121,17 @@ import store from "../store"
 //跳轉前設定切換標題與跳頁
 router.beforeEach((to, from, next) => {
   console.log(to);
-  var waittime=600;
-  if (to.path==from.path){
-    waittime=50;
-  }
+  // var waittime=600;
+  // if (to.path==from.path){
+  //   waittime=50;
+  // }
   if (to.path=="/about" && to.hash=="#section_about_log"){
 
-    setTimeout(function(){
-      $("html, body").animate({ scrollTop: $(".section_log").offset().top-100  }, "slow");
-    },waittime);
+    // setTimeout(function(){
+    //   // $("html, body").animate({ scrollTop: $(".section_log").offset().top-100  }, "slow");
+    // },waittime);
   }else{
-    $("html, body").animate({ scrollTop: 0 }, "slow");
+    // $("html, body").animate({ scrollTop: 0 }, "slow");
   }
   if (to.path=="/activity"){
     store.dispatch("loadEvents")

@@ -1,11 +1,10 @@
 <template lang="pug">
-  div.page_event_register(v-if="event")
+  div.page_event_register
     .container.section_hero
-      transition(name="fade-delay")
-        .cover(
-          v-if="event",
-          :style="{'background-image':'url('+event.cover+')'}")
-      .row(v-if="event")
+      .cover(
+        v-if="event",
+        :style="{'background-image':'url('+event.cover+')'}")
+      .row
         .col-sm-6
         .col-sm-6.panel.hero_panel.align-self-center
           .tag.mt-10 {{tagname}}
