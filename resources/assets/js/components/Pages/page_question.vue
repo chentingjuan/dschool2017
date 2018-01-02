@@ -1,13 +1,13 @@
 <template lang="pug">
   .page.page_question
-    section.sectionHero.blue
+    section.sectionHero.theme.blue
       //- h1 常見問題
       img.coverGraphic(src="/img/question_cover.svg")
-    section.sectionIntro.theme.white
+    section.sectionIntro
       .container
         .row
           .col-sm-11.col-sm-offset-2.col-md-offset-1.col-lg-offset-0(v-for="(question,qid) in questions",
-                     :class="'q'+qid")
+                     :class="'q'+qid").theme.white.card
             h2 {{question.title}}
             p(v-html="question.content")
             br

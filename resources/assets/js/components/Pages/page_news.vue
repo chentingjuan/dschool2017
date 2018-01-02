@@ -1,6 +1,6 @@
 <template lang="pug">
   .page.page_news
-    section.sectionHero.theme.blue
+    //section.sectionHero.theme.blue
       //- img.coverGraphic(src="http://dschool2017.dev/img/GraphicImplementation.svg")
     section.sectionHero.blue
       .container

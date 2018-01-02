@@ -6,7 +6,7 @@ div(:class="app_class")
   .page_area
   transition(name="fade" mode="out-in")
     router-view(:key="$route.path")
-  Footer
+  Footer(v-show="$route.path!='/'")
     //- section_footer
 </template>
 
