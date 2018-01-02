@@ -66,7 +66,7 @@
 import {mapState} from 'vuex'
 import $ from 'jquery'
 var PIXI = require('pixi.js');
-
+// var TweenMax = require("gsap/tweenmax")
 export default {
   data(){
     return {
@@ -87,6 +87,7 @@ export default {
     }
   },
   mounted(){
+
     var starAnimation = new PIXI.Application(600,600,{antialias: false, transparent: true, resolution: 1})
     document.querySelector(".d1").appendChild(starAnimation.view);
     var star1 = new PIXI.Graphics();
