@@ -1,5 +1,5 @@
 <template lang="pug">
-  nav.navbar.navbar-default(:class="{ 'at_top':!scrollTop, 'navbar-fixed-top': fixed }")
+  nav.navbar.navbar-default.navbar-fixed-top(:class="{ 'at_top':!scrollTop, 'navbar-fixed-top': fixed }")
     .container-fluid
       .navbar-header
         // Collapsed Hamburger
