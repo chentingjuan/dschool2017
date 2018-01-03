@@ -1,7 +1,8 @@
 <template lang="pug">
 .page.page_course
   section.sectionHero.blue
-    h1 學院課程
+    //- h1 學院課程
+    img.coverGraphic(src="/img/hero_course_cover.svg")
     //- img.coverGraphic(src="/img/question_cover.svg")
   section.sectionAbout.theme.blue
     .container

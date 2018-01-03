@@ -1,6 +1,5 @@
 .route_
-  .navbar-header
-    
+  .navbar-brand
     opacity: 0
     transform: scale(0)
     transition-delay: transform 0.5s
@@ -84,9 +83,9 @@
         transition: 0.5s
         
         animation: showLeft 0.8s both
-        &.d1
-          margin-right: 200px
-          margin-left: -10px
+        // &.d1
+        //   margin-right: 200px
+        //   margin-left: -10px
         @for $i from 1 through 5
           &:nth-child(#{$i})
             // width: #{$i*100}px

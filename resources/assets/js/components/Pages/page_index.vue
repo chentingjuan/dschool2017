@@ -9,6 +9,7 @@
     .left
     .line(:class="nowSection")
       .d.d1
+        img(src="/img/index__heroCir1.svg")
       .d.d2
         img(src="/img/index__heroCir2.svg")
       .d.d3
@@ -93,25 +94,25 @@ export default {
   },
   mounted(){
 
-    var starAnimation = new PIXI.Application(600,600,{antialias: false, transparent: true, resolution: 1})
-    document.querySelector(".d1").appendChild(starAnimation.view);
-    var star1 = new PIXI.Graphics();
-    let cx=starAnimation.renderer.width/2;
-    let cy=starAnimation.renderer.height/2;
-    star1.beginFill(0xFFFFFF);
-    star1.drawCircle(cx,cy,100)
-    star1.endFill();
-    var star2 = new PIXI.Graphics();
-    star2.lineStyle(1, 0xFFFFFF, 0.4);
-    star2.beginFill(0xFFFFFF, 0);
-    star2.drawCircle(cx,cy,200);
-    star2.endFill();
+    // var starAnimation = new PIXI.Application(600,600,{antialias: false, transparent: true, resolution: 1})
+    // document.querySelector(".d1").appendChild(starAnimation.view);
+    // var star1 = new PIXI.Graphics();
+    // let cx=starAnimation.renderer.width/2;
+    // let cy=starAnimation.renderer.height/2;
+    // star1.beginFill(0xFFFFFF);
+    // star1.drawCircle(cx,cy,100)
+    // star1.endFill();
+    // var star2 = new PIXI.Graphics();
+    // star2.lineStyle(1, 0xFFFFFF, 0.4);
+    // star2.beginFill(0xFFFFFF, 0);
+    // star2.drawCircle(cx,cy,200);
+    // star2.endFill();
 
-    let _this = this
-    starAnimation.stage.addChild(star1,star2);
-    starAnimation.ticker.add(function(){
-      star2.scale=_this.scrollTop/1000
-    })
+    // let _this = this
+    // starAnimation.stage.addChild(star1,star2);
+    // starAnimation.ticker.add(function(){
+    //   star2.scale=_this.scrollTop/1000
+    // })
   },
   computed:{
     ...mapState(['scrollTop'])

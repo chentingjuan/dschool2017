@@ -4,7 +4,8 @@
       .container
         .row
           .col-sm-12
-            h1 學院活動
+            //- h1 學院活動
+            img.coverGraphic(src="/img/hero_activity_cover.svg")
             
         .row
           .col-sm-12

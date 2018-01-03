@@ -1,6 +1,6 @@
-nav
-  padding: 50px
 .nav.navbar-nav
+  padding-top: 10px
+  padding-bottom: 10px
   li a
     letter-spacing: 1px
     &:before
@@ -32,21 +32,6 @@ nav
     // background-color: #fafafa
     // background-color: $colorOrange
     // color: white
-.navbar-brand
-  position: relative
-  top: 15px
-  img
-    margin-right: 10px
-    display: inline-block
-    height: 25px
-    position: absolute
-    left: 0
-    top: 0
-    &.orange
-    
-  &:hover
-    img
-      height: 30px
 
 nav.navbar.navbar-default
   transition: 0.5s
@@ -56,20 +41,39 @@ nav.navbar.navbar-default
   // padding-bottom: 5px
   padding-top: 10px
   padding-bottom: 10px
+
+  .navbar-toggle
+    border: none
+    // margin: 0
+    .icon-bar
+      background-color: white
+      height: 4px
+      margin-top: 5px
+
   .logowraper
     position: relative
 
-  img
-    height: 40px
-    margin-top: -10px
-    transition: 0.5s
+  .navbar-header
+    margin-left: 50px 
+    margin-top: 10px
+    position: relative
     +trans
-    &.black
-      position: absolute
-      transition: 0.5s
-      opacity: 1
-      top: 0
-      left: 0
+    img
+      // margin-right: 10px
+      height: 50px
+      
+      +trans
+      &.orange
+        position: absolute
+        left: 0
+        top: 0
+    +rwd_sm
+      margin-left: 10px
+      .icon-bar
+        background-color: $colorBlue
+    // margin-top: 50px
+
+
   .navbar-header,.navbar-nav
     transition: 0.5s
     a
@@ -119,15 +123,12 @@ nav.navbar.navbar-default
       padding-top: 15px
       padding-bottom: 15px
       box-shadow: 0px 0px 20px transparent
-      img
-        height: 50px
-        margin-top: -10px
-        &.black
-          opacity: 0
       .navbar-brand
+        height: 50px
         img
           &.orange
             opacity: 0
+            top: 10px
       .navbar-collapse.collapse.in
         border-top-color: transparent
         position: relative
