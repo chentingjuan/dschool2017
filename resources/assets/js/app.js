@@ -25,6 +25,8 @@ var softScroll=true
 import soft_scroll from './plugins/soft_scroll'
 softScroll && soft_scroll.init()
 
+import svginline from "./components/svg_inline.vue"
+Vue.component("svginline",svginline)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

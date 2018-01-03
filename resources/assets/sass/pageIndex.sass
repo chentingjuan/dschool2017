@@ -4,6 +4,9 @@
     opacity: 0
     transform: scale(0)
     transition-delay: transform 0.5s
+    &:hover
+      img
+        transform: scale(1.2)
 
 @keyframes show
   0%
@@ -29,6 +32,21 @@
       width: 100%
       max-width: 500px    
       margin: 40px
+    .titularBanner
+      transform: translateX(80px) rotate(90deg) 
+      margin-left: 50px
+      color: white
+      transform-origin: left top
+      border-bottom: 1px solid white
+      padding-bottom: 5px
+      width: 200px
+      // display: inline-block
+      .main
+        font-size: 25px
+      .secondary
+        font-size: 17px
+
+    // 左側科度
     .line
       top: 50%
       width: 100%
@@ -40,7 +58,7 @@
       justify-content: center
       align-items: center
       height: 1px
-      padding-left: 100px
+      padding-left: 0px
       animation: show 1s both
       transition: 2s
       &.first
@@ -61,13 +79,14 @@
       .d
         width: 30vmin
         max-width: 220px
-        margin-left: -50px
+        margin-left: -100px
         opacity: 0
         transition: 0.5s
         
         animation: showLeft 0.8s both
         &.d1
           margin-right: 200px
+          margin-left: -10px
         @for $i from 1 through 5
           &:nth-child(#{$i})
             // width: #{$i*100}px
@@ -75,13 +94,16 @@
             animation-delay: #{$i*0.4}s
             animation-duration: #{$i*0.4+0.5}s 
     .dots
-      +size(200px,120px)
-      background-image: radial-gradient(white 0%,white 25%,transparent 25%)
+      +size(250px,150px)
+      background-image: radial-gradient(white 0%,white 20%,transparent 20%)
       // background-color: white
-      background-size: 12px 12px
+      background-size: 10px 10px
       position: absolute
       right: 100px
       bottom: 40px
+      &:hover
+        background-image: radial-gradient($colorOrange 0%,$colorOrange 25%,transparent 25%)
+
     
     .ruler
       position: absolute

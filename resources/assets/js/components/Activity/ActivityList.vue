@@ -18,7 +18,9 @@
               h3.month {{monthSet.time.slice(0,4)+' / '+monthSet.time.slice(4)}}月
               ul
                 li(v-for="activity in monthSet.events")
-                  ActivityInfoRow(:event_id="activity.id", :key="activity.id",title="查看資訊")
+                  ActivityInfoRow(
+                    :event_id="activity.id", 
+                    :key="activity.id",title="查看資訊")
               
 
 </template>

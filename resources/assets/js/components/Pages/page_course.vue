@@ -1,7 +1,7 @@
 <template lang="pug">
 .page.page_course
   section.sectionHero.blue
-    h1 課程
+    h1 學院課程
     //- img.coverGraphic(src="/img/question_cover.svg")
   section.sectionAbout.theme.blue
     .container
@@ -16,7 +16,7 @@
             | <br>我們同時也期盼更多創新創意持續進行，在期末舉辦大型聯合發表會D-Day；推動接續D-Course的延伸計劃D-Plan。讓經驗的累積不受學期的影響，更期許學院課程成為同學人生轉變的契機。
         .col-sm-4
           img(src="/img/earth.svg")
-  section.sectionAbout
+  section.sectionCatas
     .container.theme.blue
       .row
         .col-sm-12

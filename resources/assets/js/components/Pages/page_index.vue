@@ -2,6 +2,11 @@
 .page.pageIndex
   section.sectionHero
     img.logo(src="/img/index__heroTitle.svg")
+
+    .titularBanner
+      .main REACTION
+      .secondary OF CREATIVITY
+    .left
     .line(:class="nowSection")
       .d.d1
       .d.d2
