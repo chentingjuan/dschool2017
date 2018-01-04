@@ -5,8 +5,10 @@
     +size(100%,100vh)
 
   .sectionQuestion
-    padding: 40px 
+    padding: 40px
     padding-bottom: 100px
+    +rwd_sm
+      padding: 20px
     .row-qa
       padding-top: 20px
       padding-bottom: 20px
@@ -46,6 +48,11 @@
       margin-bottom: 50px
       display: flex
       +trans
+      +rwd_sm
+        width: 100%
+        padding: 20px
+        margin-left: -20px
+        margin-right: -20px
 
       @keyframes floating
         0%
@@ -53,21 +60,25 @@
         100%
           transform: translateY(-5px)
       animation: floating 2s infinite alternate
-      &:hover
-        padding: 40px
+      // &:hover
+      //   padding: 40px
 
       &:before
         content: ""
         display: block
         background-color: $colorBlue
-        +size(150px,90px)
+        +size(60px,40px)
         transform: skewX(-40deg) rotate(10deg)
         position: relative
         left: -30px
 
         
     .row  
-      // display: flex
+      display: flex
+      +rwd_sm
+        flex-direction: column
+        .col-answer
+          order: 100
 
     .col-answer
       padding: 20px
@@ -75,9 +86,12 @@
       display: flex
       align-items: center
       justify-content: center
+      +rwd_sm
+        padding: 0
+    +range_width(768px)
     .row:nth-child(2n+1)
       .question
-        left: 50px
+        // left: 50px
         &:before
           position: absolute
           +size(60px,36px)
