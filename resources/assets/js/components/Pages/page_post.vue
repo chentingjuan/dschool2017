@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     trans(content){
-      let result =  content.replace(/\/assets\/image\//g,"http://dschool.ntu.edu.tw/assets/image/")
+      let result =  content.replace(/\/assets\/image\//g,"/dschool_old_assets/")
       result = result.replace(/\<img.*?src=\"(.*?)\".*?\>/,"<img src='$1'>")
       //result = result.replace(/\<img.*?src=\"(.*?)\".*?\>/,"<div class='contentImage' style='background:url($1)'></div>")
       return result

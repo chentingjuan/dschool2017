@@ -21,7 +21,7 @@
         .row
           .col-sm-12
             router-link.news_box.animated.fadeIn(:to="`/news/${spotPost.title}`").row
-              .img(:style="cssbg(spotPost.cover)").col-sm-8
+              .img(:style="cssbg(convert_cover(spotPost.cover))").col-sm-8
               .col-sm-4
                 .infos
                   h4.spottext 焦點消息
@@ -41,7 +41,7 @@
               :style="{opacity: (!post.show && is_admin)?0.6:1}",
               :key="post.title+post.id" )
               router-link.news_box.animated.fadeIn(:to="`/news/${post.title}`")
-                .img.col-sm-12(:style="cssbg(post.cover)")
+                .img.col-sm-12(:style="cssbg(convert_cover(post.cover))")
                 .infos.col-sm-12
                   h4.date {{ post.date }}
                   h3.title {{ post.title }} {{ ((!post.show && is_admin)?"(草稿)":"" ) }}
@@ -62,6 +62,11 @@ export default {
     return {
       // posts: []  
       limit: 10
+    }
+  },
+  methods:{
+    convert_cover(url){
+      return url.replace("http://dschool.ntu.edu.tw/assets/","/dschool_old_assets/")
     }
   },
   computed:{
