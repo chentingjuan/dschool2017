@@ -55,7 +55,7 @@ export default {
         //依照年分跟月份分群
         let result =  _.groupBy(
           this.OrderedList,event=>
-            (new Date(event.time.replace(/-/g, "/") )).getFullYear()*100+(new Date(event.time.replace(/-/g, "/") )).getMonth()
+            (new Date(event.time.replace(/-/g, "/") )).getFullYear()*100+ ((new Date(event.time.replace(/-/g, "/") )).getMonth()+1)
         )
         console.log(result)
 
