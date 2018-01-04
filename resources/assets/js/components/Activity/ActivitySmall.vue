@@ -1,9 +1,9 @@
 <template lang="pug">
   div.page_event_register
     .container.section_hero
-      .cover(
-        v-if="event",
-        :style="{'background-image':'url('+event.cover+')'}")
+      .cover.animated.fadeIn(
+        v-show="event",
+        :style="cssbg(event.cover)")
       .row
         .col-sm-6
         .col-sm-6.panel.hero_panel.align-self-center
@@ -82,6 +82,7 @@
 <script>
 // import axios from 'axios'
 import Vue from 'Vue'
+import {mapState} from 'vuex'
 export default {
   props: [
     "event_id"
@@ -95,27 +96,20 @@ export default {
   },
   mounted(){
     let _this = this
+    this.setEvent( (this.events || []).find(o=>o.id==this.event_id))
     axios.get(`/api/activity/${this.event_id}`).then(res=>{
-      Vue.set(_this,"event",res.data)
-      // _this.event.cover=JSON.parse(_this.event.cover)
-      _this.event.teacher=JSON.parse(_this.event.teacher)
-      _this.event.album=JSON.parse(_this.event.album)
-      _this.event.question=JSON.parse(_this.event.question)
-
-      _this.event.question.forEach((qid,index)=>{
-        axios.get(`/api/question/${qid}`).then(res=>{
-          Vue.set(_this.event.question,index,res.data)
-        });
-      })
+      this.setEvent(res.data)
     })
+    
     axios.get(`/activity/${this.event_id}/status`,{
       activityId: this.event_id
     }).then(res=>{
-      this.event_status=res.data.status
+      this.event_status = res.data.status
       this.event_status_obj = res.data
     })
   },
   computed: {
+    ...mapState(['events']),
     tagname(){
       switch(this.event.type){
         case "event":
@@ -127,6 +121,21 @@ export default {
     }
   },
   methods:{
+    setEvent(event){
+        // _this.event.cover=JSON.parse(_this.event.cover)
+        if (event){
+          Vue.set(this,"event",event)
+          this.event.teacher=JSON.parse(this.event.teacher)
+          this.event.album=JSON.parse(this.event.album)
+          this.event.question=JSON.parse(this.event.question)
+          this.event.question.forEach((qid,index)=>{
+            axios.get(`/api/question/${qid}`).then(res=>{
+              Vue.set(this.event.question,index,res.data)
+            });
+          })
+
+        }
+    },
     registerEvent(){
       if (this.event.question && this.event.question.some(qa=>qa.require && !qa.answer)){
         alert("請填寫報名相關必要資訊！")

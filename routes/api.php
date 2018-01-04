@@ -30,3 +30,5 @@ Route::group([],function(){
     Route::get("activity/{id}","ApiController@getActivityById");
     Route::get("activity/","ApiController@getAllActivities");
 });
+
+Route::get('/color',"ApiController@get_color");

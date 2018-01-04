@@ -60,12 +60,14 @@ $span: 8px
     .cover
       position: absolute
       width: 52%
-      height: 100%
+      // height: 100%
+      height: 100vh
       max-height: 80vh
       left: 0
       background-size: cover
-      top: 50%
+      top: 50vh
       transform: translateY(-50%)
+      transition-delay: opacity 0.5s
       
     .tag
     
@@ -153,6 +155,8 @@ $span: 8px
     padding-top: 50px
     padding-bottom: 50px
     color: white
+    .row
+      margin-bottom: 30px
     .head
       width: 200px
       height: 200px
