@@ -1,7 +1,8 @@
 <template lang="pug">
 .page.page_service
   section.sectionHero.blue
-    h1 服務項目
+    //- h1 服務項目
+    img.coverGraphic(src="/img/hero_service_cover.svg")
     //- img.coverGraphic(src="/img/about_sectionAbout_BigD.png")
   section.sectionAbout.theme.blue
     .container-fluid.theme.white.card
