@@ -48,7 +48,7 @@ export default {
   data(){
     return {
       mouseOnItem: false,
-      is_opened: true,
+      is_opened: false,
       navlist: [
         {
           label: "關於學院",
