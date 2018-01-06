@@ -12,7 +12,7 @@
     transition: 0.5s
 .fadeNowpage-enter-active
   span
-    transition-delay: left 0.5s
+    transition-delay: 5s
 
 .fadeNowpage-enter
   span
@@ -54,6 +54,7 @@
   height: 0
   position: static
   min-height: 0
+  
   &.is_opened
     .mouseCircle
       opacity: 1
@@ -144,7 +145,15 @@
         opacity: 0
         pointer-events: none
     
+  //主要選單
   nav
+    canvas
+      position: absolute
+      left: 0
+      top: 0
+      // filter: blur(8px)
+
+    //big D
     &:before
       content: ''
       display: block
@@ -152,11 +161,11 @@
       left: 50%
       top: 50%
       transform: translate(-50%,-50%) scale(1.2)
-      +size(800px)
+      +size(90vmin)
       border: solid 1px white
       border-radius: 0px 500px 500px 0px
       opacity: 0
-      transition: 0.5s
+      transition: 1s
       
 
     opacity: 0
@@ -199,9 +208,11 @@
       a
         color: white
         position: relative
+        +trans
         &:hover
           text-decoration: none
           color: $colorOrange
+          letter-spacing: 1px
         &:focus
           text-decoration: none
     li.panelUser
@@ -402,7 +413,7 @@ nav.navbar.navbar-default
     &.at_top
       box-shadow: 0px 0px rgba(black,0)
 
-// [class^="route_manage"]
-//   background-color: white
+[class^="route_manage"]
+  background-color: white
 //   padding-top: 60px
 //   min-height: 100vh

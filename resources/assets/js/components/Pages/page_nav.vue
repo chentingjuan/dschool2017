@@ -5,7 +5,7 @@
             :class="{is_opened: is_opened}")
     .icon-bar
     .icon-bar()
-  .questionbtn(@click="is_opened=false")
+  //.questionbtn(@click="is_opened=false")
     router-link(to="/question") ?
   router-link.navbar-brand(to="/")
     div.wrapper
@@ -16,12 +16,13 @@
           .nowpage(v-for="n in [nowPageName]", :key="$route.path")
             span {{nowPageName}}
   nav.theme.blue(:class="{is_opened: is_opened}")
+    .bg
     ul.navlists
       li(v-for="item in navlist", @click="is_opened=!is_opened") 
         router-link(:to="item.to") {{item.label}}
 
       li.panelUser
-        a.dropdown-toggle.name(v-if="user",href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+        a.name(v-if="user",href='#', data-toggle='dropdown', role='button', aria-expanded='false')
           | {{user? user.name: ""}} 
           | {{user && user.admingroup=='root' ? '':'' }}
         ul.userFunc(@click="is_opened=!is_opened")
@@ -43,6 +44,7 @@
 
 <script>
 import {mapState,mapMutations} from 'vuex'
+var PIXI = require('pixi.js');
 export default {
   props: ['reallink'],
   data(){
@@ -85,6 +87,9 @@ export default {
   computed:{
     ...mapState(['user','csrf_token','scrollTop']),
     nowPageName(){
+      if(this.$route.path.indexOf("/activity")!=-1){
+        return "學院活動"
+      }
       switch(this.$route.path){
         case "/about": 
           return "關於我們"
@@ -130,10 +135,16 @@ export default {
     },
   },
   mounted(){
+    var mousePos = {
+      x: 0,
+      y: 0
+    }
     $(window).mousemove(function(evt){
-      console.log(evt)
-      $(".mouseCircle").css("left",evt.pageX)
-      $(".mouseCircle").css("top",evt.pageY)
+      // console.log(evt)
+      mousePos.x = evt.pageX
+      mousePos.y = evt.pageY
+      // $(".mouseCircle").css("left",evt.pageX)
+      // $(".mouseCircle").css("top",evt.pageY)
     })
     let _this=this
     $(window).hover(function(){
@@ -142,6 +153,108 @@ export default {
       _this.mouseOnItem=false
 
     })
+
+
+
+    var ww = window.outerWidth
+    var wh = window.outerHeight
+    var starAnimation = new PIXI.Application(ww,wh,{antialias: false,transparent: true, resolution: 1})
+    this.$el.querySelector(".bg").appendChild(starAnimation.view);
+    // var reg = new PIXI.Graphics()
+    // reg.lineStyle(1, 0xffffff)
+    //    .moveTo(0, 0)
+    //    .lineTo(ww, wh);
+    // starAnimation.stage.addChild(reg)
+
+    var Star = function (){
+      this.position = {
+        x: Math.random()*ww,
+        y: Math.random()*wh
+      }
+      this.v = {
+        x: Math.random()*2-1,
+        y: Math.random()*2-1,
+        ang: (Math.random()*4-2)/360
+      }
+      this.size = Math.random()*70+30
+      this.alpha = Math.random()*0.15
+      this.blurseed = Math.random()/10
+      this.updatePosition = function(){
+        this.position.x += this.v.x 
+        this.position.y += this.v.y 
+        
+        if (this.position.x>ww+this.size){
+          this.position.x=-this.size
+          
+        }
+        if (this.position.y>wh+this.size){
+          this.position.y=-this.size
+        }
+        if (this.position.x<0-this.size){
+          this.position.x=ww+this.size
+        }
+        if (this.position.y<0-this.size){
+          this.position.y=wh+this.size
+        }
+        this.el.position.x = this.position.x
+        this.el.position.y = this.position.y
+        this.el.rotation += this.v.ang
+        this.el.alpha = this.alpha
+        
+        //blur
+        // this.el.filters[0].blur=10+4*Math.cos(starAnimation.ticker.lastTime/(500+300*this.blurseed)+this.blurseed)
+      }
+      this.el = null
+      this.init = function(){
+        let star1 = new PIXI.Graphics()
+        let size = this.size
+
+        var blurFilter1 = new PIXI.filters.BlurFilter();
+        star1.beginFill(0xFFFFFF);
+        
+        let type = Math.ceil(Math.random()*10)
+        if (type<6){
+          star1.drawCircle(0,0,size/2)
+        }else{
+          star1.drawRect(-size/2,-size/2,size,size)
+        }
+        // }else if (type<6){
+        //   star1.drawCircle(this.position.x,this.position.y,size/2,size/2)
+        
+        star1.endFill();
+
+        blurFilter1.blur=Math.random()*10+2
+        star1.alpha/=(blurFilter1.blur/2)
+        star1.filters = [blurFilter1]
+        // star1.anchor.set(0.5)
+        this.el = star1
+        
+      }
+    }
+    console.log(Star)
+    var stars = Array.from({length: 40},function(){
+      var st =  new Star()
+      console.log(st)
+      st.init()
+      starAnimation.stage.addChild(st.el);
+      return st
+    })
+
+    starAnimation.ticker.add(function(){
+      
+      let mousePosition = mousePos
+      stars.forEach((star,index)=>{
+        star.position.x+= (mousePosition.x-star.position.x)*0.001
+        star.position.y+= (mousePosition.y-star.position.y)*0.001
+        star.updatePosition()
+        
+      })
+      // var mousePosition = starAnimation.renderer.plugins.interaction.mouse.global;
+      // console.log(mousePosition)
+      // stars[0].el.position.x=mousePosition.x
+      // stars[0].el.position.y=mousePosition.y
+    })
+
   }
 }
 </script>
