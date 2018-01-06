@@ -42,6 +42,8 @@ Route::group([],function(){
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/implement', 'HomeController@index');
 
+Route::get('/nav', 'PublicController@Spa');
+
 Route::get('/service', 'PublicController@Spa');
 Route::get('/about', 'PublicController@Spa');
 Route::get('/question', 'PublicController@Spa');

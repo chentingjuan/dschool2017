@@ -1,11 +1,13 @@
 <template lang="pug">
   .page.pageActivityList
     section.sectionHero.blue
+      img.coverGraphic(src="/img/hero_activity_cover.svg")
+            
+    section.sectionList.theme.blue
       .container
         .row
           .col-sm-12
             //- h1 學院活動
-            img.coverGraphic(src="/img/hero_activity_cover.svg")
             
         .row
           .col-sm-12

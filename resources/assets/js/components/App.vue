@@ -2,7 +2,8 @@
 div(:class="app_class")
   transition(name="fade")
     page_loading(v-if="loading")
-  Navbar
+  //Navbar
+  page_nav
   .page_area
   transition(name="fade" mode="out-in")
     router-view(:key="$route.path")
@@ -16,9 +17,11 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import page_loading from './pages/page_loading'
 import {mapState,mapMutations} from 'vuex'
+import page_nav from "../components/Pages/page_nav.vue"
+
 export default {
   components: {
-    Navbar,Footer,page_loading
+    Navbar,Footer,page_loading,page_nav
   },
   computed: {
     ...mapState(['loading']),

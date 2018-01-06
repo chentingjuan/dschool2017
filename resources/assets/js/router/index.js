@@ -59,6 +59,7 @@ import page_course from "../components/Pages/page_course.vue"
 import page_post from "../components/Pages/page_post.vue"
 import page_service from "../components/Pages/page_service.vue"
 import page_about from "../components/Pages/page_about.vue"
+import page_nav from "../components/Pages/page_nav.vue"
 import page_question from "../components/Pages/page_question.vue"
 import page_equipment from "../components/Equipment/EquipmentList.vue"
 
@@ -71,6 +72,7 @@ import manage_equipment_list from "../components/manage/EquipmentRecordList.vue"
 const routes = [
   { path: '/style', component: page_style },
 
+  { path: '/nav', component: page_nav },
 
   { path: '/', component: page_index },
   { path: '/service', component: page_service },

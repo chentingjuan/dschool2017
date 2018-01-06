@@ -1,17 +1,18 @@
 <template lang="pug">
-  .container
-    .row
-      .col-sm-12
-        ol.breadcrumb
-          li.breadcrumb-item 
-            router-link(to="/activity") 使用者
-        .panel.panel-default(v-if="UserList")
-          .panel-heading
-            h2 使用者清單 (共{{UserList.length}}筆資料)
-          .panel-body
-            h4
-            vue_lazy_table(:table_data="UserList",
-                     :rows="tableRows")
+  .page.manage
+    .container
+      .row
+        .col-sm-12
+          ol.breadcrumb
+            li.breadcrumb-item 
+              router-link(to="/activity") 使用者
+          .panel.panel-default(v-if="UserList")
+            .panel-heading
+              h2 使用者清單 (共{{UserList.length}}筆資料)
+            .panel-body
+              h4
+              vue_lazy_table(:table_data="UserList",
+                      :rows="tableRows")
 
 </template>
 
