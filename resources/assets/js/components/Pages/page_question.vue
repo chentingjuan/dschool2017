@@ -6,8 +6,8 @@
     section.sectionIntro
       .container
         .row
-          .col-sm-11.col-sm-offset-2.col-md-offset-1.col-lg-offset-0(v-for="(question,qid) in questions",
-                     :class="'q'+qid").theme.white.card
+          .col-sm-11.col-sm-offset-1.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2(v-for="(question,qid) in questions",
+                     :class="'q'+qid").theme.white.card.hover
             h2 {{question.title}}
             p(v-html="question.content")
             br

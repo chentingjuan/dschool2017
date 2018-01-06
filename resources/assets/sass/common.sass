@@ -145,7 +145,11 @@ a
   +trans
   // &:hover
   //   transform: translate(-5px,-5px)
-
+  &.hover
+    box-shadow: 0px 0px $colorOrange 
+    &:hover
+      box-shadow: 10px 10px $colorOrange 
+      transform: translate(-5px,-5px)
 
 .page
   min-height: 100vh
@@ -169,7 +173,7 @@ a
         padding-bottom: 0px
 
       .coverGraphic
-        height: 75vmin
+        height: 65vmin
       &+section
         padding-top: 20px
     
