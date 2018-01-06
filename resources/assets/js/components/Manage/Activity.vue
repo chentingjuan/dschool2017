@@ -86,11 +86,12 @@ export default {
           }
         ],
         tableRows: [
+          "id -> __hide",
           "serial -> 序號",
           "name -> 名字",
           "student_id -> 學號",
-          "department -> 學校/單位",
-          "phone -> 聯絡電話",
+          "department -> 學校單位",
+          "phone -> 電話",
           "email -> 信箱",
           "status -> 狀態",
           "confirm -> 錄取",
@@ -121,6 +122,9 @@ export default {
     },
     computed:{
       ...mapState(['user']),
+      filteredTableRows(){
+        return this.tableRows
+      },
       registUserList(){
         return this.lists.map((d,i)=>{
           let temp={}
