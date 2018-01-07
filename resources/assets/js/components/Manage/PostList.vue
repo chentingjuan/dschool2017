@@ -27,11 +27,15 @@
                                         to="/manage/post/new") + 新增新聞
             .btn.btn-default(v-if="order", @click="order=!order") 新 → 舊
             .btn.btn-default(v-else, @click="order=!order") 舊 → 新
+            
 
           .col-sm-12
             //.monthGroup(v-for="monthSet in chunkedList")
             //h3 {{monthSet.time.slice(0,4)+' '+monthSet.time.slice(4)}}月
-            ul.list-group
+            vue_lazy_table(:table_data="OrderedList",
+                     :rows="tableRows",
+                     :btns="btns")
+            //ul.list-group
               li.list-group-item(v-for="post in OrderedList", style="background-color: transparent")
                 router-link(:to="'/manage/post/'+post.id")
                   h4 {{post.title}} 
@@ -43,18 +47,49 @@
 
 <script>
 import {mapState} from 'vuex'
+import vue_lazy_table from '../Data/vue_lazy_table'
 //import ActivityInfoRow from './ActivityInfoRow'
 import _ from 'lodash'
 export default {
     
     data(){
       return {
-        order: true
+        order: true,
+        tableRows: [
+          "subtitle -> __hide",
+          "description -> __hide",
+          "cover -> __hide",
+          " -> __hide",
+          "tags -> __hide",
+          "link -> __hide",
+          "content -> __hide",
+          "id -> #",
+          "title -> 標題",
+          "authos -> 作者",
+          "cata -> 類別",
+          "date -> 顯示日期",
+          "show -> 顯示",
+          "stick -> 置頂",
+          "created_at -> __hide",
+          "updated_at -> 更新時間"
+        ],
+        btns: [
+          {
+            label: "編輯",
+            action: this.editrow,
+            class: function(){},
+          }
+        ]
       }
     },
     mounted() {
         console.log('Component mounted.')
        
+    },
+    methods: {
+      editrow(row){        
+        this.$router.push("/manage/post/"+row.id)
+      }
     },
     computed:{
       ...mapState(['user','activities','posts']),
@@ -95,7 +130,9 @@ export default {
       }
     },
     components:{
-      //ActivityInfoRow
+     
+      vue_lazy_table
+    
     }
 }
 </script>
