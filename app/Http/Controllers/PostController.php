@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     //
     public function index(){
-        return Post::all();
+        return Post::orderBy("date")->get();
     }
     public function show($id){
         $result = Post::find($id);

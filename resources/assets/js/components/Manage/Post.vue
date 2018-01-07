@@ -40,7 +40,7 @@
                 br
                 br
               .form-group
-                labal.col-sm-3 內別
+                labal.col-sm-3 類別
                 .col-sm-9
                   input.form-control(v-model="post.cata")
                 br
