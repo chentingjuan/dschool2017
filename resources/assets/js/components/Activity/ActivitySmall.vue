@@ -2,7 +2,7 @@
   div.page_event_register
     .container.section_hero
       .cover.animated.fadeIn(
-        v-show="event",
+        v-if="event",
         :style="cssbg(event.cover)")
       .row
         .col-sm-6
@@ -67,6 +67,8 @@
                 textarea.form-control(v-model="qa.answer", v-if="qa.type=='long'", rows="5")
                 select.form-control(v-model="qa.answer", v-if="qa.type=='select'")
                   option(v-for="op in qa.options.split('/')" ,:value="op") {{op}}
+            div.panel_timeout(v-else)
+              img.img-timeout(src="/img/activity_timeout.svg")
 
             br
             div(v-if="get_event_status_translate(event_status).open")
@@ -77,6 +79,7 @@
                 role="button", 
                 @click="cancelEvent",
                 v-if="get_event_status_translate(event_status).registed") 取消報名
+
 </template>
 
 <script>
