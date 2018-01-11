@@ -12,7 +12,7 @@
         h3(v-if="event_id") 編輯活動- {{ strip_tags(event.title) }}
           el-button.pull-right(round type="danger" @click="deleteActivity") 刪除活動
           el-button.pull-right(round type="primary" @click="updateActivity") 儲存更新
-          router-link(:to="`/event/${event_id}`")
+          router-link(:to="`/activity/${event_id}`")
             el-button.pull-right(round) 前往頁面
         h3(v-else) 新增活動- {{ strip_tags(event.title) }}
           el-button.pull-right(round type="primary" @click="updateActivity") 儲存更新
