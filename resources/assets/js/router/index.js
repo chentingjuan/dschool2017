@@ -104,21 +104,23 @@ const router = new VueRouter({
   routes,
   base: "/",
   mode: "history",
-  scrollBehavior(to, from, savedPosition) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (savedPosition) {
-          resolve(savedPosition)
-        } else {
-          resolve({ x: 0, y: 0 })
-        }
-      }, 500)
-    })
+  // scrollBehavior(to, from, savedPosition) {
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       if (savedPosition) {
+  //         resolve(savedPosition)
+  //       } else {
+  //         resolve({ x: 0, y: 0 })
+  //       }
+  //     }, 500)
+  //   })
     
-  }
+  // }
 })
 
 import store from "../store"
+
+var savePositions={}
 
 //跳轉前設定切換標題與跳頁
 router.beforeEach((to, from, next) => {
@@ -127,6 +129,21 @@ router.beforeEach((to, from, next) => {
   // if (to.path==from.path){
   //   waittime=50;
   // }
+  // if (savePositions[to.path]) {
+  //   setTimeout(function () {
+  //     // $("html, body").animate({ scrollTop: savePositions[next.path] }, 0);
+  //     window.scrollTo(0, savePositions[next.path] )
+  //   }, 500)
+  // } else {
+  //   setTimeout(function () {
+  //     // $("html, body").animate({ scrollTop: savePositions[next.path] }, 0);
+  //     window.scrollTo(0,0)
+  //   }, 500)
+
+  // }
+  savePositions[from.path] = $(window).scrollTop()
+
+
   if (to.path=="/about" && to.hash=="#section_about_log"){
 
     // setTimeout(function(){
@@ -146,6 +163,21 @@ router.afterEach((route) => {
   if (window.ga){
     ga('send', 'pageview',route.path);
   }
+  if (savePositions[route.path]) {
+    setTimeout(function () {
+      // window.scrollTo(0, savePositions[route.path])
+      console.log("Scroll To Saved Path:" + savePositions[route.path])
+      $("html, body").animate({ scrollTop:  savePositions[route.path] }, 50);
+    },600)
+  } else {
+    setTimeout(function () {
+      // window.scrollTo(0, savePositions[route.path])
+      console.log("Scroll To 0")
+      $("html, body").animate({ scrollTop:  0 }, 50);
+    }, 600)
+
+  }
+
   
 });
 

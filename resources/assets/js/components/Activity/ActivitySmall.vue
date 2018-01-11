@@ -92,7 +92,7 @@ export default {
   ],
   data() {
     return {
-      event: null,
+      event: (this.events || []).find(o=>o.id==this.event_id),
       event_status: "need login",
       event_status_obj: null
     }

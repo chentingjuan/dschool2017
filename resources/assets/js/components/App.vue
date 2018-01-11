@@ -4,9 +4,9 @@ div(:class="app_class")
     page_loading(v-if="loading")
   //Navbar
   page_nav
-  .page_area
-  transition(name="fade" mode="out-in")
-    router-view(:key="$route.path")
+  .pages_area
+    transition(name="page" mode="out-in")
+      router-view(:key="$route.path")
   SectionFooter(v-show="$route.path!='/'")
     //- section_footer
 </template>
