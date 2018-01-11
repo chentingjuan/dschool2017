@@ -64,7 +64,7 @@
               span.num 1
               span 登記
             p 於開放時間持證件至卓越大樓405管理櫃台，登記使用設備、材料、空間，及時間。
-            .btn.white.outline 登記使用
+            //.btn.white.outline 登記使用
           
           .col-sm-3.col-progress
             img.img-progress(src="/img/implement_progress_2.svg")
@@ -72,7 +72,7 @@
               span.num 2
               span 驗證
             p 經管理人員確認身分符合且確實了解設備操作方式後，繳交證件即可使用空間及設備。
-            .btn.white.outline 申請驗證
+            //.btn.white.outline 申請驗證
           
           .col-sm-3.col-progress
             img.img-progress(src="/img/implement_progress_3.svg")
@@ -88,7 +88,7 @@
               span 檢查
             p 至管理櫃台請管理人員檢查確認，確認無誤後登記取回證件。
 
-    section.sectionDevices.theme.white
+    //section.sectionDevices.theme.white
       .container
         .row
           .col-sm-12

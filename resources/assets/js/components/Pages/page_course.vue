@@ -41,13 +41,13 @@
             .col-sm-9
               h3 {{ ab.label }}
               p {{ ab.description }}
-  section.sectionCurrent
+  //section.sectionCurrent
     .container.theme.blue
       .row
         .col-sm-12 
           h2 當期課程列表
           hr
-  section.sectionWish
+  //section.sectionWish
     .container.theme.blue
       .row
         .col-sm-12 
