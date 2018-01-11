@@ -7,6 +7,8 @@
           img(src="/img/index__pageLogoOrange.svg", width="80px")
           h3 台大創新設計學院
           h4 D-School@NTU
+          a(href="https://www.facebook.com/ntudschool/" target="_blank")
+            i.fa.fa-facebook-square
         .col-sm-9
           ul
             li 地址 Address:          10087 台北市中正區思源街18號卓越研究大樓四樓

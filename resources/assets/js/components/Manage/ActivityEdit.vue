@@ -25,8 +25,12 @@
                           :label="p.label",
                           :name="p.value")
           el-form(v-if="panel=='detail'", label-width="100px")
-            el-form-item(label="描述")
+            el-form-item(label="短描述")
               VueEditor.ve(:id ="'description'", v-model="event.description",
+                :useCustomImageHandler="true",
+                @imageAdded="handleImageAdded"  )
+            el-form-item(label="詳細資訊")
+              VueEditor.ve(:id ="'content'", v-model="event.content",
                 :useCustomImageHandler="true",
                 @imageAdded="handleImageAdded"  )
             el-form-item(label="註冊資訊")

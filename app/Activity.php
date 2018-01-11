@@ -17,7 +17,7 @@ class Activity extends Model
     * @var array
     */
     protected $fillable = [
-       'type','title','place','description','register_info','album','time','open_time','close_time','time_detail','cover','teacher','question','mailcontent','end_response_date'
+       'type','title','place','description','content','register_info','album','time','open_time','close_time','time_detail','cover','teacher','question','mailcontent','end_response_date'
     ];
 
 

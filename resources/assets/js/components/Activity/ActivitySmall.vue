@@ -27,7 +27,7 @@
             .col-sm-6
               h2 活動介紹
               hr
-              div(v-html="event.description")
+              div(v-html="event.content || event.description")
 
     .row.section_album
       ul.album
@@ -114,13 +114,16 @@ export default {
   computed: {
     ...mapState(['events']),
     tagname(){
-      switch(this.event.type){
-        case "event":
-          return "學院活動"
-        case "workshop":
-          return "工作坊"
+      if (this.event){
+        switch(this.event.type){
+          case "event":
+            return "學院活動"
+          case "workshop":
+            return "工作坊"
+        }
+        return "學院活動"
+
       }
-      return "學院活動"
     }
   },
   methods:{

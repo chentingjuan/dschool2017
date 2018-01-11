@@ -7,21 +7,21 @@ div(:class="app_class")
   .page_area
   transition(name="fade" mode="out-in")
     router-view(:key="$route.path")
-  Footer(v-show="$route.path!='/'")
+  SectionFooter(v-show="$route.path!='/'")
     //- section_footer
 </template>
 
 
 <script>
 import Navbar from './Navbar'
-import Footer from './Footer'
+import SectionFooter from './Footer'
 import page_loading from './pages/page_loading'
 import {mapState,mapMutations} from 'vuex'
 import page_nav from "../components/Pages/page_nav.vue"
 
 export default {
   components: {
-    Navbar,Footer,page_loading,page_nav
+    Navbar,SectionFooter,page_loading,page_nav
   },
   computed: {
     ...mapState(['loading']),
