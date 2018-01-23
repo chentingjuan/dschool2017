@@ -45,7 +45,7 @@
           el-form-item(label="照片")
             el-input(v-model="member.cover", placeholder="照片網址")
               default_pic_selector(@select_pic="(obj)=>{member.cover=obj.url}", slot="append")
-            div.cover(:style="cssbg(member.cover)", style="width: 80px;height: 80px;")
+            div.cover(:style="cssbg(member.cover)", style="width: 80px;height: 80px;background-size: cover;")
           el-form-item(label="種類")
             el-select(v-model="member.cata")
               el-option(v-for="(mc,cid) in memberCata", :value="mc.id", :label="mc.type")
