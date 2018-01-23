@@ -24,7 +24,10 @@ Route::group(["prefix"=>"manage"],function(){
     Route::get('/user', "ManageController@Spa");
     Route::get('/post', "ManageController@Spa");
     Route::get('/post/{postId}', "ManageController@Spa");
+    Route::get('/member', "ManageController@Spa");
     Route::get('/member/{memberId}', "ManageController@Spa");
+    Route::get('/question', "ManageController@Spa");
+    Route::get('/question/{questionId}', "ManageController@Spa");
     Route::get('/activity/{activityId}', "ManageController@Activity");
     Route::get('/activity/{activityId}/list', "ManageController@Activity");
     Route::get('/activity/{activityId}/edit', "ManageController@ActivityEdit");

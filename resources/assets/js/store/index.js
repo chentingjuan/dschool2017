@@ -8,6 +8,7 @@ const store = new Vuex.Store({
     activities: [],
     posts: [],
     teammembers: [],
+    questions: [],
     scrollTop: 0,
     loading: document.domain != "dschool2017.test",
   },
@@ -30,6 +31,9 @@ const store = new Vuex.Store({
     setTeammembers(state, value) {
       value.forEach(o=>o.cata=parseInt(o.cata))
       state.teammembers = value
+    },
+    setQuestions(state, value) {
+      state.questions = value
     }
   },
   actions: {
@@ -42,10 +46,16 @@ const store = new Vuex.Store({
       context.dispatch("loadEvents")
       context.dispatch("loadPosts")
       context.dispatch("loadTeammembers")
+      context.dispatch("loadQuestions") 
     },
     loadPosts(context){
       axios.get("/api/post").then((res) => {
         context.commit("setPosts", res.data)
+      })
+    },
+    loadQuestions(context) {
+      axios.get("/api/question").then((res) => {
+        context.commit("setQuestions", res.data)
       })
     },
     loadTeammembers(context) {
