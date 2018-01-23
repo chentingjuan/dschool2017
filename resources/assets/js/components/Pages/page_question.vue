@@ -10,14 +10,14 @@
             router-link.btn.btn-primary(v-if="is_admin",
               to="/manage/question") + 管理問題
         .row
-          .col-sm-12(v-for="(question,qid) in questions",
+          .col-sm-12(v-for="(question,qid) in QAinfos",
                      :class="'q'+qid").theme.white.card.hover
             h2 {{question.title}}
             p(v-html="question.content")
             br
       .anchors
         ul
-          li(v-for="(question,qid) in questions",
+          li(v-for="(question,qid) in QAinfos",
              @click="scrollTo('.q'+qid,{pan:-80})") {{question.title}}
 
 
@@ -33,7 +33,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user','questions']),
+    ...mapState(['user','QAinfos']),
     is_admin(){
       return this.user && this.user.admingroup=='root' 
     },

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class QuestionsAdjust extends Migration
+class Qainfos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class QuestionsAdjust extends Migration
      */
     public function up()
     {
-        //
-        Schema::table('questions', function (Blueprint $table) {
-            $table->dropColumn(['uuid','question','answer']);
+        // 
+        Schema::create('qainfos',function($table){
+            $table->increments('id');
+            
             $table->string('title')->nullable();
             $table->text('content')->nullable();
             
+            $table->timestamps();
             
             // $table->string('other',1000)->nullable();
         });
@@ -32,10 +34,6 @@ class QuestionsAdjust extends Migration
     public function down()
     {
         //
-        Schema::table('questions', function (Blueprint $table) {
-            $table->string('uuid')->nullable();
-            $table->dropColumn(['title','content']);
-            // $table->string('other',1000)->nullable();
-        });
+        Schema::dropIfExists("qainfos");
     }
 }

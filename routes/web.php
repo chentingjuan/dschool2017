@@ -79,6 +79,7 @@ Route::group(["prefix"=>"api"],function(){
     
     Route::resource('activity',"ActivityController");
     Route::resource('question',"QuestionController");
+    Route::resource('qainfo',"QAinfoController");
     Route::resource('post',"PostController");
     Route::resource('teammember',"TeammemberController");
     

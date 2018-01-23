@@ -12,7 +12,7 @@
     .col-sm-5
       el-form
         el-input(v-model="key", placeholder="輸入關鍵字搜尋...")
-        el-table(:data="questions", @row-click="handleRowClick", max-height="700")
+        el-table(:data="QAinfos", @row-click="handleRowClick", max-height="700")
           el-table-column(prop="id", label="#", width="40", :sortable="true")
           el-table-column(prop="title", label="問題", :sortable="true")
           //- el-table-column(prop="cover",label="封面", width="120")
@@ -57,20 +57,20 @@ export default {
     }
   },
   computed: {
-    ...mapState(['questions'])
+    ...mapState(['QAinfos'])
   },
   methods: {
     handleDelete(index,row){
 // console.log(row)
       this.$confirm("你確定要刪除嗎？").then(()=>{
-        axios.post(`/api/question/${row.id}`,{
+        axios.post(`/api/qainfo/${row.id}`,{
           _method: 'DELETE',
           // _token: this.csrf_token,
           dataType: 'JSON',
         }).then((res)=>{
   
           this.$message.success("刪除完成")
-          this.$store.dispatch("loadQuestions")
+          this.$store.dispatch("loadQAinfos")
           // this.$router.push('/activity')
         })
 
@@ -81,15 +81,15 @@ export default {
     },
     handleSave(question){
       console.log("儲存")
-      axios.patch("/api/question/"+question.id,question).then(()=>{
+      axios.patch("/api/qainfo/"+question.id,question).then(()=>{
         this.$message.success("儲存成功!")
-        this.$store.dispatch("loadQuestions")
+        this.$store.dispatch("loadQAinfos")
       })
     },
     addNewQuestion(){
-      axios.post(`/api/question/`,{title:"新問題"}).then((res)=>{
+      axios.post(`/api/qainfo/`,{title:"新問題"}).then((res)=>{
         this.question=res.data
-        this.$store.dispatch("loadQuestions")
+        this.$store.dispatch("loadQAinfos")
         // this.$router.push('/activity')
       })
     }
