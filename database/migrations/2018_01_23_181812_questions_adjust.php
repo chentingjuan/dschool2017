@@ -32,7 +32,7 @@ class QuestionsAdjust extends Migration
     public function down()
     {
         //
-        Schema::table('activities', function (Blueprint $table) {
+        Schema::table('questions', function (Blueprint $table) {
             $table->string('uuid')->nullable();
             $table->dropColumn(['title','content']);
             // $table->string('other',1000)->nullable();
