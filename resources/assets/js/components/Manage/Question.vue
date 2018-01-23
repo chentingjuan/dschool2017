@@ -5,7 +5,7 @@
       br
     .col-sm-12
       el-breadcrumb(separator="/")
-        el-breadcrumb-item(to="/manage/ember") 管理問題
+        el-breadcrumb-item(to="/question") 管理問題
         el-breadcrumb-item 問題編輯
       br
   .row

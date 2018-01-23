@@ -6,7 +6,11 @@
     section.sectionIntro
       .container
         .row
-          .col-sm-11.col-sm-offset-1.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2(v-for="(question,qid) in questions",
+          .col-sm-12
+            router-link.btn.btn-primary(v-if="is_admin",
+              to="/manage/question") + 管理問題
+        .row
+          .col-sm-12(v-for="(question,qid) in questions",
                      :class="'q'+qid").theme.white.card.hover
             h2 {{question.title}}
             p(v-html="question.content")
@@ -29,7 +33,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['questions'])
+    ...mapState(['user','questions']),
+    is_admin(){
+      return this.user && this.user.admingroup=='root' 
+    },
   }
 }
 
