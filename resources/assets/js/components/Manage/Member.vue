@@ -3,12 +3,10 @@
   .row
     .col-sm-12
       br
-      br
     .col-sm-12
       el-breadcrumb(separator="/")
         el-breadcrumb-item(to="/manage/ember") 管理成員
         el-breadcrumb-item 成員編輯
-      br
       br
   .row
     .col-sm-6
@@ -35,6 +33,9 @@
           span(v-if="editingId!=-1") {{editingId}}. 
           span(v-if="creating") 新增 - 
           span {{member.name}}
+          div.pull-right
+            el-button(@click="saveMember(member)") 儲存更新
+            el-button(@click="handleDelete(member.id,member)",type="danger") 刪除
         br
         el-form(label-width= "80px")
           el-form-item(label="名字")
@@ -54,9 +55,7 @@
             VueEditor.ve(:id ="'mailcontent'", v-model="member.content",
                   :useCustomImageHandler="true",
                   @imageAdded="handleImageAdded" ,
-                  height="350px" )
-          el-button(@click="saveMember(member)") 儲存更新
-          el-button(@click="handleDelete(member.id,member)",type="danger") 刪除
+                  height="250px" )
       div(v-else) 選擇成員以編輯
         //object-editor(v-model="member", :hidden="['id','order_id','show','created_at','updated_at']")
 </template>
