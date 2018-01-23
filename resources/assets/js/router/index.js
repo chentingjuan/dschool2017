@@ -32,6 +32,9 @@ var ManagePostList = Vue.component('PostList', comPostList)
 import comPostEdit from "../components/Manage/Post.vue"
 var ManagePostEdit = Vue.component('PostEdit', comPostEdit)
 
+import comMemberEdit from "../components/Manage/Member.vue"
+var ManageMemberEdit = Vue.component('MemberEdit', comPostEdit)
+
 
 import comHomepage from "../components/Homepage.vue"
 var Homepage = Vue.component('Homepage',comHomepage)
@@ -89,7 +92,8 @@ const routes = [
   { path: '/manage/post/:post_id', component: ManagePostEdit, props: true },
   { path: '/manage/activity/new', component: comManageActivitEdit},
   { path: '/manage/activity/:event_id/list', component: ManageActivity ,props: true},
-  { path: '/manage/activity/:event_id', component: comManageActivitEdit ,props: true},
+  { path: '/manage/activity/:event_id', component: comManageActivitEdit, props: true },
+  { path: '/manage/member/:id', component: comMemberEdit, props: true },
   { path: '/manage/user', component: comManageUser ,props: true},
   { path: '/manage/equipment/list', component: manage_equipment_list},
 

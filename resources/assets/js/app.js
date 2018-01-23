@@ -41,7 +41,7 @@ Vue.component('Navbar', Navbar);
 import Clients from  './components/passport/Clients.vue'
 import AuthorizedClients from './components/passport/AuthorizedClients.vue'
 import PersonalAccessTokens from './components/passport/PersonalAccessTokens.vue'
-
+import objectEditor from './components/objectEditor.vue'
 
 if (document.domain != "dschool2017.dev") {
     Vue.use(VueAnalytics, {
@@ -65,6 +65,12 @@ Vue.component(
 Vue.component(
     'passport-personal-access-tokens',
     PersonalAccessTokens
+);
+
+
+Vue.component(
+    'object-editor',
+    objectEditor
 );
 
 Vue.mixin({

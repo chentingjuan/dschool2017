@@ -1,8 +1,7 @@
 <template lang='jade'>
   div.default_pic_selector
-    .btn-groups
-      //.btn.btn-default(@click="status.open=!status.open") 選擇預設圖庫 {{status.open?'▲':'▼'}}
-      .btn.btn-default.btn-dropzone(:data-hash="hash") 上傳圖片
+    //.btn.btn-default(@click="status.open=!status.open") 選擇預設圖庫 {{status.open?'▲':'▼'}}
+    .btn-dropzone(:data-hash="hash") 上傳
     .panel(v-show="status.open")
       .panel_body
         div(

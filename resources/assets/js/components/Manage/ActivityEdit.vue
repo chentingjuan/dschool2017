@@ -90,7 +90,7 @@
                       img(:src="teacher.cover" , style="width: 80px")
                     .control(style="width: 100%")
                       el-input(v-model="teacher.cover", placeholder="照片網址")
-                      default_pic_selector(@select_pic="(obj)=>{event.teacher[teacherId].cover=obj.url}")
+                        default_pic_selector(@select_pic="(obj)=>{event.teacher[teacherId].cover=obj.url}", slot="append")
                 
                 .row.form-group
                   .col-sm-2
@@ -296,11 +296,13 @@ export default {
         ...this.dataForSend
       }).then((res)=>{
         // alert("儲存完成！")
-        let obj = {
-          message: "儲存完成！",
-          type: 'info'
-        }
-        this.$refs.simplert.openSimplert(obj)
+
+        this.$message.success("儲存完成")
+        // let obj = {
+        //   message: "儲存完成！",
+        //   type: 'info'
+        // }
+        // this.$refs.simplert.openSimplert(obj)
         // this.event = res.data
         // // this.event.cover=JSON.parse(this.event.cover)
         // this.event.teacher=JSON.parse(this.event.teacher)
@@ -326,13 +328,15 @@ export default {
       this.event.cover=obj.url
     },
     deleteActivity(){
+      
       if (confirm('確認要刪除這個活動嗎？')){
         axios.post(`/api/activity/${this.event.id}`,{
           _method: 'DELETE',
           _token: this.csrf_token,
           dataType: 'JSON',
         }).then((res)=>{
-          alert("刪除完成！")
+          // alert("刪除完成！")
+          this.$message.success("刪除完成")
           this.$router.push('/activity')
         })
       }
@@ -362,6 +366,7 @@ export default {
         }).then((res)=>{
           this.event.question=this.event.question.filter(o=>o.id!=qid)
           this.$forceUpdate();
+          this.$message.success("問題已刪除")
         })
 
       }

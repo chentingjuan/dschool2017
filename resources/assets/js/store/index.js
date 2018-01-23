@@ -28,6 +28,7 @@ const store = new Vuex.Store({
       state.posts = value
     },
     setTeammembers(state, value) {
+      value.forEach(o=>o.cata=parseInt(o.cata))
       state.teammembers = value
     }
   },

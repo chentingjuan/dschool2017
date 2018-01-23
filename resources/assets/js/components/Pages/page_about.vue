@@ -79,6 +79,7 @@
               v-for="member in filtered_teammember")
               .img(:style="cssbg(member.cover)" )
                 .cata(v-if="memberCata[member.cata-1]") {{memberCata[member.cata-1].type}}
+                router-link.edit_btn(v-if="is_admin", :to="`/manage/member/${member.id}`") 編輯
               h3 {{member.name}} 
               h5 {{member.position}} 
                 span(v-if='member.company') ,{{member.company}}
@@ -152,7 +153,10 @@ export default {
    }
   },
   computed:{
-    ...mapState(['teammembers']),
+    ...mapState(['user','posts','scrollTop','teammembers']),
+    is_admin(){
+      return this.user && this.user.admingroup=='root' 
+    },
     filtered_teammember(){
       return this.teammembers
               .filter(o=>o.cata==this.nowCata || !this.nowCata)
