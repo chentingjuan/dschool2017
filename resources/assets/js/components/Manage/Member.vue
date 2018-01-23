@@ -12,7 +12,7 @@
     .col-sm-6
       el-form
         el-input(v-model="key", placeholder="輸入關鍵字搜尋...")
-        el-table(:data="filtered_data", @row-click="handleRowClick", max-height="600")
+        el-table(:data="filtered_data", @row-click="handleRowClick", max-height="700")
           el-table-column(prop="id", label="#", width="40", :sortable="true")
           el-table-column(prop="name", label="姓名", width="80", :sortable="true")
           //- el-table-column(prop="cover",label="封面", width="120")
@@ -45,7 +45,7 @@
           el-form-item(label="照片")
             el-input(v-model="member.cover", placeholder="照片網址")
               default_pic_selector(@select_pic="(obj)=>{member.cover=obj.url}", slot="append")
-            img(:src="member.cover",width="50px")
+            div.cover(:style="cssbg(member.cover)", style="width: 80px;height: 80px;")
           el-form-item(label="種類")
             el-select(v-model="member.cata")
               el-option(v-for="(mc,cid) in memberCata", :value="mc.id", :label="mc.type")
@@ -186,7 +186,5 @@ export default {
 }
 </script>
 
-<style lang="sass">
-// .col-edit
-  // position: fixed
+<style>
 </style>
