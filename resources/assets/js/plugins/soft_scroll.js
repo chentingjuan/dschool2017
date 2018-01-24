@@ -9,19 +9,19 @@ export default {
       var scrollDistance = 50;
 
       $window.on("mousewheel DOMMouseScroll", function (event) {
+        if (!window.softScrollDisable){
+          event.preventDefault();
+          var delta = event.originalEvent.wheelDelta / 40 || -event.originalEvent.detail / 0.5;
+          var scrollTop = $window.scrollTop();
+          var finalScroll = scrollTop - parseInt(delta * scrollDistance);
 
-        event.preventDefault();
-
-        var delta = event.originalEvent.wheelDelta / 40 || -event.originalEvent.detail / 0.5;
-        var scrollTop = $window.scrollTop();
-        var finalScroll = scrollTop - parseInt(delta * scrollDistance);
-
-        TweenMax.to($window, scrollTime, {
-          scrollTo: { y: finalScroll, autoKill: true },
-          ease: Power2.easeOut,
-          overwrite: 10
-        });
-        console.log(finalScroll);
+          TweenMax.to($window, scrollTime, {
+            scrollTo: { y: finalScroll, autoKill: true },
+            ease: Power2.easeOut,
+            overwrite: 10
+          });
+        // console.log(finalScroll);
+        }
       });
     })
   }

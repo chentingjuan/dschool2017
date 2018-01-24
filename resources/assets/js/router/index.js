@@ -136,6 +136,11 @@ var savePositions={}
 //跳轉前設定切換標題與跳頁
 router.beforeEach((to, from, next) => {
   console.log(to);
+  if (to.path.indexOf("/manage")==0){
+    window.softScrollDisable = true
+  } else {
+    window.softScrollDisable = false
+  }
   // var waittime=600;
   // if (to.path==from.path){
   //   waittime=50;
