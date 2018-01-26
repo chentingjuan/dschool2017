@@ -57,9 +57,9 @@
               h4 {{cdata.code}} {{ cdata.type }}
               hr
               p(v-html="cdata.content")
-  section.sectionWish
+  section.sectionWish.theme.blue
     img.cover(src="/img/course_wish.svg")
-    .container.theme.blue.animated.fadeIn
+    .container.animated.fadeIn
       .row
         .col-sm-12 
           h2 許願池
