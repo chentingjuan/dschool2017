@@ -48,7 +48,9 @@
             div.cover(:style="cssbg(member.cover)", style="width: 80px;height: 80px;background-size: cover;")
           el-form-item(label="種類")
             el-select(v-model="member.cata")
-              el-option(v-for="(mc,cid) in memberCata", :value="mc.id", :label="mc.type")
+              el-option(v-for="(mc,cid) in memberCata", 
+                        :value="mc.id", :label="mc.type",
+                        :key="cid")
 
           el-form-item(label="內容")
             //el-input(v-model="member.content",type="textarea",rows="10")
@@ -64,7 +66,6 @@
 import {mapState} from 'vuex'
 import default_pic_selector from '../default_pic_selector.vue'
 import { VueEditor } from 'vue2-editor'
-import axios from 'axios'
 import Vue from 'vue'
 export default {
   data(){

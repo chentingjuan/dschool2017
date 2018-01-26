@@ -29,7 +29,7 @@
           h4 {{cata.code}}系列
           h3 {{cata.title}}
           p(v-html="cata.description")
-  section.sectionAbility
+  //- section.sectionAbility
     .container.theme.white.card
       .row
         .col-sm-12 
@@ -41,29 +41,47 @@
             .col-sm-9
               h3 {{ ab.label }}
               p {{ ab.description }}
-  //section.sectionCurrent
+  section.sectionCurrent
     .container.theme.blue
       .row
         .col-sm-12 
           h2 當期課程列表
           hr
-  //section.sectionWish
-    .container.theme.blue
+      .row
+        .col-sm-12(v-for="cdata in courseData")
+          .row.row-planet.animated.fadeIn
+            .col-sm-4.col-img
+              img(:src="cdata.planetSrc")
+            .col-sm-8.col-info
+              h3 {{cdata.courseName}}
+              h4 {{cdata.code}} {{ cdata.type }}
+              hr
+              p(v-html="cdata.content")
+  section.sectionWish
+    img.cover(src="/img/course_wish.svg")
+    .container.theme.blue.animated.fadeIn
       .row
         .col-sm-12 
           h2 許願池
           hr
       .row
-        .col-sm-12
-          .row
-            .col-sm-12
+        .col-sm-6.col-sm-offset-6
+          h3 你有沒有想學的東西呢？ 對著流星許願吧！
+          .btn.white(@click="wishing=true", v-if="!wishing") 我要許願！
+          transition(name="fade")
+            div(v-if="wishing")
+              textarea(rows=5)
+              .btn.white() 送出願望
 
 </template>
 
 <script>
+import courseData from '../Data/courseDatas.js'
 export default {
   data(){
     return {
+      wishing: false,
+      courseData,
       catas: [
         {
           img: "/img/course_cata_1.svg",

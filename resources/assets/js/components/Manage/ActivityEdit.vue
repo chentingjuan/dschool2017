@@ -23,7 +23,8 @@
           el-tabs(v-model="panel" )
             el-tab-pane(v-for="p in panellist" ,
                           :label="p.label",
-                          :name="p.value")
+                          :name="p.value",
+                          :key="p.value")
           el-form(v-if="panel=='detail'", label-width="100px")
             el-form-item(label="短描述")
               VueEditor.ve(:id ="'description'", v-model="event.description",
@@ -41,7 +42,9 @@
           el-form.panel-body(v-if="panel=='main'" label-width="60px")
             el-form-item(label="類型")
               el-select(v-model="event.type")
-                el-option(v-for="op in activityTypeOptions", :value="op.value" , :label="op.tag")
+                el-option(v-for="op in activityTypeOptions", 
+                          :value="op.value" , :label="op.tag",
+                          :key="op.tag")
             el-form-item(label="標題")
               el-input(v-model="event.title")
             el-form-item(label="地點")
@@ -189,7 +192,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
+
 import default_pic_selector from '../default_pic_selector.vue'
 import { VueEditor } from 'vue2-editor'
 import {mapState} from 'vuex'
