@@ -66,7 +66,8 @@
           hr
       .row
         .col-sm-6.col-sm-offset-6
-          h3 你有沒有想學的東西呢？ 對著流星許願吧！
+          h3 『來不及許願的流星，再怎麼美麗也只能是曾經！』
+          p 我們提供大家永恆的許願池，若有想到任何希望學院開設的課程，都請大膽的投到許願池中，提供的線索（主題、講師、對象、目標等）越詳細越容易實現喔！
           .btn.white(@click="wishing=true", v-if="!wishing") 我要許願！
           transition(name="fade")
             div(v-if="wishing")
