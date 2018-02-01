@@ -3,7 +3,7 @@
     section.sectionHero.theme.blue
       //- h1 常見問題
       img.coverGraphic(src="/img/hero_qa_cover.svg")
-    section.sectionIntro
+    section.sectionQuestions
       .container
         .row
           .col-sm-12
@@ -11,14 +11,16 @@
               to="/manage/question") + 管理問題
         .row
           .col-sm-12(v-for="(question,qid) in QAinfos",
-                     :class="'q'+qid").theme.white.card.hover
+                     :class="'q'+qid",
+                     @click="toggleQuestion(qid)").theme.white.card.hover
             h2 {{question.title}}
-            p(v-html="question.content")
+            p(v-html="question.content", 
+              :class="{hide: !status[qid]}")
             br
       .anchors
         ul
           li(v-for="(question,qid) in QAinfos",
-             @click="scrollTo('.q'+qid,{pan:-80})") {{question.title}}
+             @click="scrollQuestion(qid)") {{question.title}}
 
 
 
@@ -26,10 +28,11 @@
 
 <script>
 import {mapState} from 'vuex'
+import Vue from 'vue'
 export default {
   data(){
     return {
-
+      status: Array.from({length: 100},(v,i)=>false)
     }
   },
   computed: {
@@ -37,6 +40,16 @@ export default {
     is_admin(){
       return this.user && this.user.admingroup=='root' 
     },
+  },
+  methods: {
+    toggleQuestion(qid,value){
+      let nv = value!=undefined?value:!this.status[qid]
+      Vue.set(this.status,qid, nv)
+    },
+    scrollQuestion(qid){
+      this.toggleQuestion(qid,true)
+      this.scrollTo('.q'+qid,{pan:-80})
+    }
   }
 }
 

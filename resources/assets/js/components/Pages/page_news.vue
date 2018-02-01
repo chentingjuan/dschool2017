@@ -78,7 +78,7 @@ export default {
       return this.posts.map(o=>o.cata).filter((d,i,arr)=>arr.indexOf(d)==i)
     },
     chunkedList(){
-      let useList = this.posts.slice().reverse().slice(0,this.limit)
+      let useList = this.posts.slice().reverse().slice(1,this.limit)
       let result = [
                     useList.filter((d,i)=>i%3==0),
                     useList.filter((d,i)=>i%3==1),
