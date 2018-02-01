@@ -23,7 +23,7 @@
       .row
         .col-sm-4.col-section-info
           h3.eng Space
-          h2 租借場地
+          h2 空間介紹
           hr
           .row
             .col-sm-12

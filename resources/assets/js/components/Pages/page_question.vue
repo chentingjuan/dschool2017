@@ -6,14 +6,15 @@
     section.sectionQuestions
       .container
         .row
-          .col-sm-12
+          //- input
+          .col-sm-3
             router-link.btn.btn-primary(v-if="is_admin",
               to="/manage/question") + 管理問題
         .row
           .col-sm-12(v-for="(question,qid) in QAinfos",
                      :class="'q'+qid",
                      @click="toggleQuestion(qid)").theme.white.card.hover
-            h2 {{question.title}}
+            h3 {{question.title}}
             p(v-html="question.content", 
               :class="{hide: !status[qid]}")
             br

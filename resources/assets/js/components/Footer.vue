@@ -11,9 +11,15 @@
             i.fa.fa-facebook-square
         .col-sm-9
           ul
-            li 地址 Address:          10087 台北市中正區思源街18號卓越研究大樓四樓
-            li 電話 Tel:          02-3366-1869
-            li 信箱 Email:          ntudschool@ntu.edu.tw
+            li 
+              span.l 地址
+              span 10087 台北市中正區思源街18號卓越研究大樓四樓
+            li 
+              span.l 電話
+              span 02-3366-1869
+            li 
+              span.l 信箱
+              span ntudschool@ntu.edu.tw
   
 </template>
 

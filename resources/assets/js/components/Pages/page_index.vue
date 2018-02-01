@@ -81,15 +81,15 @@ export default {
   },
   watch: {
     scrollTop(){
-      let wh = $(window).outerHeight()
-      let list = []
-      if (this.scrollTop+wh/2>$(".sectionSecond").offset().top){
-        list.push("second")
-      }
-      if (this.scrollTop+wh/2>$(".sectionFirst").offset().top){
-        list.push("first")
-      }
-      this.nowSection=list
+      // let wh = $(window).outerHeight()
+      // let list = []
+      // if (this.scrollTop+wh/2>$(".sectionSecond").offset().top){
+      //   list.push("second")
+      // }
+      // if (this.scrollTop+wh/2>$(".sectionFirst").offset().top){
+      //   list.push("first")
+      // }
+      // this.nowSection=list
     }
   },
   mounted(){

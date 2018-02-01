@@ -16,6 +16,7 @@ import schoolData from './dataSchools'
 window.Vue = require('vue');
 import VueAnalytics from 'vue-analytics'
 import VueParallaxJs from 'vue-parallax-js'
+
 Vue.use(VueParallaxJs)
 
 import ElementUI from 'element-ui'

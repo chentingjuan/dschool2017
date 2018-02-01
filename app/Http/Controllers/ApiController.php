@@ -15,6 +15,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 use App\Equipment;
 use App\Equip_rent;
 use App\Equip_rent_record;
+use Mail;
+
 class ApiController extends Controller
 {
     //activity
@@ -133,5 +135,33 @@ class ApiController extends Controller
     }
 
 
+    //許願b
+    public function makeWish(){
+        $mail_title = '台大創新設計學院課程許願';
+        if ( Auth::check() ){
+            $user = Auth::user();
+            // Mail::send('emails.activity.confirm.'.$action , $data , function($message) use ($activity,$user,$mail_title ){
+            //     $message
+            //         ->from('ntudschool@ntu.edu.tw','Dschool台大創新設計學院')
+            //         // ->bcc('frank890417@gmail.com', '吳哲宇')
+            //         ->to($user->email,$user->name)->subject($mail_title);
+            // });
+            // dd($user);
+            // if ($user->admingroup=="root"){
+            // $equip_record= 
+            //     Equip_rent::where("cancel",false)
+            //         ->with("equip_rent_record")->with('user')->get();
+            // // return $equip_record;
+            // foreach ($equip_record as $eqrecord){
+            //     foreach ($eqrecord["equip_rent_record"] as $equip_rr){
+            //         $equip_rr["equipment"]=Equipment::find($equip_rr["id"]);
+            //     }
+            // }
+            // }
+            // return $equip_record;
+        }else{
+            return [];
+        }
 
+    }
 }

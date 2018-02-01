@@ -8,7 +8,9 @@
         .row
           .col-sm-12
             //- h1 學院活動
-            
+        .row
+          .col-sm-12
+            #calendar
         .row
           .col-sm-12
             router-link.btn.btn-primary.pull-right(v-if="user && user.admingroup=='root'",
@@ -31,6 +33,7 @@
 <script>
 import {mapState} from 'vuex'
 import ActivityInfoRow from './ActivityInfoRow'
+// import { FullCalendar } from 'vue-full-calendar'
 import _ from 'lodash'
 export default {
     data(){
@@ -40,7 +43,8 @@ export default {
     },
     mounted() {
         console.log('Component mounted.')
-       
+       $('#calendar').fullCalendar({
+       })
     },
     computed:{
       ...mapState(['user','activities']),
@@ -81,7 +85,19 @@ export default {
       }
     },
     components:{
-      ActivityInfoRow
+      ActivityInfoRow,
+      // FullCalendar
+    },
+    watch:{
+      activities(){
+        $('#calendar').fullCalendar('renderEvent', {
+            id: 'eventGroup1',
+            title: '活動1',
+            start: moment().add(3, 'days').format('YYYY-MM-DD'),
+            textColor: 'black',
+            color: 'beige'
+        });
+      }
     }
 }
 </script>
