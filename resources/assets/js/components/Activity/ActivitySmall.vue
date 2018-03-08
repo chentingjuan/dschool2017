@@ -3,7 +3,7 @@
     .container.section_hero
       .cover.animated.fadeIn(
         v-if="event",
-        :style="cssbg(event.cover)")
+        :style="cssbg(event.maincover || event.cover)")
       .row
         .col-sm-6
         .col-sm-6.panel.hero_panel.align-self-center

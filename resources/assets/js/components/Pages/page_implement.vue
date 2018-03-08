@@ -4,7 +4,7 @@
       //- h1 實作中心 D-SCHOOL
       img.coverGraphic(src="/img/hero_maker_cover.svg")
       .status
-        .text 寒假暫不開放
+        .text 開放時間：週一 / 週二 / 週四
         br
         ul.available_time
           li(v-for="d in day_status",
@@ -44,7 +44,7 @@
                 p 台大全體師生(創新設計學院師生優先)，<br>及向創新設計學院申請通過者。
                 br
                 h3 開放時間
-                p 週一 / 週四 / 週五，09:00-16:30。<br>若與例假日、學院課程活動使用衝突則不開放使用。<br>（請參閱學院活動行事曆。）<br>寒暑假不開放，D-Plan專案申請者除外。
+                p 週一 / 週二 / 週四，09:00-16:30。<br>若與例假日、學院課程活動使用衝突則不開放使用。<br>（請參閱學院活動行事曆。）<br>寒暑假不開放，D-Plan專案申請者除外。
 
               .col-sm-8.card.theme.white
                 h3 使用規則
@@ -137,16 +137,16 @@ export default {
       day_status: [
         {
           label: "ㄧ",
-          open: false
+          open: true
         }, {
           label: "二",
-          open: false
+          open: true
         }, {
           label: "三",
           open: false
         }, {
           label: "四",
-          open: false
+          open: true
         }, {
           label: "五",
           open: false

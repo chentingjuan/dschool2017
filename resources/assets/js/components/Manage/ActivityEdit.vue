@@ -61,6 +61,10 @@
               el-input(v-model="event.cover")
               img(:src="event.cover", style="width: 100%;max-width: 100px")
               default_pic_selector(@select_pic="select_pic")
+            el-form-item(label="主圖")
+              el-input(v-model="event.maincover")
+              img(:src="event.maincover", style="width: 100%;max-width: 100px")
+              default_pic_selector(@select_pic="(obj)=>{event.maincover=obj.url}")
             el-form-item(label="報名")
               el-date-picker(
                 v-model="event.open_time",
@@ -386,6 +390,13 @@ export default {
 }
 </script>
 
-<style lang="sass?indentedSyntax"  scoped>
-
+<style lang="sass?indentedSyntax">
+.btn-dropzone
+  border: solid 1px #aaa
+  border-radius: 5px
+  cursor: pointer
+  display: inline-block
+  padding: 5px 10px
+  &:hover
+    background-color: #ddd
 </style>
