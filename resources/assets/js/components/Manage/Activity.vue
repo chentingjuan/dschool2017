@@ -20,7 +20,12 @@
             simplert(:useRadius="true"
                 :useIcon="false"
                 ref="simplert")
+            span 
+              span &npsb;&npsb;&npsb;
+              span 顯示問題回答
+              el-switch(v-model="showQ")
             h4 {{confirm_status}}
+            
           .panel-body
             vue_lazy_table(:table_data="registUserList",
                      :rows="tableRows",
@@ -44,6 +49,7 @@ export default {
         lists: [],
         event: {
         },
+        showQ: true,
         event_btns: [
           {
             label: "錄取",
@@ -134,7 +140,7 @@ export default {
           console.log(formdata)
           let confirm_type_obj= this.get_event_confirm_type_translate(d.confirm_type)
           let confirm_type_text= `${confirm_type_obj.label+confirm_type_obj.symbol}`
-          return {
+          let result= {
             record_id: d.id,
             serial: d.serial ,
             name: d.user.name,
@@ -146,8 +152,13 @@ export default {
             confirm: confirm_type_text,
             confirm_o: d.confirm_type,
             time: d.created_at,
-            ...temp
+            
           }
+          if (this.showQ){
+            Object.assign(result,temp)
+          }
+
+          return result
         })
       },
       confirm_status(){
