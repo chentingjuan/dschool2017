@@ -40,6 +40,8 @@
         el-form(label-width= "80px")
           el-form-item(label="名字")
             el-input(v-model="member.name")
+          el-form-item(label="院所/公司")
+            el-input(v-model="member.company", width="200")
           el-form-item(label="職位")
             el-input(v-model="member.position", width="200")
           el-form-item(label="照片")
