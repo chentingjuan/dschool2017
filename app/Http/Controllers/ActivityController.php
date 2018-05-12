@@ -13,6 +13,10 @@ use Auth;
 class ActivityController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['index','show']]);
+    }
     
     public function index(){
         // dd("test");
@@ -25,18 +29,17 @@ class ActivityController extends Controller
     }
 
     public function show($id){
-        $activitydaa = Activity::find($id);
+        $activitydata = Activity::find($id);
+        $activitydata['regist_count']  = $activitydata->regist_list->count();
         
-        return view('layouts/app_spa');
+        return $activitydata;
     }
 
     //
     public function getActivityStatus($activityId){
         // return Auth::user();
-        if ( Auth::check() ){
-            $user = Auth::user();
-            // return $user;
-            // Activity::find($activityId)
+        $user = $this->guard()->user();
+        if ( $user ){
 
             $existed_record = RegistRecord::where('user_id',$user->id)->where('activity_id',$activityId)->where("cancel",false)->first();
             if ($existed_record){
@@ -108,8 +111,8 @@ class ActivityController extends Controller
     public function registActivity($activityId){
          $inputs = Input::all();
 
-        if ( Auth::check() ){
-            $user = Auth::user();
+        $user = $this->guard()->user();
+        if ( $user ){
             // return $user;
             // Activity::find($activityId)
             $activity=Activity::find($activityId);
@@ -220,8 +223,8 @@ class ActivityController extends Controller
     public function ConfirmRecord($recordId,$action){
         // get record from activityregister user_uuid = current user uuid
         
-        if ( Auth::check() ){
-            $user = Auth::user();
+        $user = $this->guard()->user();
+        if ( $user ){
             if ($user->admingroup=="root"){
                 $existed_record = RegistRecord::where('id',$recordId)->where("cancel",false)->first();
                 $activity = $existed_record->activity;
@@ -362,4 +365,18 @@ class ActivityController extends Controller
         
     }
     // public function 
+
+
+
+
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\Guard
+     */
+    public function guard()
+    {
+        return Auth::guard();
+    }
 }

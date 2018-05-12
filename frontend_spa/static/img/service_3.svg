@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280px" height="221px" viewBox="0 0 280 221" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>service_3</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="service_3">
+            <circle id="Oval-8" fill="#FF8E76" cx="93.5" cy="69.5" r="4.5"></circle>
+            <circle id="Oval-8-Copy" fill="#FF8E76" cx="245.5" cy="69.5" r="4.5"></circle>
+            <rect id="Rectangle-18" fill="#081248" x="92" y="32" width="2" height="23"></rect>
+            <rect id="Rectangle-18-Copy" fill="#081248" x="244" y="32" width="2" height="23"></rect>
+            <rect id="Rectangle-17" fill="#081248" x="161" y="112" width="9" height="59"></rect>
+            <g id="Group-22" transform="translate(3.000000, 90.000000)">
+                <g id="Group-23" transform="translate(144.100000, 91.586207)" fill="#081248">
+                    <polygon id="Rectangle-16-Copy" points="0 0 130.9 0 130.9 36.4137931 65.45 36.4137931 0 36.4137931"></polygon>
+                </g>
+                <g id="Group-23-Copy-2" transform="translate(73.700000, 90.482759)" fill="#081248">
+                    <polygon id="Rectangle-16-Copy" points="0 0 55 0 55 13.2413793 27.5 13.2413793 0 13.2413793"></polygon>
+                    <rect id="Rectangle-16-Copy-2" x="0" y="9.93103448" width="7.7" height="13.2413793"></rect>
+                    <rect id="Rectangle-16-Copy-3" x="47.3" y="9.93103448" width="7.7" height="13.2413793"></rect>
+                </g>
+                <g id="Group-23-Copy" fill="#081248">
+                    <polygon id="Rectangle-16-Copy" points="0 0 66 0 66 84.9655172 33 84.9655172 0 84.9655172"></polygon>
+                    <rect id="Rectangle-16-Copy-2" x="0" y="82.7586207" width="4.4" height="44.137931"></rect>
+                    <rect id="Rectangle-16-Copy-3" x="61.6" y="82.7586207" width="4.4" height="44.137931"></rect>
+                </g>
+                <rect id="Rectangle-38" fill="#FFFFFF" x="179.3" y="60.6896552" width="26.4" height="25.3793103"></rect>
+                <rect id="Rectangle-38-Copy-2" fill="#FFFFFF" x="210.1" y="72.8275862" width="14.3" height="13.2413793"></rect>
+                <rect id="Rectangle-38-Copy-4" fill="#FFFFFF" x="228.8" y="72.8275862" width="14.3" height="13.2413793"></rect>
+                <rect id="Rectangle-38-Copy-5" fill="#FFFFFF" opacity="0.229999989" x="247.5" y="73.9310345" width="14.3" height="13.2413793"></rect>
+            </g>
+            <path d="M67,9.58695652 L93.9541779,32.4130435 C108.329739,22.1956522 134.565139,17.0869565 172.660377,17.0869565 C210.755615,17.0869565 235.014376,23.3913043 245.436658,36 L267,6 L67,9.58695652 Z" id="Path-94" fill="#FFFFFF"></path>
+            <polygon id="Path-95" fill="#FFFFFF" points="92.9957586 54 82 69 104 69"></polygon>
+            <polygon id="Path-95-Copy" fill="#FFFFFF" points="244.995759 54 234 69 256 69"></polygon>
+            <rect id="Rectangle-16" fill="#FFFFFF" x="38" y="94" width="21" height="25"></rect>
+            <rect id="Rectangle-16-Copy-4" fill="#FF6C4D" x="10" y="106" width="21" height="25"></rect>
+            <rect id="Rectangle-40" fill="#D8D8D8" x="40" y="100" width="13" height="2"></rect>
+            <rect id="Rectangle-40-Copy" fill="#D8D8D8" x="40" y="105" width="13" height="2"></rect>
+            <rect id="Rectangle-40-Copy-2" fill="#D8D8D8" x="40" y="112" width="10" height="2"></rect>
+        </g>
+    </g>
+</svg>

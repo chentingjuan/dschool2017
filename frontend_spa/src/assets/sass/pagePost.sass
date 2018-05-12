@@ -1,0 +1,153 @@
+.page_post
+  .sectionHero
+    @extend .theme.blue
+    // padding-bottom: 0px
+    .row-card
+      border-radius: 10px
+      min-height: 500px
+
+      @extend .theme.white
+      display: flex
+      overflow: hidden
+      box-shadow: 0px 0px 20px rgba(black,0.3), 30px 30px 0px $colorOrange
+      @media screen and (max-width: 600px)
+        flex-direction: column
+        margin-bottom: 100px
+          
+
+    .col-cover
+      padding-left: 0
+      padding-right: 0
+      min-height: 400px
+      background-size: cover
+      background-position: center center
+      // filter: contrast(1.1)
+
+    .col-info
+      padding-left: 0
+      padding: 30px 
+      hr
+        border: none
+        +size(120px,10px)
+        background-color: $colorBlue
+        margin-left: 0
+      h2
+        font-weight: 600
+        line-height: 1.5em
+        font-size: 44px
+      .date
+        margin-bottom: 30px
+
+
+
+
+  .sectionContent
+    padding-top: 0
+    +bxshadow
+    &:before
+      content: ""
+      display: block
+      // +size(100px)
+      background-color: $colorOrange
+
+    background-color: $colorBlue
+    position: relative
+    .container
+      padding: 40px 50px
+      border-radius: 10px
+      z-index: 10
+      position: relative
+      @extend .theme.white
+    .cross
+      position: absolute
+      left: 0px
+      top: 100px
+      &:before,&:after
+        content: ""
+        display: block
+        +size(280px,90px)
+        background-color: $colorOrange
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%,-50%)
+      &:nth-child(2)
+        left: initial
+        top: initial
+        right: 0px 
+        bottom: 100px
+      &:before
+        transform: translate(-50%,-50%) rotate(45deg)
+      &:after
+        transform: translate(-50%,-50%) rotate(-45deg)
+  
+    strong
+      // font-size: 20px
+      font-weight: 800
+      margin-top: 10px
+      // margin-bottom: 10px
+      display: inline-block
+      // &+br
+        // display: none
+
+    p
+      color: $colorBlue
+      font-size: 17px
+      font-weight: 500
+      line-height: 1.76
+      letter-spacing: 0.1px
+    img
+      width: 100%
+      margin-top: 30px
+      margin-bottom: 30px
+    .contentImage
+      min-height: 50vmin
+      background-size: cover
+      background-position: center center
+
+  section.sectionMore
+    padding-bottom: 0
+    
+    .col-rpost
+      padding-left: 0
+      padding-right: 0
+      .rpost
+        display: block
+        // min-height: 400px
+        padding: 30px
+        padding-top: 250px
+        padding-bottom: 50px
+        position: relative
+        &:before
+          content: ""
+          display: block
+          position: absolute
+          left: 0
+          top: 0
+          +size(100%)
+          +trans
+        &:hover
+          &:before
+            background-color: rgba($colorBlue,0.8)
+
+        .title,.cata
+          margin: 0
+          position: relative
+          z-index: 5
+
+        .title
+          @extend .theme.white
+          background-color: white
+          color: $colorBlue
+          padding: 15px
+          +bxshadow
+          display: inline-block
+        .cata
+          // @extend .theme.orange
+          background-color: $colorOrange
+          color: #fff
+          padding: 15px
+          display: inline-block
+          +bxshadow
+
+        

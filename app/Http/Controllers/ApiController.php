@@ -15,6 +15,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 use App\Equipment;
 use App\Equip_rent;
 use App\Equip_rent_record;
+
+use App\Siteinfo;
 use Mail;
 
 class ApiController extends Controller
@@ -163,5 +165,9 @@ class ApiController extends Controller
             return [];
         }
 
+    }
+
+    public function siteInfo($title){
+        return Siteinfo::where("title",$title)->first();
     }
 }

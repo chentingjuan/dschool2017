@@ -1,0 +1,421 @@
+@keyframes bottomIn
+  0%
+    top: 200px
+  100%
+    top: 0px
+
+
+//-------------------------
+.fadeNowpage-enter-active,.fadeNowpage-leave-active
+  transition: 0.5s
+  span
+    transition: 0.5s
+.fadeNowpage-enter-active
+  span
+    transition-delay: 5s
+
+.fadeNowpage-enter
+  span
+    opacity: 0
+    left: -200px
+.fadeNowpage-enter-to
+  span
+    opacity: 1
+    left: 0
+.fadeNowpage-leave
+  span
+    opacity: 1
+.fadeNowpage-leave-to
+  span
+    opacity: 0
+  
+//滑鼠圈圈
+.mouseCircle
+  opacity: 0
+  +size(50px)
+  background-color: $colorOrange
+  position: fixed
+  border-radius: 50%
+  transform: translate(-50%,-50%) scale(1)
+  left: 100px
+  top: 100px
+  mix-blend-mode: multiply
+  z-index: 20001
+  pointer-events: none
+  transition: opacity 0.5s, transform 0.5s
+  display: none
+  +rwd_sm
+    display: none
+  &.onItem
+    transform: translate(-50%,-50%) scale(5 )
+    
+//整頁面的導覽～～
+
+.page.page_nav
+  width: 0
+  height: 0
+  position: static
+  min-height: 0
+  
+  &.is_opened
+    .mouseCircle
+      opacity: 1
+      transform: translate(-50%,-50%) scale(1.5)
+  
+
+  .expandbtn,.questionbtn
+    +size(64px)
+    background-color: white
+    position: fixed
+    right: 0
+    display: flex
+    justify-content: center
+    align-items: center    
+    flex-direction: column
+    cursor: pointer
+    z-index: 20000
+    .icon-bar
+      +size(36px,8px)
+      background-color: $colorBlue
+      margin: 5px
+      +trans
+    &.is_opened
+      .icon-bar:first-child
+        transform: translateY(9px) rotate(45deg)
+      .icon-bar:last-child
+        transform: translateY(-9px) rotate(-45deg)
+
+  .questionbtn
+    right: 64px
+    background-color: $colorOrange
+    font-size: 40px
+    font-weight: 900
+    color: white
+    a
+      color: white
+    +rwd_sm
+      display: none
+
+
+
+  .navbar-brand
+    position: fixed
+    z-index: 20000
+    left: 20px
+    top: 20px
+    +trans
+    .nowpage
+      overflow: hidden
+      color: white
+      // display: inline-block
+      position: absolute
+      left: 40px
+      top: 16px
+      width: 100px  
+      transition: opacity 0.5s 0.5s
+
+      margin-left: 24px
+      border-left: solid 4px white
+      padding-left: 10px
+      +rwd_sm
+        position: absolute
+        left: 24px
+        top: 20px
+        border: none
+        // width: 2em
+      @keyframes leftIn
+        0%
+          left: -200px
+        100%
+          left: 0px
+      span
+        position: relative
+        animation: leftIn 1s
+
+    img
+      width: 50px
+
+    .wrapper
+      position: relative
+    .white
+      position: absolute
+      left: 0
+      top: 0
+    .is_opened
+      // transition: opacity 0.8s
+      .nowpage
+        opacity: 0
+        pointer-events: none
+    
+  //主要選單
+  nav
+    canvas
+      position: absolute
+      left: 0
+      top: 0
+      // filter: blur(8px)
+
+    //big D
+    &:before
+      content: ''
+      display: block
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%,-50%) scale(1.2)
+      +size(90vmin)
+      border: solid 1px white
+      border-radius: 0px 500px 500px 0px
+      opacity: 0
+      transition: 1s
+      
+
+    opacity: 0
+    pointer-events: none
+    position: fixed
+    // +trans
+    transition: opacity 0.5s 0.5s
+    +size(100vw,100vh)
+    z-index: 10000
+    &.is_opened
+      pointer-events: initial
+      opacity: 1
+      background-color: $colorBlue
+      transition: opacity 0.5s
+      .navlists
+        li a
+          animation: bottomIn 1s
+      &:before
+        transform: translate(-50%,-50%) scale(1)
+        opacity: 0.3
+      
+    ul.navlists
+      padding: 0
+      position: absolute
+      +size(100%)
+      list-style: none
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      font-weight: 600
+      li
+        font-size: 32px
+        margin-bottom: 20px
+        cursor: pointer
+        overflow: hidden
+        +rwd_sm
+          font-size: 24px
+          margin-bottom: 20px
+      a
+        color: white
+        position: relative
+        +trans
+        &:hover
+          text-decoration: none
+          color: $colorOrange
+          letter-spacing: 1px
+        &:focus
+          text-decoration: none
+    li.panelUser
+      margin-top: 20px
+      font-size: 30px
+      font-weight: 500
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+      
+      .name
+        font-size: 24px
+      ul.userFunc
+        font-weight: 400
+        list-style: none
+        display: flex
+        padding: 0
+        opacity: 0.5
+        li
+          font-size: 20px
+          margin: 10px
+
+
+.nav.navbar-nav
+  padding-top: 10px
+  padding-bottom: 10px
+  
+  li a
+    letter-spacing: 1px
+    &:before
+      content: ""
+      display: block
+      width: 100%
+      height: 5px
+      position: absolute
+      bottom: 0
+      left: 0
+      opacity: 0
+      background-color: $colorOrange
+      transform: translateY(10px)
+      transition: 0.5s
+      transtiion-timing-function: ease-out
+      transition-delay: 0s
+
+  a
+    transition: 0.5s
+    border-bottom: solid 3px transparent
+    &.router-link-exact-active
+      &:before
+        width: 100%
+        height: 5px
+        opacity: 1
+        transform: translateY(0px)
+
+    // border-bottom: solid 3px #f95356
+    // background-color: #fafafa
+    // background-color: $colorOrange
+    // color: white
+
+nav.navbar.navbar-default
+  transition: 0.5s
+  box-shadow: 0px 0px 20px rgba(black,0.05)
+  border-bottom: solid 1px rgba(black,0.1)
+  // padding-top: 5px
+  // padding-bottom: 5px
+  padding-top: 10px
+  padding-bottom: 10px
+
+  .navbar-toggle
+    border: none
+    // margin: 0
+    .icon-bar
+      background-color: white
+      height: 4px
+      margin-top: 5px
+
+  .logowraper
+    position: relative
+
+  .navbar-header
+    margin-left: 50px 
+    margin-top: 10px
+    position: relative
+    +trans
+    img
+      // margin-right: 10px
+      height: 50px
+      
+      +trans
+      &.orange
+        position: absolute
+        left: 0
+        top: 0
+    +rwd_sm
+      margin-left: 10px
+      .icon-bar
+        background-color: $colorBlue
+    // margin-top: 50px
+
+
+  .navbar-header,.navbar-nav
+    transition: 0.5s
+    a
+      color: $colorBlue
+      transition: 0.5s
+      font-size: 16px
+      &:hover
+        color: $colorOrange
+  .navbar-nav
+    
+    // background-color: #fff
+    li a
+      // &:before
+      //   content: ""
+      //   display: block
+      //   +size(4px ,18px)
+      //   transform: translateY(-50%) rotate(0deg)
+      //   background-color: transparent
+      //   position: absolute
+      //   left: 0
+      //   top: 50%
+      //   +trans
+    & a.router-link-active,& a.router-link-exact-active
+      color: $colorOrange
+      position: relative
+      // margin-left: 15px
+      // margin-right: 5px
+
+      &:before
+        width: 100%
+        height: 5px
+        transition-delay: 0.5s
+        transform: translateY(0px)
+        background-color: $colorOrange
+        
+  .dropdown-menu li a
+    color: $colorBlue
+
+  .navbar-collapse
+    +trans
+
+//.route_
+.route_about,.route_implement,.route_activity,.route_news,.route_course,.route_service,.route_question,.route_,[class^="route_activity_"],[class^="route_news_"]
+  nav.navbar.navbar-default
+    &.at_top
+      background-color: transparent
+      padding-top: 15px
+      padding-bottom: 15px
+      box-shadow: 0px 0px 20px transparent
+      .icon-bar
+        background-color: white
+      .navbar-brand
+        height: 50px
+        img
+          &.orange
+            opacity: 0
+            top: 10px
+      .navbar-collapse.collapse.in
+        border-top-color: transparent
+        position: relative
+        z-index: 5
+        transition: 0.5s
+        position: fixed
+        width: 100vw
+        height: 100vh
+        max-height: initial !important
+        // left: 0
+        top: 60px
+
+        .navbar-nav
+          margin-bottom: 0
+          li
+            background-color: $colorBlue
+            a
+              color: white
+              // font-size: 24px
+
+        .navbar-right
+          margin-top: 0
+            
+      .navbar-header,.navbar-nav
+        a
+          color: white
+          &.router-link-active
+            color: $colorOrange
+
+          &:hover
+            color: $colorOrange
+        .router-link-active
+          background-color: transparent
+
+        .dropdown-menu li a
+          color: $colorBlue
+
+[class^="route_event"]
+  nav.navbar.navbar-default
+    &.at_top
+      box-shadow: 0px 0px rgba(black,0)
+
+[class^="route_manage"]
+  background-color: white
+//   padding-top: 60px
+//   min-height: 100vh

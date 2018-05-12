@@ -179,6 +179,7 @@ return [
         
         Barryvdh\Cors\ServiceProvider::class,
         Jrean\UserVerification\UserVerificationServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
     ],
 

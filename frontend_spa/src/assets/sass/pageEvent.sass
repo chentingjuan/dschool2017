@@ -1,0 +1,244 @@
+
+$span: 8px 
+.page_event_register
+  color: #110041
+  background-color: $colorBlue
+
+  .panel_timeout
+    display: flex
+    justify-content: center
+  
+    .img-timeout
+      height: 300px
+      margin-left: auto
+      margin-right: auto
+
+  .btn.btn-primary
+    background-color: $colorOrange
+    border: none
+  .btn.btn-default
+    color: $colorBlue
+
+  @mixin bdrs($r: 10px)
+    border-radius: $r
+
+  .panel
+    +bdrs
+    border: none
+    box-shadow: 0px 0px 20px rgba(black,0.2)
+  h1
+    font-size: 42px
+    line-height: 70px
+    font-weight: 900
+  h2
+    font-size: 36px
+    font-weight: bold
+    margin-bottom: 5rem
+  h3
+    font-size: 32px
+    margin-bottom: 2rem
+  h4
+    font-size: 24px
+  h5
+    font-size: 20px
+  p
+    font-size: 16px
+    letter-spacing: 1px
+    line-height: 1.8em
+    margin-top: 10px
+
+  .section_hero
+    min-height: 100vh
+    .tag
+      display: inline-block
+      background-color: #ff5559
+      color: white
+      padding: 10px 40px
+      position: absolute
+      // min-height: 100vh
+      left: -10px
+      top: 10px
+      box-shadow: 0px 0px 20px rgba(black,0.1)
+    .row
+      min-height: 100vh
+
+      &>*
+        vertical-align: middle
+
+    .cover
+      position: absolute
+      width: 58%
+      // height: 100%
+      height: 100vh
+      max-height: 80vh
+      left: 0
+      background-size: cover
+      background-position: center center
+      top: 50vh
+      transform: translateY(-50%)
+      transition-delay: opacity 0.5s
+      
+    .tag
+    
+    .hero_panel
+      margin-top: 20vh
+      background-color: #fff
+      padding: $span*6
+      padding-top: $span*8
+      +bdrs
+      h1
+        margin-top: 0
+
+      .buttons
+        display: flex
+        margin: -$span*6
+        margin-top: $span*6
+        button
+          flex: 1
+          padding: 20px
+          font-size: 16px
+          letter-spacing: 2px
+          margin: 0
+          &:first-child
+            border-radius: 0 0 0 8px
+          &:last-child
+            border-radius: 0 0 8px 0
+          &.btn-default
+            background-color: #eee
+          
+  .section_about
+    padding-left: 50px
+    .panel
+      padding: 40px
+      position: relative
+      overflow: hidden
+      &:before
+        content: ''
+        display: block
+        +size(100vmin)
+        background-color: $colorOrange
+        position: absolute
+        +bdrs(100%)
+        right: -50%
+        top: -30%
+        // z-index: 5
+
+        
+
+
+  .section_album
+    margin-top: 50px
+    .album
+      display: flex
+      padding-left: 0
+      .image
+        min-height: 400px
+        width: 35vw
+        background-size: cover
+        background-position: center center
+        position: relative
+        list-style: none
+        margin: 10px
+        box-shadow: 0px 0px 20px rgba(black,0.2)
+        &:nth-of-type(1)
+          margin-left: 0
+        &:before
+          content: ""
+          display: block
+          position: absolute
+          width: 100%
+          height: 100%
+          background: linear-gradient(180deg,#{rgba(black,0)} 70%,#{rgba(black,0.5)} 100%)
+        .caption
+          color: white
+          left: 10px
+          position: absolute
+          bottom: 10px
+          font-size: 16px
+          letter-spacing: 1px
+          font-weight: 500
+          &:before
+            content: "#"
+
+  .section_teacher
+    padding-top: 50px
+    padding-bottom: 50px
+    color: white
+    .row
+      margin-bottom: 30px
+    .head
+      width: 200px
+      height: 200px
+      position: relative
+      +bdrs
+      .img
+        background-size: cover
+        +size(95%)
+        +bx_shadow
+        +ab_center
+        z-index: 1
+      &:before
+        content: ''
+        display: block
+        +size(110%)
+        background-color: $colorOrange
+        +bdrs
+        +ab_center
+        z-index: 1
+        +bx_shadow
+      &:after
+        content: ''
+        display: block
+        +size(25px)
+        background-color: $colorOrange
+        +bdrs(100%)
+        position: absolute
+        right: -20px
+        top: 10px
+        z-index: 0
+    .teacher_name
+      &:after
+        display: inline-block
+        margin-left: 10px
+        content: ""
+        +size(30px,8px)
+        background-color: $colorOrange
+    
+    p
+      color: white
+      &.teacher_description
+        &,& p
+          color: $colorOrange
+
+      
+  .section_register
+    padding-top: 50px
+    padding-bottom: 50px
+    // background-color: #110041
+    // color: white
+
+
+  @media screen and (max-width: 800px)
+    .section_hero
+      .cover
+        width: 100%
+        // background-attachment: fixed
+      .col-sm-6:nth-child(1)
+        min-height: 40vh
+        max-height: 500px
+      .col-sm-6:nth-child(2)
+        box-shadow: 0px 0px 20px rgba(black,0.3)
+    .section_album
+      padding-top: 0
+      .album
+        flex-direction: column
+        li.image
+          width: 100%
+          min-height: 300px
+
+    .section_teacher *
+      text-align: center
+      margin-left: auto
+      margin-right: auto
+
+        

@@ -1,0 +1,50 @@
+.anchors
+  position: fixed
+  top: 50%
+  left: 0
+  transform: translateY(-50%)
+  color: transparent
+  list-style: none
+  +trans
+
+  +rwd_sm
+    display: none
+
+  &:hover
+    color: rgba(white,0.4)  
+
+
+  li
+    cursor: pointer
+    list-style: none
+    margin-top: 5px
+      +trans
+
+    &:before
+      content: ""
+      display: inline-block
+      margin-right: 5px
+      +size(10px,3px)
+      background-color: rgba(white,0.3)
+      +trans
+    &:hover
+      &:before
+        +size(20px,3px)
+        background-color: rgba(white,0.9)
+      color: rgba(white,0.9)
+
+.page.page_question
+  .card
+    padding-top: 0
+    padding-bottom: 0
+    cursor: pointer
+    margin: 15px
+    margin-top: 20px
+    h3
+      font-size: 28px
+  .sectionQuestions
+    .card
+      max-height: 2000px
+      transition: max-height 1s
+    .hide
+      max-height: 0px

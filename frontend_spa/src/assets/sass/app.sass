@@ -1,0 +1,178 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600")
+@import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css")
+@import url("https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.0.8/theme-chalk/index.css")
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
+
+*
+  font-family: 'Noto Sans TC', sans-serif
+
+// Variables
+@import "variables"
+
+// Bootstrap
+// @import "../../../node_modules/bootstrap/scss/bootstrap"
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap"
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'
+
+//easing
+@import "../../../node_modules/sass-easing/_easings.scss"
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+@import "mixins"
+
+//pages
+@import "./ds_theme"
+@import "./common"
+@import "./nav"
+@import "./footer"
+@import "./pageIndex"
+@import "./pageCourse"
+@import "./pageLoading"
+@import "./pageAbout"
+@import "./pageEvent"
+@import "./pageImplement"
+@import "./pageNews"
+@import "./pagePost"
+@import "./pageService"
+@import "./pageActivityList"
+@import "./pageEquipmentList"
+@import "./pageQuestion"
+
+//plugins
+// @import "../../../node_modules/fullcalendar/dist/fullcalendar.css"
+
+html,body
+  margin: 0
+  overflow-x: hidden
+// html
+//   overflow-y: scroll
+
+body
+  background-color: $colorBlue
+
+.pages_area
+  min-height: 100vh
+
+// html
+//   border: solid 10px white
+//   box-sizing: border-box
+//   height: 100vh
+//   max-height: 100vh
+//   overflow-y: scroll
+//   z-index: 20000
+  
+// #app
+//   overflow: hidden
+
+// [class^="route_manage"]
+//   .btn-group
+//     .btn
+//       font-size: 15px
+//       padding: 5px 10px
+//       &:first-child
+//         padding-left: 15px
+//       &:last-chil
+//         padding-right: 15px
+//     min-width: 200px
+    //min-width: 110px
+    // width: 110px
+
+
+
+$page_trans_time: 0.5s
+
+
+.page-enter-active,.page-leave-active
+  transition: $page_trans_time
+  transition-timing-function: ease-in
+  position: relative
+  min-height: 100vh
+  .placeholder_body
+    height: 100vh
+    transition-delay: 0.5s
+  footer
+    margin-top: 100vh
+  // opacity: 0
+  // &:before
+  //   transition: $page_trans_time
+  //   display: block
+  //   content: ""
+  //   width: 100%
+  //   background-color: white
+  //   height: 100vh
+  //   position: fixed
+  //   z-index: 10000
+  //   left: 0
+  //   top: 100vh
+  //   transition-timing-function: ease-in
+    // box-shadow: 0px 20px white
+  &:after
+    display: block
+    content: ""
+    opacity: 0
+    transition: $page_trans_time
+    height: 100vh
+    position: fixed
+    +size(100%)
+    z-index: 1
+    left: 0
+    width: 100%
+    top: 0
+    background-color: $colorBlue
+.page-enter-active
+  opacity: 1
+  transition-timing-function: ease-out
+  &:before
+    top: 0
+    transition-timing-function: ease-out
+    // box-shadow: 0px 20px white
+.page-enter
+  opacity: 0
+  top: 30px
+  &:after
+    opacity: 1
+.page-enter-to
+  opacity: 1
+  top: 0px
+  // &:before
+  //   top: -100vh
+  &:after
+    opacity: 0
+.page-leave
+  opacity: 1
+  top: 0px
+  &:after
+    opacity: 0
+.page-leave-to
+  opacity: 0
+  top: -30px
+  &.page.pageIndex .sectionHero 
+    .line
+      top: 60%
+       
+      .d
+        opacity: 0
+
+  // &:before 
+  //   top: 0
+  &:after
+    opacity: 1
+
+
+.fade-enter-to,.fade-leave
+  // opacity: 1
+
+
+
+.fade-enter-active
+  transition: opacity .5s
+.fade-leave-active
+  transition: opacity .5s
+
+.fade-enter,.fade-leave-to
+  opacity: 0
+.fade-enter-to,.fade-leave
+  opacity: 1
+
+

@@ -1,0 +1,72 @@
+.page_course
+  .sectionAbout
+    .col-sm-8
+      +colExtend("left")
+      padding: 25px
+      box-shadow: 15px 15px $colorOrange
+      p
+        text-align: justify
+    .col-sm-4
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+
+  .sectionCatas
+    .col-sm-3
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+
+      img
+        width: 100%
+        max-width: 200px
+
+      h4
+        opacity: 0.5
+        margin-bottom: 0
+        margin-top: 40px
+      h3
+        margin-top: 10px
+        letter-spacing: 2px
+  .sectionCurrent
+    .col-img
+      img
+        transform: scale(1.1)
+        transform-origin: center center
+    .row-planet
+      padding-top: 10px
+      padding-bottom: 10px
+      .col-info
+        padding-top: 50px
+        p
+          font-weight: 300
+        h4
+          opacity: 0.5
+          letter-spacing: 1px
+    padding-bottom: 0
+  .sectionWish
+    position: relative
+    min-height: 800px
+    .cover
+      position: absolute
+      left: 0
+      bottom: 0
+      width: 90%
+      max-width: 1200px
+    padding-bottom: 0
+    outline: none
+    
+    h3
+      font-weight: 500
+    .btn
+      margin-top: 30px
+    textarea
+      width: 100%
+      
+      border: solid 3px white
+      border-radius: 5px
+      margin-top: 30px
+      padding: 10px
+      background-color: transparent
