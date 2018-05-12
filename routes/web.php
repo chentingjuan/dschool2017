@@ -13,7 +13,7 @@
 
 // Route::get('verification/{token}', 'Auth\AuthController@getVerification');
 
-Route::get('/', 'PublicController@Spa');
+Route::get('/', 'PublicController@Spa')->name('home');
 Route::get('/testmail', 'HomeController@testmail');
 
 Auth::routes();
