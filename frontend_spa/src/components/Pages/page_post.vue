@@ -83,6 +83,7 @@ export default {
     trans(content){
       let result =  (content || "").replace(/\/assets\/image\//g,"/dschool_old_assets/")
       result = result.replace(/\<img.*?src=\"(.*?)\".*?\>/,"<img src='$1'>")
+                    .replace(/(\<iframe.*?http.*?\"\><\/iframe>)/g,"<div class='video-wrapper'>$1</div>")
       //result = result.replace(/\<img.*?src=\"(.*?)\".*?\>/,"<div class='contentImage' style='background:url($1)'></div>")
       return result
     }
@@ -90,6 +91,21 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="sass">
+.page_post
+  .video-wrapper
+    width: 100%
+    position: relative
+    padding-bottom: 56.25%
+    margin-top: 30px
+    margin-bottom: 30px
+    &+blockquote
+      margin-top: -35px
+      margin-bottom: 42px
+      line-height: 2
+    // padding-right: 15px
+  iframe
+    position: absolute
+    width: 100%
+    height: 100%
 </style>
