@@ -19,9 +19,14 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+var axios = require('axios')
+window.axios = axios;
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+axios.defaults.baseURL = process.env.API_DOMAIN;
+
 // window.axios.defaults.baseURL = "2017.dschool.ntu.edu.tw";
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

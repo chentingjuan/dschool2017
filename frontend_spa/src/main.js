@@ -45,6 +45,8 @@ Vue.component('App', App);
 Vue.component('Navbar', Navbar);
 
 
+
+
 if (document.domain != "dschool2017.dev") {
   Vue.use(VueAnalytics, {
     id: 'UA-52977512-22',
