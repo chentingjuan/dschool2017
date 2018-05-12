@@ -119,7 +119,7 @@
 <script>
 import { VueEditor } from 'vue2-editor'
 import {mapState} from 'vuex'
-import Axios from 'axios'
+import axios from 'axios'
 import default_pic_selector from '../default_pic_selector.vue'
 //import ActivityInfoRow from './ActivityInfoRow'
 import _ from 'lodash'
@@ -167,13 +167,15 @@ export default {
       this.post = post
     },
     deletePost(){
-      if (confirm("Are you sure to delete post?")){
-        Axios.post("/api/post/"+this.post_id,{
+      this.$confirm("你確定要刪除文章嗎？").then(()=>{
+        axios.post("/api/post/"+this.post_id,{
           _method: "DELETE"
         }).then((res)=>{
-          alert("Delete Success!")
+          this.$message.success("刪除成功!")
+          this.$router.push('/manage/post')
+          this.$store.dispatch("loadPosts")
         })
-      }
+      })
 
     },
     select_pic_cover(obj){
@@ -181,22 +183,22 @@ export default {
     },
     updatePost(){
       if (this.$route.path=="/manage/post/new"){
-        Axios.post("/api/post",{
+        axios.post("/api/post",{
           _method: "POST",
           ...this.post
           
         }).then((res)=>{
           this.setPost(res.data)
-          alert("Create Success!")
+          this.$message.success("建立成功!")
         })
       }else{
-        Axios.post("/api/post/"+this.post_id,{
+        axios.post("/api/post/"+this.post_id,{
           _method: "PATCH",
           ...this.post
           
         }).then((res)=>{
           this.setPost(res.data)
-          alert("Save Success!")
+          this.$message.success("儲存成功!")
         })
       }
       

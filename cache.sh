@@ -10,6 +10,6 @@ composer dump-autoload
 php artisan config:cache
 php artisan route:cache
 php artisan optimize --force
-gulp --production
+#gulp --production
 
 

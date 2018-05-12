@@ -70,9 +70,9 @@ export default {
     // }
   },
   computed:{
-    ...mapState(['user','posts','scrollTop']),
+    ...mapState(['auth','user','posts','scrollTop']),
     is_admin(){
-      return this.user && this.user.admingroup=='root' 
+      return this.auth.user && this.auth.user.admingroup=='root' 
     },
     catas (){
       return this.posts.map(o=>o.cata).filter((d,i,arr)=>arr.indexOf(d)==i)
