@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="221px" height="221px" viewBox="0 0 221 221" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>implement_progress_2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="23" y="48" width="139" height="87"></rect>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="implement_progress_2">
+            <rect id="Rectangle-27-Copy-6" stroke="#FFFFFF" stroke-width="7" x="64.5" y="87.5" width="132" height="82"></rect>
+            <g id="Rectangle-27">
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <rect stroke="#FFFFFF" stroke-width="7" x="26.5" y="51.5" width="132" height="80"></rect>
+            </g>
+            <g id="Group-15" transform="translate(41.000000, 64.000000)">
+                <rect id="Rectangle-6" fill="#14114B" x="53" y="1" width="50" height="7"></rect>
+                <rect id="Rectangle-6-Copy" fill="#14114B" x="53" y="17" width="50" height="7"></rect>
+                <rect id="Rectangle-6-Copy-2" fill="#14114B" x="53" y="32" width="33" height="7"></rect>
+                <circle id="Oval-3" stroke="#14114B" stroke-width="7" cx="19" cy="19" r="19"></circle>
+            </g>
+            <polyline id="Path-71" stroke="#FF5559" stroke-width="8" points="145 143.226465 159.615916 158 186 122"></polyline>
+        </g>
+    </g>
+</svg>
