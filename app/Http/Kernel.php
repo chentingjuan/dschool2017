@@ -19,7 +19,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
-    ];
+	\Barryvdh\Cors\HandleCors::class
+];
 
     /**
      * The application's route middleware groups.
@@ -38,7 +39,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:60,1',
+            'throttle:500,1',
             'bindings',
             \App\Http\Middleware\EncryptCookies::class,          // <------- ADD THIS
             \Illuminate\Session\Middleware\StartSession::class, // <------ ADD THIS
