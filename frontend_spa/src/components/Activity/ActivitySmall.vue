@@ -68,7 +68,7 @@
                 select.form-control(v-model="qa.answer", v-if="qa.type=='select'")
                   option(v-for="op in qa.options.split('/')" ,:value="op") {{op}}
             div.panel_timeout(v-else)
-              img.img-timeout(src="/img/activity_timeout.svg")
+              img.img-timeout(src="/static/img/activity_timeout.svg")
 
             br
             div(v-if="get_event_status_translate(event_status).open")

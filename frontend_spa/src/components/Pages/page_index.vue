@@ -23,7 +23,7 @@
         .tick.tickHead
           //.num {{i}}
         .tick(v-for="o in 4")
-    .mouseScroll
+    //.mouseScroll
       img(src="/static/img/index__iconMouse.svg")
       img.mouseScrollArrow(src="/static/img/index__iconArrowDown.svg")
     .content

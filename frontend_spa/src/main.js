@@ -47,7 +47,7 @@ Vue.component('Navbar', Navbar);
 
 
 
-if (document.domain != "dschool2017.dev") {
+if (document.domain == "dschool.ntu.edu.tw") {
   Vue.use(VueAnalytics, {
     id: 'UA-52977512-22',
     router
@@ -144,7 +144,7 @@ Vue.mixin({
         })
     },
     cssbg(url) {
-      let use_url = (url || "").replace("http://dschool.ntu.edu.tw/assets/", "/dschool_old_assets/")
+      let use_url = (url || "").replace("http://dschool.ntu.edu.tw/assets/", "http://service.dschool.ntu.edu.tw/dschool_old_assets/")
       let result = {
         'background-image': `url("${use_url}")`,
         'background-position': 'center center',

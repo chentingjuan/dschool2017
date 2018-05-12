@@ -80,7 +80,7 @@
               span.num 1
               span 登記
             p 於開放時間持證件至卓越大樓405管理櫃台，登記使用設備、材料、空間，及時間。
-            .btn.orange.outline 登記使用
+            //- .btn.orange.outline 登記使用
           
           .col-sm-3.col-progress
             img.img-progress(src="/img/maker_progress_2.svg")
