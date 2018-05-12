@@ -2,7 +2,7 @@
   .page.page_question
     section.sectionHero.theme.blue
       //- h1 常見問題
-      img.coverGraphic(src="/img/hero_qa_cover.svg")
+      img.coverGraphic(src="/static/img/hero_qa_cover.svg")
     section.sectionQuestions
       .container
         .row

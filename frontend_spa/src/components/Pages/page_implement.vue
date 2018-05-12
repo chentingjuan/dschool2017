@@ -2,7 +2,7 @@
   .page.page_implement
     section.sectionHero.blue
       //- h1 實作中心 D-SCHOOL
-      img.coverGraphic(src="/img/hero_maker_cover.svg")
+      img.coverGraphic(src="/static/img/hero_maker_cover.svg")
       .status
         .text 開放時間：{{status_text}}
         br
@@ -14,7 +14,7 @@
       .container
         .row
           .col-sm-5
-            img.printer(src="/img/implement_3dprinter.svg")
+            img.printer(src="/static/img/implement_3dprinter.svg")
           .col-sm-7.col-info
             h2.secondary 解放無限的潛能，每個人能夠動手做
             p 創新設計學院的實作中心，<br>為所有台大師生提供一個可親自動手實作、驗證設計的空間，<br>鼓勵勇於將想法化為現實而不怕失敗的創新精神。<br>中心內設有多種發想輔助工具、材料、輕型加工設備及手工具，<br>並不定期舉辦各式實作教學工作坊，增進台大師生的實作技巧。<br>此外中心開放時間常駐有管理團隊輪值，確保使用者之安全。<br>
@@ -31,7 +31,7 @@
             h2 相關設備
 
     section.sectionRule.theme.blue
-      img.bg(src="/img/cover_maker_lights.svg")
+      img.bg(src="/static/img/cover_maker_lights.svg")
       .container
         .row
           .col-sm-12
@@ -75,7 +75,7 @@
             
         .row
           .col-sm-3.col-progress
-            img.img-progress(src="/img/maker_progress_1.svg")
+            img.img-progress(src="/static/img/maker_progress_1.svg")
             h3 
               span.num 1
               span 登記
@@ -83,7 +83,7 @@
             //- .btn.orange.outline 登記使用
           
           .col-sm-3.col-progress
-            img.img-progress(src="/img/maker_progress_2.svg")
+            img.img-progress(src="/static/img/maker_progress_2.svg")
             h3 
               span.num 2
               span 驗證
@@ -91,14 +91,14 @@
             //.btn.white.outline 申請驗證
           
           .col-sm-3.col-progress
-            img.img-progress(src="/img/maker_progress_3.svg")
+            img.img-progress(src="/static/img/maker_progress_3.svg")
             h3 
               span.num 3
               span 清潔
             p 使用結束後妥善清潔場地、設備並復原環境。
           
           .col-sm-3.col-progress
-            img.img-progress(src="/img/maker_progress_4.svg")
+            img.img-progress(src="/static/img/maker_progress_4.svg")
             h3 
               span.num 4
               span 檢查
@@ -162,35 +162,35 @@ export default {
       equipments: [
         {
           name: "MDX40A",
-          cover: "/img/equipments_maker/MDX40A.jpg"
+          cover: "/static/img/equipments_maker/MDX40A.jpg"
         },
         {
           name: "rep2x",
-          cover: "/img/equipments_maker/rep2x.png"
+          cover: "/static/img/equipments_maker/rep2x.png"
         },
         {
           name: "replicator",
-          cover: "/img/equipments_maker/replicator_default.png"
+          cover: "/static/img/equipments_maker/replicator_default.png"
         },
         {
           name: "Universal VLS",
-          cover: "/img/equipments_maker/Universal VLS 6.60.jpg"
+          cover: "/static/img/equipments_maker/Universal VLS 6.60.jpg"
         },
         {
           name: "Up Box",
-          cover: "/img/equipments_maker/Box.png"
+          cover: "/static/img/equipments_maker/Box.png"
         },
         {
           name: "手持線鋸",
-          cover: "/img/equipments_maker/手持線鋸.jpg"
+          cover: "/static/img/equipments_maker/手持線鋸.jpg"
         },
         {
           name: "鑽床",
-          cover: "/img/equipments_maker/鑽床.jpg"
+          cover: "/static/img/equipments_maker/鑽床.jpg"
         },
         {
           name: "奶油蒼蠅",
-          cover: "/img/equipments_maker/奶油蒼蠅.png"
+          cover: "/static/img/equipments_maker/奶油蒼蠅.png"
         }
       ]
     }

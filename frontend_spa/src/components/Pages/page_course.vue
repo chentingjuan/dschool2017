@@ -2,8 +2,8 @@
 .page.page_course
   section.sectionHero.blue
     //- h1 學院課程
-    img.coverGraphic(src="/img/hero_course_cover.svg")
-    //- img.coverGraphic(src="/img/question_cover.svg")
+    img.coverGraphic(src="/static/img/hero_course_cover.svg")
+    //- img.coverGraphic(src="/static/img/question_cover.svg")
   section.sectionAbout.theme.blue
     .container
       .row
@@ -16,7 +16,7 @@
             | <br>然而，發想創意及解決問題的過程中總是橫亙著許多的阻礙，學院為使創新的苗芽順利成長、實際測試其想法的可行性，學院提供前端的豐沛資源：課程資金的挹注、打造討論與實作空間、將外界資源納入校園，舉辦講座或工作坊活動，積極與外部單位合作，如桃園機場、台大兒童醫院、癌症基金會等。
             | <br>我們同時也期盼更多創新創意持續進行，在期末舉辦大型聯合發表會D-Day；推動接續D-Course的延伸計劃D-Plan。讓經驗的累積不受學期的影響，更期許學院課程成為同學人生轉變的契機。
         .col-sm-4
-          img(src="/img/earth.svg")
+          img(src="/static/img/earth.svg")
   section.sectionCatas
     .container.theme.blue
       .row
@@ -58,7 +58,7 @@
               hr
               p(v-html="cdata.content")
   section.sectionWish.theme.blue
-    img.cover(src="/img/course_wish.svg")
+    img.cover(src="/static/img/course_wish.svg")
     .container.animated.fadeIn
       .row
         .col-sm-12 
@@ -85,25 +85,25 @@ export default {
       courseData,
       catas: [
         {
-          img: "/img/course_cata_1.svg",
+          img: "/static/img/course_cata_1.svg",
           code: "DS5100",
           title: "核心課程",
           description: "建立學生觀察與解決問題的核心能力,讓學生具備合作發想與創新再造之能力｡課程包含:設計思考､使用者心理､說故事能力培養､腦力激盪､團隊合作技巧…等課程。"
         },
         {
-          img: "/img/course_cata_2.svg",
+          img: "/static/img/course_cata_2.svg",
           code: "DS5200",
           title: "工作坊課程",
           description: "增強學生實作的能力與五感的敏銳度,協助學生強化創新構想的形成與執行,課程包含: 3D列印實務､簡報技巧､大數據分析､手繪訓練､色彩學､APP撰寫､縫紉技巧…等課程。",
         },
         {
-          img: "/img/course_cata_3.svg",
+          img: "/static/img/course_cata_3.svg",
           code: "DS5300",
           title: "專題課程",
           description: "針對生活中各類實際議題,探討可行且創新的解決方案,課程涉及層面涵蓋:能源､人口､交通､居住､農業､環保､年長者關懷､醫療體系…等。",
         },
         {
-          img: "/img/course_cata_4.svg",
+          img: "/static/img/course_cata_4.svg",
           code: "DS5400",
           title: "國際與企業專題",
           description: "聚焦業界或國際社會問題加以發想,以學生與校外人士共同發展並實踐創新成果為主軸,建立學生跨入社會實務的基礎與國際觀｡",
