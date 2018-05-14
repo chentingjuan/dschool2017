@@ -204,6 +204,7 @@ import Vue from 'Vue'
 import datePicker from 'vue-bootstrap-datetimepicker'
 import QuestionRow from '../Question/QuestionRow'
 import Simplert from 'vue2-simplert'
+import axios from 'axios'
 
 export default {
   props: [

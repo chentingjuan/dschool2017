@@ -130,9 +130,7 @@ Vue.mixin({
       formData.append('file', file)
       console.log(file)
 
-      axios({
-        url: '/api/upload',
-        method: 'POST',
+      axios.post('/api/upload',{
         data: formData
       })
         .then((result) => {
