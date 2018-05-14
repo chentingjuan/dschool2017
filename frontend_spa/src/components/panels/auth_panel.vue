@@ -23,6 +23,12 @@
       .bottom(v-if="mode=='register' && !auth.user")
         h4 會員註冊
         //- label email
+        div.select-type
+          span(@click="registType='student'",
+              :style="{opacity: registType=='student'?1:0.4 }") 我是學生
+          span &nbsp;|&nbsp;
+          span(@click="registType='work'",
+              :style="{opacity: registType=='work'?1:0.4 }") 我是社會人士
         el-form
           el-form-item
                 
@@ -175,6 +181,10 @@ export default {
   
   box-shadow: 0px 0px 40px rgba(black,0.3)
 
+  .select-type
+    span
+      cursor: pointer
+      padding: 5px 10px
   .logo
     max-width: 60px
 

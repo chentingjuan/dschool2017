@@ -1,4 +1,5 @@
 import axios from 'axios';
+import schoolData from '../../dataSchools'
 
 const moduleAuth = {
   namespaced: true,
@@ -8,6 +9,7 @@ const moduleAuth = {
     processing: false,
     status: "",
     domain: "/api/auth",
+    jobcatas: schoolData
   },
   mutations: {
     setUserToken(state, value) {
