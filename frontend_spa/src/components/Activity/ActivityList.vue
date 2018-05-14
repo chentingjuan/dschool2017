@@ -22,7 +22,8 @@
             .monthGroup(v-for="monthSet in chunkedList")
               h2.month {{monthSet.time.slice(0,4)+' / '+monthSet.time.slice(4)}}月
               ul
-                li(v-for="activity in monthSet.events")
+                li(v-for="activity in monthSet.events",
+                  :style="{opacity: activity.mode=='draft'?0.5:1}" )
                   ActivityInfoRow(
                     :event_id="activity.id", 
                     :key="activity.id",title="查看資訊")
@@ -48,11 +49,15 @@ export default {
     },
     computed:{
       ...mapState({
+        auth: 'auth',
         user: state=>state.auth.user,
         activities: 'activities'
       }),
+      is_admin(){
+        return this.auth.user && this.auth.user.admingroup=='root' 
+      },
       OrderedList(){
-        let result = this.activities.filter(o=>o.mode=="published").slice().sort((a,b)=>new Date(a.time)>new Date(b.time) )
+        let result = this.activities.filter(o=>o.mode=="published" || this.is_admin ).slice().sort((a,b)=>new Date(a.time)>new Date(b.time) )
         
         if (this.order){
           result=result.reverse()
