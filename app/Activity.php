@@ -19,7 +19,8 @@ class Activity extends Model
     protected $fillable = [
        'type','title','place','description','content','register_info',
        'album','time','open_time','close_time','time_detail',
-       'cover','maincover','teacher','question','mailcontent','end_response_date'
+       'cover','maincover','teacher','question','mailcontent','end_response_date',
+       'mode'
     ];
 
 

@@ -52,7 +52,7 @@ export default {
         activities: 'activities'
       }),
       OrderedList(){
-        let result = this.activities.slice().sort((a,b)=>new Date(a.time)>new Date(b.time) )
+        let result = this.activities.filter(o=>o.mode=="published").slice().sort((a,b)=>new Date(a.time)>new Date(b.time) )
         
         if (this.order){
           result=result.reverse()

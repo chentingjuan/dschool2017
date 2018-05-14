@@ -26,6 +26,10 @@
                           :name="p.value",
                           :key="p.value")
           el-form(v-if="panel=='detail'", label-width="100px")
+            el-form-item(label="狀態")
+              el-select(v-model="event.mode")
+                el-option(label="草稿" value="draft")
+                el-option(label="已公開" value="published")
             el-form-item(label="短描述")
               VueEditor.ve(:id ="'description'", v-model="event.description",
                 :useCustomImageHandler="true",
