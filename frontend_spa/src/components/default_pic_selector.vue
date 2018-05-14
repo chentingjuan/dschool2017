@@ -37,7 +37,7 @@ export default {
       function gen_dz(classname,callback){  
         console.log(classname);
         var myDropzone = new Dropzone(classname, {
-          url: "/api/upload",maxFiles: 1
+          url: window.API_DOMAIN+"/api/upload",maxFiles: 1
           ,sending: function(){
             
           }
