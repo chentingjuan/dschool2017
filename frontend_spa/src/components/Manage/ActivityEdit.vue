@@ -26,10 +26,6 @@
                           :name="p.value",
                           :key="p.value")
           el-form(v-if="panel=='detail'", label-width="100px")
-            el-form-item(label="狀態")
-              el-select(v-model="event.mode")
-                el-option(label="草稿" value="draft")
-                el-option(label="已公開" value="published")
             el-form-item(label="短描述")
               VueEditor.ve(:id ="'description'", v-model="event.description",
                 :useCustomImageHandler="true",
@@ -49,6 +45,10 @@
                 el-option(v-for="op in activityTypeOptions", 
                           :value="op.value" , :label="op.tag",
                           :key="op.tag")
+            el-form-item(label="狀態")
+              el-select(v-model="event.mode")
+                el-option(label="草稿" value="draft")
+                el-option(label="已公開" value="published")
             el-form-item(label="標題")
               el-input(v-model="event.title")
             el-form-item(label="地點")
