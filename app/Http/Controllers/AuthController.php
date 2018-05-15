@@ -24,6 +24,7 @@ class AuthController extends Controller
 
     public function register(){
         $inputs = Input::all();
+        $inputs = bcrypt($inputs['password']);
         $user = User::create( $inputs );
         $token = JWTAuth::fromUser($user);
 
