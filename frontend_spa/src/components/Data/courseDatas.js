@@ -9,7 +9,7 @@ let course = [
 10/27 (18:30-21:30) & 10/28-10/29`,
     place: `創新設計學院R505（水源校區卓越研究大樓）`,
     planetName: "平凡星球",
-    planetSrc: "/img/stars/stars-01.svg",
+    planetSrc: "/static/img/stars/stars-01.svg",
     notice: `欲選修同學需透過填寫表單*(https://goo.gl/LexpgX)提出申請，透過選課代碼加選。`,
     content: `設計思考為台大創新設計學院的核心課程。課程從團隊組成、群體合作、創意激發開始，讓跨系所的學生有機會從不同領域出發，發掘生活中的實際問題；並深入場域探索問題來源；從使用者的角度思考創新的解決方案、學習製作原型驗證構想。在進行設計思考的過程中，每個行動皆以同理心為出發點，在實作中體會工具的價值，並藉由不斷修正原型來累積實務經驗，以發揮設計思考的最大功效。
 入門課程是為期兩天的密集式課程，以高密度高質量的上課方式，讓同學快速吸收設計思考的使用方法，結合輕薄短小的議題更快上手。是預選修學院其他課程的前導課程。
@@ -23,7 +23,7 @@ let course = [
     schedule: `9/30,10/7,10/14 (06:00~12:00)`,
     place: `創新設計學院R506（水源校區卓越研究大樓）`,
     planetName: "墨水星",
-    planetSrc: "/img/stars/stars-02.svg",
+    planetSrc: "/static/img/stars/stars-02.svg",
     notice: `欲選修同學需透過填寫表單*(https://goo.gl/5mmoEX)提出申請，透過選課代碼加選。`,
     content: `班雅明說，「故事保藏著濃縮的力量，而且即使是在誕生多時之後，仍保藏燦爛開放的能力。」
 說故事不只是人類彼此分享的欲望與本能，也是一種藝術形式，更是一種極有影響力的說話方式，哥本哈根未來研究學院院長Rolf Jensen便說：「創造以及訴說故事的能力，是21世紀企業必須擁有的最重要技能。」
@@ -38,7 +38,7 @@ let course = [
     schedule: `每週二 13:20~16:20`,
     place: "創新設計學院R506（水源校區卓越研究大樓）",
     planetName: "機械之星",
-    planetSrc: "/img/stars/stars-03.svg",
+    planetSrc: "/static/img/stars/stars-03.svg",
     notice: `欲選修同學需透過填寫表單*(https://goo.gl/fc6Pkq)提出申請，出席第一堂以授權碼加選。本表單開放至9/3(日)。`,
     content: `在進行有意義的創新時，實際驗證假設進行修正，是非常重要的一環。隨著科技日新月異，能夠快速驗證想法的方式與媒材也隨之增加。而正是對資源技術的掌握，最能與創新創意相輔相成。
 創新原型實作為學院初階實作能力培養課程。課程中，不論是軟體或是硬體，皆特聘專家講者，親身示範教學；學期間也可直接使用學院實作中心的設備，讓同學熟悉現代基本的製造資源與工具，並實際動手操作。若習得此身技能，將能繼續在其他專題課程上有很好的發揮、降低跨領域溝通成本。
@@ -52,7 +52,7 @@ let course = [
     schedule: `每週一 10:20～12:10`,
     place: "創新設計學院R506（水源校區卓越研究大樓）",
     planetName: "音樂之星",
-    planetSrc: "/img/stars/stars-04.svg",
+    planetSrc: "/static/img/stars/stars-04.svg",
     notice: `欲選修同學需透過填寫表單*(https://goo.gl/wffVZQ)提出申請，以表單預選審查，務必出席第一堂課以授權碼加選。`,
     content: `這門課程將帶領學生重新感覺周圍的各種聲響，從不同的角度學習欣賞與聆聽，體認音樂的多元性與藝術性。透過生活中的觀察體驗，發掘人類對於音樂的需求，針對特定議題，發想音樂可能的使用與表現方式，發揮自己的專長進行音樂與其他領域的創新設計與改造應用。課程會以分組的方式進行討論與實作，學生將由團體合作的經驗中激發出更多的創意與包容心，學習溝通與互動的技巧。`
   },
@@ -64,7 +64,7 @@ let course = [
     schedule: `10/14-15；12/9-10`,
     place: "創新設計學院R508（水源校區卓越研究大樓）",
     planetName: "環狀太空站",
-    planetSrc: "/img/stars/stars-05.svg",
+    planetSrc: "/static/img/stars/stars-05.svg",
     notice: `欲選修同學需透過填寫表單*(https://goo.gl/3lW3cg)提出申請，透過選課代碼加選。
 `,
     content: `在研究的實驗中發現：
@@ -83,7 +83,7 @@ let course = [
     schedule: `12/16-17`,
     place: "創新設計學院(水源校區卓越研究大樓)R506",
     planetName: "環狀太空站",
-    planetSrc: "/img/stars/stars-05.svg",
+    planetSrc: "/static/img/stars/stars-05.svg",
     notice: `欲選修同學需透過填寫表單*(https://goo.gl/ooFRGb)提出申請，透過選課代碼加選。
 `,
     content: `愛因斯坦說:「我們不能用製造問題時的同一水平思維來解決問題。 」（Albert Einstein: "The significant problems we face cannot be solved at the same level of thinking we were at when we created them.”）
@@ -100,7 +100,7 @@ let course = [
     place: "創新設計學院(水源校區卓越研究大樓)R506",
     code: "DS5207",
     planetName: "環狀太空站",
-    planetSrc: "/img/stars/stars-05.svg",
+    planetSrc: "/static/img/stars/stars-05.svg",
     notice: `欲選修同學需透過填寫表單*(https://goo.gl/eCyOg3)提出申請，透過選課代碼加選。
 `,
     content: `本課程為兩天18小時之工作坊形式，主要涵蓋五大主題：一、Data Visualization資料視覺化、二Presentation簡報與呈現、三、Observation/Listening觀察與傾聽、四、Team Communication團隊溝通、五、Negotiation協調與談判。
@@ -115,7 +115,7 @@ let course = [
     place: "計中遠距教學教室，208會議室",
     code: "DS5303",
     planetName: "電波星球",
-    planetSrc: "/img/stars/stars-06.svg",
+    planetSrc: "/static/img/stars/stars-06.svg",
     notice: `有興趣選修的同學務必請準備：個人簡歷、成績單、英語能力證明等資料，以及簡單說明選修這們課的目的。於9月3日前寄給課程助教芸均：yunchun.esther@gmail.com，以便能進行審查與評選。`,
     content: `不用繞著地球跑，就可以直接與世界連線。
 想與「異地同窗」的同學們一起討論、互動並組隊完成跨國界的任務嗎?
@@ -133,7 +133,7 @@ let course = [
     place: "創新設計學院R508(水源校區卓越研究大樓)",
     code: "DS5305",
     planetName: "共融遊樂園之星",
-    planetSrc: "/img/stars/stars-07.svg",
+    planetSrc: "/static/img/stars/stars-07.svg",
     notice: `欲選修同學需透過填寫表單*(https://goo.gl/3QY3PQ)提出申請，透過選課代碼加選。務必出席第一堂課以授權碼加選。`,
     content: `從特別的孩子角度出發，守護屬於他們不一樣的安全感。
 本學期課程主題為「全能公園改造王」，我們將與台北市政府合作，將現行的罐頭遊具改裝，創造區域特性。
@@ -148,7 +148,7 @@ let course = [
     place: "創新設計學院R505(水源校區卓越研究大樓)",
     code: "DS5306",
     planetName: "智能棉花之星",
-    planetSrc: "/img/stars/stars-08.svg",
+    planetSrc: "/static/img/stars/stars-08.svg",
     notice: `開放初選。選課前請詳閱*(http://www.smart-aging.tw/)，出席第一堂課面談才算正式錄取。`,
     content: `本課程為專案實作課程，以智慧生活、人文關懷、福祉設計為核心，透過「真實場域、真實議題、真實企業、真實解決方案」四大元素之課程設計，強調以人為本、跨域合作、從做中學。經由實際經驗洞察未來趨勢的社會問題，例如高齡化、少子化、永續發展議題等等。應用新興科技解決問題之歷程，以培養學生團隊合作能力，具備觀察體驗、設計思考及專業素養能力，成為跨領域整合創新者。
 課程為臺大土木、職治跨領域教師協同教學，並邀請大同、北醫、世新、淡江大學之跨領域師資，提供工程、醫學、設計、管理、人文等多面向的指導。
@@ -162,7 +162,7 @@ let course = [
     schedule: `每週四09:10~12:10`,
     place: "創新設計學院R506(水源校區卓越研究大樓)",
     planetName: "車輛王國",
-    planetSrc: "/img/stars/stars-09.svg",
+    planetSrc: "/static/img/stars/stars-09.svg",
     notice: `欲選修同學需透過填寫表單*(https://goo.gl/LA9MBr)提出申請，務必出席第一堂課以授權碼加選。`,
     content: `創新車輛設計課程結合工程領域與人文科學領域，從不同面向探討各式交通載具在使用上的議題。用設計思考的程序引領同學以跨領域組隊的方式，從新知的吸收、交通現況的了解，到交通使用，提出創新提案。並在D-School場域與交通產業專家互動，以最有效率的方式將創新概念實現於實際場域。 
 在本課程中，能與交通領域專家進行互動，造就車輛MIT的重要推手；與交通決策單位合作，改變台灣的交通；與不同專業的同學合作，建立跨領域團隊；利用實作中心，配合實體車輛，完成構想雛形； 利用學院業界合作平台，達到快速實踐創新提案的目的。
