@@ -1,6 +1,3 @@
-//components
-
-// Vue.component('slick', Slick);
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
@@ -8,56 +5,8 @@ Vue.use(VueRouter);
 // Vue.component('example', require('./components/Example.vue'));
 // Vue.component('Navbar', require('../components/Navbar.vue'));
 
-import comManageActivity from "../components/Manage/Activity.vue"
-var ManageActivity = Vue.component('ManageActivity',comManageActivity)
-
-
-import comManageActivitEdit from "../components/Manage/ActivityEdit.vue"
-var ManageActivitEdit = Vue.component('ManageActivitEdit',comManageActivitEdit)
-
-import comManageUser from "../components/Manage/User.vue"
-var ManageUser = Vue.component('ManageUser',comManageActivitEdit)
-
-import comActivitySmall from "../components/Activity/ActivitySmall.vue"
-var ActivitySmall = Vue.component('ActivitySmall',comActivitySmall)
-
-
-import comActivityList from "../components/Activity/ActivityList.vue"
-var ActivityList = Vue.component('ActivityList',comActivityList)
-
-
-import comPostList from "../components/Manage/PostList.vue"
-var ManagePostList = Vue.component('PostList', comPostList)
-
-import comPostEdit from "../components/Manage/Post.vue"
-var ManagePostEdit = Vue.component('PostEdit', comPostEdit)
-
-import comMemberEdit from "../components/Manage/Member.vue"
-var ManageMemberEdit = Vue.component('MemberEdit', comMemberEdit)
-
-
-import comQuestionEdit from "../components/Manage/Question.vue"
-var ManageQuestionEdit = Vue.component('QuestionEdit', comQuestionEdit)
-
-
 import comHomepage from "../components/Homepage.vue"
 var Homepage = Vue.component('Homepage',comHomepage)
-// var page_index = Vue.component('page_index', require('../components/page_index.vue'));
-// var page_about = Vue.component('page_about', require('../components/page_about.vue'));
-// var page_member = Vue.component('page_member', require('../components/page_member.vue'));
-// var page_news = Vue.component('page_news', require('../components/page_news.vue'));
-// var page_product = Vue.component('page_product', require('../components/page_product.vue'));
-// // var page_tech = Vue.component('page_tech', require('../components/page_tech.vue'));
-// var page_post = Vue.component('page_post', require('../components/page_post.vue'));
-// var page_job = Vue.component('page_job', require('../components/page_job.vue'));
-// var page_contact = Vue.component('page_contact', require('../components/page_contact.vue'));
-// var page_tern = Vue.component('page_tern', require('../components/page_tern.vue'));
-
-// var section_footer = Vue.component('section_footer', require('../components/section_footer.vue'));
-// // var section_solutions = Vue.component('section_solutions', require('../components/section_solutions.vue'));
-// var section_search = Vue.component('section_search', require('../components/section_search.vue'));
-//routes
-
 
 import page_index from "../components/Pages/page_index.vue"
 import page_implement from "../components/Pages/page_implement.vue"
@@ -69,14 +18,12 @@ import page_about from "../components/Pages/page_about.vue"
 import page_nav from "../components/Pages/page_nav.vue"
 import page_question from "../components/Pages/page_question.vue"
 import page_equipment from "../components/Equipment/EquipmentList.vue"
-
 import page_style from "../components/Pages/page_style.vue"
-
-
 import page_my_equipment from "../components/Equipment/MyEquipment.vue"
-import manage_equipment_list from "../components/manage/EquipmentRecordList.vue"
-import manage_layout from "../components/manage/Layout.vue"
 
+import ActivitySmall from "../components/Activity/ActivitySmall.vue"
+import ActivityList from "../components/Activity/ActivityList.vue"
+import routes_manage from "./routes_manage"
 
 const routes = [
   { path: '/style', component: page_style },
@@ -93,29 +40,21 @@ const routes = [
   { path: '/news', component: page_news },
   { path: '/news/:title', component: page_post, props: true },
   
-  { path: '/manage' , 
-    component: manage_layout,
-    children:[
-      { path: 'post', component: ManagePostList },
-      { path: 'post/new', component: ManagePostEdit, props: true },
-      { path: 'post/:post_id', component: ManagePostEdit, props: true },
-      { path: 'activity/new', component: comManageActivitEdit },
-      { path: 'activity/:event_id/list', component: ManageActivity, props: true },
-      { path: 'activity/:event_id', component: comManageActivitEdit, props: true },
-      { path: 'member', component: comMemberEdit, props: true },
-      { path: 'member/:id', component: comMemberEdit, props: true },
-      { path: 'question', component: comQuestionEdit, props: true },
-      { path: 'question/:id', component: comQuestionEdit, props: true },
-      { path: 'user', component: comManageUser, props: true },
-      { path: 'equipment/list', component: manage_equipment_list },
-  ] },
-  
   { path: '/activity/:event_id', component: ActivitySmall ,props: true},
-  { path: '/activity', component: comActivityList ,props: true},
+  { path: '/activity', component: ActivityList ,props: true},
   { path: '/my/activity', component: Homepage },
   { path: '/my/equipment', component: page_my_equipment },
+  
+
+  routes_manage,
+
   { path: '*', component: Homepage, meta: { title: "首頁" } }
 ];
+
+//
+// ─── ROUTER OBJECT ──────────────────────────────────────────────────────────────
+//
+
 
 const router = new VueRouter({
   routes,

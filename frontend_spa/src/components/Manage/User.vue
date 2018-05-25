@@ -48,12 +48,16 @@ export default {
     mounted() {
 
         //取得報名清單
-        axios.get(`/api/user/list`).then((res)=>{
+        axios.get(`/api/user/list`,{
+          params:{
+            token: this.auth.token
+          }
+        }).then((res)=>{
           Vue.set(this,"lists",res.data);
         })
     },
     computed:{
-      ...mapState(['user']),
+      ...mapState(['user','auth']),
       UserList(){
         let r = JSON.parse(JSON.stringify(this.lists))
         r.forEach(user=>user.created_at = user.created_at.split(' ')[0])
@@ -67,7 +71,7 @@ export default {
 </script>
 
 
-<style lang="sass?indentedSyntax">
+<style lang="sass">
   ul,li
     list-style: none
     padding: 0

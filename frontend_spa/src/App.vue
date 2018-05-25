@@ -6,9 +6,9 @@ div(:class="app_class")
   //Navbar
   page_nav
   .pages_area
-    transition(name="page" mode="out-in")
+    transition(:name="$route.path.indexOf('manage')==-1?'page':''" mode="out-in")
       router-view(:key="$route.path")
-  SectionFooter(v-show="$route.path!='/'")
+  SectionFooter(v-show="$route.path!='/' && $route.path.indexOf('/manage')!=0 ")
     //- section_footer
 </template>
 

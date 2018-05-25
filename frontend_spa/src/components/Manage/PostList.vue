@@ -3,16 +3,11 @@
     section.sectionHero
       .container
         .row
-          .col-sm-12
-            h2 學院新聞清單
-            br
-        .row
 
           .col-sm-12
-            ol.breadcrumb
-              li.breadcrumb-item 
-                router-link(to="/news") 管理新聞
-              li.breadcrumb-item.active 新聞清單
+            el-breadcrumb(separator="/")
+              el-breadcrumb-item(to="/manage/post") 管理新聞
+              el-breadcrumb-item 新聞清單
           
             //- h2(v-if="event_id") 編輯活動- {{ strip_tags(event.title) }}
             //-   button.btn.btn-danger.pull-right(@click="deleteActivity") 刪除活動
@@ -21,12 +16,12 @@
             //-   button.btn.btn-primary.pull-right(@click="updateActivity") 儲存活動
             //- hr
 
-        .row
+        .row.mt-5
           .col-sm-12
             router-link.btn.btn-primary.pull-right(v-if="user && user.admingroup=='root'",
                                         to="/manage/post/new") + 新增新聞
-            .btn.btn-default(v-if="order", @click="order=!order") 新 → 舊
-            .btn.btn-default(v-else, @click="order=!order") 舊 → 新
+            el-button(v-if="order", @click="order=!order") 新 → 舊
+            el-button(v-else, @click="order=!order") 舊 → 新
             
 
           .col-sm-12

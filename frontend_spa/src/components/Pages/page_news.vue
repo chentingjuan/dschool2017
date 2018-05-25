@@ -8,16 +8,9 @@
           ul
             li(v-for="cata in catas") {{cata}}
         .row
-          .col-sm-12
-            router-link.btn.orange(
-                        v-if="is_admin", 
-                        :to="'/manage/post/new'") 新增新聞
-            router-link.btn.white(
-                        v-if="is_admin", 
-                        :to="'/manage/post'") 管理條列清單
-          br
-          br
-          br
+          el-breadcrumb(separator="/")
+            el-breadcrumb-item(to="/manage/post/new") 新增新聞
+            el-breadcrumb-item(to="/manage/post") 管理條列清單
         .row
           .col-sm-12
             router-link.news_box.animated.fadeIn(:to="`/news/${spotPost.title}`").row

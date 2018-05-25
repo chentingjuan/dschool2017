@@ -32,13 +32,15 @@
         a.name(v-if="user",href='#', data-toggle='dropdown', role='button', aria-expanded='false')
           | {{user? user.name: ""}} 
           | {{user && user.admingroup=='root' ? '':'' }}
-        ul.userFunc(@click="is_opened=!is_opened")
+        ul.userFunc(@click="is_opened=!is_opened" :key="is_opened").animated.fadeIn
           li
             span(href="/login", v-if = "!user" , @click="auth_open=true") 登入
           li
             span(href="/register" , v-if = "!user",  @click="auth_open=true") 註冊
           li
             router-link(v-if="user",to="/my/activity") 我的活動
+          li
+            router-link(v-if="user && is_admin",to="/manage/post") 網站管理
           //li
             router-link(v-if="user",to="/my/equipment") 我的借用
           li(v-if="user && is_admin")
@@ -103,6 +105,9 @@ export default {
       scrollTop: 'scrollTop'
     }),
     nowPageName(){
+      if (this.$route.fullPath.indexOf('/manage')==0){
+        return ""
+      }
       if(this.$route.path.indexOf("/activity")!=-1){
         return "學院活動"
       }

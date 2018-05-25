@@ -9,12 +9,7 @@
           span.icon-bar
           span.icon-bar
 
-        // Branding Image
-        a.navbar-brand(href="/" v-if="reallink")
-          img(src='/static/img/index__pageLogo.svg')
-          img.orange(src='/static/img/index__pageLogoOrange.svg')
-          //span D-school@NTU
-        router-link.navbar-brand(to="/" v-else)
+        router-link.navbar-brand(to="/")
           img(src='/static/img/index__pageLogo.svg')
           img.orange(src='/static/img/index__pageLogoOrange.svg')
           //span D-school@NTU
@@ -24,30 +19,18 @@
         // Right Side Of Navbar
         ul.nav.navbar-nav.navbar-right
           li
-            a(href="/about" v-if="reallink") 關於學院
             router-link(to="/about" v-if="!reallink") 關於學院
           li
-            a(href="/news" v-if="reallink") 最新消息
             router-link(to="/news" v-if="!reallink") 最新消息
           li
-            a(href="/activity" v-if="reallink") 學院活動
             router-link(to="/activity" v-if="!reallink") 學院活動
           li
-            a(href="/course" v-if="reallink") 課程介紹
             router-link(to="/course" v-if="!reallink") 課程介紹
           li(v-if="is_admin")
-            a(href="/implement" v-if="reallink") 實作中心
             router-link(to="/implement" v-if="!reallink") 實作中心
           li(v-if="is_admin")
-            a(href="/service" v-if="reallink") 服務
             router-link(to="/service" v-if="!reallink") 服務
-
-          //- li(v-if="is_admin")
-          //-   a(href="/service/equipment" v-if="reallink") 設備借用
-          //-   router-link(to="/service/equipment" v-if="!reallink") 設備借用
-
           li
-            a(href="/question" v-if="reallink") 常見問題
             router-link(to="/question" v-if="!reallink") 常見問題
 
           // Authentication Links
@@ -64,16 +47,12 @@
             ul.dropdown-menu(role='menu')
                   
               li
-                a(href="/my/activity" v-if="reallink") 我的活動
                 router-link(to="/my/activity" v-if="!reallink") 我的活動
               li
-                a(href="/my/equipment" v-if="reallink") 我的借用
                 router-link(to="/my/equipment" v-if="!reallink") 我的借用
               li(v-if="is_admin")
-                a(href="/manage/user" v-if="reallink") 會員清單
                 router-link(to="/manage/user" v-if="!reallink") 會員清單
               li(v-if="is_admin")
-                a(href="/manage/equipment/list" v-if="reallink") 借用管理
                 router-link(to="/manage/equipment/list" v-if="!reallink") 借用管理
               li
                 a(href="/login") 登出

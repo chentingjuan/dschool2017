@@ -57,7 +57,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['QAinfos'])
+    ...mapState(['QAinfos','auth'])
   },
   methods: {
     handleDelete(index,row){
@@ -65,6 +65,7 @@ export default {
       this.$confirm("你確定要刪除嗎？").then(()=>{
         axios.post(`/api/qainfo/${row.id}`,{
           _method: 'DELETE',
+          token: this.auth.token,
           // _token: this.csrf_token,
           dataType: 'JSON',
         }).then((res)=>{
@@ -81,13 +82,18 @@ export default {
     },
     handleSave(question){
       console.log("儲存")
-      axios.patch("/api/qainfo/"+question.id,question).then(()=>{
+      axios.patch("/api/qainfo/"+question.id,question, {
+        token: this.auth.token,
+      }).then(()=>{
         this.$message.success("儲存成功!")
         this.$store.dispatch("loadQAinfos")
       })
     },
     addNewQuestion(){
-      axios.post(`/api/qainfo/`,{title:"新問題"}).then((res)=>{
+      axios.post(`/api/qainfo/`,{
+        title:"新問題",
+        token: this.auth.token,
+      }).then((res)=>{
         this.question=res.data
         this.$store.dispatch("loadQAinfos")
         // this.$router.push('/activity')
