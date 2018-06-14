@@ -53,38 +53,49 @@
         el-input(v-model="registerData.password", placeholder="密碼", type="password")
         el-input(v-model="registerData.confirmpassword", placeholder="確認密碼", type="password")
 
+
         div.form-social
         button.btn.fw.black(@click="register(registerData)") 註冊
         //- label(v-if="auth.status") {{auth.status}}
         button.btn.fw.nobg(@click="mode='login'") 我已經有帳號了！ 前往登入
       .bottom(v-if="auth.user")
         //h4 學生簡介
-        div(v-if="auth.user.studentcard")
-          //label.info-group
-            span 學生證卡號：
-            span {{ auth.user.studentcard.card_id }}
-          //label 
-            span 學生證級別：
-            span {{ auth.user.studentcard.type }}
-          //label 
-            span 會員效期：
-            span {{ auth.user.studentcard.expiry_datetime }}
-        div(v-else)
+        div.mt-3
+          .info-group
+            label
+              span 帳號類型
+            span {{ auth.user.type=='student'?'學生':'社會人士' }}
+          .info-group
+            label
+              span 信箱
+            span {{ auth.user.email }}
+          .info-group
+            label
+              span {{ auth.user.type=='student'?'學校':'公司' }} 
+            span {{ auth.user.school || auth.user.company }} 
+          .info-group(v-if="auth.user.type=='student'")
+            label
+              span 系級 
+            span {{ auth.user.department }}
+
+          .info-group(v-if="auth.user.type=='student'")
+            label
+              span 學號 
+            span {{ auth.user.student_id }}
+        div
           label.info-group
-            //span 學生證卡號：
-            //span 尚未綁定
 
         br
       
         .btn-group
-          button.btn.fw.black(@click="logout") 登出
-          //- router-link.btn.fw(to="/member/info") 設定
+          .btn.fw.black(@click="logout") 登出
+          span(@click="$emit('onClose')")
+            router-link.btn.fw.black(to="/my/activity") 我的活動
         .btn-group(v-if="canManage()")
           router-link.btn.fw.black(to="/manage") 前往後台({{userGroup()}})
     div(v-if="layout=='function'")
       .btn-group
         button.btn.fw.black(@click="logout") 登出
-        //- router-link.btn.fw(to="/member/info") 設定
       .btn-group(v-if="canManage()")
         router-link.btn.fw.black(to="/manage") 前往後台({{userGroup()}})
       //pre {{auth}}
@@ -226,9 +237,24 @@ export default {
   .bottom
     background-color: white
     padding: 25px
-    label
+    padding-left: 30px
+    padding-right: 30px
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    .info-group
       display: flex
+      max-width: 350px
       justify-content: space-between
+      label
+        width: 100px
+        opacity: 0.9
+        font-weight: 500
+        text-align-last: left
+      span
+        flex: 1
+        text-align: left
   .photo
     width: 136px
     height: 136px

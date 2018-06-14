@@ -1,19 +1,20 @@
  <template lang="pug">
-.page.pageActivityList
-  section.sectionHero.blue
+.page.pageActivityList.manage
+  section.sectionHero.blue.mt-5
     .container
       .row
         .col-sm-12
           h2 管理我的活動
-          br
       .row
-        .col-sm-12(v-if="user")
-          h4 你已經報名：
-          ul(v-if="registedActivityList")
+        .col-sm-12(v-if="auth.user")
+          h4.sub-title 你已經報名：
+          br
+          ul(v-if="registedActivityList && registedActivityList.length")
             li(v-for="activity in registedActivityList")
               ActivityInfoRow(:event_id="activity.activity_id", :key="activity.id")
-        .col-sm-12(v-if="!user")
-          h4 登入後可以管理自己的活動
+          img(v-else src="/static/img/activity_timeout.svg")
+        .col-sm-12(v-if="!auth.user")
+          h4.sub-title 登入後可管理自己的活動
 </template>
 
 <script>
@@ -25,17 +26,36 @@ export default {
         registedActivityList: []
       }
     },
-    mounted() {
+    created() {
         console.log('Component mounted.')
-        axios.get("/api/user/activity").then(res=>{
+        axios.get("/api/user/activity", {
+          params: {
+            token: this.auth.token
+          }
+        }).then(res=>{
+          
           this.registedActivityList=res.data
         })
     },
     computed:{
-      ...mapState(['user'])
+      ...mapState(['auth'])
     },
     components:{
       ActivityInfoRow
     }
 }
 </script>
+<style lang="sass">
+.pageActivityList
+  padding-top: 50px
+  h4.sub-title
+    color: white
+    opacity: 0.5  
+    font-weight: 500
+    font-size: 25px
+  &.manage
+    img
+      width: 100%
+      max-width: 400px
+
+</style>

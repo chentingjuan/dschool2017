@@ -7,7 +7,7 @@
   transition(name="fade")
     .auth_container(v-if="auth_open")
       .close(@click="auth_open=false")
-      auth_panel(@onLogin="auth_open=false")
+      auth_panel(@onLogin="auth_open=false", @onClose="auth_open=false")
   .expandbtn(@click="is_opened=!is_opened",
             :class="{is_opened: is_opened}")
     .icon-bar

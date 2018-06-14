@@ -97,7 +97,7 @@ export default {
       event_status_obj: {"status" : "need login"}
     }
   },
-  mounted(){
+  created(){
     this.loadEvent()
   },
   computed: {
