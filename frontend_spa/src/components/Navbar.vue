@@ -94,6 +94,6 @@ export default {
   }
 }
 </script>
-<style lang="sass?indentedSyntax">
+<style lang="sass">
 
 </style>

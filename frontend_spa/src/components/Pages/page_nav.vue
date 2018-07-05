@@ -288,8 +288,8 @@ export default {
     cursor: pointer
     z-index: 100
   .auth_container
-    background-color: rgba($colorBlue,0.8)
-    padding: 30px 50px
+    background-color: rgba($colorBlue,0.9)
+    padding: 10px 20px
     position: fixed
     z-index: 500
     box-sizing: border-box

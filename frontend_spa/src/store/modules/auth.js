@@ -122,20 +122,21 @@ const moduleAuth = {
 
     },
     canManage: state => {
+      console.log(state.user)
       if (state.user) {
-        return state.user.group == 'admin' || state.user.group == 'editor'
+        return state.user.admingroup == "root" || state.user.admingroup == "editor";
       }
       return false
     },
     isAdmin: state => {
       if (state.user) {
-        return state.user.group == 'admin'
+        return state.user.admingroup == "root" ;
       }
       return false
     },
     userGroup: state => {
       if (state.user) {
-        return state.user.group
+        return state.user.admingroup
       }
       return null
     }

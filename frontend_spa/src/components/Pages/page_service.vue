@@ -17,7 +17,8 @@
               img.img_service(:src="item.image")
               h3 {{item.title}}
               p {{item.content}}
-              .btn.orange(@click="scrollTo(item.scroll_target)") {{item.btn_label}}
+              .btn.orange(@click="scrollTo(item.scroll_target)",
+                          v-if="item.btn_label") {{item.btn_label}}
   section.sectionSpace.theme.blue
     .container-fluid
       .row
@@ -31,8 +32,8 @@
               p 位於臺大水源校區，可由汀州路轉入思源街(往永福橋方向)到達，辦公室位在卓越研究大樓409室。
               h3 教室
               p 學院內目前設有五間教室，分別為課程教室、討論間以及實作中心。
-              h3 可借用時段
-              p 當月20日起開放次月預約，開放時段為週一至週五，9:00至21:00本院有權保留教室調動權責(假日暫不開放)
+              //h3 可借用時段
+              //p 當月20日起開放次月預約，開放時段為週一至週五，9:00至21:00本院有權保留教室調動權責(假日暫不開放)
         .col-sm-8.card.theme.orange.card-main-info
           .row.row-main-info
             .card.theme.white.card-main-space
@@ -41,13 +42,13 @@
                 h3.roomname 404室
                 h4 梯形教室
                 p 為設計思考課程授課教室，亦作為學院工作坊空間及簡單會議空間。可容納25-30人使用。
-                .btn.orange 了解更多
+                //.btn.orange 了解更多
           .row
             .col-sm-3(v-for="i in 4")
               img.img_room
               h4 404
               h5 梯形教室
-  section.sectionDevice.theme.blue
+  //section.sectionDevice.theme.blue
     .container-fluid
       .row
         .col-sm-7.card.theme.white
@@ -104,14 +105,14 @@ export default {
        {
          title: "學院空間使用",
          content: "創新設計學院配合課程、活動等多原用途，設計專屬空間。(僅開放學院課程與合作計畫借用申請。)",
-         btn_label: "前往租借",
+        //  btn_label: "前往租借",
          image: "/static/img/service_3.svg",
          scroll_target: ".sectionSpace"
        },
        {
          title: "設備使用申請",
          content: "輔助課程、活動的重要角色；並可協助同學課程或專案執行。(僅開放學院課程與合作計畫申請。)",
-         btn_label: "前往租借",
+        //  btn_label: "前往租借",
          image: "/static/img/service_2.svg",
          scroll_target: ".sectionDevice"
        },{

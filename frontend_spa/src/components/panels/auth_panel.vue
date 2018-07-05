@@ -87,17 +87,17 @@
 
         br
       
-        .btn-group
-          .btn.fw.black(@click="logout") 登出
+        div
+          .btn.fw.lightGrey.text-black(@click="logout") 登出
           span(@click="$emit('onClose')")
-            router-link.btn.fw.black(to="/my/activity") 我的活動
-        .btn-group(v-if="canManage()")
-          router-link.btn.fw.black(to="/manage") 前往後台({{userGroup()}})
+            router-link.btn.fw.lightGrey.text-black(to="/my/activity") 我的活動
+          span(@click="$emit('onClose')")
+            router-link.btn.fw.orange(to="/manage") 前往後台
     div(v-if="layout=='function'")
       .btn-group
         button.btn.fw.black(@click="logout") 登出
-      .btn-group(v-if="canManage()")
-        router-link.btn.fw.black(to="/manage") 前往後台({{userGroup()}})
+      .btn-group(v-if="canManage")
+        router-link.btn.fw.black(to="/manage") 前往後台
       //pre {{auth}}
 
 
@@ -134,7 +134,15 @@ export default {
         return "學校系所"
       }
       return "職稱"
-    }
+    },
+
+    ...mapGetters({
+      getUserPhoto: 'auth/getUserPhoto',
+      isAdmin: 'auth/isAdmin',
+      isEditor: 'auth/isEditor',
+      canManage: 'auth/canManage',
+      userGroup: 'auth/userGroup'
+    }),
   },
   methods: {
     // ...mapMutations(['setMenuState']),
@@ -144,13 +152,6 @@ export default {
       logout: 'auth/logout',
       loginFacebook: "auth/loginFacebook",
       authInit: "auth/init"
-    }),
-    ...mapGetters({
-      getUserPhoto: 'auth/getUserPhoto',
-      isAdmin: 'auth/isAdmin',
-      isEditor: 'auth/isEditor',
-      canManage: 'auth/canManage',
-      userGroup: 'auth/userGroup'
     }),
     panelLogin(){
       this.login(this.loginData).then(()=>{

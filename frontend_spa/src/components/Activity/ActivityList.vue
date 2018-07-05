@@ -19,7 +19,7 @@
             .btn.btn-default(v-else, @click="order=!order") 舊 → 新
 
           .col-sm-12
-            .monthGroup(v-for="monthSet in chunkedList")
+            .monthGroup(v-for="monthSet in chunkedList.slice(0,showCount)")
               h2.month {{monthSet.time.slice(0,4)+' / '+monthSet.time.slice(4)}}月
               ul
                 li(v-for="activity in monthSet.events",
@@ -27,7 +27,9 @@
                   ActivityInfoRow(
                     :event_id="activity.id", 
                     :key="activity.id",title="查看資訊")
-              
+          .col-sm-12
+            .btn.w100.trans-white.mt-5(@click="showCount+=2",
+                v-if="chunkedList.length>showCount") 顯示更多活動
 
 </template>
 
@@ -39,7 +41,8 @@ import _ from 'lodash'
 export default {
     data(){
       return {
-        order: true
+        order: true,
+        showCount: 3
       }
     },
     mounted() {
@@ -62,7 +65,7 @@ export default {
         if (this.order){
           result=result.reverse()
         }
-        console.log(result.map(o=>o.time))
+        // console.log(result.map(o=>o.time))
         return result
       },
       chunkedList(){
@@ -71,7 +74,6 @@ export default {
           this.OrderedList,event=>
             (new Date(event.time.replace(/-/g, "/") )).getFullYear()*100+ ((new Date(event.time.replace(/-/g, "/") )).getMonth()+1)
         )
-        console.log(result)
 
         //轉換成陣列進行排序
         let resultArray = []
@@ -89,6 +91,7 @@ export default {
         if (this.order){
           resultArray=resultArray.reverse()
         }
+
         return resultArray
       }
     },
