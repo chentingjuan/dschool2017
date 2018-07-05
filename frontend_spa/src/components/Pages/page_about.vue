@@ -71,18 +71,21 @@
               h4.type {{ memberCata.type }}
               img.people.wow.slideInBottom( :src="memberCata.img", style="width: 100%")
             .btn.btn-text(v-if="nowCata!=-1", @click="nowCata=-1")
-              i.fa.fa-angle-left
-              | &lt; 返回總表
+              i.fa.fa-angle-left.mr-2
+              | 返回總表
         
           .col-sm-9
-            .col-sm-3.col-member(
-              v-for="member in filtered_teammember")
+            .col-sm-3.col-member.animated.fadeIn.mb-4(
+              v-for="(member,mid) in filtered_teammember",
+              :class="'delay-ani-'+mid*1")
               .img(:style="cssbg(member.cover)" )
                 .cata(v-if="memberCata[member.cata-1]") {{memberCata[member.cata-1].type}}
-                router-link.edit_btn(v-if="is_admin", :to="`/manage/member/${member.id}`") 編輯
+                // router-link.edit_btn(v-if="is_admin", :to="`/manage/member/${member.id}`") 編輯
               h3 {{member.name}} 
-              h5 {{member.position}} 
-                span(v-if='member.company') ,{{member.company}}
+              h5.description(style="min-height: 3em")
+                span(v-if='member.company') {{member.company}}
+                span(v-if='member.company') &nbsp;/&nbsp;
+                span {{member.position}} 
 
               
 </template>
@@ -166,6 +169,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="sass">
 </style>
