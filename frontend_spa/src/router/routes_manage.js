@@ -8,6 +8,7 @@ import ManagePostList from "../components/Manage/PostList.vue"
 import ManagePostEdit from "../components/Manage/Post.vue"
 import ManageMemberEdit from "../components/Manage/Member.vue"
 import ManageQuestionEdit from "../components/Manage/Question.vue"
+import ManageCourse from "../components/Manage/Course.vue";
 import ManageEquipList from "../components/manage/EquipmentRecordList.vue"
 
 let routes = {
@@ -82,6 +83,14 @@ let routes = {
       props: true,
       meta: {
         title: "團隊成員",
+        mainNav: true
+      }
+    },
+    {
+      path: "course",
+      component: ManageCourse,
+      meta: {
+        title: "課程管理",
         mainNav: true
       }
     },

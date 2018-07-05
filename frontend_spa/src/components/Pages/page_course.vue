@@ -48,12 +48,12 @@
           h2 當期課程列表
           hr
       .row
-        .col-sm-12(v-for="cdata in courseData")
-          .row.row-planet.animated.fadeIn
+        .col-sm-12(v-for="(cdata,cid) in courses")
+          .row.row-planet.animated.fadeIn(:class="'delay-ani-'+cid*2")
             .col-sm-4.col-img
               img(:src="cdata.planetSrc")
             .col-sm-8.col-info
-              h3 {{cdata.courseName}}
+              h3 {{cdata.title}}
               h4 {{cdata.code}} {{ cdata.type }}
               hr
               p(v-html="cdata.content")
@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import courseData from '../Data/courseDatas.js'
 export default {
   data(){
@@ -136,6 +137,9 @@ export default {
         }
       ]
     }
+  },
+  computed:{
+    ...mapState(['courses'])
   }
 }
 </script>

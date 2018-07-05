@@ -12,6 +12,7 @@ const store = new Vuex.Store({
     posts: [],
     teammembers: [],
     QAinfos: [],
+    courses: [],
     scrollTop: 0,
     loading: document.domain != "dschool2017.test",
     settings: {
@@ -61,6 +62,9 @@ const store = new Vuex.Store({
     },
     setQAinfos(state, value) {
       state.QAinfos = value
+    },
+    setCourses(state, value) {
+      state.courses = value
     }
   },
   actions: {
@@ -73,7 +77,8 @@ const store = new Vuex.Store({
       context.dispatch("loadEvents")
       context.dispatch("loadPosts")
       context.dispatch("loadTeammembers")
-      context.dispatch("loadQAinfos") 
+      context.dispatch("loadQAinfos")
+      context.dispatch("loadCourses") 
     },
     loadPosts(context){
       axios.get("/api/post").then((res) => {
@@ -88,6 +93,11 @@ const store = new Vuex.Store({
     loadTeammembers(context) {
       axios.get("/api/teammember").then((res) => {
         context.commit("setTeammembers", res.data)
+      })
+    },
+    loadCourses(context) {
+      axios.get("/api/course").then((res) => {
+        context.commit("setCourses", res.data)
       })
     }
   }

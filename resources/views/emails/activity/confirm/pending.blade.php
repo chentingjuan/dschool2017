@@ -6,7 +6,7 @@
 <hr>
 <br>
 <p>
-<img src="https://dschool.ntu.edu.tw/static/img/logo.png" style="max-width: 250px">
+<img src="http://service.dschool.ntu.edu.tw/dschool_old_assets/images/logo.jpg" style="max-width: 250px">
 <br>
 <br>
 ▍地址 Address:

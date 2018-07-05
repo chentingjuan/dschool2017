@@ -41,6 +41,8 @@ Route::resource('question',"QuestionController");
 Route::resource('qainfo',"QAinfoController");
 Route::resource('post',"PostController");
 Route::resource('teammember',"TeammemberController");
+Route::post("/course/updateAll","CourseController@updateAll");
+Route::resource('course',"CourseController");
 Route::post("/teammember/updateAll","TeammemberController@updateAll");
 Route::resource('equipment',"EquipmentController");
 
