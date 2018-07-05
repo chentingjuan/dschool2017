@@ -30,11 +30,9 @@
             el-table-column(prop="orderbtns", label="順序", width="100", :sortable="true" v-if="nowCataId==-1")
               template(slot-scope="scope")
                 .text-center
-                  .btn-order.pl-2.pr-2(@click="changeOrder(filtered_data,scope.row,-1)",
-                                       @dbclick.prevent.stop="changeOrder(filtered_data,scope.row,-1000)")
+                  .btn-order.pl-2.pr-2(@click="changeOrder(filtered_data,scope.row,-1)")
                     i.fa.fa-angle-up
-                  .btn-order.pl-2.pr-2(@click="changeOrder(filtered_data,scope.row,1)",
-                                       @dbclick.prevent.stop="changeOrder(filtered_data,scope.row,1000)")
+                  .btn-order.pl-2.pr-2(@click="changeOrder(filtered_data,scope.row,1)")
                     i.fa.fa-angle-down
                 //el-select(v-model="scope.row.order_id", placeholder="-" )
                   el-option(:value="-1" label="-")

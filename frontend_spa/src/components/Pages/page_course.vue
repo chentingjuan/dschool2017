@@ -48,7 +48,7 @@
           h2 當期課程列表
           hr
       .row
-        .col-sm-12(v-for="(cdata,cid) in courses")
+        .col-sm-12(v-for="(cdata,cid) in sortedCourses")
           .row.row-planet.animated.fadeIn(:class="'delay-ani-'+cid*2")
             .col-sm-4.col-img
               img(:src="cdata.planetSrc")
@@ -139,7 +139,12 @@ export default {
     }
   },
   computed:{
-    ...mapState(['courses'])
+    ...mapState(['courses']),
+    sortedCourses(){
+      return this.courses.sort((a,b)=>{
+        return a.order_id>b.order_id?1:-1
+      })
+    }
   }
 }
 </script>
