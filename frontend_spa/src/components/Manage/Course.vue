@@ -204,7 +204,7 @@ export default {
           _this.$store.dispatch("loadCourses")
         },500)
 
-        axios.post("/api/course/",{
+        axios.post("/api/course",{
           ...course,
           token: this.auth.token
         }).then((res)=>{

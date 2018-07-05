@@ -190,7 +190,7 @@ export default {
         setTimeout(()=>{
           _this.$store.dispatch("loadTeammembers")
         },800)
-        axios.post("/api/teammember/",member).then((res)=>{
+        axios.post("/api/teammember",member).then((res)=>{
           this.$store.dispatch("loadTeammembers")
           this.$message.success("新增成功!")
           let nm = res.data

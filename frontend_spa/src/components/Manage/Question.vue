@@ -90,7 +90,7 @@ export default {
       })
     },
     addNewQuestion(){
-      axios.post(`/api/qainfo/`,{
+      axios.post(`/api/qainfo`,{
         title:"新問題",
         token: this.auth.token,
       }).then((res)=>{
