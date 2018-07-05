@@ -14,7 +14,7 @@
           .col-sm-12(v-for="(question,qid) in QAinfos",
                      :class="'q'+qid").theme.white.card.hover
             h3.w100.pt-3.pb-3.mt-0(@click="toggleQuestion(qid)") {{question.title}}
-            p.mt-1(v-html="question.content", 
+            p.mt-1(v-html="processLink(question.content)", 
               :class="{hide: !status[qid]}")
 
       .anchors
@@ -52,6 +52,10 @@ export default {
     scrollQuestion(qid){
       this.toggleQuestion(qid,true)
       this.scrollTo('.q'+qid,{pan:-80})
+    },
+    processLink(text){
+      text = text || ""
+      return text.replace(/<a.*?href=['"](.*?)['"].*?>(.*?)<\/a>/g,"<a href='$1' target='_blank' title='開啟連結'>$2</a>")
     }
   }
 }

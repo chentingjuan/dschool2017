@@ -160,6 +160,7 @@ export default {
     filtered_teammember(){
       return this.teammembers
               .filter(o=>o.cata==this.nowCata || !this.nowCata)
+              .slice().sort((a,b)=>a.order_id>b.order_id?1:-1)
     }
   }
 }

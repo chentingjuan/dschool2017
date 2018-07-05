@@ -24,6 +24,15 @@ class TeammemberController extends Controller
 
         return $result;
     }
+
+    public function updateAll(){
+        $inputs = Input::all();
+        foreach ($inputs['members'] as $member){
+            $teammember = Teammember::find($member['id']);
+            $teammember->update($member);
+        }
+        return ["status"=>"success"];
+    }
     public function destroy($id){
         $teammember = Teammember::find($id);
         $teammember->delete();
