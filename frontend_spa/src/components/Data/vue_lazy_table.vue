@@ -31,7 +31,7 @@
                 :class="{active: func_exec(btn.class,row)}",
                 v-if="get_show_status(btn,row)") {{btn.label}}
             //.btn.btn-danger 刪除
-    .page_nav
+    .page_nav(v-if="!hide_table")
       .btn-group
         .btn.grey.outline(v-if="pages.length>1",
                         v-for="p in pages",
