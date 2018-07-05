@@ -12,13 +12,11 @@
 
         .row
           .col-sm-12(v-for="(question,qid) in QAinfos",
-                     :class="'q'+qid",
-                     @click="toggleQuestion(qid)").theme.white.card.hover
-            h3 {{question.title}}
-            p(v-html="question.content", 
-              :class="{hide: !status[qid]}",
-              @click.prevent.stop="clickNo")
-            br
+                     :class="'q'+qid").theme.white.card.hover
+            h3.w100.pt-3.pb-3.mt-0(@click="toggleQuestion(qid)") {{question.title}}
+            p.mt-1(v-html="question.content", 
+              :class="{hide: !status[qid]}")
+
       .anchors
         ul
           li(v-for="(question,qid) in QAinfos",
