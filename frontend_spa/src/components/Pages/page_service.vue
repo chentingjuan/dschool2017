@@ -19,7 +19,7 @@
               p {{item.content}}
               .btn.orange(@click="scrollTo(item.scroll_target)",
                           v-if="item.btn_label") {{item.btn_label}}
-  section.sectionSpace.theme.blue
+  //section.sectionSpace.theme.blue
     .container-fluid
       .row
         .col-sm-4.col-section-info
@@ -72,23 +72,24 @@
 
   section.sectionWorkshop.theme.blue
     .container-fluid
-      .row.card.theme.orange
-        .col-sm-3
-          .row
-          h3.eng Workshop
-          h2 申請工作坊
-          hr
-          p 本院目前提供下開方案供申請者依時間、需求申請。申請流程請依時間限制提前提出申請表。
+      .theme.orange.card
+        .row
+          .col-sm-3
+            .row
+            h3.eng Workshop
+            h2 申請工作坊
+            hr
+            p 本院目前提供下開方案供申請者依時間、需求申請。申請流程請依時間限制提前提出申請表。
 
-          
-        .col-sm-9
-          .row
-            .col-md-3.col-sm-6.col-xs-12.col-workshop(v-for="workshop in workshops")
-              .duration {{workshop.length}}hr
-              img.img_workshop(:src="workshop.cover")
-              h3 {{workshop.title}}
-              p {{workshop.content}}
-              .btn.white 了解更多
+            
+          .col-sm-9
+            .row
+              .col-md-3.col-sm-6.col-xs-12.col-workshop(v-for="workshop in workshops")
+                .duration {{workshop.length}}hr
+                img.img_workshop(:src="workshop.cover")
+                h3 {{workshop.title}}
+                p {{workshop.content}}
+                .btn.white 了解更多
             
 
 
