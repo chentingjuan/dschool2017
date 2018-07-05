@@ -1,18 +1,18 @@
 <template lang="pug">
 .container-fluid.manage-layout
   .row
-    .col-sm-3.col-md-2.pt-5.col-manage
-      h3.title 管理
+    .col-sm-3.col-md-2.col-manage
+      h3.title.mb-5 管理
       //- pre {{routesManage}}
       router-link.nav-item(:to="'/manage/'+route.path",
                   v-for="route in routesManage",
                   v-if="route.meta.mainNav") {{route.meta.title}}
-      router-link(to="/") 返回主網頁
+      router-link.btn.trans-white.w100.mt-5(to="/") 返回主網頁
     .col-sm-3.col-md-2
     .col-sm-9.col-md-10
-      .pt-5.mt-md-5(v-if="is_admin")
+      .pt-3.mt-md-3(v-if="is_admin")
         router-view
-      .pt-5(v-else)
+      .pt-3(v-else)
         h3.text-center 請先登入!
 
       

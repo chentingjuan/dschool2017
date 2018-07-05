@@ -66,6 +66,11 @@
       @content
   
 
+@for $i from 1 through 50
+  .delay-ani-#{$i}
+    // transition-delay: #{$i/10}s
+    animation-delay: #{$i/10}s
+
 $break_lg: 1600px
 $break_md: 1200px
 $break_sm: 800px

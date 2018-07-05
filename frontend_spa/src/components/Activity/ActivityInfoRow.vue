@@ -6,8 +6,8 @@
     .col-sm-8
       h4.mt-10 {{event.time_detail}} @ {{event.place}}
       h3(v-text="event.title.replace('<br>',' ')")
-      p.visible-xs(v-html="event.description.slice(0,70)+'...'")
-      p.hidden-xs(v-html="event.description")
+      p.visible-xs(v-html="getSummary(event.description,70)")
+      p.hidden-xs(v-html="getSummary(event.description,100)")
       hr
       span 狀態: {{get_event_status_translate(event_status).label}} &nbsp;
       //router-link.btn.btn-primary(
@@ -33,7 +33,7 @@
           :to="'/manage/activity/'+event_id"
           v-if="user && user.admingroup=='root'") 編輯
           
-    </template>
+</template>
 
 <script>
 // import axios from 'axios'
@@ -72,6 +72,15 @@ export default {
     }
   },
   methods:{
+    getSummary(text,length){
+      text = text || ""
+      length= length || 100
+      if (text.length>length){
+        return text.slice(0,length)+"..."
+      }else{
+        return text
+      }
+    },
     loadEvent(){
 
       let _this = this

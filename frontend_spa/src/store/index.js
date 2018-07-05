@@ -14,6 +14,30 @@ const store = new Vuex.Store({
     QAinfos: [],
     scrollTop: 0,
     loading: document.domain != "dschool2017.test",
+    settings: {
+
+      customToolbar: [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+
+        // ['my-thing'],
+        ['blockquote', 'code-block', 'image', 'video', 'link'],
+
+        // [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+
+        // [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+
+        ['clean']                                         // remove formatting button
+      ],
+    }
   },
   mutations: {
     setLoading(state, value) {

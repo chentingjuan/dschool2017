@@ -6,7 +6,7 @@
     el-container.container
       el-header
         el-breadcrumb(separator="/")
-          el-breadcrumb-item(to="/activity") 管理活動
+          el-breadcrumb-item(to="/manage/activity") 管理活動
           el-breadcrumb-item 活動編輯
       el-header
         h3(v-if="event_id") 編輯活動- {{ strip_tags(event.title) }}
@@ -14,6 +14,8 @@
           el-button.pull-right(round type="primary" @click="updateActivity") 儲存更新
           router-link(:to="`/activity/${event_id}`")
             el-button.pull-right(round) 前往頁面
+          router-link(:to="`/manage/activity/${event_id}/list`")
+            el-button.pull-right(round) 報名清單
         h3(v-else) 新增活動- {{ strip_tags(event.title) }}
           el-button.pull-right(round type="primary" @click="updateActivity") 儲存更新
         br
@@ -29,14 +31,17 @@
             el-form-item(label="短描述")
               VueEditor.ve(:id ="'description'", v-model="event.description",
                 :useCustomImageHandler="true",
+                :editorToolbar="$store.state.settings.customToolbar",
                 @imageAdded="handleImageAdded"  )
             el-form-item(label="詳細資訊")
               VueEditor.ve(:id ="'content'", v-model="event.content",
                 :useCustomImageHandler="true",
+                :editorToolbar="$store.state.settings.customToolbar",
                 @imageAdded="handleImageAdded"  )
             el-form-item(label="註冊資訊")
               VueEditor.ve(:id ="'register_info'", v-model="event.register_info",
                 :useCustomImageHandler="true",
+                :editorToolbar="$store.state.settings.customToolbar",
                 @imageAdded="handleImageAdded" )
           
           el-form.panel-body(v-if="panel=='main'" label-width="60px")
@@ -109,6 +114,7 @@
                   .col-sm-10
                     VueEditor.ve(:id ="'teacher_description_'+teacherId", v-model="teacher.description",
                         :useCustomImageHandler="true",
+                        :editorToolbar="$store.state.settings.customToolbar",
                         @imageAdded="handleImageAdded" )                          
                 .row.form-group
                   .col-sm-2
@@ -116,6 +122,7 @@
                   .col-sm-10
                     VueEditor.ve(:id ="'teacher_other_'+teacherId", v-model="teacher.other",
                         :useCustomImageHandler="true",
+                        :editorToolbar="$store.state.settings.customToolbar",
                         @imageAdded="handleImageAdded" )                  
                 hr
                 br
@@ -189,6 +196,7 @@
               .col-sm-9
                 VueEditor.ve(:id ="'mailcontent'", v-model="event.mailcontent",
                   :useCustomImageHandler="true",
+                  :editorToolbar="$store.state.settings.customToolbar",
                   @imageAdded="handleImageAdded"  )
                 br
                 br

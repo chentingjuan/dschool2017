@@ -1,9 +1,8 @@
 <template lang="pug">
-  .page.pageActivityList.manage_post
+  .page.manage
     section.sectionHero
       .container
         .row
-
           .col-sm-12
             el-breadcrumb(separator="/")
               el-breadcrumb-item(to="/manage/post") 管理新聞
@@ -16,9 +15,10 @@
             //-   button.btn.btn-primary.pull-right(@click="updateActivity") 儲存活動
             //- hr
 
-        .row.mt-5
+        .row.mt-3
           .col-sm-12
-            router-link.btn.btn-primary.pull-right(v-if="user && user.admingroup=='root'",
+            
+            router-link.btn.btn-primary.pull-right.mb-4(v-if="user && user.admingroup=='root'",
                                         to="/manage/post/new") + 新增新聞
             el-button(v-if="order", @click="order=!order") 新 → 舊
             el-button(v-else, @click="order=!order") 舊 → 新

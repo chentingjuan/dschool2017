@@ -3,15 +3,13 @@
     .container
       .row
         .col-sm-12
-          ol.breadcrumb
-            li.breadcrumb-item 
-              router-link(to="/activity") 使用者
-          .panel.panel-default(v-if="UserList")
-            .panel-heading
-              h2 使用者清單 (共{{UserList.length}}筆資料)
-            .panel-body
-              h4
-              vue_lazy_table(:table_data="UserList",
+          el-breadcrumb(separator="/")
+            el-breadcrumb-item(to="/manage/user") 使用者
+      .row
+        .col-sm-12
+          div(v-if="UserList")
+            h2.mb-4 使用者清單 (共{{UserList.length}}筆資料)
+            vue_lazy_table(:table_data="UserList",
                       :rows="tableRows")
 
 </template>

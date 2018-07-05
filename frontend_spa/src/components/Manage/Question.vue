@@ -31,7 +31,6 @@
           div.pull-right
             el-button(@click="handleSave(question)") 儲存更新
             el-button(@click="handleDelete(question.id,question)",type="danger") 刪除
-        br
         hr
         el-form(label-width= "80px")
           el-form-item(label="問題")
@@ -39,6 +38,7 @@
           el-form-item(label="回答")
             VueEditor.ve(:id ="'qacontent'", v-model="question.content",
                   :key="question.id",
+                  :editorToolbar="$store.state.settings.customToolbar",
                   :useCustomImageHandler="true",
                   @imageAdded="handleImageAdded" ,
                   height="350px" )
@@ -53,7 +53,7 @@ export default {
   data(){
     return {
       question: null,
-      creating: false
+      creating: false,
     }
   },
   computed: {

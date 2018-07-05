@@ -6,7 +6,7 @@
         input(v-model="search_keyword")
         .btn.btn-primary.pull-right(@click="export_csv") 匯出csv
         
-    table.table.table-hover
+    table.table.table-hover(v-if="!hide_table")
       thead
         th(v-for = "row_key in (row_keys || default_row_keys)",
            @click = "set_sort_key(row_key)",
@@ -43,7 +43,7 @@ import Vue from 'vue'
 // sorted -> sliced
 export default {
   name: 'vue_lazy_table',
-  props: ["table_data","row_keys","rows","configs","edit","dataTitle","edit_btn_text","btns"],
+  props: ["table_data","row_keys","rows","configs","edit","dataTitle","edit_btn_text","btns","hide_table"],
   data () {
     return {
       sort_key: null,

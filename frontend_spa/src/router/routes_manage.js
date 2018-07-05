@@ -1,7 +1,8 @@
 import ManageLayout from "../components/manage/Layout.vue"
 
-import ManageActivity from "../components/Manage/Activity.vue"
+import ManageActivityRegister from "../components/Manage/ActivityRegister.vue"
 import ManageActivitEdit from "../components/Manage/ActivityEdit.vue"
+import ManageActivity from "../components/Manage/Activity.vue";
 import ManageUser from "../components/Manage/User.vue"
 import ManagePostList from "../components/Manage/PostList.vue"
 import ManagePostEdit from "../components/Manage/Post.vue"
@@ -38,6 +39,13 @@ let routes = {
         title: "文章編輯"
       }
     },
+    {
+      path: 'activity', component: ManageActivity,
+      meta: {
+        title: "管理活動",
+        mainNav: true
+      }
+    },
     { 
       path: 'activity/new', component: ManageActivitEdit ,
       meta: {
@@ -45,7 +53,7 @@ let routes = {
       }
     },
     { 
-      path: 'activity/:event_id/list', component: ManageActivity, props: true ,
+      path: 'activity/:event_id/list', component: ManageActivityRegister, props: true ,
       meta: {
         title: "活動報名清單"
       }
@@ -53,8 +61,7 @@ let routes = {
     { 
       path: 'activity/:event_id', component: ManageActivitEdit, props: true ,
       meta: {
-        title: "活動管理",
-        mainNav: true
+        title: "活動管理"
       }
     },
     { 

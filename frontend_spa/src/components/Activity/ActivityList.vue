@@ -22,11 +22,12 @@
             .monthGroup(v-for="monthSet in chunkedList.slice(0,showCount)")
               h2.month {{monthSet.time.slice(0,4)+' / '+monthSet.time.slice(4)}}月
               ul
-                li(v-for="activity in monthSet.events",
+                li(v-for="(activity,aid) in monthSet.events",
                   :style="{opacity: activity.mode=='draft'?0.5:1}" )
                   ActivityInfoRow(
                     :event_id="activity.id", 
-                    :key="activity.id",title="查看資訊")
+                    :key="activity.id",title="查看資訊",
+                    :class="'delay_ani_'+(3+aid*3)")
           .col-sm-12
             .btn.w100.trans-white.mt-5(@click="showCount+=2",
                 v-if="chunkedList.length>showCount") 顯示更多活動
@@ -98,6 +99,9 @@ export default {
     components:{
       ActivityInfoRow,
       // FullCalendar
+    },
+    methods: {
+      
     },
     watch:{
       activities(){

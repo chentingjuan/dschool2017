@@ -1,280 +1,94 @@
 <template lang="pug">
-  .container
-    .row
-      .col-sm-12
-        ol.breadcrumb
-          li.breadcrumb-item 
-            router-link(to="/activity") 管理活動
-          li.breadcrumb-item.active 報名清單
-          
-        .panel.panel-default(v-if="registUserList")
-          .panel-heading
-            h2 {{ strip_tags(event.title) }} 清單 (共{{registUserList.length}}筆報名)
-            br
-            router-link.btn.btn-primary(:to="`/manage/activity/${event.id}`") 編輯回信
-            label 預覽回信: 
-            .btn-group
-              .btn.btn.outline.grey(@click="previewMail('yes')") 錄取
-              .btn.btn.outline.grey(@click="previewMail('pending')") 備取
-              .btn.btn.outline.grey(@click="previewMail('no')") 不錄取
-            simplert(:useRadius="true"
-                :useIcon="false"
-                ref="simplert")
-            span 
-              span &npsb;&npsb;&npsb;
-              span 顯示問題回答
-              el-switch(v-model="showQ")
-            h4 {{confirm_status}}
-            
-          .panel-body
-            vue_lazy_table(:table_data="registUserList",
-                     :rows="tableRows",
-                     :btns="event_btns")
-
-
-                    //-  :edit="confirmRecord",
-                    //-  edit_btn_text="核可/取消核可",
-
+.container
+  .row
+    .col-sm-12
+      br
+    .col-sm-12
+      el-breadcrumb(separator="/")
+        el-breadcrumb-item(to="/manage/activity") 管理活動
+        el-breadcrumb-item {{$route.meta.title}}
+      br
+  .row
+    .col-sm-12
+      el-table(:data="activities",  :default-sort="{prop: 'time', order: 'descending'}")
+        el-table-column(prop="id" label="#" ,width=60 :sortable="true")
+        el-table-column(prop="cover" label="封面" ,width=150)
+          template(slot-scope="scope")
+            img(width=150 :src="scope.row.cover") 
+        el-table-column(prop="title" label="標題"  :sortable="true")
+        el-table-column(prop="type" label="種類" width=100, :sortable="true")
+        el-table-column(prop="time" label="時間" width=100, :sortable="true" )
+          template(slot-scope="scope")
+            span {{ (scope.row.time || "").split(" ")[0] }}
+        el-table-column(prop="mode" label="狀態" width=120, :sortable="true")
+        el-table-column(prop="regist_count" label="報名人數" width=100, :sortable="true")
+        el-table-column(prop="manage" label="管理功能" ,width=260,)
+          template(slot-scope="scope")
+            router-link.btn.lightGrey(:to="'/manage/activity/'+scope.row.id") 編輯
+            router-link.btn.lightGrey(:to="'/manage/activity/'+scope.row.id+'/list'") 報名清單
+    // pre {{activities[0]}}
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor'
 import {mapState} from 'vuex'
-import vue_lazy_table from '../Data/vue_lazy_table'
-import Simplert from 'vue2-simplert'
-import _ from "lodash"
-
 export default {
-    data() {
-      return {
-        lists: [],
-        event: {
-        },
-        showQ: true,
-        event_btns: [
-          {
-            label: "錄取",
-            action: this.confirmRecordYes,
-            class: function(row){
-              console.log("row:",row)
-              return row.confirm_o=="yes"
-            },
-            show(row){
-              return row.confirm_o==null || row.confirm_o==""
-            }
-          },{
-            label: "備取",
-            action: this.confirmRecordPending,
-            class: function(row){
-              return row.confirm_o=="pending"
-            },
-            show(row){
-              return row.confirm_o==null || row.confirm_o==""
-            }
-            // class: "btn-warning"
-          },{
-            label: "不錄取",
-            action: this.confirmRecordNo,
-            class: function(row){
-              return row.confirm_o=="no"
-            },
-            show(row){
-              return row.confirm_o==null || row.confirm_o==""
-            }
-            // class: "btn-default"
-          },{
-            label: "取消確認",
-            action: this.confirmRecordCancel,
-            class: function(){},
-            show(row){
-              return !(row.confirm_o==null || row.confirm_o=="")
-            }
-            // class: "btn-default"
-          }
-        ],
-        tableRows: [
-          "id -> __hide",
-          "serial -> 序號",
-          "name -> 名字",
-          "student_id -> 學號",
-          "department -> 學校單位",
-          "phone -> 電話",
-          "email -> 信箱",
-          "status -> 狀態",
-          "confirm -> 錄取",
-          "confirm_o -> __hide",
-          "time -> 報名時間",
-          "formdata -> 資料",
-          "record_id -> __hide",
-        ]
-
-      }
-    },
-    props: ['event_id'],
-    mounted() {
-        //取得活動資訊
-        let _this = this
-        axios.get(`/api/activity/${this.event_id}`).then(res=>{
-          Vue.set(_this,"event",res.data)
-          // _this.event.cover=JSON.parse(_this.event.cover)
-          _this.event.teacher=JSON.parse(_this.event.teacher)
-          _this.event.album=JSON.parse(_this.event.album)
-        })
-        console.log('Component mounted.')
-        
-        //取得報名清單
-        axios.get(`/api/activity/list/${this.event_id}`,{
-          params: {
-
-            token: this.auth.token
-          }
-        }).then((res)=>{
-          Vue.set(this,"lists",res.data);
-        })
-    },
-    computed:{
-      ...mapState(['user','auth']),
-      filteredTableRows(){
-        return this.tableRows
-      },
-      registUserList(){
-        return this.lists.map((d,i)=>{
-          let temp={}
-          let formdata=(JSON.parse(d.formdata) || []).forEach((o,oid)=>{
-            temp['q'+oid]=o.answer            
-          })
-          console.log(formdata)
-          let confirm_type_obj= this.get_event_confirm_type_translate(d.confirm_type)
-          let confirm_type_text= `${confirm_type_obj.label+confirm_type_obj.symbol}`
-          let result= {
-            record_id: d.id,
-            serial: d.serial ,
-            name: d.user.name,
-            department: (d.user.school?(d.user.school+"-"+d.user.department):null) || d.user.agency,
-            // student_id: d.user.student_id,
-            phone: d.user.phone,
-            email: d.user.email,
-            status: this.get_event_status_translate(d.status).label,
-            confirm: confirm_type_text,
-            confirm_o: d.confirm_type,
-            time: d.created_at,
-            
-          }
-          if (this.showQ){
-            Object.assign(result,temp)
-          }
-
-          return result
-        })
-      },
-      confirm_status(){
-        let _this = this
-        let result= _.groupBy(this.lists || [],(obj)=>(obj.confirm_type) || "尚未確認" )
-                     
-        let resulttext="";
-        // console.log(Object.keys(result))
-        Object.keys(result).forEach(key=>{
-          console.log(_this.get_event_confirm_type_translate(key))
-          if (key){
-            resulttext += _this.get_event_confirm_type_translate(key).status + ": "+ result[key].length+ "  / "
-          }
-        })
-        return resulttext
-      }
-    },
-    components:{
-      vue_lazy_table,Simplert
-    },
-    methods: {
-      confirmRecordYes(record){
-        this.confirmRecord(record,"yes")
-      },
-      confirmRecordNo(record){
-        this.confirmRecord(record,"no")
-      },
-      confirmRecordPending(record){
-        this.confirmRecord(record,"pending")
-      },
-      confirmRecordCancel(record){
-        this.confirmRecord(record,"cancel")
-      },
-      confirmRecord(record, action){
-        let recordObj = this.lists.find(o=>o.id==record.record_id)
-        // console.log(recordObj)
-
-        if (recordObj.status=="CONFIRMED"){
-          this.$confirm("確認取消報名核可嗎?").then(()=>{
-            axios.post(`/api/activity/record/${record.record_id}/confirm/cancel`,{
-
-              token: this.auth.token
-            }).then((res)=>{
-              //使用傳回的資料更新該筆報名
-              Object.assign(recordObj,res.data.record)
-              this.$message.success("已取消該筆報名確認")
-              // let obj = {
-              //   message: "已取消該筆報名確認",
-              //   type: 'info'
-              // }
-              // this.$refs.simplert.openSimplert(obj)
-            })
-          })
-        }else{
-          let action_label = "錄取"
-          if (action=="yes"){
-            action_label = "錄取"
-          }else if (action=="pending"){
-            action_label = "備取"
-          }else if (action=="no"){
-            action_label = "不錄取"
-          }else if (action=="cancel"){
-            action_label = "取消"
-          }
-          
-          this.$confirm("確認「"+action_label+"」該筆報名並寄信通知嗎?").then(()=>{
-            axios.post(`/api/activity/record/${record.record_id}/confirm/${action}`,{
-
-              token: this.auth.token
-            }).then((res)=>{
-              //使用傳回的資料更新該筆報名
-              Object.assign(recordObj,res.data.record)
-              this.$message.success("已"+action_label+"該筆報名")
-            })
-
-          })
-
-        }
-      },
-      previewMail(type){
-        axios.get(`/api/activity/${this.event.id}/mail/${type}`,{
-          
-          token: this.auth.token
-        }).then((res)=>{
-          //預覽寄出信的內容
-          // Object.assign(recordObj,res.data.record)
-          // this.$message.success(res.data)
-          let obj = {
-              message: res.data,
-              type: 'info'
-          }
-          this.$refs.simplert.openSimplert(obj)
-        })
-      }
+  data(){
+    return {
+      question: null,
+      creating: false,
     }
+  },
+  computed: {
+    ...mapState(['activities','auth'])
+  },
+  methods: {
+    handleDelete(index,row){
+// console.log(row)
+      this.$confirm("你確定要刪除嗎？").then(()=>{
+        axios.post(`/api/qainfo/${row.id}`,{
+          _method: 'DELETE',
+          token: this.auth.token,
+          // _token: this.csrf_token,
+          dataType: 'JSON',
+        }).then((res)=>{
+  
+          this.$message.success("刪除完成")
+          this.$store.dispatch("loadQAinfos")
+          // this.$router.push('/activity')
+        })
+
+      })
+    },
+    handleEdit(index,row){
+      this.question=row
+    },
+    handleSave(question){
+      console.log("儲存")
+      axios.patch("/api/qainfo/"+question.id,question, {
+        token: this.auth.token,
+      }).then(()=>{
+        this.$message.success("儲存成功!")
+        this.$store.dispatch("loadQAinfos")
+      })
+    },
+    addNewQuestion(){
+      axios.post(`/api/qainfo/`,{
+        title:"新問題",
+        token: this.auth.token,
+      }).then((res)=>{
+        this.question=res.data
+        this.$store.dispatch("loadQAinfos")
+        // this.$router.push('/activity')
+      })
+    }
+  },
+  components: {
+    VueEditor , 
+  }
 }
 </script>
 
+<style>
 
-<style lang="sass?indentedSyntax">
-  ul,li
-    list-style: none
-    padding: 0
-    margin: 0
-  .simplert__content
-    width: calc(100% - 30px) !important
-    /* margin: 15px */
-    max-width: 700px
-    text-align: left
-    max-height: 80vh
-    overflow-y: scroll
-    h1
-      margin-top: 0
 </style>
