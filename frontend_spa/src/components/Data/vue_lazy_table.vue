@@ -2,8 +2,9 @@
   .power_table
     div(v-if="conf.show_search")
       .form-group-inline
-        label Search: 
-        input(v-model="search_keyword")
+        div(v-if="!hide_table")
+          label Search: 
+          input(v-model="search_keyword")
         .btn.btn-primary.pull-right(@click="export_csv") 匯出csv
         
     table.table.table-hover(v-if="!hide_table")

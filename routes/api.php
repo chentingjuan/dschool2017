@@ -14,15 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::group([
-
     'middleware' => 'api',
     // 'namespace' => 'App\Http\Controllers',
     'prefix' => 'auth'
-
-], function ($router) {
-
-
-    
+], function ($router) {  
 
     Route::post('register', 'AuthController@register');
     Route::post('login', 'AuthController@login');
@@ -30,10 +25,10 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
+    Route::post("password/email","Auth\ForgotPasswordController@sendResetLinkEmail");
+    Route::post("password/reset","Auth\ResetPasswordController@resetPasswordHandler");
 
 });
-
-
 
 //--------------------------尚未遷移--------------------------
 // Route::get('/api/{activityId}', "PublicController@Spa");

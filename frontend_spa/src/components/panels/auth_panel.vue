@@ -16,10 +16,13 @@
         input(v-model="loginData.email", placeholder="信箱", type="email")
         //- label 密碼
         input.loginPwd(v-model="loginData.password", placeholder="密碼" , type="password")
-        button.btn.fw.black(@click="panelLogin") 登入
-        //- button.btn.fw(@click="loginFacebook") 使用 Facebook 登入
+        .row.mt-5
+          
+          button.btn.lightGrey(@click="panelLogin") 登入
+          button.btn.lightGrey(@click="mode='register'") 註冊
         //button.btn.fw.nobg 忘記密碼
-        button.btn.fw.nobg(@click="mode='register'") 註冊
+
+        
       .bottom(v-if="mode=='register' && !auth.user")
         h4 會員註冊
         //- label email

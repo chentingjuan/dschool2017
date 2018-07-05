@@ -14,9 +14,9 @@
 // Route::get('verification/{token}', 'Auth\AuthController@getVerification');
 
 Route::get('/', 'PublicController@Spa')->name('home');
+Auth::routes();
 Route::get('/testmail', 'HomeController@testmail');
 
-Auth::routes();
 
 
 // Route::group(["prefix"=>"manage"],function(){

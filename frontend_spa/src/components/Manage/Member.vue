@@ -22,7 +22,7 @@
           el-table(:data="filtered_data", @row-click="handleRowClick", max-height="700",
                    :default-sort="{prop: 'order_id', order: 'ascending'}" )
             // el-table-column(prop="id", label="#", width="40", :sortable="true")
-            el-table-column(prop="order_id", label="#", width="60", :sortable="true")
+            el-table-column(prop="order_id", label="#", width="60", :sortable="true" v-if="nowCataId!=-1")
             el-table-column(prop="name", label="姓名" , width="100", :sortable="true")
             //- el-table-column(prop="cover",label="封面", width="120")
               //- template(slot-scope="scope")
@@ -148,12 +148,15 @@ export default {
         nx.cataname = (cata && cata.type) || "-" 
         return nx
       })
-      transformed.sort((a,b)=>a.order_id>b.order_id?1:-1)
-        .forEach((member,mid)=>{
-          member.order_id=mid
-        })
+      if (this.nowCataId!=-1){
+        transformed.sort((a,b)=>a.order_id>b.order_id?1:-1)
+          .forEach((member,mid)=>{
+            member.order_id=mid
+          })
+        this.saveAllMember(transformed,false)
+
+      }
       
-      this.saveAllMember(transformed,false)
       return transformed
     }
   },
