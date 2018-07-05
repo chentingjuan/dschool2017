@@ -6,17 +6,18 @@
     section.sectionQuestions
       .container
         .row
-          //- input
           .col-sm-3
             router-link.btn.btn-primary(v-if="is_admin",
               to="/manage/question") + 管理問題
+
         .row
           .col-sm-12(v-for="(question,qid) in QAinfos",
                      :class="'q'+qid",
                      @click="toggleQuestion(qid)").theme.white.card.hover
             h3 {{question.title}}
             p(v-html="question.content", 
-              :class="{hide: !status[qid]}")
+              :class="{hide: !status[qid]}",
+              @click.prevent.stop="clickNo")
             br
       .anchors
         ul
@@ -46,6 +47,9 @@ export default {
     toggleQuestion(qid,value){
       let nv = value!=undefined?value:!this.status[qid]
       Vue.set(this.status,qid, nv)
+    },
+    clickNo(){
+
     },
     scrollQuestion(qid){
       this.toggleQuestion(qid,true)
