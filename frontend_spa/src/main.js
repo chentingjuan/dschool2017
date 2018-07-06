@@ -126,12 +126,14 @@ Vue.mixin({
       // An example of using FormData
       // NOTE: Your key could be different such as:
       // formData.append('file', file)
-      console.log("get picture!")
+      // console.log("get picture!")
       var formData = new FormData();
       formData.append('file', file)
       console.log(file)
 
-      axios.post('/api/upload',{
+      axios({
+        url: process.env.API_DOMAIN + '/api/upload',
+        method: 'POST',
         data: formData
       })
         .then((result) => {
