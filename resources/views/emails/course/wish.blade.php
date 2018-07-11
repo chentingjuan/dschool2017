@@ -1,7 +1,7 @@
 D-School學院 課程許願通知：<br><br>
 有人在官網的課程許願池許了願！ <br><br>他說：
 <h3>「
- {{ str_replace('\n','<br>',$content) }}
+ {{ nl2br($content) }}
 」<h3>
 <br>
 <br>

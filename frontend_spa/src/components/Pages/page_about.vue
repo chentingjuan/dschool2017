@@ -2,7 +2,8 @@
   .page.page_about
     section.sectionHero.theme.blue
       //- h1 關於我們
-      img.coverGraphic(src="/static/img/about_sectionAbout_BigD.png", :style="{transform: `translateY(${scrollTop/3}px)`}")
+      img.coverGraphic.animated.fadeIn(src="/static/img/about_sectionAbout_BigD.png", 
+      :style="{transform: `translateY(${scrollTop/3}px)`}")
       
     section.sectionQuestion.theme.blue
       .container
