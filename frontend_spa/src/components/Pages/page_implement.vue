@@ -2,7 +2,7 @@
   .page.page_implement
     section.sectionHero.blue
       //- h1 實作中心 D-SCHOOL
-      img.coverGraphic(src="/static/img/hero_maker_cover.svg")
+      img.coverGraphic(src="/static/img/hero_maker_cover.svg", :style="{transform: `translateY(${scrollTop/3}px)`}")
       .status
         .text 開放時間：{{status_text}}
         br
@@ -132,6 +132,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
   data(){
     return {
@@ -196,6 +197,7 @@ export default {
     }
   },
   computed:{
+    ...mapState(['scrollTop']),
     status_text(){
       return this.day_status.filter(o=>o.open).map(t=>"週"+t.label).join(" / ")
     }

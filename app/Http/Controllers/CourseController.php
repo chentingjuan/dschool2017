@@ -6,13 +6,14 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Course;
 use Auth;
+use Mail;
 class CourseController extends Controller
 {
     //  
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['index','show']]);
+        $this->middleware('auth:api', ['except' => ['index','show','wish']]);
     }
 
     public function index(){
@@ -49,6 +50,19 @@ class CourseController extends Controller
         $inputs = Input::except(['token']);
         $course = Course::create($inputs);
         return $course;
+    }
+
+    public function wish(){
+        $inputs = Input::all();
+        $mail_title = "D-School 官網課程許願";
+        Mail::send('emails.course.wish', $inputs , function($message) use ($inputs,$mail_title ){
+            $message
+                ->from('noreply_service_dschool@ntu.edu.tw','Dschool台大創新設計學院')
+                ->bcc('frank890417@gmail.com', '吳哲宇')
+                ->to('ntudschool@ntu.edu.tw','Dschool網站管理')
+                ->subject($mail_title);
+        });
+        return ["status"=>"success"];
     }
     /**
      * Get the guard to be used during authentication.

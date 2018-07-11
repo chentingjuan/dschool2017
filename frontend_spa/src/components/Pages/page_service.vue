@@ -2,7 +2,7 @@
 .page.page_service
   section.sectionHero.blue
     //- h1 服務項目
-    img.coverGraphic(src="/static/img/hero_service_cover.svg")
+    img.coverGraphic(src="/static/img/hero_service_cover.svg", :style="{transform: `translateY(${scrollTop/3}px)`}")
     //- img.coverGraphic(src="/static/img/about_sectionAbout_BigD.png")
   section.sectionAbout.theme.blue
     .container-fluid.theme.white.card
@@ -97,6 +97,7 @@
 </template>
 
 <script>
+import {mapState } from 'vuex'
 export default {
   mounted(){
   },
@@ -156,6 +157,9 @@ export default {
     scrollTo(target){
       $("html,body").animate({scrollTop: $(target).offset().top }) 
     }
+  },
+  computed:{
+    ...mapState(['scrollTop'])
   }
 }
 </script>

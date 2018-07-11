@@ -1,7 +1,7 @@
 <template lang="pug">
   .page.pageActivityList
     section.sectionHero.blue
-      img.coverGraphic(src="/static/img/hero_activity_cover.svg")
+      img.coverGraphic(src="/static/img/hero_activity_cover.svg", :style="{transform: `translateY(${scrollTop/3}px)`}")
             
     section.sectionList.theme.blue
       .container
@@ -55,7 +55,8 @@ export default {
       ...mapState({
         auth: 'auth',
         user: state=>state.auth.user,
-        activities: 'activities'
+        activities: 'activities',
+        'scrollTop': 'scrollTop'
       }),
       is_admin(){
         return this.auth.user && this.auth.user.admingroup=='root' 

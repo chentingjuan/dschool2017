@@ -30,6 +30,11 @@ Route::group([
 
 });
 
+
+
+Route::post("/course/wish","CourseController@wish");
+
+
 //--------------------------尚未遷移--------------------------
 // Route::get('/api/{activityId}', "PublicController@Spa");
 Route::get('/user/activity', "ApiController@getAllRegistedEvent");

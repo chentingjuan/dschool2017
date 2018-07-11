@@ -2,7 +2,7 @@
 .page.page_course
   section.sectionHero.blue
     //- h1 學院課程
-    img.coverGraphic(src="/static/img/hero_course_cover.svg")
+    img.coverGraphic(src="/static/img/hero_course_cover.svg",  :style="{transform: `translateY(${scrollTop/3}px)`}")
     //- img.coverGraphic(src="/static/img/question_cover.svg")
   section.sectionAbout.theme.blue
     .container
@@ -58,7 +58,8 @@
               hr
               p(v-html="cdata.content")
   section.sectionWish.theme.blue
-    img.cover(src="/static/img/course_wish.svg")
+    img.cover.planet_end(src="/static/img/course_wish.svg",
+              :style="{bottom: zPan+'px'}")
     .container.animated.fadeIn
       .row
         .col-sm-12 
@@ -69,21 +70,26 @@
           h3 『來不及許願的流星，再怎麼美麗也只能是曾經！』
           p 我們提供大家永恆的許願池，若有想到任何希望學院開設的課程，都請大膽的投到許願池中，提供的線索（主題、講師、對象、目標等）越詳細越容易實現喔！
           .btn.white(@click="wishing=true", v-if="!wishing") 我要許願！
+          h4.mt-3.fadeInUp.animated(v-if="wishFinish") 願望已發送到外太空囉！
           transition(name="fade")
-            div(v-if="wishing")
-              textarea(rows=5)
-              .btn.white() 送出願望
+            div(v-if="wishing && !wishFinish")
+              textarea(rows=5 v-model="wishContent")
+              .btn.white(@click="sendWish") 送出願望
+           
 
 </template>
 
 <script>
 import {mapState} from 'vuex'
-import courseData from '../Data/courseDatas.js'
+import $ from 'jquery'
+// import courseData from '../Data/courseDatas.js'
 export default {
   data(){
     return {
       wishing: false,
-      courseData,
+      wishFinish: false,
+      wishContent: "",
+      // courseData,
       catas: [
         {
           img: "/static/img/course_cata_1.svg",
@@ -139,10 +145,22 @@ export default {
     }
   },
   computed:{
-    ...mapState(['courses']),
+    ...mapState(['courses','scrollTop']),
     sortedCourses(){
       return this.courses.sort((a,b)=>{
         return a.order_id>b.order_id?1:-1
+      })
+    },
+    zPan(){
+      return -( this.scrollTop / $("html").height())*window.innerHeight/1.5+window.innerHeight/2+50
+    }
+  },
+  methods: {
+    sendWish(){
+      axios.post("/api/course/wish",{
+        content: this.wishContent
+      }).then(()=>{
+        this.wishFinish=true
       })
     }
   }
