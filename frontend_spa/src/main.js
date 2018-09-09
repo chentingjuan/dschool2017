@@ -145,7 +145,7 @@ Vue.mixin({
         })
     },
     cssbg(url) {
-      let use_url = (url || "").replace("http://dschool.ntu.edu.tw/assets/", "http://service.dschool.ntu.edu.tw/dschool_old_assets/")
+      let use_url = (url || "").replace("https://dschool.ntu.edu.tw/assets/", "https://service.dschool.ntu.edu.tw/dschool_old_assets/")
       let result = {
         'background-image': `url("${use_url}")`,
         'background-position': 'center center',

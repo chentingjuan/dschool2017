@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  API_DOMAIN: '"http://service.dschool.ntu.edu.tw"'
+  API_DOMAIN: '"https://service.dschool.ntu.edu.tw"'
 }
