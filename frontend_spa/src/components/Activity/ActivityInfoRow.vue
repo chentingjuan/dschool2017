@@ -1,7 +1,7 @@
 <template lang="pug">
   router-link.rowActivity.row.nolinkstyle.animated.fadeIn(v-if="event",:to="'/activity/'+event_id")
     .col-sm-4.col-img
-      .event_img(:style="{'background-image':'url('+event.cover+')'}", alt="")
+      .event_img(:style="cssbg(event.cover)", alt="")
       .tag.mt-10 {{tagname}}
     .col-sm-8
       h4.mt-10 {{event.time_detail}} @ {{event.place}}
