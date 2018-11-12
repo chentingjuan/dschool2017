@@ -82,6 +82,7 @@ export default {
   methods: {
     trans(content){
       let result =  (content || "").replace(/\/assets\/image\//g,"/dschool_old_assets/")
+      result = result.replace(/\/dschool_old_assets\//g,"https://service.dschool.ntu.edu.tw/dschool_old_assets/image/")
       result = result.replace(/\<img.*?src=\"(.*?)\".*?\>/,"<img src='$1'>")
                     .replace(/(\<iframe.*?http.*?\"\><\/iframe>)/g,"<div class='video-wrapper'>$1</div>")
       //result = result.replace(/\<img.*?src=\"(.*?)\".*?\>/,"<div class='contentImage' style='background:url($1)'></div>")
