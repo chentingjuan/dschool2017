@@ -114,7 +114,7 @@
             .container
               .row
                 .col-sm-3(v-for="equip in equipments")
-                  .equip(:style="cssbg(equip.cover)")
+                  .equip(:style="cssbg(equip.src)")
                     .name {{equip.name}}
 
     //- section.sectionQuestion.theme.blue
@@ -160,38 +160,176 @@ export default {
           open: false
         }
       ],
+      // equipments: [
+      //   {
+      //     name: "MDX40A",
+      //     cover: "/static/img/equipments_maker/MDX40A.jpg"
+      //   },
+      //   {
+      //     name: "rep2x",
+      //     cover: "/static/img/equipments_maker/rep2x.png"
+      //   },
+      //   {
+      //     name: "replicator",
+      //     cover: "/static/img/equipments_maker/replicator_default.png"
+      //   },
+      //   {
+      //     name: "Universal VLS",
+      //     cover: "/static/img/equipments_maker/Universal VLS 6.60.jpg"
+      //   },
+      //   {
+      //     name: "Up Box",
+      //     cover: "/static/img/equipments_maker/Box.png"
+      //   },
+      //   {
+      //     name: "手持線鋸",
+      //     cover: "/static/img/equipments_maker/手持線鋸.jpg"
+      //   },
+      //   {
+      //     name: "鑽床",
+      //     cover: "/static/img/equipments_maker/鑽床.jpg"
+      //   },
+      //   {
+      //     name: "奶油蒼蠅",
+      //     cover: "/static/img/equipments_maker/奶油蒼蠅.png"
+      //   }
+      // ]
       equipments: [
         {
-          name: "MDX40A",
-          cover: "/static/img/equipments_maker/MDX40A.jpg"
+          "name": "3D印表機 UP Box",
+          "src": "/static/img/equipments/3D印表機 UP Box.png"
         },
         {
-          name: "rep2x",
-          cover: "/static/img/equipments_maker/rep2x.png"
+          "name": "雷射切割機 Universal VLS 6.60",
+          "src": "/static/img/equipments/雷射切割機 Universal VLS 6.60.jpg"
         },
         {
-          name: "replicator",
-          cover: "/static/img/equipments_maker/replicator_default.png"
+          "name": "3D印表機 Ultimaker 3 extend",
+          "src": "/static/img/equipments/3D印表機 Ultimaker 3 extend.png"
         },
         {
-          name: "Universal VLS",
-          cover: "/static/img/equipments_maker/Universal VLS 6.60.jpg"
+          "name": "各式手工具",
+          "src": "/static/img/equipments/各式手工具.jpg"
         },
         {
-          name: "Up Box",
-          cover: "/static/img/equipments_maker/Box.png"
+          "name": "3D印表機 makerbot 2X",
+          "src": "/static/img/equipments/3D印表機 makerbot 2X.png"
         },
         {
-          name: "手持線鋸",
-          cover: "/static/img/equipments_maker/手持線鋸.jpg"
+          "name": "手持鑽磨機",
+          "src": "/static/img/equipments/手持鑽磨機.jpg"
         },
         {
-          name: "鑽床",
-          cover: "/static/img/equipments_maker/鑽床.jpg"
+          "name": "3D印表機 makerbot 5th",
+          "src": "/static/img/equipments/3D印表機 makerbot 5th.png"
         },
         {
-          name: "奶油蒼蠅",
-          cover: "/static/img/equipments_maker/奶油蒼蠅.png"
+          "name": "桌上型銑床",
+          "src": "/static/img/equipments/桌上型銑床.jpg"
+        },
+        {
+          "name": "3D印表機-ARM-10",
+          "src": "/static/img/equipments/3D印表機-ARM-10.jpg"
+        },
+        {
+          "name": "桌上型鑽床",
+          "src": "/static/img/equipments/桌上型鑽床.jpg"
+        },
+        {
+          "name": "3D印表機kingssel1830",
+          "src": "/static/img/equipments/3D印表機kingssel1830.jpg"
+        },
+        {
+          "name": "臥式帶鋸機",
+          "src": "/static/img/equipments/臥式帶鋸機.jpg"
+        },
+        {
+          "name": "CNC銑床 MDX-40A",
+          "src": "/static/img/equipments/CNC銑床 MDX-40A.jpg"
+        },
+        {
+          "name": "各式電子工具",
+          "src": "/static/img/equipments/各式電子工具.jpg"
+        },
+        {
+          "name": "SENSE掃描器",
+          "src": "/static/img/equipments/SENSE掃描器.png"
+        },
+        {
+          "name": "壓克力熱彎器",
+          "src": "/static/img/equipments/壓克力熱彎器.jpg"
+        },
+        {
+          "name": "arduino控制板",
+          "src": "/static/img/equipments/arduino控制板.jpg"
+        },
+        {
+          "name": "桌上型切斷機",
+          "src": "/static/img/equipments/桌上型切斷機.jpg"
+        },
+        {
+          "name": "帶鋸機",
+          "src": "/static/img/equipments/帶鋸機.jpg"
+        },
+        {
+          "name": "桌上型圓鋸機",
+          "src": "/static/img/equipments/桌上型圓鋸機.jpg"
+        },
+        {
+          "name": "熱風槍",
+          "src": "/static/img/equipments/熱風槍.jpg"
+        },
+        {
+          "name": "桌上型砂光機",
+          "src": "/static/img/equipments/桌上型砂光機.jpg"
+        },
+        {
+          "name": "砂帶機",
+          "src": "/static/img/equipments/砂帶機.jpg"
+        },
+        {
+          "name": "桌上型線鋸機",
+          "src": "/static/img/equipments/桌上型線鋸機.jpg"
+        },
+        {
+          "name": "縫紉機",
+          "src": "/static/img/equipments/縫紉機.jpg"
+        },
+        {
+          "name": "超音波切割機",
+          "src": "/static/img/equipments/超音波切割機.jpg"
+        },
+        {
+          "name": "角鑿機",
+          "src": "/static/img/equipments/角鑿機.jpg"
+        },
+        {
+          "name": "電動螺絲起子",
+          "src": "/static/img/equipments/電動螺絲起子.jpg"
+        },
+        {
+          "name": "手持線鋸",
+          "src": "/static/img/equipments/手持線鋸.jpg"
+        },
+        {
+          "name": "電熱絲切割機",
+          "src": "/static/img/equipments/電熱絲切割機.jpg"
+        },
+        {
+          "name": "手持電鑽",
+          "src": "/static/img/equipments/手持電鑽.jpg"
+        },
+        {
+          "name": "手持圓盤砂紙機",
+          "src": "/static/img/equipments/手持圓盤砂紙機.jpg"
+        },
+        {
+          "name": "噴畫切割機 BN-20",
+          "src": "/static/img/equipments/噴畫切割機 BN-20.jpg"
+        },
+        {
+          "name": "桌上型真空成型機",
+          "src": "/static/img/equipments/桌上型真空成型機.jpg"
         }
       ]
     }
