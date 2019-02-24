@@ -9,7 +9,8 @@ import ManagePostEdit from "../components/Manage/Post.vue"
 import ManageMemberEdit from "../components/Manage/Member.vue"
 import ManageQuestionEdit from "../components/Manage/Question.vue"
 import ManageCourse from "../components/Manage/Course.vue";
-import ManageEquipList from "../components/manage/EquipmentRecordList.vue"
+import ManageEquipList from "../components/Manage/EquipmentRecordList.vue"
+import ManagePage from "../components/Manage/Page.vue"
 
 let routes = {
   path: "/manage",
@@ -128,11 +129,19 @@ let routes = {
         mainNav: true
       }
     },
+    // {
+    //   path: "equipment/list",
+    //   component: ManageEquipList,
+    //   meta: {
+    //     title: "設備管理",
+    //     mainNav: true
+    //   }
+    // },
     {
-      path: "equipment/list",
-      component: ManageEquipList,
+      path: "page",
+      component: ManagePage ,
       meta: {
-        title: "設備管理",
+        title: "頁面內容管理",
         mainNav: true
       }
     }

@@ -41,6 +41,7 @@ Route::get('/user/activity', "ApiController@getAllRegistedEvent");
 Route::get('/user/list', "ApiController@getUserList");
 Route::get('/user/equipment', "ApiController@getEquipmentList");
 
+Route::resource('page',"PageController");
 Route::resource('activity',"ActivityController");
 Route::resource('question',"QuestionController");
 Route::resource('qainfo',"QAinfoController");

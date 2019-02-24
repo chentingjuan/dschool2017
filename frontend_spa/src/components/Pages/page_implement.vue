@@ -42,23 +42,22 @@
             .row
               .col-sm-4
                 h3 開放對象
-                p 台大全體師生(創新設計學院師生優先)，<br>及向創新設計學院申請通過者。
+                p(v-html="rules.target") 台大全體師生(創新設計學院師生優先)，<br>及向創新設計學院申請通過者。
                 br
                 h3 開放時間
-                p 週一 / 週二 / 週四，09:00-16:30。<br>若與例假日、學院課程活動使用衝突則不開放使用。<br>（請參閱學院活動行事曆。）<br>寒暑假不開放，D-Plan專案申請者除外。
+                p(v-html="rules.opentime") 週一 / 週二 / 週四，09:00-16:30。<br>若與例假日、學院課程活動使用衝突則不開放使用。<br>（請參閱學院活動行事曆。）<br>寒暑假不開放，D-Plan專案申請者除外。
 
               .col-sm-8.card.theme.white
                 h3 使用規則
                 br
-                p
+                p(v-html="rules.rule")
                   | 1. 請遵照『實作中心使用流程』申請及登記使用。<br>
                   | 2. 3D列印機與雷射切割機需具有學院認證紀錄才可使用。（登記認證程序同使用流程）<br>
                   | 3. 實作中心僅販售少量密集板、壓克力板、3D列印等材料，不提供大量製造與材料訂購。（品項與價格細目請洽R405管理櫃台。）<br>
                   | 4. 請務必遵守各項安全守則，並遵從管理人員指示。
-
                 h3 注意事項
                 br
-                p
+                p(v-html="rules.warning")
                   | 1. 禁止擅自攜帶非課程、業務相關人員進入，避免造成危險 。
                   | <br>2. 工具材料限於學院內使用，並當日完成歸還(經申請許可者除外) 。
                   | <br>3. 實作中心鼓勵眾人分享作品與回饋，但中心內創作的一切智慧財產權仍完全歸原創作者所有。
@@ -74,36 +73,14 @@
             hr
             
         .row
-          .col-sm-3.col-progress
-            img.img-progress(src="/static/img/maker_progress_1.svg")
+          .col-sm-3.col-progress(v-for="progress in progresses")
+            img.img-progress(:src="progress.icon")
             h3 
-              span.num 1
-              span 登記
-            p 於開放時間持證件至卓越大樓405管理櫃台，登記使用設備、材料、空間，及時間。
+              span.num {{ progress.num }}
+              span {{ progress.title }}
+            p(v-html="progress.content")
             //- .btn.orange.outline 登記使用
           
-          .col-sm-3.col-progress
-            img.img-progress(src="/static/img/maker_progress_2.svg")
-            h3 
-              span.num 2
-              span 驗證
-            p 經管理人員確認身分符合且確實了解設備操作方式後，繳交證件即可使用空間及設備。
-            //.btn.white.outline 申請驗證
-          
-          .col-sm-3.col-progress
-            img.img-progress(src="/static/img/maker_progress_3.svg")
-            h3 
-              span.num 3
-              span 清潔
-            p 使用結束後妥善清潔場地、設備並復原環境。
-          
-          .col-sm-3.col-progress
-            img.img-progress(src="/static/img/maker_progress_4.svg")
-            h3 
-              span.num 4
-              span 檢查
-            p 至管理櫃台請管理人員檢查確認，確認無誤後登記取回證件。
-
     section.sectionDevices.theme.blue
       .container
         .row
@@ -132,6 +109,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import {mapState} from 'vuex'
 export default {
   data(){
@@ -160,40 +138,38 @@ export default {
           open: false
         }
       ],
-      // equipments: [
-      //   {
-      //     name: "MDX40A",
-      //     cover: "/static/img/equipments_maker/MDX40A.jpg"
-      //   },
-      //   {
-      //     name: "rep2x",
-      //     cover: "/static/img/equipments_maker/rep2x.png"
-      //   },
-      //   {
-      //     name: "replicator",
-      //     cover: "/static/img/equipments_maker/replicator_default.png"
-      //   },
-      //   {
-      //     name: "Universal VLS",
-      //     cover: "/static/img/equipments_maker/Universal VLS 6.60.jpg"
-      //   },
-      //   {
-      //     name: "Up Box",
-      //     cover: "/static/img/equipments_maker/Box.png"
-      //   },
-      //   {
-      //     name: "手持線鋸",
-      //     cover: "/static/img/equipments_maker/手持線鋸.jpg"
-      //   },
-      //   {
-      //     name: "鑽床",
-      //     cover: "/static/img/equipments_maker/鑽床.jpg"
-      //   },
-      //   {
-      //     name: "奶油蒼蠅",
-      //     cover: "/static/img/equipments_maker/奶油蒼蠅.png"
-      //   }
-      // ]
+      progresses: [
+        {
+          num: 1,
+          title: "登記",
+          content: "於開放時間持證件至卓越大樓405管理櫃台，登記使用設備、材料、空間，及時間。",
+          icon: "/static/img/maker_progress_1.svg"
+        },
+        {
+          num: 2,
+          title: "驗證",
+          content: "經管理人員確認身分符合且確實了解設備操作方式後，繳交證件即可使用空間及設備。",
+          icon: "/static/img/maker_progress_2.svg"
+        },
+        {
+          num: 3,
+          title: "清潔",
+          content: "使用結束後妥善清潔場地、設備並復原環境。",
+          icon: "/static/img/maker_progress_3.svg"
+        },
+        {
+          num: 4,
+          title: "檢查",
+          content: "至管理櫃台請管理人員檢查確認，確認無誤後登記取回證件。",
+          icon: "/static/img/maker_progress_4.svg"
+        }
+      ],
+      rules: {
+        target: "台大全體師生(創新設計學院師生優先)，及向創新設計學院申請通過者。",
+        opentime: "週一 / 週二 / 週四，09:00-16:30。<br>若與例假日、學院課程活動使用衝突則不開放使用。<br>（請參閱學院活動行事曆。）<br>寒暑假不開放，D-Plan專案申請者除外。",
+        rule: "1. 請遵照『實作中心使用流程』申請及登記使用。<br>2. 3D列印機與雷射切割機需具有學院認證紀錄才可使用。（登記認證程序同使用流程）<br>3. 實作中心僅販售少量密集板、壓克力板、3D列印等材料，不提供大量製造與材料訂購。（品項與價格細目請洽R405管理櫃台。）<br>4. 請務必遵守各項安全守則，並遵從管理人員指示。",
+        warning: "1. 禁止擅自攜帶非課程、業務相關人員進入，避免造成危險 。<br>2. 工具材料限於學院內使用，並當日完成歸還(經申請許可者除外) 。<br>3. 實作中心鼓勵眾人分享作品與回饋，但中心內創作的一切智慧財產權仍完全歸原創作者所有。<br>4. 實作中心以協助製作創新原型為主要功能，不提供商業用途之大量製造。<br><br>＊創新設計學院保留修改本要點之權利</p>"
+      },
       equipments: [
         {
           "name": "3D印表機 UP Box",
@@ -339,6 +315,15 @@ export default {
     status_text(){
       return this.day_status.filter(o=>o.open).map(t=>"週"+t.label).join(" / ")
     }
+  },
+  created(){
+    axios.get("/api/page/implement").then(res=>{
+      res.data.content = res.data.content? JSON.parse(res.data.content):{}
+      Object.keys(res.data.content).forEach(key=>{
+        console.log(key,res.data.content[key])
+        this.$set(this,key,res.data.content[key])
+      })
+    })
   }
 }
 </script>
