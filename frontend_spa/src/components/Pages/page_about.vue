@@ -74,28 +74,45 @@
             .btn.btn-text(v-if="nowCata!=-1", @click="nowCata=-1")
               i.fa.fa-angle-left.mr-2
               | 返回總表
-        
           .col-sm-9
+            //- p(v-if="nowMember" v-html="nowMember.content")
+            fullPage(@closeFullpage="nowMember=null", :show="nowMember")
+              .container.float-card(v-if="nowMember")
+                .row
+                  .col-sm-3
+                    .img(:style="cssbg(nowMember.cover)" )
+                      .cata(v-if="memberCata[nowMember.cata-1]") {{memberCata[nowMember.cata-1].type}}
+                  .col-sm-9
+                    h3 {{nowMember.name}} 
+                    h4.description.mb-3
+                      span(v-if='nowMember.company') {{nowMember.company}}
+                      span(v-if='nowMember.company') &nbsp;/&nbsp;
+                      span {{nowMember.position}} 
+                    p(v-html="nowMember.content")
+
             .col-sm-3.col-member.animated.fadeIn.mb-4(
               v-for="(member,mid) in filtered_teammember",
-              :class="'delay-ani-'+mid*1")
+                     :class="'delay-ani-'+mid*1",
+                     @click=" setActiveMember(member)")
               .img(:style="cssbg(member.cover)" )
                 .cata(v-if="memberCata[member.cata-1]") {{memberCata[member.cata-1].type}}
                 // router-link.edit_btn(v-if="is_admin", :to="`/manage/member/${member.id}`") 編輯
               h3 {{member.name}} 
-              h5.description(style="min-height: 3em")
+              h5.description.mt-2(style="min-height: 3rem")
                 span(v-if='member.company') {{member.company}}
                 span(v-if='member.company') &nbsp;/&nbsp;
                 span {{member.position}} 
-
               
 </template>
 
 <script>
 import {mapState} from "vuex"
 import {WOW} from "wowjs"
+import fullPage from "@/components/fullPage"
+
    var wow = new WOW()
 export default {
+  
   mounted(){
     setTimeout(function(){
       wow.sync()
@@ -153,7 +170,8 @@ export default {
          img: "/static/img/about_sectionMembers_staffIcon4.svg"
        }
      ],
-     nowCata: -1
+     nowCata: -1,
+     nowMember: null
    }
   },
   computed:{
@@ -165,6 +183,20 @@ export default {
       return this.teammembers
               .filter(o=>o.cata==this.nowCata || !this.nowCata)
               .slice().sort((a,b)=>a.order_id>b.order_id?1:-1)
+    },
+    isFullPageMemberOpened(){
+      return this.nowMember?true:false
+    }
+
+  },
+  components: {
+    fullPage
+  },
+  methods: {
+
+    setActiveMember(member){
+      this.$set(this,"nowMember",member)
+      console.log(member)
     }
   }
 }

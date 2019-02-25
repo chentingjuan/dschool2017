@@ -84,12 +84,14 @@
               h5 {{member.position}} 
                 span(v-if='member.company') ,{{member.company}}
 
+            fullPage(@click="closeFullpage=")
               
 </template>
 
 <script>
 import {mapState} from "vuex"
 import {WOW} from "wowjs"
+import fullPage from "./components/fullPage"
    var wow = new WOW()
 export default {
   mounted(){
