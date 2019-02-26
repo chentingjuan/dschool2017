@@ -45,8 +45,11 @@
     .container.theme.blue
       .row
         .col-sm-12 
-          h2 當期課程列表
+          h2 課程列表
           hr
+          span.float-right.text-color.orange
+            i.fa.fa-check 
+            span &nbsp;當期開設
       .row
         .col-sm-12(v-for="(cdata,cid) in sortedCourses")
           .row.row-planet.animated.fadeIn(:class="'delay-ani-'+cid*2")
@@ -54,6 +57,8 @@
               img(:src="cdata.planetSrc")
             .col-sm-8.col-info
               h3 {{cdata.title}}
+                span.text-color.orange(v-if="cdata.current") &nbsp;
+                  i.fa.fa-check
               h4 {{cdata.code}} {{ cdata.type }}
               hr
               p(v-html="cdata.content")

@@ -58,6 +58,8 @@
           el-form(label-width= "80px")
             el-form-item(label="標題")
               el-input(v-model="course.title")
+            el-form-item(label="當期")
+              el-checkbox(v-model="course.current")
             el-form-item(label="類型")
               el-select(v-model="course.type")
                 el-option(v-for="cata in catas",
@@ -178,6 +180,7 @@ export default {
       this.creating=false
       this.editingId=row.id
       this.course=(this.courses || []).find(o=>o.id==this.editingId)
+      this.course.current = this.course.current?true:false
       // console.log(row.id)
     },
     handleDelete(index,row){
