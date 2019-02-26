@@ -317,6 +317,7 @@ export default {
     }
   },
   created(){
+    //load customized info and override default
     axios.get("/api/page/implement").then(res=>{
       res.data.content = res.data.content? JSON.parse(res.data.content):{}
       Object.keys(res.data.content).forEach(key=>{

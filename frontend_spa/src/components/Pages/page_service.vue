@@ -19,6 +19,7 @@
               p {{item.content}}
               .btn.orange(@click="scrollTo(item.scroll_target)",
                           v-if="item.btn_label") {{item.btn_label}}
+        
   //section.sectionSpace.theme.blue
     .container-fluid
       .row
@@ -89,8 +90,34 @@
                 img.img_workshop(:src="workshop.cover")
                 h3 {{workshop.title}}
                 p {{workshop.content}}
-                .btn.white 了解更多
+                .btn.white(@click="setWorkshop(workshop)") 了解更多
             
+    fullPage(@closeFullpage="nowWorkshop=null", :show="nowWorkshop")
+      .container.float-card.theme.white(v-if="nowWorkshop")
+        .row.text-left
+          .col-sm-3
+            img.img_workshop(:src="nowWorkshop.cover")
+          .col-sm-9
+            h3 {{nowWorkshop.title}}
+            p.text-left
+              b 課程長度：
+              span(v-html="nowWorkshop.detail.length")
+              br
+              b 預約申請：
+              span(v-html="nowWorkshop.detail.appointment")
+              br
+              b 課程人數／講師教練需求：
+              span(v-html="nowWorkshop.detail.requirement")
+              br
+              b 目標：
+              span(v-html="nowWorkshop.detail.target")
+              br
+              b 其他：
+              span(v-html="nowWorkshop.detail.other")
+              br
+              b 課程內容：
+              span(v-html="nowWorkshop.detail.content")
+              br
 
 
 
@@ -98,6 +125,7 @@
 
 <script>
 import {mapState } from 'vuex'
+import fullPage from "@/components/fullPage"
 export default {
   mounted(){
   },
@@ -131,35 +159,102 @@ export default {
         length: "?",
         cover: "/static/img/workshop_1.svg",
         title: "客製化工作坊",
-        content: "認識設計思考，並運用設計思考流程解決特定問題"
+        content: "認識設計思考，並運用設計思考流程解決特定問題",
+        detail: {
+          length: "可視實際需求調整",
+          appointment: `1. 半日（3hr）活動需提前至少三週確認主題及活動目標<br>
+          2. 全日或以上者需提前一個月申請`,
+          requirement: "",
+          other: "需至少進行三次事前會議<br>＊需求確認會<br>＊主題目標議定會<br>＊工作方流程協調會",
+          target: "認識設計思考，並運用設計思考流程解決特定問題",
+          content: `
+          1. 需求確認會議三日內提交課程大綱<br>
+          2. 主題議定會後一週內提供活動或課程企劃<br>
+          3. 課程企劃提出後進行流程協調會議<br>
+          4. 課程內容涵蓋體驗式前導活動專案前工作坊、專案規劃及執行協助，是單位需求議定<br>`
+        }
       },{
         length: "3",
         cover: "/static/img/workshop_2.svg",
         title: "體驗工作坊",
-        content: "認識設計思考，並運用互動練習體驗設計思考流程，初探設計思考概念(mindset)"
+        content: "認識設計思考，並運用互動練習體驗設計思考流程，初探設計思考概念(mindset)",
+        detail: {
+          length: "３小時以內",
+          appointment: `需提前至少一週預約`,
+          requirement: `＊１４人以內，１位講師，１位助教<br>
+              ＊１４－２５人，１位講師，１位教練，１位助教<br>
+              ＊２５人以上，１位講師，每１０人１位教練，１位助教`,
+          other: "",
+          target: "認識設計思考，並藉由互動練習體驗設計思考流程，初探設計思考概念(mindset)",
+          content: `1. 演講：設計思考初探<br>
+          2. 演講：設計思考流程解析<br>
+          3. 流程演練(題目可視需求調整)<br>
+          4. 初階—錢包練習<br>
+          5. 進階—送禮練習<br>
+`
+        }
       },{
         length: "8",
         cover: "/static/img/workshop_3.svg",
         title: "概念工作坊",
-        content: "認識惡既思考，暸解操作心法及體驗流程操作實務"
+        content: "認識惡既思考，暸解操作心法及體驗流程操作實務",
+        detail: {
+          length: "８小時以內(含用餐)",
+          appointment: `需提前至少三週預約`,
+          requirement: `＊１４人以內，１位講師，１位教練，１位助教<br>
+                  ＊１４人以上，１位講師，每５－６人１位教練，１位助教`,
+          other: "",
+          target: "認識設計思考，暸解操作心法及體驗流程操作實務",
+          content: `1. 預約時進行主題議定會，會後一週內提供活動或課程企劃<br>
+                  2. 課程內容涵蓋概念介紹、案例解析、部分流程操作、工具演練，可視單位需求議定。
+`
+        }
       },{
         length: "16",
         cover: "/static/img/workshop_4.svg",
         title: "概念工作坊",
-        content: "認識設計思考，暸解操作心法後，進行完整流程演練並能進一步思考應用"
+        content: "認識設計思考，暸解操作心法後，進行完整流程演練並能進一步思考應用",
+        detail: {
+          length: "兩日完整工作坊16hr(含用餐)",
+          appointment: `需提前至少一個月預約`,
+          requirement: `１２人以內，２位講師級教練，１位助教<br>
+                  １２人以上，１位助教，每５－６人一位講師級教練`,
+          other: "",
+          target: "認識設計思考，暸解心法後，進行完整流程演練並能進一步思考應用",
+          content: `1. 預約時進行需求確認會，會後三日提供課程大綱及主題規劃方向<br>
+2. 主題議定會後一週內提供活動或課程企畫<br>
+3. 課程內容涵蓋概念介紹、案例解析、完整流程操作、工具演練、田野應用、可視單位需求議定。
+`
+        }
       }
     ],
-    
+    nowWorkshop: null
    }
 
   },
   methods: {
     scrollTo(target){
       $("html,body").animate({scrollTop: $(target).offset().top }) 
+    },
+    setWorkshop(w){
+      this.$set(this,"nowWorkshop",w)
     }
   },
   computed:{
     ...mapState(['scrollTop'])
+  },
+  components: {
+    fullPage
+  },
+  created(){
+    //load customized info and override default
+    axios.get("/api/page/service").then(res=>{
+      res.data.content = res.data.content? JSON.parse(res.data.content):{}
+      Object.keys(res.data.content).forEach(key=>{
+        console.log(key,res.data.content[key])
+        this.$set(this,key,res.data.content[key])
+      })
+    })
   }
 }
 </script>
