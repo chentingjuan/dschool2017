@@ -124,19 +124,28 @@ const moduleAuth = {
       axios
         .post(context.state.domain + "/password/email", data)
         .then(res => {
-          context.commit("setStatus", "密碼重設信件已經寄出！");
-          // if (res.data.success) {
-          localStorage.setItem("dschool_reset_user_email", context.state.user.email);
-          // } else {
-            // context.commit("setStatus", "密碼重設信件寄送失敗");
-          // }
+          if (res.data){
+            console.log(res.data)
+            if (res.data.success) {
+              context.commit("setStatus", "密碼重設信件已經寄出！");
+              localStorage.setItem("dschool_reset_user_email", context.state.user.email);
+              context.commit("setProcessing", false)
+            } else {
+              context.commit("setStatus", "密碼重設信件寄送失敗");
+            }
+            context.commit("setProcessing", false);
+            context.commit("setPasswordResetResult", true);
+            ;
+
+          }
           context.commit("setProcessing", false);
-          context.commit("setPasswordResetResult", true);
-          ;
         })
         .catch(res => {
+          if (res.data){
+            context.commit("setProcessing", false);
+            context.commit("setStatus", "密碼重設信件寄送失敗");
+          }
           context.commit("setProcessing", false);
-          context.commit("setStatus", "密碼重設信件寄送失敗");
         });
     },
     // email / password / password_confirmation / token
