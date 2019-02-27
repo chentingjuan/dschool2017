@@ -80,6 +80,7 @@ const moduleAuth = {
         axios.post(context.state.domain + "/login", user).then((res) => {
           context.commit("setStatus", "登入成功..")
           context.commit("setUserToken", res.data.access_token)
+          context.commit("setResetToken", null)
           context.dispatch("getUser")
           resolve("login success")
         }).catch(res => {
@@ -109,11 +110,13 @@ const moduleAuth = {
         if (res.data.status == "success") {
           context.commit("setUser", null)
           context.commit("setUserToken", null)
+          context.commit("setResetToken", null)
           context.commit("setStatus", res.data.message)
           context.commit("setProcessing", false)
 
         }
       })
+      
     },
     loginFacebook(context) {
       window.open(context.state.domain + "/login/facebook")
@@ -169,6 +172,8 @@ const moduleAuth = {
         .then(res => {
           if (res.data.success) {
             context.commit("setStatus", "密碼重設成功！請使用新密碼登入");
+            context.commit("setResetToken", null)
+            window.queryObject.reset_token=""
             successHook && successHook();
           } else {
             context.commit("setStatus", "密碼重設失敗");

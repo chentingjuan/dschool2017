@@ -109,7 +109,7 @@
         div(v-else)
           h5 已寄出密碼重設連結，請前往信箱收信確認！
 
-      .bottom(v-else-if="mode=='reset_password'")
+      .bottom(v-else-if="mode=='reset_password' && !auth.user")
         h4 重設使用者密碼
         el-input(placeholder="輸入原帳號信箱", type="email", name="email", v-model="resetPasswordData.email")
         el-input(placeholder="請輸入新密碼", type="password", name="password", v-model="resetPasswordData.password")
@@ -210,8 +210,8 @@ export default {
           this.$message.success( "密碼重設成功！" )
 
           setTimeout(()=>{
-            _this.setResetToken(null)
-            _this.mode="login"
+            _this.setResetToken("")
+            _this.$set(this,"mode","login")
             //- window.location.href=window.location.href.split("?")[0]
             // this.$router.push("/")
             // this.setMenuState(false)
