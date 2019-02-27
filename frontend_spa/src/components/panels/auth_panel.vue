@@ -105,7 +105,7 @@
         h4 重設密碼
         div(v-if="!auth.password_reset_success")
           el-input(placeholder="輸入原帳號信箱", type="email", name="email", v-model="resetSendMailData.email")
-          button.btn.fw.black(@click="resetSendMail(resetSendMailData)" @keydown.enter.prevent="resetSendMail(resetSendMailData)")  寄出重設密碼連結
+          button.btn.lightGrey(@click="resetSendMail(resetSendMailData)" @keydown.enter.prevent="resetSendMail(resetSendMailData)")  寄出重設密碼連結
         div(v-else)
           h5 已寄出密碼重設連結，請前往信箱收信確認！
 
@@ -114,11 +114,11 @@
         el-input(placeholder="輸入原帳號信箱", type="email", name="email", v-model="resetPasswordData.email")
         el-input(placeholder="請輸入新密碼", type="password", name="password", v-model="resetPasswordData.password")
         el-input(placeholder="再次輸入密碼", type="password", name="password_confirmation", v-model="resetPasswordData.password_confirmation")
-        button.btn.fw.black(@click="userResetPassword" ) 重設
+        button.btn.lightGrey(@click="userResetPassword" ) 重設
 
     div(v-if="layout=='function'")
       .btn-group
-        button.btn.fw.black(@click="logout") 登出
+        button.btn.lightGrey(@click="logout") 登出
       .btn-group(v-if="canManage")
         router-link.btn.fw.black(to="/manage") 前往後台
       //pre {{auth}}
@@ -152,7 +152,7 @@ export default {
         
       },
       resetSendMailData:{
-        email:  localStorage.dschool_auth_user_email || "",
+        email: "",
       },
       resetPasswordData:{
         email: localStorage.dschool_reset_user_email || "",

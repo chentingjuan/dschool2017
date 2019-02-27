@@ -125,11 +125,11 @@ const moduleAuth = {
         .post(context.state.domain + "/password/email", data)
         .then(res => {
           context.commit("setStatus", "密碼重設信件已經寄出！");
-          if (res.data.success) {
-            localStorage.setItem("dschool_reset_user_email", context.state.user.email);
-          } else {
-            context.commit("setStatus", "密碼重設信件寄送失敗");
-          }
+          // if (res.data.success) {
+          localStorage.setItem("dschool_reset_user_email", context.state.user.email);
+          // } else {
+            // context.commit("setStatus", "密碼重設信件寄送失敗");
+          // }
           context.commit("setProcessing", false);
           context.commit("setPasswordResetResult", true);
           ;
