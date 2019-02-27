@@ -18,6 +18,7 @@
         input.loginPwd(v-model="loginData.password", placeholder="密碼" , type="password")
         .row.mt-5
           
+          button.btn.fw.nobg(@click="mode='reset_send_email'") 忘記密碼
           button.btn.lightGrey(@click="panelLogin") 登入
           button.btn.lightGrey(@click="mode='register'") 註冊
         //button.btn.fw.nobg 忘記密碼
@@ -58,9 +59,12 @@
 
 
         div.form-social
+        button.btn.fw.nobg(@click="mode='reset_send_email'") 忘記密碼
         button.btn.fw.black(@click="register(registerData)") 註冊
         //- label(v-if="auth.status") {{auth.status}}
         button.btn.fw.nobg(@click="mode='login'") 我已經有帳號了！ 前往登入
+
+      
       .bottom(v-if="auth.user")
         //h4 學生簡介
         div.mt-3
@@ -96,6 +100,22 @@
             router-link.btn.fw.lightGrey.text-black(to="/my/activity") 我的活動
           span(@click="$emit('onClose')")
             router-link.btn.fw.orange(to="/manage") 前往後台
+
+      .bottom(v-if="mode=='reset_send_email' || forceMode=='reset'")
+        h4 重設密碼
+        div(v-if="!auth.password_reset_success")
+          el-input(placeholder="輸入原帳號信箱", type="email", name="email", v-model="resetSendMailData.email")
+          button.btn.fw.black(@click="resetSendMail(resetSendMailData)" @keydown.enter.prevent="resetSendMail(resetSendMailData)")  寄出重設密碼連結
+        div(v-else)
+          h5 已寄出密碼重設連結，請前往信箱收信確認！
+
+      .bottom(v-else-if="mode=='reset_password'")
+        h4 重設使用者密碼
+        el-input(placeholder="輸入原帳號信箱", type="email", name="email", v-model="resetPasswordData.email")
+        el-input(placeholder="請輸入新密碼", type="password", name="password", v-model="resetPasswordData.password")
+        el-input(placeholder="再次輸入密碼", type="password", name="password_confirmation", v-model="resetPasswordData.password_confirmation")
+        button.btn.fw.black(@click="userResetPassword" ) 重設
+
     div(v-if="layout=='function'")
       .btn-group
         button.btn.fw.black(@click="logout") 登出
@@ -115,7 +135,11 @@ export default {
     layout: {
       type: String,
       default: "card",
-    }
+    },
+    forceMode: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
@@ -127,7 +151,16 @@ export default {
         password: "",
         
       },
-      mode: "login",
+      resetSendMailData:{
+        email:  localStorage.dschool_auth_user_email || "",
+      },
+      resetPasswordData:{
+        email: localStorage.dschool_reset_user_email || "",
+        password: "",
+        password_confirmation: "",
+        token: ""
+      },
+      mode: window.queryObject.reset_token?"reset_password":"login",
     }
   },
   computed: {
@@ -146,22 +179,50 @@ export default {
       canManage: 'auth/canManage',
       userGroup: 'auth/userGroup'
     }),
+
   },
   methods: {
-    // ...mapMutations(['setMenuState']),
+    ...mapMutations({
+      setMenuState: "setMenuState",
+      setResetToken: "auth/setResetToken"
+    }),
     ...mapActions({
       register: 'auth/register',
       login: 'auth/login',
       logout: 'auth/logout',
       loginFacebook: "auth/loginFacebook",
-      authInit: "auth/init"
+      authInit: "auth/init",
+      resetSendMail: "auth/resetSendMail",
+      resetPassword: "auth/resetPassword"
     }),
     panelLogin(){
       this.login(this.loginData).then(()=>{
         this.$emit("onLogin")
 
       })
-    }
+    },
+
+    userResetPassword(){
+      let _this = this
+      this.resetPassword({
+        data: this.resetPasswordData,
+        successHook: ()=>{
+          this.$message.success( "密碼重設成功！" )
+
+          setTimeout(()=>{
+            _this.setResetToken(null)
+            _this.mode="login"
+            //- window.location.href=window.location.href.split("?")[0]
+            // this.$router.push("/")
+            // this.setMenuState(false)
+          },1500)
+          
+        },
+        failHook: ()=>{
+          this.$message.error( "密碼重設失敗..." )
+        }
+      })
+    },
   },
   mounted(){
     // this.authInit()

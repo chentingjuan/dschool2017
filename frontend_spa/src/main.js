@@ -186,8 +186,33 @@ window.onload = function () {
   }
 }
 
+//取得網址的query string 轉換為物件
+window.queryObject = (window.location.href.split("?")[1] || "")
+  .split("&")
+  .reduce((obj, text) => {
+    obj[text.split("=")[0]] = text.split("=")[1];
+    return obj;
+  }, {});
+
+
+console.log(queryObject.reset_token)
+if (queryObject.reset_token) {
+  store.commit("auth/setResetToken", queryObject.reset_token);
+}
+if (queryObject.reset_token) {
+  store.commit("auth/setResetToken",queryObject.reset_token);
+  store.commit("openMenu", "login");
+}
+
+
+
+
 //登入
 store.dispatch("auth/init")
+
+
+
+
 
 const app = new Vue({
   el: '#app',
@@ -202,4 +227,6 @@ const app = new Vue({
   },
   template: '<App/>'
 });
+
+
 

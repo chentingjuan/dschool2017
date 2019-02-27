@@ -96,3 +96,4 @@ Route::get('/siteinfo/{title}','ApiController@siteInfo');
 // });
 
 Route::get('/color',"ApiController@get_color");
+

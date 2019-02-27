@@ -152,6 +152,9 @@ export default {
     },
   },
   mounted(){
+    if (window.queryObject.reset_token){
+      this.auth_open=true
+    }
     var mousePos = {
       x: 0,
       y: 0

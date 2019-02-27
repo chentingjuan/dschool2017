@@ -80,7 +80,6 @@
             div(v-if="wishing && !wishFinish")
               textarea(rows=5 v-model="wishContent")
               .btn.white(@click="sendWish") 送出願望
-           
 
 </template>
 
