@@ -30,7 +30,31 @@
       h3 創意，是永無止盡探究世界的真實面貌
       hr
     .dots
-  section.sectionFirst.theme.blue(style="display: none")
+  section.sectionLogo
+    .container-fluid
+      .row
+        .col-sm-3
+          img(src="/static/img/footerlogo-01.svg")
+          img(src="/static/img/footerlogo-02.svg")
+        .col-sm-9.text-color.white.text-left
+          b 地址 Address
+          br
+          span 10087 台北市中正區思源街18號卓越研究大樓四樓
+          br
+          br
+
+          b 電話 Tel
+          br
+          span 02-3366-1869
+          br
+          br
+
+          b 信箱 Email
+          br
+          span ntudschool@ntu.edu.tw
+          br
+          br
+  //section.sectionFirst.theme.blue(style="display: none")
     .container
       .row
         .col-sm-12
@@ -38,7 +62,7 @@
           hr
           p 在創新創業風氣興盛後，臺大覺察學校創新教育的不足，<br>遂於2014年成立創新設計學院，並於2015年秋季正式授課。
 
-  section.sectionSecond.theme.blue(style="display: none")
+  //section.sectionSecond.theme.blue(style="display: none")
     .container
       .row
         .col-sm-4

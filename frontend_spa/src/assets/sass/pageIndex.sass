@@ -20,6 +20,9 @@
     transform: translateX(0px)
     opacity: 1
 .page.pageIndex
+  .sectionLogo
+    img
+      max-width: 150px
   .sectionHero
     display: block
     padding-top: 0
@@ -31,6 +34,10 @@
       width: 100%
       max-width: 500px    
       margin: 40px
+      +rwd_sm
+        margin: 60px 20px
+        width: 90vw
+
     .titularBanner
       transform: translateX(80px) rotate(90deg) 
       margin-left: 50px
