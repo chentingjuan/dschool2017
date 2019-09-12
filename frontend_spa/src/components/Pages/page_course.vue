@@ -27,18 +27,23 @@
           h4 {{cata.code}}系列
           h3 {{cata.title}}
           p(v-html="cata.description")
-  //- section.sectionAbility
-    .container.theme.white.card
+  section.sectionAbility
+    .container.theme.blue
       .row
         .col-sm-12 
-          h2 六大核心能力
-      .row
-        .col-sm-6(v-for="ab in abilities")
+          h2.text-color.white 五大核心能力
+          hr
+      .row.text-center
+        div(v-for="ab in abilities", style="flex: 1;")
           .row
-            .col-sm-3
-            .col-sm-9
-              h3 {{ ab.label }}
-              p {{ ab.description }}
+            .col-12
+              div.icon-container
+                div.icon
+                  img(:src="ab.img")
+              div.pl-3.pl-3
+                h3.text-color.orange {{ ab.label }}
+                p.text-color.white.mt-2 {{ ab.description }}
+
   section.sectionCurrent
     .container.theme.blue
       .row
@@ -121,27 +126,28 @@ export default {
       abilities: [
         {
           label: "Mindset",
-          description: "建立T型人才中橫向的學習､溝通､合作與應變能力"
+          description: "建立T型人才中橫向的學習､溝通､合作與應變能力",
+          img: "/static/img/course_icon_ability_mindset.svg"
         },
         {
-          label: "Make",
-          description: "培養動手做的精神與能力"
-        },
-        {
-          label: "Communication",
-          description: "提升團隊或個人溝通技巧有效益取得與傳輸資訊"
-        },
-        {
-          label: "Creativity",
-          description: "提昇創新發想能力"
+          label: "Making",
+          description: "培養動手做的精神與能力",
+          img: "/static/img/course_icon_ability_making.svg"
         },
         {
           label: "Analysis",
-          description: "培養資料量化與分析能力"
+          description: "培養資料量化與分析能力",
+          img: "/static/img/course_icon_ability_analysis.svg"
+        },
+        {
+          label: "Creativity",
+          description: "提昇創新發想能力",
+          img: "/static/img/course_icon_ability_creativity.svg"
         },
         {
           label: "Storytelling",
-          description: "產生有效益的訊息傳達"
+          description: "提升團隊或個人的敘事、溝通能力，以產生有效益的訊息傳達",
+          img: "/static/img/course_icon_ability_storytelling.svg"
         }
       ]
     }
