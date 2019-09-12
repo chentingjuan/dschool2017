@@ -34,11 +34,11 @@
     .container-fluid
       .row
         .col-sm-4
-          a.footer_logo(href="https://cep.ntu.edu.tw/", target="_blank")
+          a.footer_logo(href="http://www.alphateam.tw/", target="_blank")
             img(src="/static/img/icon_index/AlphaTeam.svg")
           a.footer_logo(href="https://ntuplus.blogspot.com/", target="_blank")
             img(src="/static/img/icon_index/PLUS_LOGO.svg")
-          a.footer_logo(href="http://www.alphateam.tw/", target="_blank")
+          a.footer_logo(href="https://cep.ntu.edu.tw/", target="_blank")
             img(src="/static/img/icon_index/CEP_LOGO.svg")
 
         .col-sm-8.text-color.white.text-left
