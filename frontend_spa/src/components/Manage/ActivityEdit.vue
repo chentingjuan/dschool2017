@@ -253,18 +253,20 @@ export default {
       ]
     }
   },
-  mounted(){
+  created(){
     let _this = this
     if (this.event_id){
 
       axios.get(`/api/activity/${this.event_id}`).then(res=>{
 
         Vue.set(_this,"event",res.data)
+        //.replace(/\\\"/g,"\"")
         // console.log(_this.event.cover)
-        _this.event.teacher = JSON.parse(_this.event.teacher.replace(/\\\"/g,"\""))
-        // _this.event.cover = JSON.parse(_this.event.cover.replace(/\\\"/g,"\""))
-        _this.event.album = JSON.parse(_this.event.album.replace(/\\\"/g,"\""))
-        _this.event.question = JSON.parse(_this.event.question.replace(/\\\"/g,"\""))
+        _this.event.teacher = JSON.parse(_this.event.teacher)
+        // _this.event.cover = JSON.parse(_this.event.cover)
+        _this.event.album = JSON.parse(_this.event.album)
+        _this.event.question = JSON.parse(_this.event.question)
+        
         _this.event.question =_this.event.question.filter(o=>o)
         if (_this.event.question==null){
           _this.event.question=[]
