@@ -73,7 +73,7 @@
     "bootstrap": "^4.0.0-beta",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^5.0.5",
-    "jquery": "^3.1.1",
+    "jquery": "^3.5.0",
     "laravel-blade-jade": "^2.0.3",
     "laravel-elixir": "^6.0.0-15",
     "laravel-elixir-jade": "^0.2.4",
