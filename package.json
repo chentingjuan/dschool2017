@@ -23,7 +23,7 @@
     "laravel-elixir-webpack-official": "^1.0.10",
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.13.1",
     "prerender-spa-plugin": "^2.1.0",
     "pug": "^2.0.0-rc.4",
     "sass-loader": "^6.0.6",
