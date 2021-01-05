@@ -95,7 +95,7 @@
     "pixi.js": "^4.6.2",
     "element-ui": "^2.0.8",
     "dropzone": "^5.2.0",
-    "axios": "^0.16.2"
+    "axios": "^0.21.1"
   },
   "engines": {
     "node": ">= 6.0.0",
