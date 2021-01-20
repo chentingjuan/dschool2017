@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "font-awesome": "^4.7.0",
-    "gsap": "^2.0.2",
+    "gsap": "^3.6.0",
     "vue": "^2.5.2",
     "vue-bootstrap-datetimepicker": "^5.0.1",
     "vue-parallax-js": "^0.1.3",
